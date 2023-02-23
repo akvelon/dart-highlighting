@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final crmsh = Mode(
     refs: {},
+    name: "crmsh",
     aliases: ["crm", "pcmk"],
     case_insensitive: true,
     keywords: {
@@ -45,9 +46,6 @@ final crmsh = Mode(
           begin: "\\b\\d+(\\.\\d+)?(ms|s|h|m)?",
           relevance: 0),
       Mode(className: "literal", begin: "[-]?(infinity|inf)", relevance: 0),
-      Mode(
-          className: "attr",
-          begin: "([A-Za-z\\\$_\\#][\\w_-]+)=",
-          relevance: 0),
+      Mode(className: "attr", begin: "([A-Za-z\$_#][\\w_-]+)=", relevance: 0),
       Mode(className: "tag", begin: "</?", end: "/?>", relevance: 0)
     ]);

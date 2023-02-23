@@ -8,15 +8,20 @@ final smalltalk = Mode(
       '~contains~6': Mode(className: "string", begin: "\\\$.{1}"),
       '~contains~5': Mode(className: "symbol", begin: "#[a-zA-Z_]\\w*"),
     },
+    name: "Smalltalk",
     aliases: ["st"],
-    keywords: "self super nil true false thisContext",
+    keywords: ["self", "super", "nil", "true", "false", "thisContext"],
     contains: [
-      Mode(className: "comment", begin: "\"", end: "\"", contains: [
-        PHRASAL_WORDS_MODE,
+      Mode(scope: "comment", begin: "\"", end: "\"", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
       APOS_STRING_MODE,
       Mode(className: "type", begin: "\\b[A-Z][A-Za-z0-9_]*", relevance: 0),
@@ -30,7 +35,7 @@ final smalltalk = Mode(
           end: "\\|",
           illegal: "\\S",
           contains: [Mode(begin: "(\\|[ ]*)?[a-z][a-zA-Z0-9_]*")]),
-      Mode(begin: "\\#\\(", end: "\\)", contains: [
+      Mode(begin: "#\\(", end: "\\)", contains: [
         APOS_STRING_MODE,
         Mode(ref: '~contains~6'),
         C_NUMBER_MODE,

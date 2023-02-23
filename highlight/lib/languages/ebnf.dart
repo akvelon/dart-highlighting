@@ -6,20 +6,23 @@ import '../src/common_modes.dart';
 final ebnf = Mode(
     refs: {
       '~contains~0':
-          Mode(className: "comment", begin: "\\(\\*", end: "\\*\\)", contains: [
-        PHRASAL_WORDS_MODE,
+          Mode(scope: "comment", begin: "\\(\\*", end: "\\*\\)", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
     },
+    name: "Extended Backus-Naur Form",
     illegal: "\\S",
     contains: [
       Mode(ref: '~contains~0'),
-      Mode(
-          className: "attribute",
-          begin: "^[ ]*[a-zA-Z][a-zA-Z-_]*([\\s-_]+[a-zA-Z][a-zA-Z]*)*"),
+      Mode(className: "attribute", begin: "^[ ]*[a-zA-Z]+([\\s_-]+[a-zA-Z]+)*"),
       Mode(begin: "=", end: "[.;]", contains: [
         Mode(ref: '~contains~0'),
         Mode(className: "meta", begin: "\\?.*\\?"),

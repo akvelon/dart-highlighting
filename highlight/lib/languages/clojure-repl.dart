@@ -3,9 +3,12 @@
 import '../src/mode.dart';
 import '../src/common_modes.dart';
 
-final clojureRepl = Mode(refs: {}, contains: [
-  Mode(
-      className: "meta",
-      begin: "^([\\w.-]+|\\s*#_)?=>",
-      starts: Mode(end: "\$", subLanguage: ["clojure"]))
-]);
+final clojureRepl = Mode(
+    refs: {},
+    name: "Clojure REPL",
+    contains: [
+      Mode(
+          className: "meta.prompt",
+          begin: "^([\\w.-]+|\\s*#_)?=>",
+          starts: Mode(end: "\$", subLanguage: ["clojure"]))
+    ]);

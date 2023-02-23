@@ -5,8 +5,9 @@ import '../src/common_modes.dart';
 
 final maxima = Mode(
     refs: {},
-    lexemes: "[A-Za-z_%][0-9A-Za-z_%]*",
+    name: "Maxima",
     keywords: {
+      "\$pattern": "[A-Za-z_%][0-9A-Za-z_%]*",
       "keyword":
           "if then else elseif for thru do while unless step in and or not",
       "literal": "true false unknown inf minf ind und %e %i %pi %phi %gamma",

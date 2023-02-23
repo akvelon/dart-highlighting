@@ -10,10 +10,13 @@ final makefile = Mode(
         Mode(begin: "\\\$[@%<?\\^\\+\\*]")
       ]),
     },
-    aliases: ["mk", "mak"],
-    keywords:
-        "define endef undefine ifdef ifndef ifeq ifneq else endif include -include sinclude override export unexport private vpath",
-    lexemes: "[\\w-]+",
+    name: "Makefile",
+    aliases: ["mk", "mak", "make"],
+    keywords: {
+      "\$pattern": "[\\w-]+",
+      "keyword":
+          "define endef undefine ifdef ifndef ifeq ifneq else endif include -include sinclude override export unexport private vpath"
+    },
     contains: [
       HASH_COMMENT_MODE,
       Mode(ref: '~contains~1'),
@@ -38,8 +41,7 @@ final makefile = Mode(
           className: "meta",
           begin: "^\\.PHONY:",
           end: "\$",
-          keywords: {"meta-keyword": ".PHONY"},
-          lexemes: "[\\.\\w]+"),
+          keywords: {"\$pattern": "[\\.\\w]+", "keyword": ".PHONY"}),
       Mode(
           className: "section",
           begin: "^[^\\s]+:",

@@ -5,10 +5,11 @@ import '../src/common_modes.dart';
 
 final armasm = Mode(
     refs: {},
+    name: "ARM Assembly",
     case_insensitive: true,
     aliases: ["arm"],
-    lexemes: "\\.?[a-zA-Z]\\w*",
     keywords: {
+      "\$pattern": "\\.?[a-zA-Z]\\w*",
       "meta":
           ".2byte .4byte .align .ascii .asciz .balign .byte .code .data .else .end .endif .endm .endr .equ .err .exitm .extern .global .hword .if .ifdef .ifndef .include .irp .long .macro .rept .req .section .set .skip .space .text .word .arm .thumb .code16 .code32 .force_thumb .thumb_func .ltorg ALIAS ALIGN ARM AREA ASSERT ATTR CN CODE CODE16 CODE32 COMMON CP DATA DCB DCD DCDU DCDO DCFD DCFDU DCI DCQ DCQU DCW DCWU DN ELIF ELSE END ENDFUNC ENDIF ENDP ENTRY EQU EXPORT EXPORTAS EXTERN FIELD FILL FUNCTION GBLA GBLL GBLS GET GLOBAL IF IMPORT INCBIN INCLUDE INFO KEEP LCLA LCLL LCLS LTORG MACRO MAP MEND MEXIT NOFP OPT PRESERVE8 PROC QN READONLY RELOC REQUIRE REQUIRE8 RLIST FN ROUT SETA SETL SETS SN SPACE SUBT THUMB THUMBX TTL WHILE WEND ",
       "built_in":
@@ -18,21 +19,44 @@ final armasm = Mode(
       Mode(
           className: "keyword",
           begin:
-              "\\b(adc|(qd?|sh?|u[qh]?)?add(8|16)?|usada?8|(q|sh?|u[qh]?)?(as|sa)x|and|adrl?|sbc|rs[bc]|asr|b[lx]?|blx|bxj|cbn?z|tb[bh]|bic|bfc|bfi|[su]bfx|bkpt|cdp2?|clz|clrex|cmp|cmn|cpsi[ed]|cps|setend|dbg|dmb|dsb|eor|isb|it[te]{0,3}|lsl|lsr|ror|rrx|ldm(([id][ab])|f[ds])?|ldr((s|ex)?[bhd])?|movt?|mvn|mra|mar|mul|[us]mull|smul[bwt][bt]|smu[as]d|smmul|smmla|mla|umlaal|smlal?([wbt][bt]|d)|mls|smlsl?[ds]|smc|svc|sev|mia([bt]{2}|ph)?|mrr?c2?|mcrr2?|mrs|msr|orr|orn|pkh(tb|bt)|rbit|rev(16|sh)?|sel|[su]sat(16)?|nop|pop|push|rfe([id][ab])?|stm([id][ab])?|str(ex)?[bhd]?|(qd?)?sub|(sh?|q|u[qh]?)?sub(8|16)|[su]xt(a?h|a?b(16)?)|srs([id][ab])?|swpb?|swi|smi|tst|teq|wfe|wfi|yield)(eq|ne|cs|cc|mi|pl|vs|vc|hi|ls|ge|lt|gt|le|al|hs|lo)?[sptrx]?",
-          end: "\\s"),
-      Mode(
-          className: "comment",
-          begin: "[;@]",
-          end: "\$",
-          contains: [
-            PHRASAL_WORDS_MODE,
-            Mode(
-                className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-                relevance: 0)
-          ],
-          relevance: 0),
-      C_BLOCK_COMMENT_MODE,
+              "\\b(adc|(qd?|sh?|u[qh]?)?add(8|16)?|usada?8|(q|sh?|u[qh]?)?(as|sa)x|and|adrl?|sbc|rs[bc]|asr|b[lx]?|blx|bxj|cbn?z|tb[bh]|bic|bfc|bfi|[su]bfx|bkpt|cdp2?|clz|clrex|cmp|cmn|cpsi[ed]|cps|setend|dbg|dmb|dsb|eor|isb|it[te]{0,3}|lsl|lsr|ror|rrx|ldm(([id][ab])|f[ds])?|ldr((s|ex)?[bhd])?|movt?|mvn|mra|mar|mul|[us]mull|smul[bwt][bt]|smu[as]d|smmul|smmla|mla|umlaal|smlal?([wbt][bt]|d)|mls|smlsl?[ds]|smc|svc|sev|mia([bt]{2}|ph)?|mrr?c2?|mcrr2?|mrs|msr|orr|orn|pkh(tb|bt)|rbit|rev(16|sh)?|sel|[su]sat(16)?|nop|pop|push|rfe([id][ab])?|stm([id][ab])?|str(ex)?[bhd]?|(qd?)?sub|(sh?|q|u[qh]?)?sub(8|16)|[su]xt(a?h|a?b(16)?)|srs([id][ab])?|swpb?|swi|smi|tst|teq|wfe|wfi|yield)(eq|ne|cs|cc|mi|pl|vs|vc|hi|ls|ge|lt|gt|le|al|hs|lo)?[sptrx]?(?=\\s)"),
+      Mode(variants: [
+        Mode(
+            scope: "comment",
+            begin: "^[ \\t]*(?=#)",
+            end: "\$",
+            contains: [
+              Mode(
+                  scope: "doctag",
+                  begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+                  end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+                  excludeBegin: true,
+                  relevance: 0),
+              Mode(
+                  begin:
+                      "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
+            ],
+            relevance: 0,
+            excludeBegin: true),
+        Mode(
+            scope: "comment",
+            begin: "[;@]",
+            end: "\$",
+            contains: [
+              Mode(
+                  scope: "doctag",
+                  begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+                  end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+                  excludeBegin: true,
+                  relevance: 0),
+              Mode(
+                  begin:
+                      "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
+            ],
+            relevance: 0),
+        C_LINE_COMMENT_MODE,
+        C_BLOCK_COMMENT_MODE
+      ]),
       QUOTE_STRING_MODE,
       Mode(className: "string", begin: "'", end: "[^\\\\]'", relevance: 0),
       Mode(
@@ -53,8 +77,8 @@ final armasm = Mode(
       Mode(
           className: "symbol",
           variants: [
+            Mode(begin: "^[ \\t]*[a-z_\\.\\\$][a-z0-9_\\.\\\$]+:"),
             Mode(begin: "^[a-z_\\.\\\$][a-z0-9_\\.\\\$]+"),
-            Mode(begin: "^\\s*[a-z_\\.\\\$][a-z0-9_\\.\\\$]+:"),
             Mode(begin: "[=#]\\w+")
           ],
           relevance: 0)

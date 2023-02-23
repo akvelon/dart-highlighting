@@ -11,9 +11,10 @@ final scilab = Mode(
           end: "'|\"",
           contains: [BACKSLASH_ESCAPE, Mode(begin: "''")]),
     },
+    name: "Scilab",
     aliases: ["sci"],
-    lexemes: "%?\\w+",
     keywords: {
+      "\$pattern": "%?\\w+",
       "keyword":
           "abort break case clear catch continue do elseif else endfunction end for function global if pause return resume select try then while",
       "literal": "%f %F %t %T %pi %eps %inf %nan %e %i %z %s",
@@ -30,21 +31,22 @@ final scilab = Mode(
             UNDERSCORE_TITLE_MODE,
             Mode(className: "params", begin: "\\(", end: "\\)")
           ]),
-      Mode(
-          begin: "[a-zA-Z_][a-zA-Z_0-9]*('+[\\.']*|[\\.']+)",
-          end: "",
-          relevance: 0),
+      Mode(begin: "[a-zA-Z_][a-zA-Z_0-9]*[\\.']+", relevance: 0),
       Mode(
           begin: "\\[",
-          end: "\\]'*[\\.']*",
+          end: "\\][\\.']*",
           relevance: 0,
           contains: [C_NUMBER_MODE, Mode(ref: '~contains~2~contains~1')]),
-      Mode(className: "comment", begin: "//", end: "\$", contains: [
-        PHRASAL_WORDS_MODE,
+      Mode(scope: "comment", begin: "//", end: "\$", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
       C_NUMBER_MODE,
       Mode(ref: '~contains~2~contains~1')

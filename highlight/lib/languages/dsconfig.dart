@@ -29,9 +29,13 @@ final dsconfig = Mode(
       Mode(className: "string", begin: "'", end: "'"),
       Mode(
           className: "string",
-          begin: "[\\w-?]+:\\w+",
+          begin: "[\\w\\-?]+:\\w+",
           end: "\\W",
           relevance: 0),
-      Mode(className: "string", begin: "\\w+-?\\w+", end: "\\W", relevance: 0),
+      Mode(
+          className: "string",
+          begin: "\\w+(\\-\\w+)*",
+          end: "(?=\\W)",
+          relevance: 0),
       HASH_COMMENT_MODE
     ]);

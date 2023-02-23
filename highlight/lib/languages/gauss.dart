@@ -74,15 +74,19 @@ final gauss = Mode(
           end: "\"",
           contains: [BACKSLASH_ESCAPE],
           relevance: 0),
-      '~contains~3':
-          Mode(className: "comment", begin: "@", end: "@", contains: [
-        PHRASAL_WORDS_MODE,
+      '~contains~3': Mode(scope: "comment", begin: "@", end: "@", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
     },
+    name: "GAUSS",
     aliases: ["gss"],
     case_insensitive: true,
     keywords: {
@@ -101,14 +105,14 @@ final gauss = Mode(
       Mode(ref: '~contains~3'),
       Mode(ref: '~contains~4'),
       Mode(className: "meta", begin: "#", end: "\$", keywords: {
-        "meta-keyword":
+        "keyword":
             "define definecs|10 undef ifdef ifndef iflight ifdllcall ifmac ifos2win ifunix else endif lineson linesoff srcfile srcline"
       }, contains: [
         Mode(begin: "\\\\\\n", relevance: 0),
         Mode(beginKeywords: "include", end: "\$", keywords: {
-          "meta-keyword": "include"
+          "keyword": "include"
         }, contains: [
-          Mode(className: "meta-string", begin: "\"", end: "\"", illegal: "\\n")
+          Mode(className: "string", begin: "\"", end: "\"", illegal: "\\n")
         ]),
         C_LINE_COMMENT_MODE,
         C_BLOCK_COMMENT_MODE,

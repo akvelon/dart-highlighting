@@ -5,8 +5,9 @@ import '../src/common_modes.dart';
 
 final cos = Mode(
     refs: {},
+    name: "Caché Object Script",
     case_insensitive: true,
-    aliases: ["cos", "cls"],
+    aliases: ["cls"],
     keywords:
         "property parameter class classmethod clientmethod extends as break catch close continue do d|0 else elseif for goto halt hang h|0 if job j|0 kill k|0 lock l|0 merge new open quit q|0 read r|0 return set s|0 tcommit throw trollback try tstart use view while write w|0 xecute x|0 zkill znspace zn ztrap zwrite zw zzdump zzwrite print zbreak zinsert zload zprint zremove zsave zzprint mv mvcall mvcrt mvdim mvprint zquit zsync ascii",
     contains: [

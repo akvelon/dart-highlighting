@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final tap = Mode(
     refs: {},
+    name: "Test Anything Protocol",
     case_insensitive: true,
     contains: [
       HASH_COMMENT_MODE,
@@ -13,7 +14,7 @@ final tap = Mode(
         Mode(begin: "^1\\.\\.(\\d+)\$")
       ]),
       Mode(
-          begin: "(s+)?---\$",
+          begin: "---\$",
           end: "\\.\\.\\.\$",
           subLanguage: ["yaml"],
           relevance: 0),

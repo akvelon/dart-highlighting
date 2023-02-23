@@ -5,9 +5,10 @@ import '../src/common_modes.dart';
 
 final avrasm = Mode(
     refs: {},
+    name: "AVR Assembly",
     case_insensitive: true,
-    lexemes: "\\.?[a-zA-Z]\\w*",
     keywords: {
+      "\$pattern": "\\.?[a-zA-Z]\\w*",
       "keyword":
           "adc add adiw and andi asr bclr bld brbc brbs brcc brcs break breq brge brhc brhs brid brie brlo brlt brmi brne brpl brsh brtc brts brvc brvs bset bst call cbi cbr clc clh cli cln clr cls clt clv clz com cp cpc cpi cpse dec eicall eijmp elpm eor fmul fmuls fmulsu icall ijmp in inc jmp ld ldd ldi lds lpm lsl lsr mov movw mul muls mulsu neg nop or ori out pop push rcall ret reti rjmp rol ror sbc sbr sbrc sbrs sec seh sbi sbci sbic sbis sbiw sei sen ser ses set sev sez sleep spm st std sts sub subi swap tst wdr",
       "built_in":
@@ -18,15 +19,19 @@ final avrasm = Mode(
     contains: [
       C_BLOCK_COMMENT_MODE,
       Mode(
-          className: "comment",
+          scope: "comment",
           begin: ";",
           end: "\$",
           contains: [
-            PHRASAL_WORDS_MODE,
             Mode(
-                className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-                relevance: 0)
+                scope: "doctag",
+                begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+                end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+                excludeBegin: true,
+                relevance: 0),
+            Mode(
+                begin:
+                    "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
           ],
           relevance: 0),
       C_NUMBER_MODE,

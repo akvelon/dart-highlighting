@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   collection: ^1.15.0
+  tuple: ^2.0.1
 
 dev_dependencies:
   pedantic: ^1.11.0

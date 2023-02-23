@@ -26,9 +26,7 @@ final moonscript = Mode(
             ])
           ]),
       '~contains~6~contains~0': Mode(
-          className: "title",
-          begin: "[A-Za-z\$_][0-9A-Za-z\$_]*",
-          relevance: 0),
+          scope: "title", begin: "[A-Za-z\$_][0-9A-Za-z\$_]*", relevance: 0),
       '~contains~1~variants~1~contains~1~contains~4':
           Mode(begin: "[a-zA-Z]\\w*\\\\[a-zA-Z]\\w*"),
       '~contains~1~variants~1~contains~1~contains~3':
@@ -39,7 +37,7 @@ final moonscript = Mode(
         Mode(begin: "'", end: "'", contains: [BACKSLASH_ESCAPE]),
         Mode(begin: "\"", end: "\"", contains: [
           BACKSLASH_ESCAPE,
-          Mode(className: "subst", begin: "#\\{", end: "}", keywords: {
+          Mode(className: "subst", begin: "#\\{", end: "\\}", keywords: {
             "keyword":
                 "if then not for in while do return else elseif break continue switch and or unless when class extends super local import export from using",
             "literal": "true false nil",
@@ -55,12 +53,13 @@ final moonscript = Mode(
         ])
       ]),
       '~contains~0': Mode(
-          className: "number",
+          scope: "number",
           begin:
               "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)",
           relevance: 0,
           starts: Mode(end: "(\\s*/)?", relevance: 0)),
     },
+    name: "MoonScript",
     aliases: ["moon"],
     keywords: {
       "keyword":
@@ -76,17 +75,21 @@ final moonscript = Mode(
       Mode(ref: '~contains~1~variants~1~contains~1~contains~2'),
       Mode(ref: '~contains~1~variants~1~contains~1~contains~3'),
       Mode(ref: '~contains~1~variants~1~contains~1~contains~4'),
-      Mode(className: "comment", begin: "--", end: "\$", contains: [
-        PHRASAL_WORDS_MODE,
+      Mode(scope: "comment", begin: "--", end: "\$", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
       Mode(
           className: "function",
           begin:
-              "^\\s*[A-Za-z\$_][0-9A-Za-z\$_]*\\s*=\\s*(\\(.*\\))?\\s*\\B[-=]>",
+              "^\\s*[A-Za-z\$_][0-9A-Za-z\$_]*\\s*=\\s*(\\(.*\\)\\s*)?\\B[-=]>",
           end: "[-=]>",
           returnBegin: true,
           contains: [
@@ -96,7 +99,7 @@ final moonscript = Mode(
       Mode(begin: "[\\(,:=]\\s*", relevance: 0, contains: [
         Mode(
             className: "function",
-            begin: "(\\(.*\\))?\\s*\\B[-=]>",
+            begin: "(\\(.*\\)\\s*)?\\B[-=]>",
             end: "[-=]>",
             returnBegin: true,
             contains: [Mode(ref: '~contains~6~contains~1')])

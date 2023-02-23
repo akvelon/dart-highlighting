@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final dust = Mode(
     refs: {},
+    name: "Dust",
     aliases: ["dst"],
     case_insensitive: true,
     subLanguage: ["xml"],

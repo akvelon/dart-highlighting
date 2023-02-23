@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final inform7 = Mode(
     refs: {},
+    name: "Inform 7",
     aliases: ["i7"],
     case_insensitive: true,
     keywords: {

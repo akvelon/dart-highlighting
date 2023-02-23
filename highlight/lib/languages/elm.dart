@@ -8,20 +8,28 @@ final elm = Mode(
       '~contains~2~contains~0':
           Mode(className: "type", begin: "\\b[A-Z][\\w']*", relevance: 0),
       '~contains~0~contains~0~contains~1': Mode(variants: [
-        Mode(className: "comment", begin: "--", end: "\$", contains: [
-          PHRASAL_WORDS_MODE,
+        Mode(scope: "comment", begin: "--", end: "\$", contains: [
           Mode(
-              className: "doctag",
-              begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-              relevance: 0)
+              scope: "doctag",
+              begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+              end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+              excludeBegin: true,
+              relevance: 0),
+          Mode(
+              begin:
+                  "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
         ]),
-        Mode(className: "comment", begin: "{-", end: "-}", contains: [
+        Mode(scope: "comment", begin: "\\{-", end: "-\\}", contains: [
           Mode(self: true),
-          PHRASAL_WORDS_MODE,
           Mode(
-              className: "doctag",
-              begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-              relevance: 0)
+              scope: "doctag",
+              begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+              end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+              excludeBegin: true,
+              relevance: 0),
+          Mode(
+              begin:
+                  "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
         ])
       ]),
       '~contains~0~contains~0~contains~0': Mode(
@@ -32,8 +40,30 @@ final elm = Mode(
         Mode(ref: '~contains~0~contains~0~contains~1')
       ]),
     },
-    keywords:
-        "let in if then else case of where module import exposing type alias as infix infixl infixr port effect command subscription",
+    name: "Elm",
+    keywords: [
+      "let",
+      "in",
+      "if",
+      "then",
+      "else",
+      "case",
+      "of",
+      "where",
+      "module",
+      "import",
+      "exposing",
+      "type",
+      "alias",
+      "as",
+      "infix",
+      "infixl",
+      "infixr",
+      "port",
+      "effect",
+      "command",
+      "subscription"
+    ],
     contains: [
       Mode(
           beginKeywords: "port effect module",
@@ -56,7 +86,7 @@ final elm = Mode(
       Mode(begin: "type", end: "\$", keywords: "type alias", contains: [
         Mode(ref: '~contains~2~contains~0'),
         Mode(ref: '~contains~0~contains~0'),
-        Mode(begin: "{", end: "}", contains: [
+        Mode(begin: "\\{", end: "\\}", contains: [
           Mode(ref: '~contains~0~contains~0~contains~0'),
           Mode(ref: '~contains~0~contains~0~contains~1')
         ]),
@@ -75,7 +105,7 @@ final elm = Mode(
       QUOTE_STRING_MODE,
       C_NUMBER_MODE,
       Mode(ref: '~contains~2~contains~0'),
-      Mode(className: "title", begin: "^[_a-z][\\w']*", relevance: 0),
+      Mode(scope: "title", begin: "^[_a-z][\\w']*", relevance: 0),
       Mode(ref: '~contains~0~contains~0~contains~1'),
       Mode(begin: "->|<-")
     ],

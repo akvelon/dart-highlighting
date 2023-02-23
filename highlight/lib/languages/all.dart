@@ -1,384 +1,773 @@
 import '1c.dart';
+import '1c.js.dart';
 import 'abnf.dart';
+import 'abnf.js.dart';
 import 'accesslog.dart';
+import 'accesslog.js.dart';
 import 'actionscript.dart';
+import 'actionscript.js.dart';
 import 'ada.dart';
+import 'ada.js.dart';
 import 'angelscript.dart';
+import 'angelscript.js.dart';
 import 'apache.dart';
+import 'apache.js.dart';
 import 'applescript.dart';
+import 'applescript.js.dart';
 import 'arcade.dart';
+import 'arcade.js.dart';
 import 'arduino.dart';
+import 'arduino.js.dart';
 import 'armasm.dart';
+import 'armasm.js.dart';
 import 'asciidoc.dart';
+import 'asciidoc.js.dart';
 import 'aspectj.dart';
+import 'aspectj.js.dart';
 import 'autohotkey.dart';
+import 'autohotkey.js.dart';
 import 'autoit.dart';
+import 'autoit.js.dart';
 import 'avrasm.dart';
+import 'avrasm.js.dart';
 import 'awk.dart';
+import 'awk.js.dart';
 import 'axapta.dart';
+import 'axapta.js.dart';
 import 'bash.dart';
+import 'bash.js.dart';
 import 'basic.dart';
+import 'basic.js.dart';
 import 'bnf.dart';
+import 'bnf.js.dart';
 import 'brainfuck.dart';
+import 'brainfuck.js.dart';
+import 'c.dart';
+import 'c.js.dart';
 import 'cal.dart';
+import 'cal.js.dart';
 import 'capnproto.dart';
+import 'capnproto.js.dart';
 import 'ceylon.dart';
+import 'ceylon.js.dart';
 import 'clean.dart';
+import 'clean.js.dart';
 import 'clojure-repl.dart';
+import 'clojure-repl.js.dart';
 import 'clojure.dart';
+import 'clojure.js.dart';
 import 'cmake.dart';
+import 'cmake.js.dart';
 import 'coffeescript.dart';
+import 'coffeescript.js.dart';
 import 'coq.dart';
+import 'coq.js.dart';
 import 'cos.dart';
+import 'cos.js.dart';
 import 'cpp.dart';
+import 'cpp.js.dart';
 import 'crmsh.dart';
+import 'crmsh.js.dart';
 import 'crystal.dart';
-import 'cs.dart';
+import 'crystal.js.dart';
+import 'csharp.dart';
+import 'csharp.js.dart';
 import 'csp.dart';
+import 'csp.js.dart';
 import 'css.dart';
+import 'css.js.dart';
 import 'd.dart';
+import 'd.js.dart';
 import 'dart.dart';
+import 'dart.js.dart';
 import 'delphi.dart';
+import 'delphi.js.dart';
 import 'diff.dart';
+import 'diff.js.dart';
 import 'django.dart';
+import 'django.js.dart';
 import 'dns.dart';
+import 'dns.js.dart';
 import 'dockerfile.dart';
+import 'dockerfile.js.dart';
 import 'dos.dart';
+import 'dos.js.dart';
 import 'dsconfig.dart';
+import 'dsconfig.js.dart';
 import 'dts.dart';
+import 'dts.js.dart';
 import 'dust.dart';
+import 'dust.js.dart';
 import 'ebnf.dart';
+import 'ebnf.js.dart';
 import 'elixir.dart';
+import 'elixir.js.dart';
 import 'elm.dart';
+import 'elm.js.dart';
 import 'erb.dart';
+import 'erb.js.dart';
 import 'erlang-repl.dart';
+import 'erlang-repl.js.dart';
 import 'erlang.dart';
+import 'erlang.js.dart';
 import 'excel.dart';
+import 'excel.js.dart';
 import 'fix.dart';
+import 'fix.js.dart';
 import 'flix.dart';
+import 'flix.js.dart';
 import 'fortran.dart';
+import 'fortran.js.dart';
 import 'fsharp.dart';
+import 'fsharp.js.dart';
 import 'gams.dart';
+import 'gams.js.dart';
 import 'gauss.dart';
+import 'gauss.js.dart';
 import 'gcode.dart';
+import 'gcode.js.dart';
 import 'gherkin.dart';
+import 'gherkin.js.dart';
 import 'glsl.dart';
+import 'glsl.js.dart';
 import 'gml.dart';
+import 'gml.js.dart';
 import 'go.dart';
+import 'go.js.dart';
 import 'golo.dart';
+import 'golo.js.dart';
 import 'gradle.dart';
-import 'groovy.dart';
-import 'haml.dart';
-import 'handlebars.dart';
-import 'haskell.dart';
-import 'haxe.dart';
-import 'hsp.dart';
-import 'htmlbars.dart';
-import 'http.dart';
-import 'hy.dart';
-import 'inform7.dart';
-import 'ini.dart';
-import 'irpf90.dart';
-import 'isbl.dart';
-import 'java.dart';
-import 'javascript.dart';
-import 'jboss-cli.dart';
-import 'json.dart';
-import 'julia-repl.dart';
-import 'julia.dart';
-import 'kotlin.dart';
-import 'lasso.dart';
-import 'ldif.dart';
-import 'leaf.dart';
-import 'less.dart';
-import 'lisp.dart';
-import 'livecodeserver.dart';
-import 'livescript.dart';
-import 'llvm.dart';
-import 'lsl.dart';
-import 'lua.dart';
-import 'makefile.dart';
-import 'markdown.dart';
-import 'mathematica.dart';
-import 'matlab.dart';
-import 'maxima.dart';
-import 'mel.dart';
-import 'mercury.dart';
-import 'mipsasm.dart';
-import 'mizar.dart';
-import 'mojolicious.dart';
-import 'monkey.dart';
-import 'moonscript.dart';
-import 'n1ql.dart';
-import 'nginx.dart';
-import 'nimrod.dart';
-import 'nix.dart';
-import 'nsis.dart';
-import 'objectivec.dart';
-import 'ocaml.dart';
-import 'openscad.dart';
-import 'oxygene.dart';
-import 'parser3.dart';
-import 'perl.dart';
-import 'pf.dart';
-import 'pgsql.dart';
-import 'php.dart';
-import 'plaintext.dart';
-import 'pony.dart';
-import 'powershell.dart';
-import 'processing.dart';
-import 'profile.dart';
-import 'prolog.dart';
-import 'properties.dart';
-import 'protobuf.dart';
-import 'puppet.dart';
-import 'purebasic.dart';
-import 'python.dart';
-import 'q.dart';
-import 'qml.dart';
-import 'r.dart';
-import 'reasonml.dart';
-import 'rib.dart';
-import 'roboconf.dart';
-import 'routeros.dart';
-import 'rsl.dart';
-import 'ruby.dart';
-import 'ruleslanguage.dart';
-import 'rust.dart';
-import 'sas.dart';
-import 'scala.dart';
-import 'scheme.dart';
-import 'scilab.dart';
-import 'scss.dart';
-import 'shell.dart';
-import 'smali.dart';
-import 'smalltalk.dart';
-import 'sml.dart';
-import 'sqf.dart';
-import 'sql.dart';
-import 'stan.dart';
-import 'stata.dart';
-import 'step21.dart';
-import 'stylus.dart';
-import 'subunit.dart';
-import 'swift.dart';
-import 'taggerscript.dart';
-import 'tap.dart';
-import 'tcl.dart';
-import 'tex.dart';
-import 'thrift.dart';
-import 'tp.dart';
-import 'twig.dart';
-import 'typescript.dart';
-import 'vala.dart';
-import 'vbnet.dart';
-import 'vbscript-html.dart';
-import 'vbscript.dart';
-import 'verilog.dart';
-import 'vhdl.dart';
-import 'vim.dart';
-import 'x86asm.dart';
-import 'xl.dart';
-import 'xml.dart';
-import 'xquery.dart';
-import 'yaml.dart';
-import 'zephir.dart';
-import 'vue.dart';
+import 'gradle.js.dart';
 import 'graphql.dart';
-import 'gn.dart';
-import 'solidity.dart';
+import 'graphql.js.dart';
+import 'groovy.dart';
+import 'groovy.js.dart';
+import 'haml.dart';
+import 'haml.js.dart';
+import 'handlebars.dart';
+import 'handlebars.js.dart';
+import 'haskell.dart';
+import 'haskell.js.dart';
+import 'haxe.dart';
+import 'haxe.js.dart';
+import 'hsp.dart';
+import 'hsp.js.dart';
+import 'http.dart';
+import 'http.js.dart';
+import 'hy.dart';
+import 'hy.js.dart';
+import 'inform7.dart';
+import 'inform7.js.dart';
+import 'ini.dart';
+import 'ini.js.dart';
+import 'irpf90.dart';
+import 'irpf90.js.dart';
+import 'isbl.dart';
+import 'isbl.js.dart';
+import 'java.dart';
+import 'java.js.dart';
+import 'javascript.dart';
+import 'javascript.js.dart';
+import 'jboss-cli.dart';
+import 'jboss-cli.js.dart';
+import 'json.dart';
+import 'json.js.dart';
+import 'julia-repl.dart';
+import 'julia-repl.js.dart';
+import 'julia.dart';
+import 'julia.js.dart';
+import 'kotlin.dart';
+import 'kotlin.js.dart';
+import 'lasso.dart';
+import 'lasso.js.dart';
+import 'latex.dart';
+import 'latex.js.dart';
+import 'ldif.dart';
+import 'ldif.js.dart';
+import 'leaf.dart';
+import 'leaf.js.dart';
+import 'less.dart';
+import 'less.js.dart';
+import 'lisp.dart';
+import 'lisp.js.dart';
+import 'livecodeserver.dart';
+import 'livecodeserver.js.dart';
+import 'livescript.dart';
+import 'livescript.js.dart';
+import 'llvm.dart';
+import 'llvm.js.dart';
+import 'lsl.dart';
+import 'lsl.js.dart';
+import 'lua.dart';
+import 'lua.js.dart';
+import 'makefile.dart';
+import 'makefile.js.dart';
+import 'markdown.dart';
+import 'markdown.js.dart';
+import 'mathematica.dart';
+import 'mathematica.js.dart';
+import 'matlab.dart';
+import 'matlab.js.dart';
+import 'maxima.dart';
+import 'maxima.js.dart';
+import 'mel.dart';
+import 'mel.js.dart';
+import 'mercury.dart';
+import 'mercury.js.dart';
+import 'mipsasm.dart';
+import 'mipsasm.js.dart';
+import 'mizar.dart';
+import 'mizar.js.dart';
+import 'mojolicious.dart';
+import 'mojolicious.js.dart';
+import 'monkey.dart';
+import 'monkey.js.dart';
+import 'moonscript.dart';
+import 'moonscript.js.dart';
+import 'n1ql.dart';
+import 'n1ql.js.dart';
+import 'nestedtext.dart';
+import 'nestedtext.js.dart';
+import 'nginx.dart';
+import 'nginx.js.dart';
+import 'nim.dart';
+import 'nim.js.dart';
+import 'nix.dart';
+import 'nix.js.dart';
+import 'node-repl.dart';
+import 'node-repl.js.dart';
+import 'nsis.dart';
+import 'nsis.js.dart';
+import 'objectivec.dart';
+import 'objectivec.js.dart';
+import 'ocaml.dart';
+import 'ocaml.js.dart';
+import 'openscad.dart';
+import 'openscad.js.dart';
+import 'oxygene.dart';
+import 'oxygene.js.dart';
+import 'parser3.dart';
+import 'parser3.js.dart';
+import 'perl.dart';
+import 'perl.js.dart';
+import 'pf.dart';
+import 'pf.js.dart';
+import 'pgsql.dart';
+import 'pgsql.js.dart';
+import 'php-template.dart';
+import 'php-template.js.dart';
+import 'php.dart';
+import 'php.js.dart';
+import 'plaintext.dart';
+import 'plaintext.js.dart';
+import 'pony.dart';
+import 'pony.js.dart';
+import 'powershell.dart';
+import 'powershell.js.dart';
+import 'processing.dart';
+import 'processing.js.dart';
+import 'profile.dart';
+import 'profile.js.dart';
+import 'prolog.dart';
+import 'prolog.js.dart';
+import 'properties.dart';
+import 'properties.js.dart';
+import 'protobuf.dart';
+import 'protobuf.js.dart';
+import 'puppet.dart';
+import 'puppet.js.dart';
+import 'purebasic.dart';
+import 'purebasic.js.dart';
+import 'python-repl.dart';
+import 'python-repl.js.dart';
+import 'python.dart';
+import 'python.js.dart';
+import 'q.dart';
+import 'q.js.dart';
+import 'qml.dart';
+import 'qml.js.dart';
+import 'r.dart';
+import 'r.js.dart';
+import 'reasonml.dart';
+import 'reasonml.js.dart';
+import 'rib.dart';
+import 'rib.js.dart';
+import 'roboconf.dart';
+import 'roboconf.js.dart';
+import 'routeros.dart';
+import 'routeros.js.dart';
+import 'rsl.dart';
+import 'rsl.js.dart';
+import 'ruby.dart';
+import 'ruby.js.dart';
+import 'ruleslanguage.dart';
+import 'ruleslanguage.js.dart';
+import 'rust.dart';
+import 'rust.js.dart';
+import 'sas.dart';
+import 'sas.js.dart';
+import 'scala.dart';
+import 'scala.js.dart';
+import 'scheme.dart';
+import 'scheme.js.dart';
+import 'scilab.dart';
+import 'scilab.js.dart';
+import 'scss.dart';
+import 'scss.js.dart';
+import 'shell.dart';
+import 'shell.js.dart';
+import 'smali.dart';
+import 'smali.js.dart';
+import 'smalltalk.dart';
+import 'smalltalk.js.dart';
+import 'sml.dart';
+import 'sml.js.dart';
+import 'sqf.dart';
+import 'sqf.js.dart';
+import 'sql.dart';
+import 'sql.js.dart';
+import 'stan.dart';
+import 'stan.js.dart';
+import 'stata.dart';
+import 'stata.js.dart';
+import 'step21.dart';
+import 'step21.js.dart';
+import 'stylus.dart';
+import 'stylus.js.dart';
+import 'subunit.dart';
+import 'subunit.js.dart';
+import 'swift.dart';
+import 'swift.js.dart';
+import 'taggerscript.dart';
+import 'taggerscript.js.dart';
+import 'tap.dart';
+import 'tap.js.dart';
+import 'tcl.dart';
+import 'tcl.js.dart';
+import 'thrift.dart';
+import 'thrift.js.dart';
+import 'tp.dart';
+import 'tp.js.dart';
+import 'twig.dart';
+import 'twig.js.dart';
+import 'typescript.dart';
+import 'typescript.js.dart';
+import 'vala.dart';
+import 'vala.js.dart';
+import 'vbnet.dart';
+import 'vbnet.js.dart';
+import 'vbscript-html.dart';
+import 'vbscript-html.js.dart';
+import 'vbscript.dart';
+import 'vbscript.js.dart';
+import 'verilog.dart';
+import 'verilog.js.dart';
+import 'vhdl.dart';
+import 'vhdl.js.dart';
+import 'vim.dart';
+import 'vim.js.dart';
+import 'wasm.dart';
+import 'wasm.js.dart';
+import 'wren.dart';
+import 'wren.js.dart';
+import 'x86asm.dart';
+import 'x86asm.js.dart';
+import 'xl.dart';
+import 'xl.js.dart';
+import 'xml.dart';
+import 'xml.js.dart';
+import 'xquery.dart';
+import 'xquery.js.dart';
+import 'yaml.dart';
+import 'yaml.js.dart';
+import 'zephir.dart';
+import 'zephir.js.dart';
 
-final communityLanguages = {
-  'vue': vue,
-  'graphql': graphql,
-  'gn': gn,
-  'solidity': solidity,
-};
+final communityLanguages = {};
 final builtinLanguages = {
   '1c': lang1C,
+  '1c.js': lang1CJs,
   'abnf': abnf,
+  'abnf.js': abnfJs,
   'accesslog': accesslog,
+  'accesslog.js': accesslogJs,
   'actionscript': actionscript,
+  'actionscript.js': actionscriptJs,
   'ada': ada,
+  'ada.js': adaJs,
   'angelscript': angelscript,
+  'angelscript.js': angelscriptJs,
   'apache': apache,
+  'apache.js': apacheJs,
   'applescript': applescript,
+  'applescript.js': applescriptJs,
   'arcade': arcade,
+  'arcade.js': arcadeJs,
   'arduino': arduino,
+  'arduino.js': arduinoJs,
   'armasm': armasm,
+  'armasm.js': armasmJs,
   'asciidoc': asciidoc,
+  'asciidoc.js': asciidocJs,
   'aspectj': aspectj,
+  'aspectj.js': aspectjJs,
   'autohotkey': autohotkey,
+  'autohotkey.js': autohotkeyJs,
   'autoit': autoit,
+  'autoit.js': autoitJs,
   'avrasm': avrasm,
+  'avrasm.js': avrasmJs,
   'awk': awk,
+  'awk.js': awkJs,
   'axapta': axapta,
+  'axapta.js': axaptaJs,
   'bash': bash,
+  'bash.js': bashJs,
   'basic': basic,
+  'basic.js': basicJs,
   'bnf': bnf,
+  'bnf.js': bnfJs,
   'brainfuck': brainfuck,
+  'brainfuck.js': brainfuckJs,
+  'c': c,
+  'c.js': cJs,
   'cal': cal,
+  'cal.js': calJs,
   'capnproto': capnproto,
+  'capnproto.js': capnprotoJs,
   'ceylon': ceylon,
+  'ceylon.js': ceylonJs,
   'clean': clean,
+  'clean.js': cleanJs,
   'clojure-repl': clojureRepl,
+  'clojure-repl.js': clojureReplJs,
   'clojure': clojure,
+  'clojure.js': clojureJs,
   'cmake': cmake,
+  'cmake.js': cmakeJs,
   'coffeescript': coffeescript,
+  'coffeescript.js': coffeescriptJs,
   'coq': coq,
+  'coq.js': coqJs,
   'cos': cos,
+  'cos.js': cosJs,
   'cpp': cpp,
+  'cpp.js': cppJs,
   'crmsh': crmsh,
+  'crmsh.js': crmshJs,
   'crystal': crystal,
-  'cs': cs,
+  'crystal.js': crystalJs,
+  'csharp': csharp,
+  'csharp.js': csharpJs,
   'csp': csp,
+  'csp.js': cspJs,
   'css': css,
+  'css.js': cssJs,
   'd': d,
+  'd.js': dJs,
   'dart': dart,
+  'dart.js': dartJs,
   'delphi': delphi,
+  'delphi.js': delphiJs,
   'diff': diff,
+  'diff.js': diffJs,
   'django': django,
+  'django.js': djangoJs,
   'dns': dns,
+  'dns.js': dnsJs,
   'dockerfile': dockerfile,
+  'dockerfile.js': dockerfileJs,
   'dos': dos,
+  'dos.js': dosJs,
   'dsconfig': dsconfig,
+  'dsconfig.js': dsconfigJs,
   'dts': dts,
+  'dts.js': dtsJs,
   'dust': dust,
+  'dust.js': dustJs,
   'ebnf': ebnf,
+  'ebnf.js': ebnfJs,
   'elixir': elixir,
+  'elixir.js': elixirJs,
   'elm': elm,
+  'elm.js': elmJs,
   'erb': erb,
+  'erb.js': erbJs,
   'erlang-repl': erlangRepl,
+  'erlang-repl.js': erlangReplJs,
   'erlang': erlang,
+  'erlang.js': erlangJs,
   'excel': excel,
+  'excel.js': excelJs,
   'fix': fix,
+  'fix.js': fixJs,
   'flix': flix,
+  'flix.js': flixJs,
   'fortran': fortran,
+  'fortran.js': fortranJs,
   'fsharp': fsharp,
+  'fsharp.js': fsharpJs,
   'gams': gams,
+  'gams.js': gamsJs,
   'gauss': gauss,
+  'gauss.js': gaussJs,
   'gcode': gcode,
+  'gcode.js': gcodeJs,
   'gherkin': gherkin,
+  'gherkin.js': gherkinJs,
   'glsl': glsl,
+  'glsl.js': glslJs,
   'gml': gml,
+  'gml.js': gmlJs,
   'go': go,
+  'go.js': goJs,
   'golo': golo,
+  'golo.js': goloJs,
   'gradle': gradle,
+  'gradle.js': gradleJs,
+  'graphql': graphql,
+  'graphql.js': graphqlJs,
   'groovy': groovy,
+  'groovy.js': groovyJs,
   'haml': haml,
+  'haml.js': hamlJs,
   'handlebars': handlebars,
+  'handlebars.js': handlebarsJs,
   'haskell': haskell,
+  'haskell.js': haskellJs,
   'haxe': haxe,
+  'haxe.js': haxeJs,
   'hsp': hsp,
-  'htmlbars': htmlbars,
+  'hsp.js': hspJs,
   'http': http,
+  'http.js': httpJs,
   'hy': hy,
+  'hy.js': hyJs,
   'inform7': inform7,
+  'inform7.js': inform7Js,
   'ini': ini,
+  'ini.js': iniJs,
   'irpf90': irpf90,
+  'irpf90.js': irpf90Js,
   'isbl': isbl,
+  'isbl.js': isblJs,
   'java': java,
+  'java.js': javaJs,
   'javascript': javascript,
+  'javascript.js': javascriptJs,
   'jboss-cli': jbossCli,
+  'jboss-cli.js': jbossCliJs,
   'json': json,
+  'json.js': jsonJs,
   'julia-repl': juliaRepl,
+  'julia-repl.js': juliaReplJs,
   'julia': julia,
+  'julia.js': juliaJs,
   'kotlin': kotlin,
+  'kotlin.js': kotlinJs,
   'lasso': lasso,
+  'lasso.js': lassoJs,
+  'latex': latex,
+  'latex.js': latexJs,
   'ldif': ldif,
+  'ldif.js': ldifJs,
   'leaf': leaf,
+  'leaf.js': leafJs,
   'less': less,
+  'less.js': lessJs,
   'lisp': lisp,
+  'lisp.js': lispJs,
   'livecodeserver': livecodeserver,
+  'livecodeserver.js': livecodeserverJs,
   'livescript': livescript,
+  'livescript.js': livescriptJs,
   'llvm': llvm,
+  'llvm.js': llvmJs,
   'lsl': lsl,
+  'lsl.js': lslJs,
   'lua': lua,
+  'lua.js': luaJs,
   'makefile': makefile,
+  'makefile.js': makefileJs,
   'markdown': markdown,
+  'markdown.js': markdownJs,
   'mathematica': mathematica,
+  'mathematica.js': mathematicaJs,
   'matlab': matlab,
+  'matlab.js': matlabJs,
   'maxima': maxima,
+  'maxima.js': maximaJs,
   'mel': mel,
+  'mel.js': melJs,
   'mercury': mercury,
+  'mercury.js': mercuryJs,
   'mipsasm': mipsasm,
+  'mipsasm.js': mipsasmJs,
   'mizar': mizar,
+  'mizar.js': mizarJs,
   'mojolicious': mojolicious,
+  'mojolicious.js': mojoliciousJs,
   'monkey': monkey,
+  'monkey.js': monkeyJs,
   'moonscript': moonscript,
+  'moonscript.js': moonscriptJs,
   'n1ql': n1Ql,
+  'n1ql.js': n1QlJs,
+  'nestedtext': nestedtext,
+  'nestedtext.js': nestedtextJs,
   'nginx': nginx,
-  'nimrod': nimrod,
+  'nginx.js': nginxJs,
+  'nim': nim,
+  'nim.js': nimJs,
   'nix': nix,
+  'nix.js': nixJs,
+  'node-repl': nodeRepl,
+  'node-repl.js': nodeReplJs,
   'nsis': nsis,
+  'nsis.js': nsisJs,
   'objectivec': objectivec,
+  'objectivec.js': objectivecJs,
   'ocaml': ocaml,
+  'ocaml.js': ocamlJs,
   'openscad': openscad,
+  'openscad.js': openscadJs,
   'oxygene': oxygene,
+  'oxygene.js': oxygeneJs,
   'parser3': parser3,
+  'parser3.js': parser3Js,
   'perl': perl,
+  'perl.js': perlJs,
   'pf': pf,
+  'pf.js': pfJs,
   'pgsql': pgsql,
+  'pgsql.js': pgsqlJs,
+  'php-template': phpTemplate,
+  'php-template.js': phpTemplateJs,
   'php': php,
+  'php.js': phpJs,
   'plaintext': plaintext,
+  'plaintext.js': plaintextJs,
   'pony': pony,
+  'pony.js': ponyJs,
   'powershell': powershell,
+  'powershell.js': powershellJs,
   'processing': processing,
+  'processing.js': processingJs,
   'profile': profile,
+  'profile.js': profileJs,
   'prolog': prolog,
+  'prolog.js': prologJs,
   'properties': properties,
+  'properties.js': propertiesJs,
   'protobuf': protobuf,
+  'protobuf.js': protobufJs,
   'puppet': puppet,
+  'puppet.js': puppetJs,
   'purebasic': purebasic,
+  'purebasic.js': purebasicJs,
+  'python-repl': pythonRepl,
+  'python-repl.js': pythonReplJs,
   'python': python,
+  'python.js': pythonJs,
   'q': q,
+  'q.js': qJs,
   'qml': qml,
+  'qml.js': qmlJs,
   'r': r,
+  'r.js': rJs,
   'reasonml': reasonml,
+  'reasonml.js': reasonmlJs,
   'rib': rib,
+  'rib.js': ribJs,
   'roboconf': roboconf,
+  'roboconf.js': roboconfJs,
   'routeros': routeros,
+  'routeros.js': routerosJs,
   'rsl': rsl,
+  'rsl.js': rslJs,
   'ruby': ruby,
+  'ruby.js': rubyJs,
   'ruleslanguage': ruleslanguage,
+  'ruleslanguage.js': ruleslanguageJs,
   'rust': rust,
+  'rust.js': rustJs,
   'sas': sas,
+  'sas.js': sasJs,
   'scala': scala,
+  'scala.js': scalaJs,
   'scheme': scheme,
+  'scheme.js': schemeJs,
   'scilab': scilab,
+  'scilab.js': scilabJs,
   'scss': scss,
+  'scss.js': scssJs,
   'shell': shell,
+  'shell.js': shellJs,
   'smali': smali,
+  'smali.js': smaliJs,
   'smalltalk': smalltalk,
+  'smalltalk.js': smalltalkJs,
   'sml': sml,
+  'sml.js': smlJs,
   'sqf': sqf,
+  'sqf.js': sqfJs,
   'sql': sql,
+  'sql.js': sqlJs,
   'stan': stan,
+  'stan.js': stanJs,
   'stata': stata,
+  'stata.js': stataJs,
   'step21': step21,
+  'step21.js': step21Js,
   'stylus': stylus,
+  'stylus.js': stylusJs,
   'subunit': subunit,
+  'subunit.js': subunitJs,
   'swift': swift,
+  'swift.js': swiftJs,
   'taggerscript': taggerscript,
+  'taggerscript.js': taggerscriptJs,
   'tap': tap,
+  'tap.js': tapJs,
   'tcl': tcl,
-  'tex': tex,
+  'tcl.js': tclJs,
   'thrift': thrift,
+  'thrift.js': thriftJs,
   'tp': tp,
+  'tp.js': tpJs,
   'twig': twig,
+  'twig.js': twigJs,
   'typescript': typescript,
+  'typescript.js': typescriptJs,
   'vala': vala,
+  'vala.js': valaJs,
   'vbnet': vbnet,
+  'vbnet.js': vbnetJs,
   'vbscript-html': vbscriptHtml,
+  'vbscript-html.js': vbscriptHtmlJs,
   'vbscript': vbscript,
+  'vbscript.js': vbscriptJs,
   'verilog': verilog,
+  'verilog.js': verilogJs,
   'vhdl': vhdl,
+  'vhdl.js': vhdlJs,
   'vim': vim,
+  'vim.js': vimJs,
+  'wasm': wasm,
+  'wasm.js': wasmJs,
+  'wren': wren,
+  'wren.js': wrenJs,
   'x86asm': x86Asm,
+  'x86asm.js': x86AsmJs,
   'xl': xl,
+  'xl.js': xlJs,
   'xml': xml,
+  'xml.js': xmlJs,
   'xquery': xquery,
+  'xquery.js': xqueryJs,
   'yaml': yaml,
+  'yaml.js': yamlJs,
   'zephir': zephir,
+  'zephir.js': zephirJs,
 };
-final allLanguages = {...builtinLanguages, ...communityLanguages};
+final allLanguages = {...builtinLanguages};

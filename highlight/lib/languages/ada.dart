@@ -8,7 +8,7 @@ final ada = Mode(
       '~contains~6~contains~2': Mode(
           begin: "\\s+:\\s+",
           end: "\\s*(:=|;|\\)|=>|\$)",
-          illegal: "[]{}%#'\"",
+          illegal: "[]\\{\\}%#'\"",
           contains: [
             Mode(beginKeywords: "loop for declare others", endsParent: true),
             Mode(
@@ -21,20 +21,95 @@ final ada = Mode(
                 endsParent: true,
                 relevance: 0)
           ]),
-      '~contains~0':
-          Mode(className: "comment", begin: "--", end: "\$", contains: [
-        PHRASAL_WORDS_MODE,
+      '~contains~0': Mode(scope: "comment", begin: "--", end: "\$", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
     },
+    name: "Ada",
     case_insensitive: true,
     keywords: {
-      "keyword":
-          "abort else new return abs elsif not reverse abstract end accept entry select access exception of separate aliased exit or some all others subtype and for out synchronized array function overriding at tagged generic package task begin goto pragma terminate body private then if procedure type case in protected constant interface is raise use declare range delay limited record when delta loop rem while digits renames with do mod requeue xor",
-      "literal": "True False"
+      "keyword": [
+        "abort",
+        "else",
+        "new",
+        "return",
+        "abs",
+        "elsif",
+        "not",
+        "reverse",
+        "abstract",
+        "end",
+        "accept",
+        "entry",
+        "select",
+        "access",
+        "exception",
+        "of",
+        "separate",
+        "aliased",
+        "exit",
+        "or",
+        "some",
+        "all",
+        "others",
+        "subtype",
+        "and",
+        "for",
+        "out",
+        "synchronized",
+        "array",
+        "function",
+        "overriding",
+        "at",
+        "tagged",
+        "generic",
+        "package",
+        "task",
+        "begin",
+        "goto",
+        "pragma",
+        "terminate",
+        "body",
+        "private",
+        "then",
+        "if",
+        "procedure",
+        "type",
+        "case",
+        "in",
+        "protected",
+        "constant",
+        "interface",
+        "is",
+        "raise",
+        "use",
+        "declare",
+        "range",
+        "delay",
+        "limited",
+        "record",
+        "when",
+        "delta",
+        "loop",
+        "rem",
+        "while",
+        "digits",
+        "renames",
+        "with",
+        "do",
+        "mod",
+        "requeue",
+        "xor"
+      ],
+      "literal": ["True", "False"]
     },
     contains: [
       Mode(ref: '~contains~0'),
@@ -57,7 +132,7 @@ final ada = Mode(
           keywords: "package body",
           excludeBegin: true,
           excludeEnd: true,
-          illegal: "[]{}%#'\""),
+          illegal: "[]\\{\\}%#'\""),
       Mode(
           begin: "(\\b(with|overriding)\\s+)?\\b(function|procedure)\\s+",
           end: "(\\bis|\\bwith|\\brenames|\\)\\s*;)",
@@ -71,7 +146,7 @@ final ada = Mode(
                 end: "(\\(|\\s+|\$)",
                 excludeBegin: true,
                 excludeEnd: true,
-                illegal: "[]{}%#'\""),
+                illegal: "[]\\{\\}%#'\""),
             Mode(ref: '~contains~6~contains~2'),
             Mode(
                 className: "type",
@@ -81,7 +156,7 @@ final ada = Mode(
                 excludeBegin: true,
                 excludeEnd: true,
                 endsParent: true,
-                illegal: "[]{}%#'\"")
+                illegal: "[]\\{\\}%#'\"")
           ]),
       Mode(
           className: "type",
@@ -89,6 +164,6 @@ final ada = Mode(
           end: "\\s+",
           keywords: "type",
           excludeBegin: true,
-          illegal: "[]{}%#'\""),
+          illegal: "[]\\{\\}%#'\""),
       Mode(ref: '~contains~6~contains~2')
     ]);

@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final subunit = Mode(
     refs: {},
+    name: "SubUnit",
     case_insensitive: true,
     contains: [
       Mode(className: "string", begin: "\\[\n(multipart)?", end: "\\]\n"),

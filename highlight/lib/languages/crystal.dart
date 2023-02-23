@@ -12,8 +12,8 @@ final crystal = Mode(
             Mode(ref: '~contains~0~contains~0~variants~6~contains~0')
           ]),
       '~contains~0~contains~0~variants~5~contains~0': Mode(
-          begin: "{",
-          end: "}",
+          begin: "\\{",
+          end: "\\}",
           contains: [
             Mode(ref: '~contains~0~contains~0~variants~5~contains~0')
           ]),
@@ -30,18 +30,6 @@ final crystal = Mode(
             Mode(ref: '~contains~0~contains~0~variants~3~contains~0')
           ]),
       '~contains~0~contains~0~contains~1~contains~9': Mode(
-          beginKeywords: "annotation",
-          end: "\$|;",
-          illegal: "=",
-          contains: [
-            HASH_COMMENT_MODE,
-            Mode(
-                className: "title",
-                begin: "[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?",
-                relevance: 0)
-          ],
-          relevance: 10),
-      '~contains~0~contains~0~contains~1~contains~8': Mode(
           className: "class",
           beginKeywords: "lib enum union",
           end: "\$|;",
@@ -49,12 +37,11 @@ final crystal = Mode(
           contains: [
             HASH_COMMENT_MODE,
             Mode(
-                className: "title",
-                begin: "[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?",
+                scope: "title",
+                begin: "[A-Za-z_]\\w*(::\\w+)*(\\?|!)?",
                 relevance: 0)
-          ],
-          relevance: 10),
-      '~contains~0~contains~0~contains~1~contains~7': Mode(
+          ]),
+      '~contains~0~contains~0~contains~1~contains~8': Mode(
           className: "class",
           beginKeywords: "class module struct",
           end: "\$|;",
@@ -62,23 +49,28 @@ final crystal = Mode(
           contains: [
             HASH_COMMENT_MODE,
             Mode(
-                className: "title",
-                begin: "[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?",
+                scope: "title",
+                begin: "[A-Za-z_]\\w*(::\\w+)*(\\?|!)?",
                 relevance: 0),
             Mode(begin: "<")
           ]),
+      '~contains~0~contains~0~contains~1~contains~6': Mode(
+          className: "variable",
+          begin:
+              "(\\\$\\W)|((\\\$|@@?)(\\w+))(?=[^@\$?])(?![A-Za-z])(?![@\$?'])"),
       '~contains~0~contains~0~contains~1~contains~5':
           Mode(className: "meta", begin: "@\\[", end: "\\]", contains: [
         Mode(
-            className: "meta-string",
+            scope: "string",
             begin: "\"",
             end: "\"",
             illegal: "\\n",
-            contains: [BACKSLASH_ESCAPE])
+            contains: [BACKSLASH_ESCAPE],
+            className: "string")
       ]),
       '~contains~0~contains~0~contains~1~contains~4': Mode(
           begin:
-              "(?!%})(!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||\\x7e|\\n|\\b(case|if|select|unless|until|when|while)\\b)\\s*",
+              "(?!%\\})(!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||\\x7e|\\n|\\b(case|if|select|unless|until|when|while)\\b)\\s*",
           keywords: "case if select unless until when while",
           contains: [
             Mode(className: "regexp", contains: [
@@ -97,7 +89,7 @@ final crystal = Mode(
                 '~contains~0~contains~0~contains~1~contains~3~variants~3~contains~0')
       ]),
       '~contains~0~contains~0~contains~1~contains~3~variants~2~contains~0':
-          Mode(begin: "{", end: "}", contains: [
+          Mode(begin: "\\{", end: "\\}", contains: [
         Mode(
             ref:
                 '~contains~0~contains~0~contains~1~contains~3~variants~2~contains~0')
@@ -131,7 +123,7 @@ final crystal = Mode(
                   ref:
                       '~contains~0~contains~0~contains~1~contains~3~variants~1~contains~0')
             ]),
-            Mode(begin: "%r{", end: "}", contains: [
+            Mode(begin: "%r\\{", end: "\\}", contains: [
               Mode(
                   ref:
                       '~contains~0~contains~0~contains~1~contains~3~variants~2~contains~0')
@@ -151,7 +143,7 @@ final crystal = Mode(
                 '~contains~0~contains~0~contains~1~contains~2~variants~3~contains~0')
       ]),
       '~contains~0~contains~0~contains~1~contains~2~variants~2~contains~0':
-          Mode(begin: "{", end: "}", contains: [
+          Mode(begin: "\\{", end: "\\}", contains: [
         Mode(
             ref:
                 '~contains~0~contains~0~contains~1~contains~2~variants~2~contains~0')
@@ -181,7 +173,7 @@ final crystal = Mode(
                   ref:
                       '~contains~0~contains~0~contains~1~contains~2~variants~1~contains~0')
             ]),
-            Mode(begin: "%q{", end: "}", contains: [
+            Mode(begin: "%q\\{", end: "\\}", contains: [
               Mode(
                   ref:
                       '~contains~0~contains~0~contains~1~contains~2~variants~2~contains~0')
@@ -195,57 +187,70 @@ final crystal = Mode(
             Mode(begin: "<<-'\\w+'\$", end: "^\\s*\\w+\$")
           ],
           relevance: 0),
-      '~contains~0~contains~0~contains~1~contains~14': Mode(
+      '~contains~0~contains~0~contains~1~contains~15': Mode(
           className: "number",
           variants: [
-            Mode(begin: "\\b0b([01_]+)(_*[ui](8|16|32|64|128))?"),
-            Mode(begin: "\\b0o([0-7_]+)(_*[ui](8|16|32|64|128))?"),
-            Mode(begin: "\\b0x([A-Fa-f0-9_]+)(_*[ui](8|16|32|64|128))?"),
+            Mode(begin: "\\b0b([01_]+)(_?[ui](8|16|32|64|128))?"),
+            Mode(begin: "\\b0o([0-7_]+)(_?[ui](8|16|32|64|128))?"),
+            Mode(begin: "\\b0x([A-Fa-f0-9_]+)(_?[ui](8|16|32|64|128))?"),
             Mode(
                 begin:
-                    "\\b([1-9][0-9_]*[0-9]|[0-9])(\\.[0-9][0-9_]*)?([eE]_*[-+]?[0-9_]*)?(_*f(32|64))?(?!_)"),
-            Mode(begin: "\\b([1-9][0-9_]*|0)(_*[ui](8|16|32|64|128))?")
+                    "\\b([1-9][0-9_]*[0-9]|[0-9])(\\.[0-9][0-9_]*)?([eE]_?[-+]?[0-9_]*)?(_?f(32|64))?(?!_)"),
+            Mode(begin: "\\b([1-9][0-9_]*|0)(_?[ui](8|16|32|64|128))?")
           ],
           relevance: 0),
-      '~contains~0~contains~0~contains~1~contains~13': Mode(
+      '~contains~0~contains~0~contains~1~contains~14': Mode(
           className: "symbol",
           begin: ":",
           contains: [
             Mode(ref: '~contains~0~contains~0'),
             Mode(
                 begin:
-                    "[a-zA-Z_]\\w*[!?=]?|[-+\\x7e]\\@|<<|>>|[=!]~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~|]|//|//=|&[-+*]=?|&\\*\\*|\\[\\][=?]?")
+                    "[a-zA-Z_]\\w*[!?=]?|[-+\\x7e]@|<<|>>|[=!]~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~|]|//|//=|&[-+*]=?|&\\*\\*|\\[\\][=?]?")
           ],
           relevance: 0),
+      '~contains~0~contains~0~contains~1~contains~13': Mode(
+          className: "symbol", begin: "[a-zA-Z_]\\w*(!|\\?)?:", relevance: 0),
       '~contains~0~contains~0~contains~1~contains~12': Mode(
-          className: "symbol", begin: "[a-zA-Z_]\\w*(\\!|\\?)?:", relevance: 0),
-      '~contains~0~contains~0~contains~1~contains~11': Mode(
           className: "function",
           beginKeywords: "fun macro",
           end: "\\B\\b",
           contains: [
             Mode(
-                className: "title",
+                scope: "title",
                 begin:
-                    "[a-zA-Z_]\\w*[!?=]?|[-+\\x7e]\\@|<<|>>|[=!]~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~|]|//|//=|&[-+*]=?|&\\*\\*|\\[\\][=?]?",
+                    "[a-zA-Z_]\\w*[!?=]?|[-+\\x7e]@|<<|>>|[=!]~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~|]|//|//=|&[-+*]=?|&\\*\\*|\\[\\][=?]?",
                 relevance: 0,
                 endsParent: true)
           ],
-          relevance: 5),
-      '~contains~0~contains~0~contains~1~contains~10': Mode(
+          relevance: 2),
+      '~contains~0~contains~0~contains~1~contains~11': Mode(
           className: "function",
           beginKeywords: "def",
           end: "\\B\\b",
           contains: [
             Mode(
-                className: "title",
+                scope: "title",
                 begin:
-                    "[a-zA-Z_]\\w*[!?=]?|[-+\\x7e]\\@|<<|>>|[=!]~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~|]|//|//=|&[-+*]=?|&\\*\\*|\\[\\][=?]?",
+                    "[a-zA-Z_]\\w*[!?=]?|[-+\\x7e]@|<<|>>|[=!]~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~|]|//|//=|&[-+*]=?|&\\*\\*|\\[\\][=?]?",
                 relevance: 0,
                 endsParent: true)
           ]),
+      '~contains~0~contains~0~contains~1~contains~10': Mode(
+          beginKeywords: "annotation",
+          end: "\$|;",
+          illegal: "=",
+          contains: [
+            HASH_COMMENT_MODE,
+            Mode(
+                scope: "title",
+                begin: "[A-Za-z_]\\w*(::\\w+)*(\\?|!)?",
+                relevance: 0)
+          ],
+          relevance: 2),
       '~contains~0~contains~0~contains~1':
-          Mode(className: "subst", begin: "#{", end: "}", keywords: {
+          Mode(className: "subst", begin: "#\\{", end: "\\}", keywords: {
+        "\$pattern": "[a-zA-Z_]\\w*[!?=]?",
         "keyword":
             "abstract alias annotation as as? asm begin break case class def do else elsif end ensure enum extend for fun if include instance_sizeof is_a? lib macro module next nil? of out pointerof private protected rescue responds_to? return require select self sizeof struct super then type typeof union uninitialized unless until verbatim when while with yield __DIR__ __END_LINE__ __FILE__ __LINE__",
         "literal": "false nil true"
@@ -256,15 +261,16 @@ final crystal = Mode(
         Mode(ref: '~contains~0~contains~0~contains~1~contains~3'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~4'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~5'),
+        Mode(ref: '~contains~0~contains~0~contains~1~contains~6'),
         HASH_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~7'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~8'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~9'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~10'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~11'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~12'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~13'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~14')
+        Mode(ref: '~contains~0~contains~0~contains~1~contains~14'),
+        Mode(ref: '~contains~0~contains~0~contains~1~contains~15')
       ]),
       '~contains~0~contains~0': Mode(
           className: "string",
@@ -282,7 +288,7 @@ final crystal = Mode(
             Mode(begin: "%[Qwi]?\\[", end: "\\]", contains: [
               Mode(ref: '~contains~0~contains~0~variants~4~contains~0')
             ]),
-            Mode(begin: "%[Qwi]?{", end: "}", contains: [
+            Mode(begin: "%[Qwi]?\\{", end: "\\}", contains: [
               Mode(ref: '~contains~0~contains~0~variants~5~contains~0')
             ]),
             Mode(begin: "%[Qwi]?<", end: ">", contains: [
@@ -296,6 +302,7 @@ final crystal = Mode(
         Mode(begin: "\\{\\{", end: "\\}\\}"),
         Mode(begin: "\\{%", end: "%\\}")
       ], keywords: {
+        "\$pattern": "[a-zA-Z_]\\w*[!?=]?",
         "keyword":
             "abstract alias annotation as as? asm begin break case class def do else elsif end ensure enum extend for fun if include instance_sizeof is_a? lib macro module next nil? of out pointerof private protected rescue responds_to? return require select self sizeof struct super then type typeof union uninitialized unless until verbatim when while with yield __DIR__ __END_LINE__ __FILE__ __LINE__",
         "literal": "false nil true"
@@ -305,20 +312,22 @@ final crystal = Mode(
         Mode(ref: '~contains~0~contains~0~contains~1~contains~3'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~4'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~5'),
+        Mode(ref: '~contains~0~contains~0~contains~1~contains~6'),
         HASH_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~7'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~8'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~9'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~10'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~11'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~12'),
         Mode(ref: '~contains~0~contains~0~contains~1~contains~13'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~14')
+        Mode(ref: '~contains~0~contains~0~contains~1~contains~14'),
+        Mode(ref: '~contains~0~contains~0~contains~1~contains~15')
       ]),
     },
+    name: "Crystal",
     aliases: ["cr"],
-    lexemes: "[a-zA-Z_]\\w*[!?=]?",
     keywords: {
+      "\$pattern": "[a-zA-Z_]\\w*[!?=]?",
       "keyword":
           "abstract alias annotation as as? asm begin break case class def do else elsif end ensure enum extend for fun if include instance_sizeof is_a? lib macro module next nil? of out pointerof private protected rescue responds_to? return require select self sizeof struct super then type typeof union uninitialized unless until verbatim when while with yield __DIR__ __END_LINE__ __FILE__ __LINE__",
       "literal": "false nil true"
@@ -330,13 +339,14 @@ final crystal = Mode(
       Mode(ref: '~contains~0~contains~0~contains~1~contains~3'),
       Mode(ref: '~contains~0~contains~0~contains~1~contains~4'),
       Mode(ref: '~contains~0~contains~0~contains~1~contains~5'),
+      Mode(ref: '~contains~0~contains~0~contains~1~contains~6'),
       HASH_COMMENT_MODE,
-      Mode(ref: '~contains~0~contains~0~contains~1~contains~7'),
       Mode(ref: '~contains~0~contains~0~contains~1~contains~8'),
       Mode(ref: '~contains~0~contains~0~contains~1~contains~9'),
       Mode(ref: '~contains~0~contains~0~contains~1~contains~10'),
       Mode(ref: '~contains~0~contains~0~contains~1~contains~11'),
       Mode(ref: '~contains~0~contains~0~contains~1~contains~12'),
       Mode(ref: '~contains~0~contains~0~contains~1~contains~13'),
-      Mode(ref: '~contains~0~contains~0~contains~1~contains~14')
+      Mode(ref: '~contains~0~contains~0~contains~1~contains~14'),
+      Mode(ref: '~contains~0~contains~0~contains~1~contains~15')
     ]);

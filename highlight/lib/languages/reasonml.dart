@@ -12,7 +12,7 @@ final reasonml = Mode(
           illegal: "\\n",
           keywords: {
             "keyword":
-                "and as asr assert begin class constraint do done downto else end exception externalfor fun function functor if in include inherit initializerland lazy let lor lsl lsr lxor match method mod module mutable new nonrecobject of open or private rec sig struct then to try type val virtual when while with",
+                "and as asr assert begin class constraint do done downto else end exception external for fun function functor if in include inherit initializer land lazy let lor lsl lsr lxor match method mod module mutable new nonrec object of open or private rec sig struct then to try type val virtual when while with",
             "built_in":
                 "array bool bytes char exn|5 float int int32 int64 list lazy_t|5 nativeint|5 ref string unit ",
             "literal": "true false"
@@ -29,13 +29,13 @@ final reasonml = Mode(
                 "\\b(0[xX][a-fA-F0-9_]+[Lln]?|0[oO][0-7_]+[Lln]?|0[bB][01_]+[Lln]?|[0-9][0-9_]*([Lln]|(\\.[0-9_]*)?([eE][-+]?[0-9_]+)?)?)"),
         Mode(
             begin:
-                "\\(\\-\\b(0[xX][a-fA-F0-9_]+[Lln]?|0[oO][0-7_]+[Lln]?|0[bB][01_]+[Lln]?|[0-9][0-9_]*([Lln]|(\\.[0-9_]*)?([eE][-+]?[0-9_]+)?)?)\\)")
+                "\\(-\\b(0[xX][a-fA-F0-9_]+[Lln]?|0[oO][0-7_]+[Lln]?|0[bB][01_]+[Lln]?|[0-9][0-9_]*([Lln]|(\\.[0-9_]*)?([eE][-+]?[0-9_]+)?)?)\\)")
       ]),
       '~contains~4~contains~1': Mode(
           className: "operator",
           relevance: 0,
           begin:
-              "(\\|\\||\\&\\&|\\+\\+|\\*\\*|\\+\\.|\\*|\\/|\\*\\.|\\/\\.|\\.\\.\\.|\\|\\>|==|===)"),
+              "(\\|\\||\\+\\+|\\*\\*|\\+\\.|\\*|\\/|\\*\\.|\\/\\.|\\.\\.\\.|\\|>|&&|==|===)"),
       '~contains~4~contains~0': Mode(
           className: "identifier",
           relevance: 0,
@@ -45,6 +45,7 @@ final reasonml = Mode(
               className: "module",
               begin: "\\b`?[A-Z\$_][0-9a-zA-Z\$_]*",
               returnBegin: true,
+              relevance: 0,
               end: ".",
               contains: [
             Mode(
@@ -57,7 +58,7 @@ final reasonml = Mode(
               className: "module-access",
               keywords: {
                 "keyword":
-                    "and as asr assert begin class constraint do done downto else end exception externalfor fun function functor if in include inherit initializerland lazy let lor lsl lsr lxor match method mod module mutable new nonrecobject of open or private rec sig struct then to try type val virtual when while with",
+                    "and as asr assert begin class constraint do done downto else end exception external for fun function functor if in include inherit initializer land lazy let lor lsl lsr lxor match method mod module mutable new nonrec object of open or private rec sig struct then to try type val virtual when while with",
                 "built_in":
                     "array bool bytes char exn|5 float int int32 int64 list lazy_t|5 nativeint|5 ref string unit ",
                 "literal": "true false"
@@ -73,7 +74,7 @@ final reasonml = Mode(
                     returnBegin: true,
                     contains: [
                       Mode(ref: '~contains~11'),
-                      Mode(begin: "\\(", end: "\\)", skip: true),
+                      Mode(begin: "\\(", end: "\\)", relevance: 0, skip: true),
                       QUOTE_STRING_MODE,
                       Mode(ref: '~contains~4~contains~1'),
                       Mode(
@@ -81,7 +82,7 @@ final reasonml = Mode(
                               '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1~variants~1~contains~4'),
                       Mode(ref: '~contains~11')
                     ]),
-                Mode(begin: "\\b(`?[A-Z\$_][0-9a-zA-Z\$_]*\\.)+{", end: "}")
+                Mode(begin: "\\b(`?[A-Z\$_][0-9a-zA-Z\$_]*\\.)+\\{", end: "\\}")
               ],
               contains: [
                 QUOTE_STRING_MODE,
@@ -93,7 +94,7 @@ final reasonml = Mode(
               ]),
       '~contains~11': Mode(className: "function", relevance: 0, keywords: {
         "keyword":
-            "and as asr assert begin class constraint do done downto else end exception externalfor fun function functor if in include inherit initializerland lazy let lor lsl lsr lxor match method mod module mutable new nonrecobject of open or private rec sig struct then to try type val virtual when while with",
+            "and as asr assert begin class constraint do done downto else end exception external for fun function functor if in include inherit initializer land lazy let lor lsl lsr lxor match method mod module mutable new nonrec object of open or private rec sig struct then to try type val virtual when while with",
         "built_in":
             "array bool bytes char exn|5 float int int32 int64 list lazy_t|5 nativeint|5 ref string unit ",
         "literal": "true false"
@@ -108,7 +109,7 @@ final reasonml = Mode(
                 Mode(begin: "\\x7e?[a-z\$_][0-9a-zA-Z\$_]*"),
                 Mode(
                     begin:
-                        "\\x7e?[a-z\$_][0-9a-zA-Z\$_]*(s*:s*[a-z\$_][0-9a-z\$_]*((s*('?[a-z\$_][0-9a-z\$_]*s*(,'?[a-z\$_][0-9a-z\$_]*)*)?s*))?)?(s*:s*[a-z\$_][0-9a-z\$_]*((s*('?[a-z\$_][0-9a-z\$_]*s*(,'?[a-z\$_][0-9a-z\$_]*)*)?s*))?)?"),
+                        "\\x7e?[a-z\$_][0-9a-zA-Z\$_]*(\\s*:\\s*[a-z\$_][0-9a-z\$_]*(\\(\\s*('?[a-z\$_][0-9a-z\$_]*\\s*(,'?[a-z\$_][0-9a-z\$_]*\\s*)*)?\\))?){0,2}"),
                 Mode(begin: "\\(\\s*\\)")
               ])
             ]),
@@ -154,28 +155,33 @@ final reasonml = Mode(
         Mode(begin: "\\(\\.\\s\\x7e?[a-z\$_][0-9a-zA-Z\$_]*\\)\\s*=>")
       ]),
     },
+    name: "ReasonML",
     aliases: ["re"],
     keywords: {
       "keyword":
-          "and as asr assert begin class constraint do done downto else end exception externalfor fun function functor if in include inherit initializerland lazy let lor lsl lsr lxor match method mod module mutable new nonrecobject of open or private rec sig struct then to try type val virtual when while with",
+          "and as asr assert begin class constraint do done downto else end exception external for fun function functor if in include inherit initializer land lazy let lor lsl lsr lxor match method mod module mutable new nonrec object of open or private rec sig struct then to try type val virtual when while with",
       "built_in":
           "array bool bytes char exn|5 float int int32 int64 list lazy_t|5 nativeint|5 ref string unit ",
       "literal": "true false"
     },
-    illegal: "(:\\-|:=|\\\${|\\+=)",
+    illegal: "(:-|:=|\\\$\\{|\\+=)",
     contains: [
       Mode(
-          className: "comment",
+          scope: "comment",
           begin: "/\\*",
           end: "\\*/",
           contains: [
-            PHRASAL_WORDS_MODE,
             Mode(
-                className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-                relevance: 0)
+                scope: "doctag",
+                begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+                end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+                excludeBegin: true,
+                relevance: 0),
+            Mode(
+                begin:
+                    "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
           ],
-          illegal: "^(\\#,\\/\\/)"),
+          illegal: "^(#,\\/\\/)"),
       Mode(
           className: "character",
           begin: "'(\\\\[^']+|[^'])'",
@@ -207,8 +213,8 @@ final reasonml = Mode(
       Mode(
           className: "operator",
           begin:
-              "\\s+(\\|\\||\\&\\&|\\+\\+|\\*\\*|\\+\\.|\\*|\\/|\\*\\.|\\/\\.|\\.\\.\\.|\\|\\>|==|===)\\s+",
-          illegal: "\\-\\->",
+              "\\s+(\\|\\||\\+\\+|\\*\\*|\\+\\.|\\*|\\/|\\*\\.|\\/\\.|\\.\\.\\.|\\|>|&&|==|===)\\s+",
+          illegal: "-->",
           relevance: 0),
       Mode(ref: '~contains~4~contains~2'),
       C_LINE_COMMENT_MODE,
@@ -218,7 +224,7 @@ final reasonml = Mode(
           returnBegin: true,
           keywords: {
             "keyword":
-                "and as asr assert begin class constraint do done downto else end exception externalfor fun function functor if in include inherit initializerland lazy let lor lsl lsr lxor match method mod module mutable new nonrecobject of open or private rec sig struct then to try type val virtual when while with",
+                "and as asr assert begin class constraint do done downto else end exception external for fun function functor if in include inherit initializer land lazy let lor lsl lsr lxor match method mod module mutable new nonrec object of open or private rec sig struct then to try type val virtual when while with",
             "built_in":
                 "array bool bytes char exn|5 float int int32 int64 list lazy_t|5 nativeint|5 ref string unit ",
             "literal": "true false"
@@ -237,12 +243,12 @@ final reasonml = Mode(
       Mode(
           className: "module-def",
           begin:
-              "\\bmodule\\s+\\x7e?[a-z\$_][0-9a-zA-Z\$_]*\\s+`?[A-Z\$_][0-9a-zA-Z\$_]*\\s+=\\s+{",
-          end: "}",
+              "\\bmodule\\s+\\x7e?[a-z\$_][0-9a-zA-Z\$_]*\\s+`?[A-Z\$_][0-9a-zA-Z\$_]*\\s+=\\s+\\{",
+          end: "\\}",
           returnBegin: true,
           keywords: {
             "keyword":
-                "and as asr assert begin class constraint do done downto else end exception externalfor fun function functor if in include inherit initializerland lazy let lor lsl lsr lxor match method mod module mutable new nonrecobject of open or private rec sig struct then to try type val virtual when while with",
+                "and as asr assert begin class constraint do done downto else end exception external for fun function functor if in include inherit initializer land lazy let lor lsl lsr lxor match method mod module mutable new nonrec object of open or private rec sig struct then to try type val virtual when while with",
             "built_in":
                 "array bool bytes char exn|5 float int int32 int64 list lazy_t|5 nativeint|5 ref string unit ",
             "literal": "true false"
@@ -253,7 +259,7 @@ final reasonml = Mode(
                 className: "module",
                 relevance: 0,
                 begin: "`?[A-Z\$_][0-9a-zA-Z\$_]*"),
-            Mode(begin: "{", end: "}", skip: true),
+            Mode(begin: "\\{", end: "\\}", relevance: 0, skip: true),
             QUOTE_STRING_MODE,
             Mode(ref: '~contains~4~contains~1'),
             Mode(

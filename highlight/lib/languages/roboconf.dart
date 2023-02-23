@@ -15,18 +15,19 @@ final roboconf = Mode(
             Mode(className: "keyword", begin: "\\(optional\\)")
           ])),
     },
+    name: "Roboconf",
     aliases: ["graph", "instances"],
     case_insensitive: true,
     keywords: "import",
     contains: [
       Mode(
           begin: "^facet [a-zA-Z-_][^\\n{]+\\{",
-          end: "}",
+          end: "\\}",
           keywords: "facet",
           contains: [Mode(ref: '~contains~0~contains~0'), HASH_COMMENT_MODE]),
       Mode(
           begin: "^\\s*instance of [a-zA-Z-_][^\\n{]+\\{",
-          end: "}",
+          end: "\\}",
           keywords:
               "name count channels instance-data instance-state instance of",
           illegal: "\\S",
@@ -37,7 +38,7 @@ final roboconf = Mode(
           ]),
       Mode(
           begin: "^[a-zA-Z-_][^\\n{]+\\{",
-          end: "}",
+          end: "\\}",
           contains: [Mode(ref: '~contains~0~contains~0'), HASH_COMMENT_MODE]),
       HASH_COMMENT_MODE
     ]);

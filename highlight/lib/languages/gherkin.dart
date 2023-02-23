@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final gherkin = Mode(
     refs: {},
+    name: "Gherkin",
     aliases: ["feature"],
     keywords:
         "Feature Background Ability Business Need Scenario Scenarios Scenario Outline Scenario Template Examples Given And Then But When",

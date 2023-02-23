@@ -5,9 +5,9 @@ import '../src/common_modes.dart';
 
 final xml = Mode(
     refs: {
-      '~contains~6~contains~0':
+      '~contains~5~contains~0':
           Mode(endsWithParent: true, illegal: "<", relevance: 0, contains: [
-        Mode(className: "attr", begin: "[A-Za-z0-9\\._:-]+", relevance: 0),
+        Mode(className: "attr", begin: "[\\p{L}0-9._:-]+", relevance: 0),
         Mode(begin: "=\\s*", relevance: 0, contains: [
           Mode(className: "string", endsParent: true, variants: [
             Mode(begin: "\"", end: "\"", contains: [Mode(ref: '~contains~3')]),
@@ -23,25 +23,26 @@ final xml = Mode(
           contains: [Mode(ref: '~contains~0~contains~0~contains~0')],
           end: "\\)"),
       '~contains~0~contains~2': Mode(
-          className: "meta-string",
+          scope: "string",
           begin: "'",
           end: "'",
           illegal: "\\n",
-          contains: [BACKSLASH_ESCAPE]),
+          contains: [BACKSLASH_ESCAPE],
+          className: "string"),
       '~contains~0~contains~1': Mode(
-          className: "meta-string",
+          scope: "string",
           begin: "\"",
           end: "\"",
           illegal: "\\n",
-          contains: [BACKSLASH_ESCAPE]),
+          contains: [BACKSLASH_ESCAPE],
+          className: "string"),
       '~contains~0~contains~0~contains~0': Mode(
-          className: "meta-keyword",
-          begin: "#?[a-z_][a-z1-9_-]+",
-          illegal: "\\n"),
+          className: "keyword", begin: "#?[a-z_][a-z1-9_-]+", illegal: "\\n"),
       '~contains~0~contains~0': Mode(
           begin: "\\s",
           contains: [Mode(ref: '~contains~0~contains~0~contains~0')]),
     },
+    name: "HTML, XML",
     aliases: [
       "html",
       "xhtml",
@@ -55,6 +56,7 @@ final xml = Mode(
       "svg"
     ],
     case_insensitive: true,
+    unicodeRegex: true,
     contains: [
       Mode(
           className: "meta",
@@ -76,63 +78,69 @@ final xml = Mode(
             ])
           ]),
       Mode(
-          className: "comment",
+          scope: "comment",
           begin: "<!--",
           end: "-->",
           contains: [
-            PHRASAL_WORDS_MODE,
             Mode(
-                className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-                relevance: 0)
+                scope: "doctag",
+                begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+                end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+                excludeBegin: true,
+                relevance: 0),
+            Mode(
+                begin:
+                    "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
           ],
           relevance: 10),
-      Mode(begin: "<\\!\\[CDATA\\[", end: "\\]\\]>", relevance: 10),
+      Mode(begin: "<!\\[CDATA\\[", end: "\\]\\]>", relevance: 10),
       Mode(ref: '~contains~3'),
-      Mode(className: "meta", begin: "<\\?xml", end: "\\?>", relevance: 10),
-      Mode(begin: "<\\?(php)?", end: "\\?>", subLanguage: [
-        "php"
-      ], contains: [
-        Mode(begin: "/\\*", end: "\\*/", skip: true),
-        Mode(begin: "b\"", end: "\"", skip: true),
-        Mode(begin: "b'", end: "'", skip: true),
+      Mode(className: "meta", end: "\\?>", variants: [
         Mode(
-            className: null,
-            begin: "'",
-            end: "'",
-            illegal: null,
-            contains: null,
-            skip: true),
-        Mode(
-            className: null,
-            begin: "\"",
-            end: "\"",
-            illegal: null,
-            contains: null,
-            skip: true)
+            begin: "<\\?xml",
+            relevance: 10,
+            contains: [Mode(ref: '~contains~0~contains~1')]),
+        Mode(begin: "<\\?[a-z][a-z0-9]+")
       ]),
       Mode(
           className: "tag",
           begin: "<style(?=\\s|>)",
           end: ">",
           keywords: {"name": "style"},
-          contains: [Mode(ref: '~contains~6~contains~0')],
+          contains: [Mode(ref: '~contains~5~contains~0')],
           starts: Mode(
-              end: "</style>", returnEnd: true, subLanguage: ["css", "xml"])),
+              end: "<\\/style>", returnEnd: true, subLanguage: ["css", "xml"])),
       Mode(
           className: "tag",
           begin: "<script(?=\\s|>)",
           end: ">",
           keywords: {"name": "script"},
-          contains: [Mode(ref: '~contains~6~contains~0')],
-          starts: Mode(end: "</script>", returnEnd: true, subLanguage: [
-            "actionscript",
-            "javascript",
-            "handlebars",
-            "xml"
-          ])),
-      Mode(className: "tag", begin: "</?", end: "/?>", contains: [
-        Mode(className: "name", begin: "[^\\/><\\s]+", relevance: 0),
-        Mode(ref: '~contains~6~contains~0')
-      ])
+          contains: [Mode(ref: '~contains~5~contains~0')],
+          starts: Mode(
+              end: "<\\/script>",
+              returnEnd: true,
+              subLanguage: ["javascript", "handlebars", "xml"])),
+      Mode(className: "tag", begin: "<>|<\\/>"),
+      Mode(
+          className: "tag",
+          begin:
+              "<(?=[\\p{L}_](?:[\\p{L}0-9_.-]*:)?[\\p{L}0-9_.-]*(?:\\/>|>|\\s))",
+          end: "\\/?>",
+          contains: [
+            Mode(
+                className: "name",
+                begin: "[\\p{L}_](?:[\\p{L}0-9_.-]*:)?[\\p{L}0-9_.-]*",
+                relevance: 0,
+                starts: Mode(ref: '~contains~5~contains~0'))
+          ]),
+      Mode(
+          className: "tag",
+          begin: "<\\/(?=[\\p{L}_](?:[\\p{L}0-9_.-]*:)?[\\p{L}0-9_.-]*>)",
+          contains: [
+            Mode(
+                className: "name",
+                begin: "[\\p{L}_](?:[\\p{L}0-9_.-]*:)?[\\p{L}0-9_.-]*",
+                relevance: 0),
+            Mode(begin: ">", relevance: 0, endsParent: true)
+          ])
     ]);

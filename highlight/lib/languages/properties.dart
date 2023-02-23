@@ -4,53 +4,45 @@ import '../src/mode.dart';
 import '../src/common_modes.dart';
 
 final properties = Mode(
-    refs: {
-      '~contains~1~starts': Mode(
-          end: "([ \\t\\f]*[:=][ \\t\\f]*|[ \\t\\f]+)",
-          relevance: 0,
-          starts: Mode(
-              className: "string",
-              end: "\$",
-              relevance: 0,
-              contains: [Mode(begin: "\\\\\\n")])),
-    },
+    refs: {},
+    name: ".properties",
+    disableAutodetect: true,
     case_insensitive: true,
     illegal: "\\S",
     contains: [
-      Mode(className: "comment", begin: "^\\s*[!#]", end: "\$", contains: [
-        PHRASAL_WORDS_MODE,
+      Mode(scope: "comment", begin: "^\\s*[!#]", end: "\$", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
       Mode(
-          begin:
-              "([^\\\\\\W:= \\t\\f\\n]|\\\\.)+([ \\t\\f]*[:=][ \\t\\f]*|[ \\t\\f]+)",
           returnBegin: true,
+          variants: [
+            Mode(begin: "([^\\\\:= \\t\\f\\n]|\\\\.)+[ \\t\\f]*[:=][ \\t\\f]*"),
+            Mode(begin: "([^\\\\:= \\t\\f\\n]|\\\\.)+[ \\t\\f]+")
+          ],
           contains: [
             Mode(
                 className: "attr",
-                begin: "([^\\\\\\W:= \\t\\f\\n]|\\\\.)+",
-                endsParent: true,
-                relevance: 0)
-          ],
-          starts: Mode(ref: '~contains~1~starts')),
-      Mode(
-          begin:
-              "([^\\\\:= \\t\\f\\n]|\\\\.)+([ \\t\\f]*[:=][ \\t\\f]*|[ \\t\\f]+)",
-          returnBegin: true,
-          relevance: 0,
-          contains: [
-            Mode(
-                className: "meta",
                 begin: "([^\\\\:= \\t\\f\\n]|\\\\.)+",
-                endsParent: true,
-                relevance: 0)
+                endsParent: true)
           ],
-          starts: Mode(ref: '~contains~1~starts')),
-      Mode(
-          className: "attr",
-          relevance: 0,
-          begin: "([^\\\\:= \\t\\f\\n]|\\\\.)+[ \\t\\f]*\$")
+          starts: Mode(
+              end: "([ \\t\\f]*[:=][ \\t\\f]*|[ \\t\\f]+)",
+              relevance: 0,
+              starts: Mode(
+                  className: "string",
+                  end: "\$",
+                  relevance: 0,
+                  contains: [
+                    Mode(begin: "\\\\\\\\"),
+                    Mode(begin: "\\\\\\n")
+                  ]))),
+      Mode(className: "attr", begin: "([^\\\\:= \\t\\f\\n]|\\\\.)+[ \\t\\f]*\$")
     ]);

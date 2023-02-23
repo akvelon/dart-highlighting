@@ -5,24 +5,44 @@ import '../src/common_modes.dart';
 
 final abnf = Mode(
     refs: {},
+    name: "Augmented Backus-Naur Form",
     illegal: "[!@#\$^&',?+\\x7e`|:]",
-    keywords:
-        "ALPHA BIT CHAR CR CRLF CTL DIGIT DQUOTE HEXDIG HTAB LF LWSP OCTET SP VCHAR WSP",
+    keywords: [
+      "ALPHA",
+      "BIT",
+      "CHAR",
+      "CR",
+      "CRLF",
+      "CTL",
+      "DIGIT",
+      "DQUOTE",
+      "HEXDIG",
+      "HTAB",
+      "LF",
+      "LWSP",
+      "OCTET",
+      "SP",
+      "VCHAR",
+      "WSP"
+    ],
     contains: [
-      Mode(className: "attribute", begin: "^[a-zA-Z][a-zA-Z0-9-]*(?=\\s*=)"),
-      Mode(className: "comment", begin: ";", end: "\$", contains: [
-        PHRASAL_WORDS_MODE,
+      Mode(scope: "operator", match: "=\\/?"),
+      Mode(scope: "attribute", match: "^[a-zA-Z][a-zA-Z0-9-]*(?=\\s*=)"),
+      Mode(scope: "comment", begin: ";", end: "\$", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
-      Mode(className: "symbol", begin: "%b[0-1]+(-[0-1]+|(\\.[0-1]+)+){0,1}"),
-      Mode(className: "symbol", begin: "%d[0-9]+(-[0-9]+|(\\.[0-9]+)+){0,1}"),
-      Mode(
-          className: "symbol",
-          begin: "%x[0-9A-F]+(-[0-9A-F]+|(\\.[0-9A-F]+)+){0,1}"),
-      Mode(className: "symbol", begin: "%[si]"),
+      Mode(scope: "symbol", match: "%b[0-1]+(-[0-1]+|(\\.[0-1]+)+)?"),
+      Mode(scope: "symbol", match: "%d[0-9]+(-[0-9]+|(\\.[0-9]+)+)?"),
+      Mode(scope: "symbol", match: "%x[0-9A-F]+(-[0-9A-F]+|(\\.[0-9A-F]+)+)?"),
+      Mode(scope: "symbol", match: "%[si](?=\".*\")"),
       QUOTE_STRING_MODE,
       NUMBER_MODE
     ]);

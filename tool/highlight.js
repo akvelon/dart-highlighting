@@ -1,13 +1,14 @@
+// @ts-nocheck
 import fs from "fs";
 import path from "path";
 import _ from "lodash";
-import hljs from "highlight.js/lib/highlight"; // TODO: Do not register languages
+import hljs from 'highlight.js';
 import CircularJSON from "circular-json";
 
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 
 const dir = "node_modules/highlight.js/lib/languages";
-hljs.registerLanguage("cpp", require(path.resolve(dir, "cpp"))); // exports
+// hljs.registerLanguage("cpp", require(path.resolve(dir, "cpp"))); // exports
 
 const modeEntries = Object.entries(hljs).filter(
   ([k]) =>
@@ -114,26 +115,26 @@ export function allModes() {
       factory: require(path.resolve(dir, file)),
       community: false
     })),
-    {
-      name: "vue",
-      factory: require("../vendor/highlightjs-vue/vue").definer,
-      community: true
-    },
-    {
-      name: "graphql",
-      factory: require("../vendor/highlightjs-graphql").definer,
-      community: true
-    },
-    {
-      name: "gn",
-      factory: require("../vendor/highlightjs-GN").definer,
-      community: true
-    },
-    {
-      name: "solidity",
-      factory: require("../vendor/highlightjs-solidity").definer,
-      community: true
-    }
+    // {
+    //   name: "vue",
+    //   factory: require("../vendor/highlightjs-vue/vue").definer,
+    //   community: true
+    // },
+    // {
+    //   name: "graphql",
+    //   factory: require("../vendor/highlightjs-graphql").definer,
+    //   community: true
+    // },
+    // {
+    //   name: "gn",
+    //   factory: require("../vendor/highlightjs-GN").definer,
+    //   community: true
+    // },
+    // {
+    //   name: "solidity",
+    //   factory: require("../vendor/highlightjs-solidity").definer,
+    //   community: true
+    // }
   ];
 
   // ["json"]

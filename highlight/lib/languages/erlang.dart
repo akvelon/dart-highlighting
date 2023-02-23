@@ -12,7 +12,7 @@ final erlang = Mode(
               returnBegin: true,
               contains: [
             Mode(begin: "#[a-zA-Z_]\\w*", relevance: 0),
-            Mode(begin: "{", end: "}", relevance: 0, contains: [
+            Mode(begin: "\\{", end: "\\}", relevance: 0, contains: [
               Mode(ref: '~contains~0~contains~0~contains~0'),
               Mode(ref: '~contains~0~contains~0~contains~1'),
               Mode(ref: '~contains~0~contains~0~contains~2'),
@@ -40,7 +40,7 @@ final erlang = Mode(
       '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7':
           Mode(begin: "\\b_([A-Z][A-Za-z0-9_]*)?", relevance: 0),
       '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6':
-          Mode(begin: "{", end: "}", relevance: 0, contains: [
+          Mode(begin: "\\{", end: "\\}", relevance: 0, contains: [
         Mode(ref: '~contains~0~contains~0~contains~0'),
         Mode(ref: '~contains~0~contains~0~contains~1'),
         Mode(ref: '~contains~0~contains~0~contains~2'),
@@ -62,11 +62,11 @@ final erlang = Mode(
             ref:
                 '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9')
       ]),
-      '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5':
-          Mode(
-              className: "number",
-              begin: "\\b(\\d+#[a-fA-F0-9]+|\\d+(\\.\\d+)?([eE][-+]?\\d+)?)",
-              relevance: 0),
+      '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5': Mode(
+          className: "number",
+          begin:
+              "\\b(\\d+(_\\d+)*#[a-fA-F0-9]+(_[a-fA-F0-9]+)*|\\d+(_\\d+)*(\\.\\d+(_\\d+)*)?([eE][-+]?\\d+)?)",
+          relevance: 0),
       '~contains~0~contains~0~contains~2~contains~4': Mode(
           begin:
               "([a-z'][a-zA-Z0-9_']*:[a-z'][a-zA-Z0-9_']*|[a-z'][a-zA-Z0-9_']*)\\(",
@@ -116,11 +116,12 @@ final erlang = Mode(
         Mode(ref: '~contains~0~contains~0~contains~0'),
         Mode(ref: '~contains~0~contains~0~contains~1'),
         Mode(
-            className: "",
+            scope: "string",
             begin: "'",
             end: "'",
             illegal: "\\n",
-            contains: [BACKSLASH_ESCAPE]),
+            contains: [BACKSLASH_ESCAPE],
+            className: ""),
         Mode(ref: '~contains~0~contains~0~contains~2'),
         Mode(ref: '~contains~0~contains~0~contains~2~contains~4'),
         QUOTE_STRING_MODE,
@@ -143,12 +144,16 @@ final erlang = Mode(
       '~contains~0~contains~0~contains~1':
           Mode(begin: "fun\\s+[a-z'][a-zA-Z0-9_']*/\\d+"),
       '~contains~0~contains~0~contains~0':
-          Mode(className: "comment", begin: "%", end: "\$", contains: [
-        PHRASAL_WORDS_MODE,
+          Mode(scope: "comment", begin: "%", end: "\$", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
       '~contains~0~contains~0':
           Mode(className: "params", begin: "\\(", end: "\\)", contains: [
@@ -174,6 +179,7 @@ final erlang = Mode(
                 '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9')
       ]),
     },
+    name: "Erlang",
     aliases: ["erl"],
     keywords: {
       "keyword":
@@ -190,8 +196,7 @@ final erlang = Mode(
           illegal: "\\(|#|//|/\\*|\\\\|:|;",
           contains: [
             Mode(ref: '~contains~0~contains~0'),
-            Mode(
-                className: "title", begin: "[a-z'][a-zA-Z0-9_']*", relevance: 0)
+            Mode(scope: "title", begin: "[a-z'][a-zA-Z0-9_']*", relevance: 0)
           ],
           starts: Mode(end: ";|\\.", keywords: {
             "keyword":
@@ -226,10 +231,14 @@ final erlang = Mode(
           relevance: 0,
           excludeEnd: true,
           returnBegin: true,
-          lexemes: "-[a-zA-Z]\\w*",
-          keywords:
-              "-module -record -undef -export -ifdef -ifndef -author -copyright -doc -vsn -import -include -include_lib -compile -define -else -endif -file -behaviour -behavior -spec",
-          contains: [Mode(ref: '~contains~0~contains~0')]),
+          keywords: {
+            "\$pattern": "-[a-zA-Z]\\w*",
+            "keyword":
+                "-module|1.5 -record|1.5 -undef|1.5 -export|1.5 -ifdef|1.5 -ifndef|1.5 -author|1.5 -copyright|1.5 -doc|1.5 -vsn|1.5 -import|1.5 -include|1.5 -include_lib|1.5 -compile|1.5 -define|1.5 -else|1.5 -endif|1.5 -file|1.5 -behaviour|1.5 -behavior|1.5 -spec|1.5"
+          },
+          contains: [
+            Mode(ref: '~contains~0~contains~0')
+          ]),
       Mode(
           ref:
               '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),

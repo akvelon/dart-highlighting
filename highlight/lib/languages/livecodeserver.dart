@@ -6,15 +6,15 @@ import '../src/common_modes.dart';
 final livecodeserver = Mode(
     refs: {
       '~contains~2~contains~6': Mode(
-          className: "title",
+          scope: "title",
           begin: "[a-zA-Z]\\w*",
           relevance: 0,
           variants: [
-            Mode(begin: "\\b_*rig[A-Z]+[A-Za-z0-9_\\-]*"),
+            Mode(begin: "\\b_*rig[A-Z][A-Za-z0-9_\\-]*"),
             Mode(begin: "\\b_[a-z0-9\\-]+")
           ]),
-      '~contains~2~contains~1': Mode(
-          className: "title", begin: "\\b([A-Za-z0-9_\\-]+)\\b", relevance: 0),
+      '~contains~2~contains~1':
+          Mode(scope: "title", begin: "\\b([A-Za-z0-9_\\-]+)\\b", relevance: 0),
       '~contains~0': Mode(
           className: "variable",
           variants: [
@@ -23,6 +23,7 @@ final livecodeserver = Mode(
           ],
           relevance: 0),
     },
+    name: "LiveCode",
     case_insensitive: false,
     keywords: {
       "keyword":
@@ -79,19 +80,27 @@ final livecodeserver = Mode(
       Mode(ref: '~contains~2~contains~6'),
       C_BLOCK_COMMENT_MODE,
       HASH_COMMENT_MODE,
-      Mode(className: "comment", begin: "--", end: "\$", contains: [
-        PHRASAL_WORDS_MODE,
+      Mode(scope: "comment", begin: "--", end: "\$", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
-      Mode(className: "comment", begin: "[^:]//", end: "\$", contains: [
-        PHRASAL_WORDS_MODE,
+      Mode(scope: "comment", begin: "[^:]//", end: "\$", contains: [
         Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
+            scope: "doctag",
+            begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
+            end: "(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+            excludeBegin: true,
+            relevance: 0),
+        Mode(
+            begin:
+                "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ])
     ],
-    illegal: ";\$|^\\[|^=|&|{");
+    illegal: ";\$|^\\[|^=|&|\\{");

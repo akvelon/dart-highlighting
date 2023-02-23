@@ -5,8 +5,10 @@ import '../src/common_modes.dart';
 
 final q = Mode(
     refs: {},
+    name: "Q",
     aliases: ["k", "kdb"],
     keywords: {
+      "\$pattern": "(`?)[A-Za-z0-9_]+\\b",
       "keyword": "do while select delete by update from",
       "literal": "0b 1b",
       "built_in":
@@ -14,5 +16,4 @@ final q = Mode(
       "type":
           "`float `double int `timestamp `timespan `datetime `time `boolean `symbol `char `byte `short `long `real `month `date `minute `second `guid"
     },
-    lexemes: "(`?)[A-Za-z0-9_]+\\b",
     contains: [C_LINE_COMMENT_MODE, QUOTE_STRING_MODE, C_NUMBER_MODE]);
