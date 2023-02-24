@@ -30,44 +30,54 @@ String concat(List<dynamic> args) {
   return args.map((e) => source(e)).join('');
 }
 
+/// List<String | RegExp>
+String either(List<dynamic> args) {
+  final joined = '(' '?:' + args.map((x) => source(x)).join("|") + ")";
+  return joined;
+}
+
 extension RegExpExtension on RegExp {
   int countMatchGroups() {
     return RegExp(pattern + '|').allMatches('').length - 1;
   }
 }
 
-extension ListRegExpExtension on List<RegExp> {
-  String rewriteBackReferences([String joinWith = '|']) {
-    var numCaptures = 0;
+String rewriteBackReferences(
+  List<dynamic> re, {
+  String joinWith = '|',
+}) {
+  var numCaptures = 0;
 
-    return map((regex) {
-      numCaptures++;
-      final offset = numCaptures;
+  return re
+      .map((regex) {
+        numCaptures++;
+        final offset = numCaptures;
 
-      var re = regex.pattern;
-      var out = '';
+        var re = source(regex);
+        var out = '';
 
-      while (re.isNotEmpty) {
-        final matches = kBackRefRe.allMatches(re).toList();
-        if (matches.isEmpty) {
-          out += re;
-          break;
-        }
+        while (re.isNotEmpty) {
+          final matches = kBackRefRe.allMatches(re).toList();
+          if (matches.isEmpty) {
+            out += re;
+            break;
+          }
 
-        out += substring(re, 0, matches[0].start);
-        re = substring(re, matches[0].end);
+          out += substring(re, 0, matches[0].start);
+          re = substring(re, matches[0].end);
 
-        if (matches[0].input[0] == '\\' && matches.length > 1) {
-          out += '\\' + (int.parse(matches[1].input) + offset).toString();
-        } else {
-          out += matches[0].input;
-          if (matches[0].input == '(') {
-            numCaptures++;
+          if (matches[0].input[0] == '\\' && matches.length > 1) {
+            out += '\\' + (int.parse(matches[1].input) + offset).toString();
+          } else {
+            out += matches[0].input;
+            if (matches[0].input == '(') {
+              numCaptures++;
+            }
           }
         }
-      }
 
-      return out;
-    }).map((re) => '($re)').join(joinWith);
-  }
+        return out;
+      })
+      .map((re) => '($re)')
+      .join(joinWith);
 }

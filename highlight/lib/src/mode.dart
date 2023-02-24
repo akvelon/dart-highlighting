@@ -20,12 +20,18 @@ class Mode {
   /// `String | List<String>`
   dynamic begin;
   String? beginKeywords;
-  String? end;
+
+  /// String | List
+  dynamic end;
   String? lexemes;
   bool? endSameAsBegin;
   bool? endsParent;
   bool? endsWithParent;
   double? relevance;
+
+  dynamic data;
+
+  dynamic beforeBegin;
 
   List<String>? subLanguage;
   bool? excludeBegin;
@@ -51,12 +57,16 @@ class Mode {
   /// `String | Map<String, String>`
   dynamic scope;
 
-  /// `String | Map<String, String>`
+  /// `String | RegExp`
+  dynamic beforeMatch;
+
+  /// `String | Map<String, String>` (Map<string, dynamic>?)
   dynamic beginScope;
   bool? unicodeRegex;
   String? label;
 
-  String? endScope;
+  /// String | Map
+  dynamic endScope;
 
   /// `String | Map<String, String>`
   dynamic classNameAliases;
@@ -79,6 +89,7 @@ class Mode {
     this.classNameAliases,
     this.binary,
     this.supersetOf,
+    this.beforeMatch,
     //
     this.aliases,
     this.keywords,
@@ -111,6 +122,7 @@ class Mode {
     b ??= Mode();
     return Mode()
       ..aliases = b.aliases ?? a.aliases
+      ..beforeMatch = b.beforeMatch ?? a.beforeMatch
       ..begin = b.begin ?? a.begin
       ..beginKeywords = b.beginKeywords ?? a.beginKeywords
       ..beginRe = b.beginRe ?? a.beginRe

@@ -303,7 +303,7 @@ class Highlight {
       }
     }
     var mode_buffer = '';
-    var relevance = 0;
+    var relevance = 0.0;
 
     bool _isIllegal(String lexeme, Mode? mode) {
       return !ignoreIllegals && _testRe(mode!.illegalRe, lexeme);
