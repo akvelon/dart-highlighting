@@ -31,6 +31,13 @@ ResumableMultiRegex buildModeRegex(Mode mode) {
   final mm = ResumableMultiRegex(language: mode);
 
   mode.contains?.forEach((term) {
+    if (term.begin is String) {
+      term.begin = RegExp(term.begin);
+    }
+    if (term.begin == null) {
+      print(term);
+      return;
+    }
     mm.addRule(term.begin, {$rule: term, $type: $begin});
   });
 
@@ -69,7 +76,7 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
 
   dynamic keywordPattern;
 
-  if (mode.keywords is Map && mode.keywords[$pattern]) {
+  if (mode.keywords is Map && mode.keywords[$pattern] != null) {
     mode.keywords = Map.from(mode.keywords);
     keywordPattern = mode.keywords[$pattern];
     mode.keywords.remove($pattern);
@@ -114,6 +121,9 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
     newList.addAll(expandOrCloneMode(element.self == true ? mode : element));
   });
   mode.contains = newList;
+  mode.contains!.forEach((element) {
+    compileMode(element, language: element);
+  });
 
   if (mode.starts != null) {
     compileMode(mode.starts!, parent: parent, language: language);

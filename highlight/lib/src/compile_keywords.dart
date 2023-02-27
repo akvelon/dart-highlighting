@@ -43,7 +43,7 @@ KeywordDict compileKeywords(
         scopeName,
         scoreForKeyword(
           pair[0],
-          pair[1],
+          pair.length > 1 ? pair[1] : null,
         ),
       );
     });
@@ -55,6 +55,11 @@ KeywordDict compileKeywords(
       keywordList: rawKeywords.split(" "),
       caseInsensitive: caseInsensitive,
     );
+  } else if (rawKeywords is List<String>) {
+    compileList(
+        scopeName: scopeName,
+        keywordList: rawKeywords,
+        caseInsensitive: caseInsensitive);
   } else if (rawKeywords is Map) {
     rawKeywords.keys.forEach((scopeName) {
       final result = compileKeywords(
