@@ -3,18 +3,18 @@ import 'mode.dart';
 
 class Result {
   int? relevance;
-  List<Node>? nodes;
+  List<Node> nodes;
   String? language;
   Mode? top;
   Result? secondBest;
 
   Result({
     this.relevance,
-    this.nodes,
     this.language,
     this.top,
     this.secondBest,
-  });
+    List<Node>? nodes,
+  }) : nodes = nodes ?? [];
 
   String _escape(String value) {
     return value
@@ -22,6 +22,20 @@ class Result {
         .replaceAll(RegExp(r'<'), '&lt;')
         .replaceAll(RegExp(r'>'), '&gt;');
   }
+
+  void addKeyword(String text, String kind) {}
+
+  void addText(String text) {}
+
+  void finalize() {}
+
+  void closeAllNodes() {}
+
+  void openNode(String kind) {}
+
+  void closeNode() {}
+
+  void addSublanguage(Result emitter, String sublanguage) {}
 
   String toHtml() {
     var str = '';

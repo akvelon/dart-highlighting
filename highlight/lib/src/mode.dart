@@ -1,3 +1,6 @@
+import 'domain_regex.dart';
+import 'multi_regex.dart';
+
 class Mode {
   String? ref;
   Map<String, Mode>? refs;
@@ -10,14 +13,17 @@ class Mode {
   /// `String? | List<String>?`
   dynamic illegal;
   bool? case_insensitive;
-  List<Mode?>? contains;
+  List<Mode>? contains;
   List<Mode?>? variants;
   Mode? starts;
+
+  List<Mode>? cachedVariants;
+  List<dynamic>? compilerExtensions;
 
   /// `String | Map<String, String>`
   dynamic className;
 
-  /// `String | List<String>`
+  /// `String | List<String>` | RegExp
   dynamic begin;
   String? beginKeywords;
 
@@ -76,6 +82,16 @@ class Mode {
   bool? self;
   bool? disableAutodetect;
 
+  bool isCompiled = false;
+
+  DomainRegex? keywordPatternRe;
+
+  ResumableMultiRegex? matcher;
+
+  dynamic onBegin;
+
+  dynamic onEnd;
+
   Mode({
     this.ref,
     this.refs,
@@ -116,6 +132,7 @@ class Mode {
     //
     this.self,
     this.disableAutodetect,
+    this.parent,
   });
 
   static Mode inherit(Mode a, [Mode? b]) {

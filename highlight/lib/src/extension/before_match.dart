@@ -2,7 +2,7 @@ import 'package:highlight/src/extension/reg_exp.dart';
 
 import '../../highlight.dart';
 
-void beforeMatchExt(Mode mode, [dynamic parent]) {
+void beforeMatchExt(Mode mode, [Mode? parent]) {
   if (mode.beforeMatch == null) {
     return;
   }

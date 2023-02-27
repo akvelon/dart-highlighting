@@ -4,21 +4,21 @@ import 'package:highlight/src/response.dart';
 
 import '../../highlight.dart';
 
-void skipIfHasPrecedingDot(DomainRegexpMatch match, Response response) {
+void skipIfHasPrecedingDot(DomainRegexMatch match, Response response) {
   final before = match.input[match.index - 1];
   if (before == ".") {
     response.ignoreMatch();
   }
 }
 
-void scopeClassName(Mode mode, [dynamic parent]) {
+void scopeClassName(Mode mode, [Mode? parent]) {
   if (mode.className != null) {
     mode.scope = mode.className;
     mode.className = null;
   }
 }
 
-void beginKeywords(Mode mode, dynamic parent) {
+void beginKeywords(Mode mode, Mode? parent) {
   if (parent == null) return;
   if (mode.beginKeywords == null) return;
 
@@ -39,13 +39,13 @@ void beginKeywords(Mode mode, dynamic parent) {
   mode.relevance ??= 0;
 }
 
-void compileIllegal(Mode mode, [dynamic parent]) {
+void compileIllegal(Mode mode, [Mode? parent]) {
   if (mode.illegal is! List) return;
   final illegal = mode.illegal as List;
   mode.illegal = either(illegal);
 }
 
-void compileMatch(Mode mode, [dynamic _parent]) {
+void compileMatch(Mode mode, [Mode? _parent]) {
   if (mode.match == null) return;
   if (mode.begin != null || mode.end != null) {
     throw Exception('begin & end are not supported with match');
@@ -55,6 +55,6 @@ void compileMatch(Mode mode, [dynamic _parent]) {
   mode.match = null;
 }
 
-void compileRelevance(Mode mode, dynamic _parent) {
+void compileRelevance(Mode mode, Mode? parent) {
   mode.relevance ??= 1;
 }

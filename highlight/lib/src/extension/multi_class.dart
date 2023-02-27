@@ -82,7 +82,7 @@ void scopeSugar(Mode mode) {
   }
 }
 
-void multiClass(Mode mode) {
+void multiClass(Mode mode, [Mode? parent]) {
   scopeSugar(mode);
 
   if (mode.beginScope is String) {
