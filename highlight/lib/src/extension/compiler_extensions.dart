@@ -58,3 +58,15 @@ void compileMatch(Mode mode, [Mode? _parent]) {
 void compileRelevance(Mode mode, Mode? parent) {
   mode.relevance ??= 1;
 }
+
+Mode replaceIfRef({required Mode parent, required Mode self}) {
+  Mode top = parent;
+  while (top.parent != null) {
+    top = parent.parent!;
+  }
+  if (top.refs == null) {
+    return self;
+  }
+
+  return top.refs![self.ref!]!;
+}

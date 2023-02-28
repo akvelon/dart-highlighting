@@ -66,11 +66,11 @@ String rewriteBackReferences(
           out += substring(re, 0, matches[0].start);
           re = substring(re, matches[0].end);
 
-          if (matches[0].input[0] == '\\' && matches.length > 1) {
-            out += '\\' + (int.parse(matches[1].input) + offset).toString();
+          if (matches[0].group(0)?[0] == '\\' && matches[0].group(1) != null) {
+            out += '\\' + (int.parse(matches[0].group(1)!) + offset).toString();
           } else {
-            out += matches[0].input;
-            if (matches[0].input == '(') {
+            out += matches[0].group(0)!;
+            if (matches[0].group(0) == '(') {
               numCaptures++;
             }
           }

@@ -19,7 +19,7 @@ void remapScopeNames(
   final positions = <String, dynamic>{};
 
   for (var i = 1; i <= regexes.length; i++) {
-    positions[(i + offset).toString()] = scopeNames[i];
+    positions[(i + offset).toString()] = scopeNames[i.toString()];
     emit[i + offset] = true;
   }
 

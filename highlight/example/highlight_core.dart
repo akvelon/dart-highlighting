@@ -7,4 +7,5 @@ void main() {
 }
 ''';
   final compiledMode = compileLanguage(python);
+  int a = 9;
 }

@@ -38,7 +38,7 @@ ResumableMultiRegex buildModeRegex(Mode mode) {
       print(term);
       return;
     }
-    mm.addRule(term.begin, {$rule: term, $type: $begin});
+    mm.addRule(term.beginRe!, {$rule: term, $type: $begin});
   });
 
   if (mode.terminator_end != null) {
@@ -46,17 +46,15 @@ ResumableMultiRegex buildModeRegex(Mode mode) {
   }
 
   if (mode.illegal != null) {
-    // mode.illegalRe or mode.illegal?
-    mm.addRule(mode.illegal!, {$type: $illegal});
+    mm.addRule(mode.illegalRe!, {$type: $illegal});
   }
 
   return mm;
 }
 
 Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
-  final cmode = mode;
   if (mode.isCompiled) {
-    return cmode;
+    return mode;
   }
 
   scopeClassName(mode, parent);
@@ -82,7 +80,7 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
     mode.keywords.remove($pattern);
   }
 
-  keywordPattern ??= RegExp('w+');
+  keywordPattern ??= RegExp(r'\w+');
 
   if (mode.keywords != null) {
     mode.keywords = compileKeywords(
@@ -91,47 +89,53 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
     );
   }
 
-  cmode.keywordPatternRe = DomainRegex(langRe(keywordPattern, true, language));
+  mode.keywordPatternRe = DomainRegex(langRe(keywordPattern, true, language));
 
   if (parent != null) {
-    mode.begin ??= RegExp('\B|\b');
-    cmode.beginRe = langRe(cmode.begin, false, language);
+    mode.begin ??= RegExp(r'\B|\b');
+    mode.beginRe = langRe(mode.begin, false, language);
     if (mode.end == null && mode.endsWithParent == null) {
-      mode.end = RegExp('\B|\b');
+      mode.end = RegExp(r'\B|\b');
     }
     if (mode.end != null) {
-      cmode.endRe = langRe(cmode.end, false, language);
+      mode.endRe = langRe(mode.end, false, language);
     }
-    cmode.terminator_end = source(cmode.end);
+    mode.terminator_end = source(mode.end);
 
     if (mode.endsWithParent != null && parent.terminator_end != null) {
-      cmode.terminator_end = cmode.terminator_end! +
+      mode.terminator_end = mode.terminator_end! +
           (mode.end != null ? '|' : '') +
           parent.terminator_end!;
     }
   }
 
   if (mode.illegal != null) {
-    cmode.illegalRe = langRe(mode.illegal, false, language);
+    mode.illegalRe = langRe(mode.illegal, false, language);
   }
   mode.contains ??= [];
 
   var newList = <Mode>[];
   mode.contains!.forEach((element) {
+    element.parent ??= parent;
+
+    if (element.ref != null) {
+      element = replaceIfRef(parent: mode, self: element);
+      element.parent ??= parent;
+    }
     newList.addAll(expandOrCloneMode(element.self == true ? mode : element));
   });
   mode.contains = newList;
   mode.contains!.forEach((element) {
-    compileMode(element, language: element);
+    compileMode(element, parent: mode, language: element);
   });
 
   if (mode.starts != null) {
-    compileMode(mode.starts!, parent: parent, language: language);
+    compileMode(mode.starts!, language: language);
   }
 
-  cmode.matcher = buildModeRegex(mode);
+  mode.matcher = buildModeRegex(mode);
 
-  return cmode;
+  return mode;
 }
 
 bool dependencyOnParent(Mode? mode) {

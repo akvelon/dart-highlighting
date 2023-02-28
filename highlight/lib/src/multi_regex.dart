@@ -185,6 +185,9 @@ RegExp langRe(dynamic value, bool global, Mode? language) {
   } else {
     source = value.pattern;
   }
+  if(source.contains('XID_Start')){
+    int a = 0;
+  }
 
   return RegExp(
     source,
