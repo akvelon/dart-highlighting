@@ -89,7 +89,10 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
     );
   }
 
-  mode.keywordPatternRe = DomainRegex(langRe(keywordPattern, true, language));
+  mode.keywordPatternRe = DomainRegex(
+    langRe(keywordPattern, true, language),
+    global: true,
+  );
 
   if (parent != null) {
     mode.begin ??= RegExp(r'\B|\b');

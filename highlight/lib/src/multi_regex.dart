@@ -32,11 +32,14 @@ class MultiRegex {
     }
 
     final terminators = regexes.map((el) => el.item2).toList();
-    matcherRe = DomainRegex(langRe(
-      rewriteBackReferences(terminators, joinWith: '|'),
-      true,
-      language,
-    ));
+    matcherRe = DomainRegex(
+      langRe(
+        rewriteBackReferences(terminators, joinWith: '|'),
+        true,
+        language,
+      ),
+      global: true,
+    );
     lastIndex = 0;
   }
 
@@ -185,7 +188,7 @@ RegExp langRe(dynamic value, bool global, Mode? language) {
   } else {
     source = value.pattern;
   }
-  if(source.contains('XID_Start')){
+  if (source.contains('XID_Start')) {
     int a = 0;
   }
 
