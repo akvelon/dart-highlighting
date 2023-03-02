@@ -8,6 +8,8 @@ class Result {
   Mode? top;
   Result? secondBest;
   String? currentScope;
+  List<Node> stack = [];
+  Node rootNode;
 
   Result({
     this.relevance,
@@ -15,7 +17,11 @@ class Result {
     this.top,
     this.secondBest,
     List<Node>? nodes,
-  }) : nodes = nodes ?? [];
+  })  : nodes = nodes ?? [],
+        rootNode = Node() {
+    this.nodes.add(rootNode);
+    stack.add(rootNode);
+  }
 
   String _escape(String value) {
     return value
@@ -24,36 +30,49 @@ class Result {
         .replaceAll(RegExp(r'>'), '&gt;');
   }
 
+  void add(Node node) {
+    stack.last.children.add(node);
+  }
+
+  void openNode(String kind) {
+    final node = Node(className: kind);
+    add(node);
+    stack.add(node);
+  }
+
+  Node? closeNode() {
+    if (stack.length > 1) {
+      return stack.removeLast();
+    }
+    return null;
+  }
+
+  void closeAllNodes() {
+    while (closeNode() != null) {
+      // nothing is required here.
+    }
+  }
+
   void addKeyword(String text, String kind) {
-    nodes.add(Node(className: kind, value: text));
+    if (text.isEmpty) {
+      return;
+    }
+
+    openNode(kind);
+    addText(text);
+    closeNode();
   }
 
   void addText(String text) {
     if (text.isEmpty) {
       return;
     }
-
-    if (currentScope != null) {
-      addKeyword(text, currentScope!);
-      return;
-    }
-
-    nodes.add(Node(value: text));
-  }
-
-  void finalize() {}
-
-  void closeAllNodes() {}
-
-  void openNode(String kind) {
-    currentScope = kind;
-  }
-
-  void closeNode() {
-    currentScope = null;
+    add(Node(value: text));
   }
 
   void addSublanguage(Result emitter, String sublanguage) {}
+
+  void finalize() {}
 
   String toHtml() {
     var str = '';
