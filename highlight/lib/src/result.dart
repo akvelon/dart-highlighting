@@ -7,6 +7,7 @@ class Result {
   String? language;
   Mode? top;
   Result? secondBest;
+  String? currentScope;
 
   Result({
     this.relevance,
@@ -28,6 +29,15 @@ class Result {
   }
 
   void addText(String text) {
+    if (text.isEmpty) {
+      return;
+    }
+
+    if (currentScope != null) {
+      addKeyword(text, currentScope!);
+      return;
+    }
+
     nodes.add(Node(value: text));
   }
 
@@ -35,9 +45,13 @@ class Result {
 
   void closeAllNodes() {}
 
-  void openNode(String kind) {}
+  void openNode(String kind) {
+    currentScope = kind;
+  }
 
-  void closeNode() {}
+  void closeNode() {
+    currentScope = null;
+  }
 
   void addSublanguage(Result emitter, String sublanguage) {}
 

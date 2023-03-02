@@ -9,6 +9,6 @@ void main() {
 ''';
   final compiledMode = compileLanguage(python);
   final result = HighlightV2()
-      .highlight('python', '"This is String!"\n#This is comment!\ndef MyFunc():\n  if true:\n    return true', true);
+      .highlight('python', '"This is String!"\n#This is comment!\ndef MyFunc():\n"""This is\nMultiline String"""\n  if true:\n    return true', true);
   int a = 9;
 }
