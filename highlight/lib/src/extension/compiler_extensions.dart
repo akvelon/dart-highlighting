@@ -62,11 +62,12 @@ void compileRelevance(Mode mode, Mode? parent) {
 Mode replaceIfRef({required Mode parent, required Mode self}) {
   Mode top = parent;
   while (top.parent != null) {
-    top = parent.parent!;
+    top = top.parent!;
   }
   if (top.refs == null) {
     return self;
   }
+  final newMode = top.refs![self.ref!]!;
 
-  return top.refs![self.ref!]!;
+  return newMode;
 }

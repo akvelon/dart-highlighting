@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:collection/collection.dart';
 import 'package:highlight/languages/all.dart';
 import 'package:highlight/src/const/literals.dart';
@@ -31,7 +33,21 @@ class HighlightV2 {
     Mode top = continuation ?? md;
     final continuations = Map<String, dynamic>();
 
-    // processContinuations();
+    void processContinuations() {
+      final list = [];
+      for (Mode? current = top;
+          current != language && current != null;
+          current = current.parent) {
+        if (current.scope != null) {
+          list.insert(0, current.scope);
+        }
+      }
+      list.forEach((element) {
+        emitter.openNode(element);
+      });
+    }
+
+    processContinuations();
     String modeBuffer = '';
     double relevance = 0;
     int index = 0;
@@ -42,11 +58,11 @@ class HighlightV2 {
     /// `$type: MatchType ('begin', 'end', 'illegal')`,
     /// `$index: int`,
     /// `$rule`: Mode
-    Map<String, dynamic> lastMatch = {};
+    DomainRegexMatch? lastMatch;
 
     var keywordHits = Map<String, dynamic>();
 
-    Tuple2<String, int>? keywordData(Mode mode, String matchText) {
+    Tuple2<String, double>? keywordData(Mode mode, String matchText) {
       return mode.keywords[matchText];
     }
 
@@ -64,10 +80,10 @@ class HighlightV2 {
       while (match != null) {
         buf += substring(modeBuffer, lastIndex, match.index);
         final word = language.case_insensitive == true
-            ? match[0].toLowerCase()
+            ? match[0]!.toLowerCase()
             : match[0];
 
-        final data = keywordData(top, word);
+        final data = keywordData(top, word!);
         if (data != null) {
           final kind = data.item1;
           final keywordRelevance = data.item2;
@@ -78,13 +94,13 @@ class HighlightV2 {
             relevance += keywordRelevance;
           }
           if (kind.startsWith('_')) {
-            buf += match[0];
+            buf += match[0]!;
           } else {
             final cssClass = language.classNameAliases[kind] ?? kind;
-            emitter.addKeyword(match[0], cssClass);
+            emitter.addKeyword(match[0]!, cssClass);
           }
         } else {
-          buf += match[0];
+          buf += match[0]!;
         }
         lastIndex = top.keywordPatternRe!.lastIndex;
         match = top.keywordPatternRe?.exec(modeBuffer);
@@ -138,13 +154,14 @@ class HighlightV2 {
           i++;
           continue;
         }
-        final klass = language.classNameAliases[scope[i]] ?? scope[i];
+        final klass =
+            language.classNameAliases[scope[i]] ?? scope[i.toString()];
         final text = match[i];
 
         if (klass != null) {
-          emitter.addKeyword(text, klass);
+          emitter.addKeyword(text!, klass);
         } else {
-          modeBuffer = text;
+          modeBuffer = text!;
           processKeywords();
           modeBuffer = '';
         }
@@ -172,7 +189,7 @@ class HighlightV2 {
         }
       }
 
-      top = Mode.inherit(mode, Mode(parent: top));
+      top = Mode.inherit(Mode(parent: top), mode);
 
       return top;
     }
@@ -228,22 +245,22 @@ class HighlightV2 {
           continue;
         }
         cb(match, resp);
-        if (resp.isMatchIgnored) return doIgnore(lexeme);
+        if (resp.isMatchIgnored) return doIgnore(lexeme!);
       }
 
       if (newMode.skip == true) {
-        modeBuffer += lexeme;
+        modeBuffer += lexeme!;
       } else {
         if (newMode.excludeBegin == true) {
-          modeBuffer += lexeme;
+          modeBuffer += lexeme!;
         }
         processBuffer();
         if (newMode.returnBegin != true && newMode.excludeBegin != true) {
-          modeBuffer = lexeme;
+          modeBuffer = lexeme!;
         }
       }
       startNewMode(newMode, match);
-      return newMode.returnBegin == true ? 0 : lexeme.length;
+      return newMode.returnBegin == true ? 0 : lexeme!.length;
     }
 
     int doEndMatch(DomainRegexMatch match) {
@@ -258,19 +275,19 @@ class HighlightV2 {
       final origin = top;
       if (top.endScope != null && top.endScope[$wrap] != null) {
         processBuffer();
-        emitter.addKeyword(lexeme, top.endScope[$wrap]);
+        emitter.addKeyword(lexeme!, top.endScope[$wrap]);
       } else if (top.endScope != null && top.endScope[$multi] == true) {
         processBuffer();
         emitMultiClass(top.endScope, match);
       } else if (origin.skip == true) {
-        modeBuffer += lexeme;
+        modeBuffer += lexeme!;
       } else {
         if (!(origin.returnEnd == true || origin.excludeEnd == true)) {
-          modeBuffer += lexeme;
+          modeBuffer += lexeme!;
         }
         processBuffer();
         if (origin.excludeEnd == true) {
-          modeBuffer = lexeme;
+          modeBuffer = lexeme!;
         }
       }
 
@@ -287,25 +304,11 @@ class HighlightV2 {
       if (endMode.starts != null) {
         startNewMode(endMode.starts!, match);
       }
-      return origin.returnEnd == true ? 0 : lexeme.length;
-    }
-
-    void processContinuations() {
-      final list = [];
-      for (Mode? current = top;
-          current != language || current != null;
-          current = current?.parent) {
-        if (current?.scope != null) {
-          list.insert(0, current?.scope);
-        }
-      }
-      list.forEach((element) {
-        emitter.openNode(element);
-      });
+      return origin.returnEnd == true ? 0 : lexeme!.length;
     }
 
     int processLexeme(String textBeforeMatch, DomainRegexMatch? match) {
-      dynamic lexeme = match ?? match?[0];
+      dynamic lexeme = match != null ? match[0] : null;
 
       modeBuffer += textBeforeMatch;
 
@@ -314,24 +317,20 @@ class HighlightV2 {
         return 0;
       }
 
-      if (lastMatch[$type] == $begin &&
+      if (lastMatch?.matchType == $begin &&
           match!.matchType == $end &&
-          lastMatch[$index] == match.index &&
+          lastMatch?.index == match.index &&
           lexeme == '') {
         modeBuffer += codeToHighlight.substring(match.index, match.index + 1);
         if (safeMode) {
           throw Exception(
-              '0 width match regex $languageName, rule: ${lastMatch[$rule]}');
+              '0 width match regex $languageName, rule: ${lastMatch?.rule}');
         }
 
         return 1;
       }
 
-      lastMatch = {
-        $type: match!.matchType,
-        $index: match.index,
-        $rule: match.rule,
-      };
+      lastMatch = match!;
 
       if (match.matchType == $begin) {
         return doBeginMatch(match);
@@ -358,17 +357,19 @@ class HighlightV2 {
     }
 
     try {
-      top.matcher!.considerAll();
+      top.matcher?.considerAll();
 
       for (;;) {
         iterations++;
         if (resumeScanAtSamePosition) {
           resumeScanAtSamePosition = false;
         } else {
-          top.matcher!.considerAll();
+          top.matcher?.considerAll();
         }
-        top.matcher!.lastIndex = index;
-        final match = top.matcher!.exec(codeToHighlight);
+        if (top.matcher != null) {
+          top.matcher!.lastIndex = index;
+        }
+        final match = top.matcher?.exec(codeToHighlight);
 
         if (match == null) {
           break;

@@ -38,7 +38,7 @@ String either(List<dynamic> args) {
 
 extension RegExpExtension on RegExp {
   int countMatchGroups() {
-    return RegExp(pattern + '|').allMatches('').length - 1;
+    return RegExp(pattern + '|').firstMatch('')?.groupCount ?? 0;
   }
 }
 

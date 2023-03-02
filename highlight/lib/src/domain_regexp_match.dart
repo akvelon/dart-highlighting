@@ -1,27 +1,50 @@
 import '../highlight.dart';
 
 class DomainRegexMatch {
-  RegExp executedRegex;
-  List<RegExpMatch> matches;
-  String input;
-  int startIndex;
+  final RegExp executedRegex;
+  final RegExpMatch match;
+  final String input;
+  final int startIndex;
   Mode? rule;
+  List<String?> _matchGroups = [];
 
   /// 'begin' | 'end' | 'illegal' -> see constants
   String? matchType;
 
   DomainRegexMatch({
-    required this.matches,
+    required this.match,
     required this.input,
     required this.executedRegex,
     this.startIndex = 0,
-  }) : assert(matches.isNotEmpty);
+  }) {
+    for (int i = 0; i < match.groupCount; i++) {
+      _matchGroups.add(match.group(i));
+    }
+  }
 
-  int get index => matches.first.start;
+  int get index => match.start + startIndex;
 
-  int get length => throw UnimplementedError();
+  int get length => _matchGroups.length;
 
-  String operator [](index) {
-    throw UnimplementedError();
+  String? operator [](int index) {
+    if (_matchGroups.isEmpty || index >= _matchGroups.length) {
+      return null;
+    }
+    return _matchGroups[index];
+  }
+
+  int findIndex(bool Function(String? el, int index) callback) {
+    for (int i = 0; i <= match.groupCount; i++) {
+      if (callback(match.group(i), i)) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  void splice(int start, int end) {
+    _matchGroups.removeRange(
+        start + 1, end + (end >= _matchGroups.length ? 0 : 1));
   }
 }

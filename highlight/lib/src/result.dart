@@ -23,9 +23,13 @@ class Result {
         .replaceAll(RegExp(r'>'), '&gt;');
   }
 
-  void addKeyword(String text, String kind) {}
+  void addKeyword(String text, String kind) {
+    nodes.add(Node(className: kind, value: text));
+  }
 
-  void addText(String text) {}
+  void addText(String text) {
+    nodes.add(Node(value: text));
+  }
 
   void finalize() {}
 
@@ -61,7 +65,7 @@ class Result {
       }
     }
 
-    nodes!.forEach(_traverse);
+    nodes.forEach(_traverse);
     return str;
   }
 }

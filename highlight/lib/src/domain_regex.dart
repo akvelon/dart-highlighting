@@ -1,4 +1,6 @@
 import 'package:highlight/src/domain_regexp_match.dart';
+import 'package:highlight/src/extension/reg_exp.dart';
+import 'package:highlight/src/utils.dart';
 
 class DomainRegex {
   int lastIndex = 0;
@@ -10,11 +12,47 @@ class DomainRegex {
   bool global;
 
   DomainRegex(
-    this.regex, {
+    RegExp regex, {
     this.global = false,
-  });
+  }) : regex = surroundGroupIfNeeded(regex);
 
   DomainRegexMatch? exec(String input) {
-    throw UnimplementedError();
+    var cutInput = substring(input, lastIndex);
+
+    final match = regex.firstMatch(cutInput);
+    if (match == null) {
+      lastIndex = 0;
+      return null;
+    }
+
+    final lastIndexSnapshot = lastIndex;
+
+    lastIndex += match.end;
+
+    for (int i = 0; i < match.groupCount; i++) {
+      print(match.group(i));
+    }
+
+    return DomainRegexMatch(
+      match: match,
+      input: input,
+      executedRegex: regex,
+      startIndex: lastIndexSnapshot,
+    );
   }
+}
+
+RegExp surroundGroupIfNeeded(RegExp regex) {
+  final pattern = source(regex);
+  if (!pattern.contains('(') && !pattern.contains(')')) {
+    return RegExp(
+      '($pattern)',
+      multiLine: regex.isMultiLine,
+      unicode: regex.isUnicode,
+      dotAll: regex.isDotAll,
+      caseSensitive: regex.isCaseSensitive,
+    );
+  }
+
+  return regex;
 }

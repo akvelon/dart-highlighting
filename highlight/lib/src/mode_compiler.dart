@@ -31,13 +31,6 @@ ResumableMultiRegex buildModeRegex(Mode mode) {
   final mm = ResumableMultiRegex(language: mode);
 
   mode.contains?.forEach((term) {
-    if (term.begin is String) {
-      term.begin = RegExp(term.begin);
-    }
-    if (term.begin == null) {
-      print(term);
-      return;
-    }
     mm.addRule(term.beginRe!, {$rule: term, $type: $begin});
   });
 
@@ -80,7 +73,7 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
     mode.keywords.remove($pattern);
   }
 
-  keywordPattern ??= RegExp(r'\w+');
+  keywordPattern ??= RegExp(r'(\w+)', multiLine: true);
 
   if (mode.keywords != null) {
     mode.keywords = compileKeywords(
@@ -95,7 +88,7 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
   );
 
   if (parent != null) {
-    mode.begin ??= RegExp(r'\B|\b');
+    mode.begin ??= r'\B|\b';
     mode.beginRe = langRe(mode.begin, false, language);
     if (mode.end == null && mode.endsWithParent == null) {
       mode.end = RegExp(r'\B|\b');
@@ -119,21 +112,25 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
 
   var newList = <Mode>[];
   mode.contains!.forEach((element) {
-    element.parent ??= parent;
+    element.parent ??= mode;
 
     if (element.ref != null) {
       element = replaceIfRef(parent: mode, self: element);
-      element.parent ??= parent;
+      element.parent ??= mode;
+      element.ref = null;
     }
     newList.addAll(expandOrCloneMode(element.self == true ? mode : element));
   });
   mode.contains = newList;
-  mode.contains!.forEach((element) {
+  for (final element in mode.contains!) {
     compileMode(element, parent: mode, language: element);
-  });
+  }
 
   if (mode.starts != null) {
     compileMode(mode.starts!, language: language);
+  }
+  if (mode.begin is String && mode.begin.contains(r'\(\s')) {
+    int a;
   }
 
   mode.matcher = buildModeRegex(mode);
@@ -148,16 +145,18 @@ bool dependencyOnParent(Mode? mode) {
 }
 
 List<Mode> expandOrCloneMode(Mode mode) {
-  if (mode.variants != null && mode.cachedVariants == null) {
+  if (mode.variants != null &&
+      mode.variants!.isNotEmpty &&
+      mode.cachedVariants == null) {
     mode.cachedVariants = mode.variants!.map((variant) {
-      return Mode.inherit(Mode.inherit(mode, Mode(variants: null)), variant);
+      return Mode.inherit(Mode.inherit(mode, Mode(variants: [])), variant);
     }).toList();
   }
 
   // EXPAND
   // if we have variants then essentially "replace" the mode with the variants
   // this happens in compileMode, where this function is called from
-  if (mode.cachedVariants != null) {
+  if (mode.cachedVariants != null && mode.cachedVariants!.isNotEmpty) {
     return mode.cachedVariants!;
   }
 
@@ -176,5 +175,5 @@ List<Mode> expandOrCloneMode(Mode mode) {
     ];
   }
 
-  return [Mode.inherit(mode)];
+  return [mode];
 }

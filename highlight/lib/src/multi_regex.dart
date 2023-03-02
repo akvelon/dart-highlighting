@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:highlight/src/const/literals.dart';
 import 'package:highlight/src/domain_regex.dart';
 import 'package:highlight/src/domain_regexp_match.dart';
 import 'package:tuple/tuple.dart';
@@ -20,7 +21,7 @@ class MultiRegex {
   });
 
   void addRule(RegExp re, Map<dynamic, dynamic> opts) {
-    opts[position] = opts[position]++;
+    opts[position] = position++;
     matchIndexes[matchAt] = opts;
     regexes.add(Tuple2(opts, re));
     matchAt += re.countMatchGroups() + 1;
@@ -44,29 +45,27 @@ class MultiRegex {
   }
 
   late DomainRegexMatch? Function(String string) exec = (string) {
-    final input = string.substring(lastIndex);
-    var matches = matcherRe.exec(input)?.matches.toList() ?? [];
-    if (matches.isEmpty) {
-      lastIndex = 0;
+    // final input = string.substring(lastIndex);
+    matcherRe.lastIndex = lastIndex;
+    var match = matcherRe.exec(string);
+    if (match == null) {
       return null;
     }
 
-    lastIndex = matches.first.end;
+    lastIndex += match.match.end;
 
-    final item = matches.firstWhereIndexedOrNull((i, el) => i > 0);
-    final index = matches.indexOf(item!);
+    final index = match.findIndex((el, index) => index > 0 && el != null);
+    if (index == -1) {
+      return null;
+    }
 
-    final matchData = item;
+    final matchData = matchIndexes[index] as Map;
     // trim off any earlier non-relevant match groups (ie, the other regex
     // match groups that make up the multi-matcher)
-    matches = matches.sublist(0, index);
-
-    return DomainRegexMatch(
-      matches: matches,
-      input: string,
-      executedRegex: matcherRe.regex,
-      startIndex: lastIndex,
-    );
+    match.splice(0, index);
+    match.matchType = matchData[$type];
+    match.rule = matchData[$rule];
+    return match;
     // return Object.assign(match, matchData);
   };
 }
@@ -107,7 +106,7 @@ class ResumableMultiRegex {
 
   void addRule(RegExp re, Map<dynamic, dynamic> opts) {
     rules.add(Tuple2(opts, re));
-    if (opts['type'] == 'begin') {
+    if (opts[$type] == $begin) {
       count++;
     }
   }
@@ -160,10 +159,10 @@ class ResumableMultiRegex {
       }
     }
 
-    if (result != null && result.matches.isNotEmpty) {
+    if (result != null) {
       // yescorp: One way of getting the id of the match group. Need to check this.
-      for (var i = 1; i < result.executedRegex.countMatchGroups(); i++) {
-        if (result.matches.first.group(i) != null) {
+      for (var i = 1; i < result.length; i++) {
+        if (result[i] != null) {
           regexIndex += i + 1;
           break;
         }
@@ -187,9 +186,6 @@ RegExp langRe(dynamic value, bool global, Mode? language) {
     source = value;
   } else {
     source = value.pattern;
-  }
-  if (source.contains('XID_Start')) {
-    int a = 0;
   }
 
   return RegExp(
