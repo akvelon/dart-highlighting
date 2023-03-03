@@ -8,7 +8,9 @@ void main() {
 }
 ''';
   final compiledMode = compileLanguage(python);
-  final result = HighlightV2()
-      .highlight('python', '"""This is\nMultiline String"""\ndef MyFunc():\n  if true:\n    return true', true);
+  final result = HighlightV2().highlight(
+      'python',
+      '"""This is\nMultiline String"""\ndef MyFunc():\n  if true:\n    return true',
+      true);
   int a = 9;
 }

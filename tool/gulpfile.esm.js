@@ -19,7 +19,7 @@ export function watch(cb) {
   cb();
 }
 
-export default cb => {
+export function cb () {
   h.allModes();
   h.commonModes();
   gallery.example();
@@ -34,3 +34,5 @@ export default cb => {
   }
   cb();
 };
+
+watch(cb);

@@ -2,9 +2,9 @@ import fs from "fs";
 import path from "path";
 import _ from "lodash";
 import postcss from "postcss";
-import { NOTICE_COMMENT } from "./utils";
+import { NOTICE_COMMENT } from "./utils.js";
 
-const rootDir = "../vendor/highlight.js/src/styles";
+const rootDir = "node_modules/highlight.js/styles";
 const destDir = "../flutter_highlight/lib/themes";
 
 /**
@@ -115,7 +115,10 @@ export function style() {
                 if (item.value === "bolder") {
                   item.value = "bold"; // FIXME:
                 }
-                style.fontWeight = `FontWeight.${item.value}`;
+                if (item.value === "bold") {
+                  style.fontWeight = `FontWeight.bold`;
+                }
+                style.fontWeight = `FontWeight.w${item.value}`;
                 break;
             }
           } else {
@@ -124,6 +127,7 @@ export function style() {
         });
 
         const styleEntries = Object.entries(style);
+        selector = selector.replace(/\_/g, '');
         if (styleEntries.length) {
           if (!obj[selector]) {
             obj[selector] = style;
@@ -148,3 +152,5 @@ export function style() {
   all[1] += "};";
   fs.writeFileSync("../flutter_highlight/lib/theme_map.dart", all.join("\n"));
 }
+
+style()
