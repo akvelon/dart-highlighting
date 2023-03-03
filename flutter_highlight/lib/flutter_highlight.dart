@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:highlight/highlight.dart' show highlight, Node;
+import 'package:highlight/highlight_core.dart';
 
 /// Highlight Flutter Widget
 class HighlightView extends StatelessWidget {
@@ -94,8 +95,7 @@ class HighlightView extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           style: _textStyle,
-          children:
-              _convert(highlight.parse(source, language: language).nodes!),
+          children: _convert(highlight.highlight('python', source, true).nodes),
         ),
       ),
     );

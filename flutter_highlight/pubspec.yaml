@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  highlight: ^0.7.0
+  highlight:
+    path: ../highlight
 
 dev_dependencies:
   flutter_test:
