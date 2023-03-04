@@ -12,7 +12,7 @@ dependencies:
   highlight:
     git:
       url: https://github.com/yescorp/highlight.dart.git
-      ref: test_diff
+      ref: a21d02d067797bf1e8b4ce5190529c39afd26a85
       path: highlight/
 
 dev_dependencies:
