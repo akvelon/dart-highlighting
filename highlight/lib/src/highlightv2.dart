@@ -87,6 +87,7 @@ class HighlightV2 {
         if (data != null) {
           final kind = data.item1;
           final keywordRelevance = data.item2;
+          emitter.addText(buf);
           buf = '';
 
           keywordHits[word] = (keywordHits[word] ?? 0) + 1;
@@ -295,7 +296,7 @@ class HighlightV2 {
         if (top.scope != null) {
           emitter.closeNode();
         }
-        if (top.skip != true && top.subLanguage != null) {
+        if (top.skip != true && top.subLanguage == null) {
           relevance += top.relevance!;
         }
         top = top.parent!;
