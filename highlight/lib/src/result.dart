@@ -3,7 +3,7 @@ import 'mode.dart';
 
 class Result {
   int? relevance;
-  List<Node> nodes;
+  List<Node>? nodes;
   String? language;
   Mode? top;
   Result? secondBest;
@@ -17,10 +17,8 @@ class Result {
     this.top,
     this.secondBest,
     List<Node>? nodes,
-  })  : nodes = nodes ?? [],
-        rootNode = Node() {
-    this.nodes.add(rootNode);
-    stack.add(rootNode);
+  }) : rootNode = Node() {
+    this.nodes = nodes ?? [rootNode];
   }
 
   String _escape(String value) {
@@ -98,7 +96,7 @@ class Result {
       }
     }
 
-    nodes.forEach(_traverse);
+    nodes?.forEach(_traverse);
     return str;
   }
 }
