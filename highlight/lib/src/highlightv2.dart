@@ -1,7 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:collection/collection.dart';
-import 'package:highlight/languages/all.dart';
 import 'package:highlight/src/const/literals.dart';
 import 'package:highlight/src/domain_regexp_match.dart';
 import 'package:highlight/src/mode_compiler.dart';
@@ -10,13 +8,29 @@ import 'package:highlight/src/utils.dart';
 import 'package:tuple/tuple.dart';
 
 import '../highlight.dart';
-import 'compiled_scope.dart';
 import 'const/magic_numbers.dart';
 
 class HighlightV2 {
   final _languages = {}.cast<String, Mode>();
   final _aliases = {}.cast<String, String>();
   Mode? _languageMode;
+
+  void registerLanguage(String name, Mode mode) {
+    _languages.addAll({
+      name: mode,
+    });
+  }
+
+  Result parse(
+    String text, {
+    required String language,
+  }) {
+    if (!_languages.containsKey(language)) {
+      return Result(nodes: [Node(value: text)]);
+    }
+
+    return highlight(language, text, true);
+  }
 
   Result highlight(
     String languageName,
@@ -26,7 +40,7 @@ class HighlightV2 {
     bool safeMode = true,
   }) {
     final emitter = Result();
-    final language = builtinLanguages[languageName];
+    final language = _languages[languageName];
 
     final md = compileLanguage(language!);
 
