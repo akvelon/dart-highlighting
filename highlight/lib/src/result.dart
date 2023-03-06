@@ -19,6 +19,7 @@ class Result {
     List<Node>? nodes,
   }) : rootNode = Node() {
     this.nodes = nodes ?? [rootNode];
+    stack.add(rootNode);
   }
 
   String _escape(String value) {
