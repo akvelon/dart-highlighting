@@ -5,6 +5,9 @@ class Node {
   bool noPrefix;
   bool isOpen = false;
 
+  bool? sublanguage;
+  String? language;
+
   Node({
     this.className,
     this.value,

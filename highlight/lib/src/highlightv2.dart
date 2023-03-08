@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:highlight/languages/all.dart';
 import 'package:highlight/src/const/literals.dart';
 import 'package:highlight/src/domain_regexp_match.dart';
 import 'package:highlight/src/mode_compiler.dart';
@@ -40,7 +41,7 @@ class HighlightV2 {
     bool safeMode = true,
   }) {
     final emitter = Result();
-    final language = _languages[languageName];
+    final language = _languages[languageName] ?? builtinLanguages[languageName];
 
     final md = compileLanguage(language!);
 
@@ -130,17 +131,15 @@ class HighlightV2 {
         return;
       }
       Result result;
-
-      if (top.subLanguage is String) {
-        // need to check the type of sublanguage
-        if (_languages[top.subLanguage] == null) {
+      if (top.subLanguage?.length == 1) {
+        if (builtinLanguages[top.subLanguage!.first] == null) {
           emitter.addText(modeBuffer);
           return;
         }
 
         // check type of subLanguage
         result = highlight(top.subLanguage!.first, modeBuffer, true,
-            continuation: continuations[top.subLanguage]);
+            continuation: continuations[top.subLanguage!.first]);
         continuations[top.subLanguage!.first] = result.top;
       } else {
         result = Result();
@@ -149,7 +148,7 @@ class HighlightV2 {
       if (top.relevance! > 0) {
         relevance += result.relevance!;
       }
-      emitter.addSublanguage(emitter, result.language!);
+      emitter.addSublanguage(result, result.language!);
     }
 
     void processBuffer() {

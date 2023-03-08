@@ -69,7 +69,12 @@ class Result {
     add(Node(value: text));
   }
 
-  void addSublanguage(Result emitter, String sublanguage) {}
+  void addSublanguage(Result emitter, String sublanguage) {
+    final node = emitter.rootNode;
+    node.sublanguage = true;
+    node.language = sublanguage;
+    add(node);
+  }
 
   void finalize() {}
 

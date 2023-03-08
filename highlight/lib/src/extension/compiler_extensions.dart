@@ -68,6 +68,7 @@ Mode replaceIfRef({required Mode parent, required Mode self}) {
     return self;
   }
   final newMode = top.refs![self.ref!]!;
+  newMode.parent = parent;
 
   return newMode;
 }

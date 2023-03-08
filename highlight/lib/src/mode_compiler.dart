@@ -49,6 +49,13 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
   if (mode.isCompiled) {
     return mode;
   }
+  if (mode.ref == '~contains~0~variants~0~contains~2~variants~0') {
+    int a = 9;
+  }
+
+  if (mode.ref != null) {
+    mode = replaceIfRef(parent: mode.parent!, self: mode);
+  }
 
   scopeClassName(mode, parent);
   compileMatch(mode, parent);
@@ -116,7 +123,6 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
 
     if (element.ref != null) {
       element = replaceIfRef(parent: mode, self: element);
-      element.parent ??= mode;
       element.ref = null;
     }
     newList.addAll(expandOrCloneMode(element.self == true ? mode : element));
@@ -149,6 +155,9 @@ List<Mode> expandOrCloneMode(Mode mode) {
       mode.variants!.isNotEmpty &&
       mode.cachedVariants == null) {
     mode.cachedVariants = mode.variants!.map((variant) {
+      if (variant != null && variant.ref != null && mode.parent != null) {
+        variant = replaceIfRef(parent: mode.parent!, self: variant);
+      }
       return Mode.inherit(Mode.inherit(mode, Mode(variants: [])), variant);
     }).toList();
   }
