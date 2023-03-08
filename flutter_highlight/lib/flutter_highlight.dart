@@ -95,7 +95,8 @@ class HighlightView extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           style: _textStyle,
-          children: _convert(highlight.highlight('python', source, true).nodes),
+          children:
+              _convert(highlight.highlight('python', source, true).nodes ?? []),
         ),
       ),
     );

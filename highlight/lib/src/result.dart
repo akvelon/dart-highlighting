@@ -84,7 +84,7 @@ class Result {
     void _traverse(Node node) {
       final shouldAddSpan = node.className != null &&
           ((node.value != null && node.value!.isNotEmpty) ||
-              (node.children != null && node.children!.isNotEmpty));
+              (node.children.isNotEmpty));
 
       if (shouldAddSpan) {
         var prefix = node.noPrefix ? '' : 'hljs-';
@@ -93,8 +93,8 @@ class Result {
 
       if (node.value != null) {
         str += _escape(node.value!);
-      } else if (node.children != null) {
-        node.children!.forEach(_traverse);
+      } else {
+        node.children.forEach(_traverse);
       }
 
       if (shouldAddSpan) {

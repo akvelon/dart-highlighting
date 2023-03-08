@@ -5,7 +5,7 @@ import postcss from "postcss";
 import { NOTICE_COMMENT } from "./utils.js";
 
 const rootDir = "node_modules/highlight.js/styles";
-const destDir = "../flutter_highlight/lib/themes";
+const destDir = "../highlight/lib/themes";
 
 /**
  * white, #fff, #ffffff, rgba(0,0,0,0) -> Flutter color
@@ -117,6 +117,7 @@ export function style() {
                 }
                 if (item.value === "bold") {
                   style.fontWeight = `FontWeight.bold`;
+                  break;
                 }
                 style.fontWeight = `FontWeight.w${item.value}`;
                 break;
