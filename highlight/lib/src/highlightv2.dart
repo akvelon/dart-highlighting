@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:highlight/languages/all.dart';
 import 'package:highlight/src/const/literals.dart';
 import 'package:highlight/src/domain_regexp_match.dart';
@@ -8,8 +6,10 @@ import 'package:highlight/src/response.dart';
 import 'package:highlight/src/utils.dart';
 import 'package:tuple/tuple.dart';
 
-import '../highlight.dart';
 import 'const/magic_numbers.dart';
+import 'mode.dart';
+import 'node.dart';
+import 'result.dart';
 
 class HighlightV2 {
   final _languages = {}.cast<String, Mode>();

@@ -1,6 +1,6 @@
 import 'package:highlight/src/extension/reg_exp.dart';
 
-import '../../highlight.dart';
+import '../mode.dart';
 
 void beforeMatchExt(Mode mode, [Mode? parent]) {
   if (mode.beforeMatch == null) {

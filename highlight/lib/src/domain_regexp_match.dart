@@ -1,4 +1,4 @@
-import '../highlight.dart';
+import 'mode.dart';
 
 class DomainRegexMatch {
   final RegExp executedRegex;

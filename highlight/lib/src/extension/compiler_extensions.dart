@@ -2,7 +2,7 @@ import 'package:highlight/src/domain_regexp_match.dart';
 import 'package:highlight/src/extension/reg_exp.dart';
 import 'package:highlight/src/response.dart';
 
-import '../../highlight.dart';
+import '../mode.dart';
 
 void skipIfHasPrecedingDot(DomainRegexMatch match, Response response) {
   final before = match.input[match.index - 1];

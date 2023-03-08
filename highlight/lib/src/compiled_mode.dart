@@ -2,9 +2,9 @@ import 'package:highlight/src/domain_regex.dart';
 import 'package:highlight/src/multi_regex.dart';
 import 'package:tuple/tuple.dart';
 
-import '../highlight.dart';
 import 'compiled_scope.dart';
 import 'const/literals.dart';
+import 'mode.dart';
 
 class CompiledMode {
   /// DomainRegExp | String

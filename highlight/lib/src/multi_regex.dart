@@ -1,10 +1,9 @@
-import 'package:collection/collection.dart';
 import 'package:highlight/src/const/literals.dart';
 import 'package:highlight/src/domain_regex.dart';
 import 'package:highlight/src/domain_regexp_match.dart';
 import 'package:tuple/tuple.dart';
-import '../highlight.dart';
 import 'extension/reg_exp.dart';
+import 'mode.dart';
 
 class MultiRegex {
   Map<int, dynamic> matchIndexes = {};

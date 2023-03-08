@@ -3,12 +3,11 @@ import 'package:highlight/src/const/literals.dart';
 import 'package:highlight/src/extension/reg_exp.dart';
 import 'package:highlight/src/multi_regex.dart';
 
-import '../highlight.dart';
-import 'compiled_mode.dart';
 import 'domain_regex.dart';
 import 'extension/before_match.dart';
 import 'extension/compiler_extensions.dart';
 import 'extension/multi_class.dart';
+import 'mode.dart';
 
 Mode compileLanguage(Mode language) {
   language.compilerExtensions ??= [];

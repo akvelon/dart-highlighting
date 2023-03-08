@@ -1,7 +1,7 @@
 import 'package:highlight/src/extension/reg_exp.dart';
 
-import '../../highlight.dart';
 import '../const/literals.dart';
+import '../mode.dart';
 
 final MultiClassError = Exception('MultiClass Error');
 

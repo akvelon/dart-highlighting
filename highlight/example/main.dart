@@ -1,7 +1,6 @@
 import 'package:highlight/highlight_core.dart';
 import 'package:highlight/languages/dart.dart';
 import 'package:highlight/languages/markdown.dart';
-import 'package:highlight/languages/python.dart';
 import 'package:highlight/src/mode_compiler.dart';
 
 void main() {
