@@ -105,6 +105,7 @@ function normalizeLanguageName(name) {
 
 export function allModes() {
   let all = "";
+  let exports = ['library highlight_languages;\n', `export 'all_languages.dart';`];
   let builtin = "final builtinLanguages = {";
   let community = "final communityLanguages = {";
 
@@ -206,7 +207,8 @@ export function allModes() {
           .replace(/\$/g, "\\$")
       );
 
-      all += `import '${originalLang}.dart';`;
+      all += `import 'languages/${originalLang}.dart';`;
+      exports.push(`export 'languages/${originalLang}.dart';`);
       if (item.community) {
         community += `'${originalLang}': ${lang},`;
       } else {
@@ -223,7 +225,13 @@ export function allModes() {
   all += community + builtin;
   all += "final allLanguages = {...builtinLanguages,...communityLanguages};";
   fs.writeFileSync(
-    `../highlight/lib/languages/all.dart`,
+    `../highlight/lib/all_languages.dart`,
     all.replace(/\$/g, "\\$")
   );
+  fs.writeFileSync(
+    `../highlight/lib/highlight_languages.dart`,
+    exports.join('\n')
+  );
 }
+
+allModes();

@@ -55,6 +55,7 @@ const convertColor = color => {
  */
 export function style() {
   let all = [NOTICE_COMMENT, "const themeMap = {"];
+  let exports = ['library highlight_themes;\n\n', `export 'theme_map.dart';`];
 
   // ["agate.css"]
   fs.readdirSync(rootDir).forEach(file => {
@@ -65,6 +66,7 @@ export function style() {
     let varName = _.camelCase(fileName + "Theme").replace(/a11y/i, "a11y");
 
     all[0] += `import 'themes/${fileName}.dart';`;
+    exports.push(`export 'themes/${fileName}.dart';`);
     all[1] += `'${fileName}': ${varName},`;
 
     const ast = postcss.parse(fs.readFileSync(path.resolve(rootDir, file)));
@@ -151,7 +153,9 @@ export function style() {
   });
 
   all[1] += "};";
+  exports.push('');
   fs.writeFileSync("../highlight/lib/theme_map.dart", all.join("\n"));
+  fs.writeFileSync("../highlight/lib/highlight_themes.dart", exports.join('\n'));
 }
 
 style()
