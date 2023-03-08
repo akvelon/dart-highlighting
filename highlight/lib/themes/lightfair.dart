@@ -1,3 +1,40 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import 'package:flutter/painting.dart'; const lightfairTheme = {'root': TextStyle(color:Color(0xff444444),backgroundColor:Color(0xffffffff)),'name': TextStyle(color:Color(0xff01a3a3),fontWeight:FontWeight.w700),'meta': TextStyle(color:Color(0xff778899)),'tag': TextStyle(color:Color(0xff778899)),'comment': TextStyle(color:Color(0xff888888)),'attribute': TextStyle(fontWeight:FontWeight.w700),'doctag': TextStyle(fontWeight:FontWeight.w700),'keyword': TextStyle(fontWeight:FontWeight.w700),'selector-tag': TextStyle(fontWeight:FontWeight.w700),'deletion': TextStyle(color:Color(0xff4286f4)),'number': TextStyle(color:Color(0xff4286f4)),'quote': TextStyle(color:Color(0xff4286f4)),'selector-class': TextStyle(color:Color(0xff4286f4)),'selector-id': TextStyle(color:Color(0xff4286f4)),'string': TextStyle(color:Color(0xff4286f4)),'template-tag': TextStyle(color:Color(0xff4286f4)),'type': TextStyle(color:Color(0xff4286f4)),'section': TextStyle(color:Color(0xff4286f4),fontWeight:FontWeight.w700),'title': TextStyle(color:Color(0xff4286f4),fontWeight:FontWeight.w700),'link': TextStyle(color:Color(0xffbc6060)),'regexp': TextStyle(color:Color(0xffbc6060)),'selector-attr': TextStyle(color:Color(0xffbc6060)),'selector-pseudo': TextStyle(color:Color(0xffbc6060)),'symbol': TextStyle(color:Color(0xffbc6060)),'template-variable': TextStyle(color:Color(0xffbc6060)),'variable': TextStyle(color:Color(0xffbc6060)),'literal': TextStyle(color:Color(0xff62bcbc)),'addition': TextStyle(color:Color(0xff25c6c6)),'builtin': TextStyle(color:Color(0xff25c6c6)),'bullet': TextStyle(color:Color(0xff25c6c6)),'code': TextStyle(color:Color(0xff25c6c6)),'emphasis': TextStyle(fontStyle:FontStyle.italic),'strong': TextStyle(fontWeight:FontWeight.w700),};
+import 'package:flutter/painting.dart';
+
+const lightfairTheme = {
+  'root':
+      TextStyle(color: Color(0xff444444), backgroundColor: Color(0xffffffff)),
+  'name': TextStyle(color: Color(0xff01a3a3), fontWeight: FontWeight.w700),
+  'meta': TextStyle(color: Color(0xff778899)),
+  'tag': TextStyle(color: Color(0xff778899)),
+  'comment': TextStyle(color: Color(0xff888888)),
+  'attribute': TextStyle(fontWeight: FontWeight.w700),
+  'doctag': TextStyle(fontWeight: FontWeight.w700),
+  'keyword': TextStyle(fontWeight: FontWeight.w700),
+  'selector-tag': TextStyle(fontWeight: FontWeight.w700),
+  'deletion': TextStyle(color: Color(0xff4286f4)),
+  'number': TextStyle(color: Color(0xff4286f4)),
+  'quote': TextStyle(color: Color(0xff4286f4)),
+  'selector-class': TextStyle(color: Color(0xff4286f4)),
+  'selector-id': TextStyle(color: Color(0xff4286f4)),
+  'string': TextStyle(color: Color(0xff4286f4)),
+  'template-tag': TextStyle(color: Color(0xff4286f4)),
+  'type': TextStyle(color: Color(0xff4286f4)),
+  'section': TextStyle(color: Color(0xff4286f4), fontWeight: FontWeight.w700),
+  'title': TextStyle(color: Color(0xff4286f4), fontWeight: FontWeight.w700),
+  'link': TextStyle(color: Color(0xffbc6060)),
+  'regexp': TextStyle(color: Color(0xffbc6060)),
+  'selector-attr': TextStyle(color: Color(0xffbc6060)),
+  'selector-pseudo': TextStyle(color: Color(0xffbc6060)),
+  'symbol': TextStyle(color: Color(0xffbc6060)),
+  'template-variable': TextStyle(color: Color(0xffbc6060)),
+  'variable': TextStyle(color: Color(0xffbc6060)),
+  'literal': TextStyle(color: Color(0xff62bcbc)),
+  'addition': TextStyle(color: Color(0xff25c6c6)),
+  'builtin': TextStyle(color: Color(0xff25c6c6)),
+  'bullet': TextStyle(color: Color(0xff25c6c6)),
+  'code': TextStyle(color: Color(0xff25c6c6)),
+  'emphasis': TextStyle(fontStyle: FontStyle.italic),
+  'strong': TextStyle(fontWeight: FontWeight.w700),
+};

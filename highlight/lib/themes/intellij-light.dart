@@ -1,3 +1,42 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import 'package:flutter/painting.dart'; const intellijLightTheme = {'root': TextStyle(color:Color(0xff000000),backgroundColor:Color(0xffffffff)),'subst': TextStyle(fontWeight:FontWeight.w400,color:Color(0xff000000)),'title': TextStyle(fontWeight:FontWeight.w400,color:Color(0xff000000)),'title.function': TextStyle(color:Color(0xff7a7a43)),'code': TextStyle(color:Color(0xff8c8c8c),fontStyle:FontStyle.italic),'comment': TextStyle(color:Color(0xff8c8c8c),fontStyle:FontStyle.italic),'quote': TextStyle(color:Color(0xff8c8c8c),fontStyle:FontStyle.italic),'meta': TextStyle(color:Color(0xff9e880d)),'section': TextStyle(color:Color(0xff871094)),'builtin': TextStyle(color:Color(0xff0033b3)),'keyword': TextStyle(color:Color(0xff0033b3)),'literal': TextStyle(color:Color(0xff0033b3)),'name': TextStyle(color:Color(0xff0033b3)),'selector-attr': TextStyle(color:Color(0xff0033b3)),'selector-class': TextStyle(color:Color(0xff0033b3)),'selector-id': TextStyle(color:Color(0xff0033b3)),'selector-pseudo': TextStyle(color:Color(0xff0033b3)),'selector-tag': TextStyle(color:Color(0xff0033b3)),'symbol': TextStyle(color:Color(0xff0033b3)),'template-tag': TextStyle(color:Color(0xff0033b3)),'type': TextStyle(color:Color(0xff0033b3)),'variable.language': TextStyle(color:Color(0xff0033b3)),'attr': TextStyle(color:Color(0xff871094)),'property': TextStyle(color:Color(0xff871094)),'attribute': TextStyle(color:Color(0xff174ad4)),'number': TextStyle(color:Color(0xff1750eb)),'regexp': TextStyle(color:Color(0xff264eff)),'link': TextStyle(color:Color(0xff006dcc)),'string': TextStyle(color:Color(0xff067d17)),'char.escape': TextStyle(color:Color(0xff0037a6)),'template-variable': TextStyle(color:Color(0xff248f8f)),'addition': TextStyle(backgroundColor:Color(0xffbee6be)),'deletion': TextStyle(backgroundColor:Color(0xffd6d6d6)),'emphasis': TextStyle(fontStyle:FontStyle.italic),'strong': TextStyle(fontWeight:FontWeight.w700),};
+import 'package:flutter/painting.dart';
+
+const intellijLightTheme = {
+  'root':
+      TextStyle(color: Color(0xff000000), backgroundColor: Color(0xffffffff)),
+  'subst': TextStyle(fontWeight: FontWeight.w400, color: Color(0xff000000)),
+  'title': TextStyle(fontWeight: FontWeight.w400, color: Color(0xff000000)),
+  'title.function': TextStyle(color: Color(0xff7a7a43)),
+  'code': TextStyle(color: Color(0xff8c8c8c), fontStyle: FontStyle.italic),
+  'comment': TextStyle(color: Color(0xff8c8c8c), fontStyle: FontStyle.italic),
+  'quote': TextStyle(color: Color(0xff8c8c8c), fontStyle: FontStyle.italic),
+  'meta': TextStyle(color: Color(0xff9e880d)),
+  'section': TextStyle(color: Color(0xff871094)),
+  'builtin': TextStyle(color: Color(0xff0033b3)),
+  'keyword': TextStyle(color: Color(0xff0033b3)),
+  'literal': TextStyle(color: Color(0xff0033b3)),
+  'name': TextStyle(color: Color(0xff0033b3)),
+  'selector-attr': TextStyle(color: Color(0xff0033b3)),
+  'selector-class': TextStyle(color: Color(0xff0033b3)),
+  'selector-id': TextStyle(color: Color(0xff0033b3)),
+  'selector-pseudo': TextStyle(color: Color(0xff0033b3)),
+  'selector-tag': TextStyle(color: Color(0xff0033b3)),
+  'symbol': TextStyle(color: Color(0xff0033b3)),
+  'template-tag': TextStyle(color: Color(0xff0033b3)),
+  'type': TextStyle(color: Color(0xff0033b3)),
+  'variable.language': TextStyle(color: Color(0xff0033b3)),
+  'attr': TextStyle(color: Color(0xff871094)),
+  'property': TextStyle(color: Color(0xff871094)),
+  'attribute': TextStyle(color: Color(0xff174ad4)),
+  'number': TextStyle(color: Color(0xff1750eb)),
+  'regexp': TextStyle(color: Color(0xff264eff)),
+  'link': TextStyle(color: Color(0xff006dcc)),
+  'string': TextStyle(color: Color(0xff067d17)),
+  'char.escape': TextStyle(color: Color(0xff0037a6)),
+  'template-variable': TextStyle(color: Color(0xff248f8f)),
+  'addition': TextStyle(backgroundColor: Color(0xffbee6be)),
+  'deletion': TextStyle(backgroundColor: Color(0xffd6d6d6)),
+  'emphasis': TextStyle(fontStyle: FontStyle.italic),
+  'strong': TextStyle(fontWeight: FontWeight.w700),
+};
