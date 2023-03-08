@@ -151,7 +151,7 @@ export function style() {
   });
 
   all[1] += "};";
-  fs.writeFileSync("../flutter_highlight/lib/theme_map.dart", all.join("\n"));
+  fs.writeFileSync("../highlight/lib/theme_map.dart", all.join("\n"));
 }
 
 style()
