@@ -1,4 +1,4 @@
-library highlight;
+library highlight_core;
 
 import 'src/highlightv2.dart';
 

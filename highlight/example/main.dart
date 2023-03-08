@@ -1,4 +1,4 @@
-import 'package:highlight/highlight.dart';
+import 'package:highlight/highlight_core.dart';
 import 'package:highlight/languages/dart.dart';
 import 'package:highlight/languages/markdown.dart';
 import 'package:highlight/languages/python.dart';
