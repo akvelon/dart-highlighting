@@ -15,7 +15,7 @@ const anOldHopeTheme = {
   'tag': TextStyle(color: Color(0xffeb3c54)),
   'template-variable': TextStyle(color: Color(0xffeb3c54)),
   'variable': TextStyle(color: Color(0xffeb3c54)),
-  'builtin': TextStyle(color: Color(0xffe7ce56)),
+  'built_in': TextStyle(color: Color(0xffe7ce56)),
   'link': TextStyle(color: Color(0xffe7ce56)),
   'literal': TextStyle(color: Color(0xffe7ce56)),
   'meta': TextStyle(color: Color(0xffe7ce56)),

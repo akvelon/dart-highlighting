@@ -20,7 +20,7 @@ const colorBrewerTheme = {
   'regexp': TextStyle(color: Color(0xff31a354)),
   'deletion': TextStyle(color: Color(0xff8888ff)),
   'variable': TextStyle(color: Color(0xff8888ff)),
-  'builtin': TextStyle(color: Color(0xff3182bd)),
+  'built_in': TextStyle(color: Color(0xff3182bd)),
   'doctag': TextStyle(color: Color(0xff3182bd)),
   'keyword': TextStyle(color: Color(0xff3182bd)),
   'name': TextStyle(color: Color(0xff3182bd)),

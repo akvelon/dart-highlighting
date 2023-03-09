@@ -5,7 +5,7 @@ import 'package:flutter/painting.dart';
 const vsTheme = {
   'root':
       TextStyle(backgroundColor: Color(0xffffffff), color: Color(0xff000000)),
-  'builtin': TextStyle(color: Color(0xff0000ff)),
+  'built_in': TextStyle(color: Color(0xff0000ff)),
   'keyword': TextStyle(color: Color(0xff0000ff)),
   'name': TextStyle(color: Color(0xff0000ff)),
   'selector-tag': TextStyle(color: Color(0xff0000ff)),

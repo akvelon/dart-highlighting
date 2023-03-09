@@ -7,7 +7,7 @@ const nnfxDarkTheme = {
       TextStyle(backgroundColor: Color(0xff333333), color: Color(0xffffffff)),
   'comment': TextStyle(fontStyle: FontStyle.italic, color: Color(0xff99cc66)),
   'quote': TextStyle(fontStyle: FontStyle.italic, color: Color(0xff99cc66)),
-  'builtin': TextStyle(color: Color(0xffaa77aa)),
+  'built_in': TextStyle(color: Color(0xffaa77aa)),
   'keyword': TextStyle(color: Color(0xffaa77aa)),
   'name': TextStyle(color: Color(0xffaa77aa), fontWeight: FontWeight.w700),
   'attr': TextStyle(fontWeight: FontWeight.w700, color: Color(0xffffffff)),
@@ -21,12 +21,12 @@ const nnfxDarkTheme = {
   'template-variable': TextStyle(color: Color(0xffdd4400)),
   'title': TextStyle(color: Color(0xffdd4400)),
   'variable': TextStyle(color: Color(0xffdd4400)),
-  'title.class':
+  'title.class_':
       TextStyle(fontWeight: FontWeight.w700, color: Color(0xff9966cc)),
   'type': TextStyle(fontWeight: FontWeight.w700, color: Color(0xff9966cc)),
   'subst': TextStyle(color: Color(0xffffffff)),
   'tag': TextStyle(color: Color(0xffffffff)),
-  'title.function': TextStyle(color: Color(0xffffffff)),
+  'title.function_': TextStyle(color: Color(0xffffffff)),
   'formula': TextStyle(
       backgroundColor: Color(0xffeeeeee), fontStyle: FontStyle.italic),
   'addition': TextStyle(backgroundColor: Color(0xff779977)),

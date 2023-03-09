@@ -18,6 +18,6 @@ const qtcreatorLightTheme = {
   'tag': TextStyle(color: Color(0xff000000)),
   'title': TextStyle(color: Color(0xff000000)),
   'params': TextStyle(color: Color(0xff0055af)),
-  'title.class': TextStyle(color: Color(0xff0055af)),
+  'title.class_': TextStyle(color: Color(0xff0055af)),
   'variable': TextStyle(color: Color(0xff0055af)),
 };

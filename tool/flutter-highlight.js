@@ -130,7 +130,7 @@ export function style() {
         });
 
         const styleEntries = Object.entries(style);
-        selector = selector.replace(/\_/g, '');
+        // selector = selector.replace(/\_/g, '');
         if (styleEntries.length) {
           if (!obj[selector]) {
             obj[selector] = style;

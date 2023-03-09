@@ -11,7 +11,7 @@ const brownPaperTheme = {
       TextStyle(color: Color(0xff005599), fontWeight: FontWeight.w700),
   'addition': TextStyle(color: Color(0xff2c009f)),
   'attribute': TextStyle(color: Color(0xff2c009f)),
-  'builtin': TextStyle(color: Color(0xff2c009f)),
+  'built_in': TextStyle(color: Color(0xff2c009f)),
   'bullet': TextStyle(color: Color(0xff2c009f)),
   'link': TextStyle(color: Color(0xff2c009f)),
   'name': TextStyle(color: Color(0xff2c009f), fontWeight: FontWeight.w700),

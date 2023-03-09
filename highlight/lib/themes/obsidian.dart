@@ -16,7 +16,7 @@ const obsidianTheme = {
   'regexp': TextStyle(color: Color(0xffd39745)),
   'meta': TextStyle(color: Color(0xff557182)),
   'addition': TextStyle(color: Color(0xff8cbbad)),
-  'builtin': TextStyle(color: Color(0xff8cbbad)),
+  'built_in': TextStyle(color: Color(0xff8cbbad)),
   'bullet': TextStyle(color: Color(0xff8cbbad)),
   'emphasis': TextStyle(color: Color(0xff8cbbad)),
   'name': TextStyle(color: Color(0xff8cbbad), fontWeight: FontWeight.w700),
@@ -39,5 +39,5 @@ const obsidianTheme = {
   'strong': TextStyle(fontWeight: FontWeight.w700),
   'title': TextStyle(fontWeight: FontWeight.w700),
   'code': TextStyle(color: Color(0xffffffff)),
-  'title.class': TextStyle(color: Color(0xffffffff)),
+  'title.class_': TextStyle(color: Color(0xffffffff)),
 };

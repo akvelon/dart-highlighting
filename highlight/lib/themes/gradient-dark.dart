@@ -34,7 +34,7 @@ const gradientDarkTheme = {
   'attribute': TextStyle(color: Color(0xffe7ff9f)),
   'template-variable': TextStyle(color: Color(0xffe447ff)),
   'variable': TextStyle(color: Color(0xffe447ff)),
-  'builtin': TextStyle(color: Color(0xffffc800)),
+  'built_in': TextStyle(color: Color(0xffffc800)),
   'class': TextStyle(color: Color(0xffffc800)),
   'formula': TextStyle(color: Color(0xffffc800)),
   'function': TextStyle(color: Color(0xffffc800)),

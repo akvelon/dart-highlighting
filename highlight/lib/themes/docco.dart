@@ -27,7 +27,7 @@ const doccoTheme = {
   'regexp': TextStyle(color: Color(0xffbb6688)),
   'bullet': TextStyle(color: Color(0xff990073)),
   'symbol': TextStyle(color: Color(0xff990073)),
-  'builtin': TextStyle(color: Color(0xff0086b3)),
+  'built_in': TextStyle(color: Color(0xff0086b3)),
   'meta': TextStyle(color: Color(0xff999999), fontWeight: FontWeight.w700),
   'deletion': TextStyle(backgroundColor: Color(0xffffdddd)),
   'addition': TextStyle(backgroundColor: Color(0xffddffdd)),

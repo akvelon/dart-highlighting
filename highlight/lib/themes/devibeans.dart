@@ -26,7 +26,7 @@ const devibeansTheme = {
   'selector-pseudo': TextStyle(color: Color(0xff64b5f6)),
   'template-variable': TextStyle(color: Color(0xff64b5f6)),
   'variable': TextStyle(color: Color(0xff64b5f6)),
-  'builtin': TextStyle(color: Color(0xffff8700)),
+  'built_in': TextStyle(color: Color(0xffff8700)),
   'deletion': TextStyle(color: Color(0xffff8700)),
   'title': TextStyle(color: Color(0xffff8700)),
   'attribute': TextStyle(color: Color(0xffffd75f)),

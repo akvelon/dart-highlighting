@@ -29,7 +29,7 @@ const stackoverflowDarkTheme = {
   'variable': TextStyle(color: Color(0xffb5bd68)),
   'meta': TextStyle(color: Color(0xff88aece)),
   'selector-pseudo': TextStyle(color: Color(0xff88aece)),
-  'builtin': TextStyle(color: Color(0xfff08d49)),
+  'built_in': TextStyle(color: Color(0xfff08d49)),
   'literal': TextStyle(color: Color(0xfff08d49)),
   'title': TextStyle(color: Color(0xfff08d49)),
   'bullet': TextStyle(color: Color(0xffcccccc)),

@@ -13,7 +13,7 @@ const darkTheme = {
       TextStyle(color: Color(0xffffffff), fontWeight: FontWeight.w700),
   'addition': TextStyle(color: Color(0xffdd8888)),
   'attribute': TextStyle(color: Color(0xffdd8888)),
-  'builtin': TextStyle(color: Color(0xffdd8888)),
+  'built_in': TextStyle(color: Color(0xffdd8888)),
   'bullet': TextStyle(color: Color(0xffdd8888)),
   'name': TextStyle(color: Color(0xffdd8888), fontWeight: FontWeight.w700),
   'string': TextStyle(color: Color(0xffdd8888)),

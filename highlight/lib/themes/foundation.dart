@@ -16,7 +16,7 @@ const foundationTheme = {
   'quote': TextStyle(color: Color(0xff999988), fontStyle: FontStyle.italic),
   'section': TextStyle(color: Color(0xff990000)),
   'title': TextStyle(color: Color(0xff990000)),
-  'title.class': TextStyle(color: Color(0xff445588)),
+  'title.class_': TextStyle(color: Color(0xff445588)),
   'type': TextStyle(color: Color(0xff445588)),
   'template-variable': TextStyle(color: Color(0xff336699)),
   'variable': TextStyle(color: Color(0xff336699)),

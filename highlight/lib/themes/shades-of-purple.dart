@@ -12,7 +12,7 @@ const shadesOfPurpleTheme = {
   'name': TextStyle(color: Color(0xffa1feff), fontWeight: FontWeight.w400),
   'tag': TextStyle(color: Color(0xffffffff)),
   'attr': TextStyle(color: Color(0xfff8d000), fontStyle: FontStyle.italic),
-  'builtin': TextStyle(color: Color(0xfffb9e00)),
+  'built_in': TextStyle(color: Color(0xfffb9e00)),
   'keyword': TextStyle(color: Color(0xfffb9e00), fontWeight: FontWeight.w400),
   'section': TextStyle(color: Color(0xfffb9e00)),
   'selector-tag':
