@@ -203,7 +203,7 @@ class HighlightV2 {
         }
       }
 
-      top = Mode.inherit(Mode(parent: top), mode);
+      top = Mode.inherit(mode, Mode(parent: top));
 
       return top;
     }
