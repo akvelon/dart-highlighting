@@ -770,4 +770,4 @@ final builtinLanguages = {
   'zephir': zephir,
   'zephir.js': zephirJs,
 };
-final allLanguages = {...builtinLanguages, ...communityLanguages};
+final allLanguages = {...builtinLanguages,};

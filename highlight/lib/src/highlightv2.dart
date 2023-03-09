@@ -26,10 +26,6 @@ class HighlightV2 {
     String text, {
     required String language,
   }) {
-    if (!_languages.containsKey(language)) {
-      return Result(nodes: [Node(value: text)]);
-    }
-
     return highlight(language, text, true);
   }
 
