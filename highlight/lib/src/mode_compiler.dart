@@ -23,7 +23,7 @@ Mode compileLanguage(Mode language) {
     language.classNameAliases = {};
   }
 
-  return compileMode(language, language: language);
+  return compileMode(language, language: language, refs: language.refs);
 }
 
 ResumableMultiRegex buildModeRegex(Mode mode) {
@@ -44,16 +44,18 @@ ResumableMultiRegex buildModeRegex(Mode mode) {
   return mm;
 }
 
-Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
+Mode compileMode(
+  Mode mode, {
+  required Mode language,
+  Mode? parent,
+  Map<String, Mode>? refs,
+}) {
   if (mode.isCompiled) {
     return mode;
   }
-  if (mode.ref == '~contains~0~variants~0~contains~2~variants~0') {
-    int a = 9;
-  }
 
   if (mode.ref != null) {
-    mode = replaceIfRef(parent: mode.parent!, self: mode);
+    mode = replaceIfRef(refs: refs, self: mode);
   }
 
   scopeClassName(mode, parent);
@@ -118,21 +120,19 @@ Mode compileMode(Mode mode, {required Mode language, Mode? parent}) {
 
   var newList = <Mode>[];
   mode.contains!.forEach((element) {
-    element.parent ??= mode;
-
     if (element.ref != null) {
-      element = replaceIfRef(parent: mode, self: element);
+      element = replaceIfRef(refs: refs, self: element);
       element.ref = null;
     }
     newList.addAll(expandOrCloneMode(element.self == true ? mode : element));
   });
   mode.contains = newList;
   for (final element in mode.contains!) {
-    compileMode(element, parent: mode, language: element);
+    compileMode(element, parent: mode, language: element, refs: refs);
   }
 
   if (mode.starts != null) {
-    compileMode(mode.starts!, language: language);
+    compileMode(mode.starts!, language: language, refs: refs);
   }
   if (mode.begin is String && mode.begin.contains(r'\(\s')) {
     int a;
@@ -149,13 +149,13 @@ bool dependencyOnParent(Mode? mode) {
   return mode.endsWithParent == true || dependencyOnParent(mode.starts);
 }
 
-List<Mode> expandOrCloneMode(Mode mode) {
+List<Mode> expandOrCloneMode(Mode mode, {Map<String, Mode>? refs}) {
   if (mode.variants != null &&
       mode.variants!.isNotEmpty &&
       mode.cachedVariants == null) {
     mode.cachedVariants = mode.variants!.map((variant) {
       if (variant != null && variant.ref != null && mode.parent != null) {
-        variant = replaceIfRef(parent: mode.parent!, self: variant);
+        variant = replaceIfRef(refs: refs, self: variant);
       }
       return Mode.inherit(Mode.inherit(mode, Mode(variants: [])), variant);
     }).toList();

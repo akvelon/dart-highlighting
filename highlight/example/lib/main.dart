@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_highlight_gallery/custom_controller.dart';
 import 'package:flutter_highlight_gallery/example_map.dart';
 import 'package:highlight/all_languages.dart';
+import 'package:highlight/highlight_core.dart';
 import 'package:highlight/highlight_themes.dart';
+import 'package:highlight/languages/php.dart';
 
 import 'dropdown_selector.dart';
 

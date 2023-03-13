@@ -5,6 +5,9 @@ import 'package:highlight/src/response.dart';
 import '../mode.dart';
 
 void skipIfHasPrecedingDot(DomainRegexMatch match, Response response) {
+  if (match.index == 0) {
+    return;
+  }
   final before = match.input[match.index - 1];
   if (before == ".") {
     response.ignoreMatch();
@@ -59,16 +62,12 @@ void compileRelevance(Mode mode, Mode? parent) {
   mode.relevance ??= 1;
 }
 
-Mode replaceIfRef({required Mode parent, required Mode self}) {
-  Mode top = parent;
-  while (top.parent != null) {
-    top = top.parent!;
-  }
-  if (top.refs == null) {
+Mode replaceIfRef({required Mode self, Map<String, Mode>? refs}) {
+  if (refs == null) {
     return self;
   }
-  final newMode = top.refs![self.ref!]!;
-  newMode.parent = parent;
+
+  final newMode = refs[self.ref!]!;
 
   return newMode;
 }

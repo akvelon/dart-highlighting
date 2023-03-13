@@ -17,7 +17,8 @@ class DomainRegexMatch {
     required this.executedRegex,
     this.startIndex = 0,
   }) {
-    for (int i = 0; i < match.groupCount; i++) {
+    _matchGroups.add(match.group(0));
+    for (int i = 1; i <= match.groupCount; i++) {
       _matchGroups.add(match.group(i));
     }
   }

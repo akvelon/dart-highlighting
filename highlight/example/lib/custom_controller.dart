@@ -23,9 +23,11 @@ class CustomController extends TextEditingController {
     if (text == prevText) {
       return lastTextSpan;
     }
+    highlight.registerLanguage(language.hashCode.toString(), language);
     final result =
-        highlight.parse(text, language: language.name!.toLowerCase());
+        highlight.parse(text, language: language.hashCode.toString());
     prevText = text;
+    print(result.nodes?[0].toString());
 
     return lastTextSpan = TextSpan(
       style: TextStyle(fontFamily: 'VeraMono'),
