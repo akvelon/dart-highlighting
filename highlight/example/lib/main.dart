@@ -4,7 +4,6 @@ import 'package:flutter_highlight_gallery/example_map.dart';
 import 'package:highlight/all_languages.dart';
 import 'package:highlight/highlight_core.dart';
 import 'package:highlight/highlight_themes.dart';
-import 'package:highlight/languages/php.dart';
 
 import 'dropdown_selector.dart';
 
@@ -31,15 +30,13 @@ class _HomeScreenState extends State<HomeScreen> {
   String _language = _defaultLanguage;
   String _theme = _defaultTheme;
 
-  bool _showNumbers = true;
-  bool _showErrors = true;
-  bool _showFoldingHandles = true;
-
   final _codeFieldFocusNode = FocusNode();
-  late final _codeController = CustomController(
-    language: builtinLanguages[_language]!,
-    theme: themeMap[_theme]!,
+  late final controller = TextEditingController(
     text: exampleMap[_language],
+  );
+  late final highlightController = CustomController(
+    language: builtinLanguages[_language]!,
+    theme: monokaiSublimeTheme,
   );
 
   @override
@@ -53,6 +50,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           //
+          IconButton(
+            onPressed: _onHighlight,
+            icon: Icon(
+              Icons.format_color_text_rounded,
+            ),
+          ),
+          const SizedBox(width: 20),
+
           DropdownSelector<String>(
             onChanged: _setLanguage,
             icon: Icons.code,
@@ -67,7 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
             value: _theme,
             values: themeMap.keys,
           ),
-
           const SizedBox(width: 20),
         ],
       ),
@@ -81,14 +85,29 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 5),
             Container(
-              padding: EdgeInsets.all(5),
+              height: 300,
+              padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: themeMap[_theme]?['root']?.backgroundColor,
+                border: Border.all(color: Colors.black),
               ),
               child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
                 focusNode: _codeFieldFocusNode,
-                controller: _codeController,
+                controller: controller,
                 maxLines: null,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: themeMap[_theme]?['root']?.backgroundColor,
+                border: Border.all(color: Colors.black),
+              ),
+              child: RichText(
+                text: highlightController.buildTextSpan(context: context),
               ),
             ),
           ],
@@ -99,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    _codeController.dispose();
+    controller.dispose();
     _codeFieldFocusNode.dispose();
 
     super.dispose();
@@ -108,8 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _setLanguage(String value) {
     setState(() {
       _language = value;
-      _codeController.language = builtinLanguages[value]!;
-      _codeController.text = exampleMap[value] ?? '';
+      controller.text = exampleMap[value] ?? '';
 
       _codeFieldFocusNode.requestFocus();
     });
@@ -119,6 +137,13 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _theme = value;
       _codeFieldFocusNode.requestFocus();
+    });
+  }
+
+  void _onHighlight() {
+    setState(() {
+      highlightController.language = builtinLanguages[_language]!;
+      highlightController.text = controller.text;
     });
   }
 }

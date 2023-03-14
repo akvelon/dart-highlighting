@@ -30,6 +30,9 @@ ResumableMultiRegex buildModeRegex(Mode mode) {
   final mm = ResumableMultiRegex(language: mode);
 
   mode.contains?.forEach((term) {
+    if (term.beginRe == null) {
+      int a = 0;
+    }
     mm.addRule(term.beginRe!, {$rule: term, $type: $begin});
   });
 
@@ -86,7 +89,7 @@ Mode compileMode(
   if (mode.keywords != null) {
     mode.keywords = compileKeywords(
       mode.keywords,
-      language.case_insensitive ?? true,
+      language.case_insensitive == true,
     );
   }
 
@@ -124,7 +127,8 @@ Mode compileMode(
       element = replaceIfRef(refs: refs, self: element);
       element.ref = null;
     }
-    newList.addAll(expandOrCloneMode(element.self == true ? mode : element));
+    newList.addAll(
+        expandOrCloneMode(element.self == true ? mode : element, refs: refs));
   });
   mode.contains = newList;
   for (final element in mode.contains!) {
@@ -154,7 +158,7 @@ List<Mode> expandOrCloneMode(Mode mode, {Map<String, Mode>? refs}) {
       mode.variants!.isNotEmpty &&
       mode.cachedVariants == null) {
     mode.cachedVariants = mode.variants!.map((variant) {
-      if (variant != null && variant.ref != null && mode.parent != null) {
+      if (variant != null && variant.ref != null) {
         variant = replaceIfRef(refs: refs, self: variant);
       }
       return Mode.inherit(Mode.inherit(mode, Mode(variants: [])), variant);
