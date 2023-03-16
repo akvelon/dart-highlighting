@@ -5,6 +5,9 @@ import _ from "lodash";
 import hljs from 'highlight.js';
 import CircularJSON from "circular-json";
 
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 
 const dir = "node_modules/highlight.js/lib/languages";
