@@ -26,8 +26,11 @@ Mode compileLanguage(Mode language) {
   return compileMode(language, language: language, refs: language.refs);
 }
 
-ResumableMultiRegex buildModeRegex(Mode mode) {
-  final mm = ResumableMultiRegex(language: mode);
+ResumableMultiRegex buildModeRegex(
+  Mode mode, {
+  Mode? language,
+}) {
+  final mm = ResumableMultiRegex(language: language);
 
   mode.contains?.forEach((term) {
     if (term.beginRe == null) {
@@ -101,18 +104,15 @@ Mode compileMode(
   if (parent != null) {
     mode.begin ??= r'\B|\b';
     mode.beginRe = langRe(mode.begin, false, language);
-    if (mode.end == null && mode.endsWithParent == null) {
-      mode.end = RegExp(r'\B|\b');
-    }
+    mode.end ??= RegExp(r'\B|\b');
     if (mode.end != null) {
       mode.endRe = langRe(mode.end, false, language);
     }
     mode.terminator_end = source(mode.end);
 
     if (mode.endsWithParent != null && parent.terminator_end != null) {
-      mode.terminator_end = mode.terminator_end! +
-          (mode.end != null ? '|' : '') +
-          parent.terminator_end!;
+      mode.terminator_end = mode.terminator_end ??
+          '' + (mode.end != null ? '|' : '') + parent.terminator_end!;
     }
   }
 
@@ -132,17 +132,17 @@ Mode compileMode(
   });
   mode.contains = newList;
   for (final element in mode.contains!) {
-    compileMode(element, parent: mode, language: element, refs: refs);
+    compileMode(element, parent: mode, language: language, refs: refs);
   }
 
   if (mode.starts != null) {
-    compileMode(mode.starts!, language: language, refs: refs);
+    compileMode(mode.starts!, parent: parent, language: language, refs: refs);
   }
   if (mode.begin is String && mode.begin.contains(r'\(\s')) {
     int a;
   }
 
-  mode.matcher = buildModeRegex(mode);
+  mode.matcher = buildModeRegex(mode, language: language);
 
   return mode;
 }

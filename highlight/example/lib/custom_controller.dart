@@ -20,9 +20,6 @@ class CustomController extends TextEditingController {
     TextStyle? style,
     bool withComposing = false,
   }) {
-    if (text == prevText) {
-      return lastTextSpan;
-    }
     highlight.registerLanguage(language.hashCode.toString(), language);
     final result =
         highlight.parse(text, language: language.hashCode.toString());

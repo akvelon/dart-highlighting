@@ -2,7 +2,7 @@ import 'node.dart';
 import 'mode.dart';
 
 class Result {
-  int? relevance;
+  double? relevance;
   List<Node>? nodes;
   String? language;
   Mode? top;

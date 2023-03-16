@@ -7,7 +7,7 @@ import 'package:highlight/highlight_themes.dart';
 
 import 'dropdown_selector.dart';
 
-const _defaultLanguage = 'python';
+const _defaultLanguage = 'xml';
 const _defaultTheme = 'monokai-sublime';
 
 const toggleButtonColor = Color.fromARGB(124, 255, 255, 255);

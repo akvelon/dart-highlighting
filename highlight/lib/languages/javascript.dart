@@ -294,21 +294,7 @@ final javascript = Mode(
             BACKSLASH_ESCAPE,
             Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1')
           ]),
-      '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3': Mode(
-          begin: "css`",
-          end: "",
-          starts: Mode(end: "`", returnEnd: false, contains: [
-            BACKSLASH_ESCAPE,
-            Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1')
-          ], subLanguage: [
-            "css"
-          ])),
-      '~exports~PARAMS_CONTAINS~3': Mode(
-          begin: "html`",
-          end: "",
-          starts: Mode(end: "`", returnEnd: false, contains: [
-            BACKSLASH_ESCAPE,
-            Mode(className: "subst", begin: "\\\$\\{", end: "\\}", keywords: {
+          '~exports~PARAMS_CONTAINS~3~starts~contains~1' : Mode(className: "subst", begin: "\\\$\\{", end: "\\}", keywords: {
               "\$pattern": "[A-Za-z\$_][0-9A-Za-z\$_]*",
               "keyword": [
                 "as",
@@ -454,7 +440,22 @@ final javascript = Mode(
               Mode(
                   ref:
                       '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7')
-            ])
+            ]),
+      '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3': Mode(
+          begin: "css`",
+          end: "",
+          starts: Mode(end: "`", returnEnd: false, contains: [
+            BACKSLASH_ESCAPE,
+            Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1')
+          ], subLanguage: [
+            "css"
+          ])),
+      '~exports~PARAMS_CONTAINS~3': Mode(
+          begin: "html`",
+          end: "",
+          starts: Mode(end: "`", returnEnd: false, contains: [
+            BACKSLASH_ESCAPE,
+            Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1'),
           ], subLanguage: [
             "xml"
           ])),

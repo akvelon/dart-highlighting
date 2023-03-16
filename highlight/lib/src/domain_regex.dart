@@ -44,7 +44,7 @@ class DomainRegex {
 
 RegExp surroundGroupIfNeeded(RegExp regex) {
   final pattern = source(regex);
-  if (!pattern.contains('(') && !pattern.contains(')')) {
+  if (pattern != null && !pattern.contains('(') && !pattern.contains(')')) {
     return RegExp(
       '($pattern)',
       multiLine: regex.isMultiLine,

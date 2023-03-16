@@ -189,8 +189,7 @@ RegExp langRe(dynamic value, bool global, Mode? language) {
 
   return RegExp(
     source,
-    caseSensitive: language?.case_insensitive == null ||
-        language?.case_insensitive == false,
+    caseSensitive: language?.case_insensitive != true,
     unicode: language?.unicodeRegex == true,
     multiLine: true,
   );

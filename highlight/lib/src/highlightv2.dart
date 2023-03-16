@@ -138,10 +138,10 @@ class HighlightV2 {
             continuation: continuations[top.subLanguage!.first]);
         continuations[top.subLanguage!.first] = result.top;
       } else {
-        result = Result();
+        result = Result(language: 'unknown');
       }
 
-      if (top.relevance! > 0) {
+      if (result.relevance != null && top.relevance! > 0) {
         relevance += result.relevance!;
       }
       emitter.addSublanguage(result, result.language!);
@@ -392,6 +392,7 @@ class HighlightV2 {
       processLexeme(substring(codeToHighlight, index), null);
       emitter.closeAllNodes();
       emitter.finalize();
+      emitter.relevance = relevance;
       emitter.language = languageName;
       emitter.top = top;
       return emitter;

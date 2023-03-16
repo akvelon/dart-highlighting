@@ -13,9 +13,7 @@ String optional(dynamic re) {
   return concat(['(?:', re, ')?']);
 }
 
-String source(dynamic pattern) {
-  assert(pattern is String || pattern is RegExp);
-
+String? source(dynamic pattern) {
   if (pattern is String) {
     return pattern;
   }
@@ -23,7 +21,7 @@ String source(dynamic pattern) {
     return pattern.pattern;
   }
 
-  return pattern as String;
+  return null;
 }
 
 String concat(List<dynamic> args) {
@@ -56,7 +54,7 @@ String rewriteBackReferences(
         var re = source(regex);
         var out = '';
 
-        while (re.isNotEmpty) {
+        while (re != null && re.isNotEmpty) {
           final matches = kBackRefRe.allMatches(re).toList();
           if (matches.isEmpty) {
             out += re;
