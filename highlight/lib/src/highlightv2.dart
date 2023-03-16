@@ -127,7 +127,8 @@ class HighlightV2 {
         return;
       }
       Result result;
-      if (top.subLanguage?.length == 1) {
+      // TODO(yescorp): Find out how to handle multiple sublanguages
+      if ((top.subLanguage?.length ?? 0) >= 1) {
         if (builtinLanguages[top.subLanguage!.first] == null) {
           emitter.addText(modeBuffer);
           return;
@@ -206,7 +207,11 @@ class HighlightV2 {
 
     Mode? endOfMode(
         Mode mode, DomainRegexMatch match, String matchPlusRemainder) {
-      var matched = matchPlusRemainder.startsWith(mode.endRe!);
+      var matched = false;
+
+      if (mode.endRe != null) {
+        matched = matchPlusRemainder.startsWith(mode.endRe!);
+      }
 
       if (matched) {
         if (mode.onEnd != null) {
@@ -226,7 +231,7 @@ class HighlightV2 {
       }
 
       if (mode.endsWithParent == true) {
-        return endOfMode(mode, match, matchPlusRemainder);
+        return endOfMode(mode.parent!, match, matchPlusRemainder);
       }
 
       // Check what we need to return here.
@@ -332,7 +337,7 @@ class HighlightV2 {
           lastMatch?.index == match.index &&
           lexeme == '') {
         modeBuffer += codeToHighlight.substring(match.index, match.index + 1);
-        if (safeMode) {
+        if (!safeMode) {
           throw Exception(
               '0 width match regex $languageName, rule: ${lastMatch?.rule}');
         }

@@ -63,11 +63,18 @@ void compileRelevance(Mode mode, Mode? parent) {
 }
 
 Mode replaceIfRef({required Mode self, Map<String, Mode>? refs}) {
+  if (self.ref == null) {
+    return self;
+  }
+
   if (refs == null) {
     return self;
   }
 
   final newMode = refs[self.ref!]!;
+  if (newMode.starts != null) {
+    newMode.starts = replaceIfRef(self: newMode.starts!, refs: refs);
+  }
 
   return newMode;
 }

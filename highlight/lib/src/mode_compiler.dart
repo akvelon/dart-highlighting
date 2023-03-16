@@ -63,6 +63,9 @@ Mode compileMode(
   if (mode.ref != null) {
     mode = replaceIfRef(refs: refs, self: mode);
   }
+  if (mode.starts?.ref != null) {
+    mode.starts = replaceIfRef(self: mode.starts!, refs: refs);
+  }
 
   scopeClassName(mode, parent);
   compileMatch(mode, parent);
@@ -104,15 +107,19 @@ Mode compileMode(
   if (parent != null) {
     mode.begin ??= r'\B|\b';
     mode.beginRe = langRe(mode.begin, false, language);
-    mode.end ??= RegExp(r'\B|\b');
+    if (mode.endsWithParent != true) {
+      mode.end ??= RegExp(r'\B|\b');
+    }
     if (mode.end != null) {
       mode.endRe = langRe(mode.end, false, language);
     }
+
     mode.terminator_end = source(mode.end);
 
-    if (mode.endsWithParent != null && parent.terminator_end != null) {
-      mode.terminator_end = mode.terminator_end ??
-          '' + (mode.end != null ? '|' : '') + parent.terminator_end!;
+    if (mode.endsWithParent == true && parent.terminator_end != null) {
+      mode.terminator_end = (mode.terminator_end ?? '') +
+          (mode.end != null ? '|' : '') +
+          parent.terminator_end!;
     }
   }
 
@@ -158,8 +165,8 @@ List<Mode> expandOrCloneMode(Mode mode, {Map<String, Mode>? refs}) {
       mode.variants!.isNotEmpty &&
       mode.cachedVariants == null) {
     mode.cachedVariants = mode.variants!.map((variant) {
-      if (variant != null && variant.ref != null) {
-        variant = replaceIfRef(refs: refs, self: variant);
+      if (variant?.ref != null) {
+        variant = replaceIfRef(refs: refs, self: variant!);
       }
       return Mode.inherit(Mode.inherit(mode, Mode(variants: [])), variant);
     }).toList();
