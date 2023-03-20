@@ -1,0 +1,3 @@
+<span class="hljs-comment">{{!-- a comment {{expression}} --}}</span> <span class="hljs-template-variable">{{<span class="hljs-name">expression</span>}}</span>
+
+<span class="hljs-comment">{{! a simple comment }}</span>

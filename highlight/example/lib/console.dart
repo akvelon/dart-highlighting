@@ -1,6 +1,7 @@
-import 'package:flutter_highlight_gallery/example_map.dart';
 import 'package:highlight/highlight_core.dart';
 import 'package:highlight/languages/php.dart';
+
+import 'example_map.dart';
 
 void main(List<String> args) {
   highlight.registerLanguage('php', php);

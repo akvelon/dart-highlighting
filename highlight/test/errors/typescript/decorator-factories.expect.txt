@@ -1,0 +1,8 @@
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">declare</span> <span class="hljs-keyword">class</span> CommandHandler <span class="hljs-keyword">extends</span> EventEmitter {
+
+    constructor(config: CommandHandlerConfig);
+    /**
+     * Install the handler onto Discord.js
+     * @param client - Client to handle
+     */
+}

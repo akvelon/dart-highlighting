@@ -1,0 +1,13 @@
+text <span class="hljs-template-tag">{{#<span class="hljs-name">[ab}}c]</span> param }}</span>a<span class="hljs-template-tag">{{/<span class="hljs-name">[ab}}c]</span>}}</span>
+
+text <span class="hljs-template-tag">{{#<span class="hljs-name">&#x27;ab}}c&#x27;</span> param}}</span>a<span class="hljs-template-tag">{{/<span class="hljs-name">&#x27;ab}}c&#x27;</span>}}</span>
+
+text <span class="hljs-template-tag">{{#<span class="hljs-name">&quot;ab}}c&quot;</span> param}}</span>a<span class="hljs-template-tag">{{/<span class="hljs-name">&quot;ab}}c&quot;</span>}}</span>
+
+text <span class="hljs-template-tag">{{#<span class="hljs-name">&quot;&quot;</span> param}}</span>a<span class="hljs-template-tag">{{/<span class="hljs-name">&quot;&quot;</span>}}</span>
+
+text <span class="hljs-template-tag">{{#<span class="hljs-name">&#x27;&#x27;</span> param}}</span>a<span class="hljs-template-tag">{{/<span class="hljs-name">&#x27;&#x27;</span>}}</span>
+
+text <span class="hljs-template-tag">{{#<span class="hljs-name">[]</span> param}}</span>a<span class="hljs-template-tag">{{/<span class="hljs-name">[]</span>}}</span>
+
+text

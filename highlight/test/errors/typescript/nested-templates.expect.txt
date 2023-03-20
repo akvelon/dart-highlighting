@@ -1,0 +1,14 @@
+@Component({
+  selector: &#x27;my-example&#x27;,
+  directives: [SomeDirective],
+  templateUrl: &#x27;./my-example.component.html&#x27;,
+  moduleId: <span class="hljs-variable.language">module</span>.id,
+  styles: [`
+    .my-example {
+      padding: 5px;
+    }
+  `]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyExampleComponent {
+  someProp: <span class="hljs-built_in">string</span> = &quot;blah&quot;;
+}

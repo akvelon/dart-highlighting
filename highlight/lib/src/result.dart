@@ -26,7 +26,9 @@ class Result {
     return value
         .replaceAll(RegExp(r'&'), '&amp;')
         .replaceAll(RegExp(r'<'), '&lt;')
-        .replaceAll(RegExp(r'>'), '&gt;');
+        .replaceAll(RegExp(r'>'), '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll('\'', '&#x27;');
   }
 
   void add(Node node) {

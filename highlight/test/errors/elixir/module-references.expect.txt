@@ -1,0 +1,22 @@
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span> <span class="hljs-title">do</span>
+  :<span class="hljs-title">ok</span>
+<span class="hljs-title">end</span>
+
+<span class="hljs-title">def</span> <span class="hljs-title">f</span>(<span class="hljs-title">list</span>) <span class="hljs-title">do</span>
+  :<span class="hljs-title">ok</span>
+<span class="hljs-title">end</span>
+
+<span class="hljs-title">def</span> <span class="hljs-title">f</span> :<span class="hljs-title">clear</span>, <span class="hljs-title">list</span> <span class="hljs-title">do</span>
+  :<span class="hljs-title">ok</span>
+<span class="hljs-title">end</span>
+
+<span class="hljs-title">def</span> <span class="hljs-title">f!</span>, <span class="hljs-title">do</span>: <span class="hljs-title">IO.puts</span> &quot;<span class="hljs-title">hello</span> <span class="hljs-title">world</span>&quot;
+
+<span class="hljs-title">defp</span> <span class="hljs-title">f?</span>, <span class="hljs-title">do</span>: <span class="hljs-title">true</span>
+
+<span class="hljs-title">defmacro</span> <span class="hljs-title">foo</span>, <span class="hljs-title">do</span>: :<span class="hljs-title">ok</span>
+
+<span class="hljs-title">defmacrop</span> <span class="hljs-title">do_foo</span>, <span class="hljs-title">do</span>: :<span class="hljs-title">ok</span>
+
+<span class="hljs-title">x</span> = 5
+</span>

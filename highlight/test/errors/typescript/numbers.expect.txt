@@ -1,0 +1,9 @@
+<span class="hljs-keyword">let</span> num = -3;
+
+<span class="hljs-keyword">let</span> diff = 5 - 3;
+<span class="hljs-keyword">let</span> diff = 5-3;
+
+// Who writes JS like that??
+<span class="hljs-keyword">let</span> num = - 3;
+<span class="hljs-keyword">let</span> diff = 5 -3;
+<span class="hljs-keyword">let</span> diff = 5- 3;

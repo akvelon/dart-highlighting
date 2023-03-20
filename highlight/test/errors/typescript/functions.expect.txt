@@ -1,0 +1,13 @@
+@foo(&#x27;foo&#x27;)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyClass {
+    @baz(123)
+    <span class="hljs-keyword">private</span> myAttribute: <span class="hljs-built_in">string</span>;
+
+    constructor(@bar(<span class="hljs-literal">true</span>) <span class="hljs-keyword">private</span> x,
+                @bar(qux(quux(<span class="hljs-literal">true</span>))) <span class="hljs-keyword">private</span> y) { }
+
+    @bar()
+    <span class="hljs-keyword">private</span> myMethod(@bar() z) {
+        <span class="hljs-variable.language">console</span>.log(&#x27;Hello world.&#x27;);
+    }
+}

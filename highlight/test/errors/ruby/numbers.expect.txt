@@ -1,0 +1,32 @@
+<span class="hljs-comment"># standard heredoc</span>
+message = <span class="hljs-string">&lt;&lt;-MESSAGE
+  This</span> looks good
+<span class="hljs-variable.constant">MESSAGE</span>
+
+<span class="hljs-comment"># heredoc without interpolation</span>
+message = <span class="hljs-string">&lt;&lt;-&#x27;MESSAGE&#x27;
+  This</span> isn<span class="hljs-string">&#x27;t highlighted correctly
+MESSAGE
+
+# with a method call
+message = &lt;&lt;-MESSAGE.chomp
+  This looks good
+MESSAGE
+
+def foo()
+  msg = &lt;&lt;-HTML
+  &lt;div&gt;
+    &lt;h4&gt;<span class="hljs-subst">#{bar}</span>&lt;/h4&gt;
+  &lt;/div&gt;
+  HTML
+end
+
+def baz()
+  msg = &lt;&lt;~FOO
+  &lt;div&gt;
+    &lt;h4&gt;<span class="hljs-subst">#{bar}</span>&lt;/h4&gt;
+  &lt;/div&gt;
+  FOO
+end
+
+</span>

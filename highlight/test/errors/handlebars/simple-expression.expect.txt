@@ -1,0 +1,1 @@
+<span class="hljs-template-tag">{{{{#<span class="hljs-name">raw</span>}}}}</span> {{verbatim}} content <span class="hljs-template-tag">{{{{/<span class="hljs-name">raw</span>}}}}</span> <span class="hljs-template-variable">{{<span class="hljs-name">var</span>}}</span>

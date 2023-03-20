@@ -1,0 +1,7 @@
+<span class="hljs-keyword">distributed</span> <span class="hljs-keyword">actor</span> <span class="hljs-title.class">Foobar</span> {
+  <span class="hljs-keyword">distributed</span> <span class="hljs-keyword">func</span> <span class="hljs-title.function">baz</span>() {
+  }
+
+  <span class="hljs-keyword">func</span> <span class="hljs-title.function">qux</span>() {
+  }
+}

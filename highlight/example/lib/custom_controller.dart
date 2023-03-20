@@ -24,7 +24,7 @@ class CustomController extends TextEditingController {
     final result =
         highlight.parse(text, language: language.hashCode.toString());
     prevText = text;
-    print(result.nodes?[0].toString());
+    print(result.toHtml());
 
     return lastTextSpan = TextSpan(
       style: TextStyle(fontFamily: 'VeraMono'),

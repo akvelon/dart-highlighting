@@ -1,0 +1,1 @@
+<span class="hljs-template-variable">{{&gt; <span class="hljs-name"><span class="hljs-built_in">partial</span></span>}}</span>

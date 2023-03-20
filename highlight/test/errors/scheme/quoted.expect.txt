@@ -1,0 +1,7 @@
+(<span class="hljs-name"><span class="hljs-built_in">lambda</span></span> (x y z) (+ y z))
+
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> add-point
+  (<span class="hljs-name"><span class="hljs-built_in">lambda</span></span> [p1 p2]
+    (make-point
+      (+ (point-x p1) (point-x p2))
+      (<span class="hljs-name"><span class="hljs-built_in">+</span></span> (<span class="hljs-name">point-y</span> p1) (<span class="hljs-name">point-y</span> p2)))))
