@@ -1,4 +1,4 @@
 .idea/
 
-/highlight/test/errors
-/highlight/test/highlight.js
+/highlighting/test/errors
+/highlighting/test/highlight.js

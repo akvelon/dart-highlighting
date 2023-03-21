@@ -1,0 +1,25 @@
+name: flutter_highlighting
+description: Syntax highlighting widget for Flutter with lots of languages and themes support.
+version: 0.8.0
+homepage: https://github.com/akvelon/dart-highlighting
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  highlighting:
+    git:
+      url: https://github.com/yescorp/highlight.dart.git
+      ref: 1138baf588ae306dde538cccb4fb0483d401b2fb
+      path: highlight/
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+dependency_overrides:
+  highlighting:
+    path: ../highlighting
