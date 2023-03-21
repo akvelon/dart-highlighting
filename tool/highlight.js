@@ -1,8 +1,7 @@
-// @ts-nocheck
 import fs from "fs";
 import path from "path";
 import _ from "lodash";
-import hljs from 'highlight.js';
+import hljs from "highlight.js"; // TODO: Do not register languages
 import CircularJSON from "circular-json";
 
 import { createRequire } from "module";
@@ -11,7 +10,7 @@ const require = createRequire(import.meta.url);
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 
 const dir = "node_modules/highlight.js/lib/languages";
-// hljs.registerLanguage("cpp", require(path.resolve(dir, "cpp"))); // exports
+hljs.registerLanguage("cpp", require(path.resolve(dir, "cpp"))); // exports
 
 const modeEntries = Object.entries(hljs).filter(
   ([k]) =>
@@ -107,38 +106,17 @@ function normalizeLanguageName(name) {
 }
 
 export function allModes() {
-  let all = "";
-  let exports = ['library highlight_languages;\n', `export 'all_languages.dart';`];
-  let builtin = "final builtinLanguages = {";
-  let community = "final communityLanguages = {";
+  let all = "import '../src/mode.dart';";
+  let builtin = "final builtinLanguages = <String, Mode>{";
+  let community = "final communityLanguages = <String, Mode>{";
 
   const dirs = fs.readdirSync(dir);
   const items = [
-    ...dirs.map(file => ({
+    ...dirs.filter(file => !file.endsWith(".js.js")).map(file => ({
       name: path.basename(file, path.extname(file)),
       factory: require(path.resolve(dir, file)),
       community: false
     })),
-    // {
-    //   name: "vue",
-    //   factory: require("../vendor/highlightjs-vue/vue").definer,
-    //   community: true
-    // },
-    // {
-    //   name: "graphql",
-    //   factory: require("../vendor/highlightjs-graphql").definer,
-    //   community: true
-    // },
-    // {
-    //   name: "gn",
-    //   factory: require("../vendor/highlightjs-GN").definer,
-    //   community: true
-    // },
-    // {
-    //   name: "solidity",
-    //   factory: require("../vendor/highlightjs-solidity").definer,
-    //   community: true
-    // }
   ];
 
   // ["json"]
@@ -210,8 +188,7 @@ export function allModes() {
           .replace(/\$/g, "\\$")
       );
 
-      all += `import 'languages/${originalLang}.dart';`;
-      exports.push(`export 'languages/${originalLang}.dart';`);
+      all += `import '${originalLang}.dart';`;
       if (item.community) {
         community += `'${originalLang}': ${lang},`;
       } else {
@@ -228,12 +205,8 @@ export function allModes() {
   all += community + builtin;
   all += "final allLanguages = {...builtinLanguages,...communityLanguages};";
   fs.writeFileSync(
-    `../highlight/lib/all_languages.dart`,
+    `../highlight/lib/languages/all.dart`,
     all.replace(/\$/g, "\\$")
-  );
-  fs.writeFileSync(
-    `../highlight/lib/highlight_languages.dart`,
-    exports.join('\n')
   );
 }
 
