@@ -1,7 +1,0 @@
-text <span class="hljs-template-tag">{{#<span class="hljs-name">abc</span> <span class="hljs-string">&quot;lite]&#x27;ral}}segment&quot;</span> }}</span>a<span class="hljs-template-tag">{{/<span class="hljs-name">abc</span>}}</span>
-
-text <span class="hljs-template-tag">{{#<span class="hljs-name">abc</span> <span class="hljs-string">&#x27;lite]&quot;ral}}segment&#x27;</span> }}</span>a<span class="hljs-template-tag">{{/<span class="hljs-name">abc</span>}}</span>
-
-text <span class="hljs-template-tag">{{#<span class="hljs-name">abc</span> [lite&quot;&#x27;ral}}segment] }}</span>a<span class="hljs-template-tag">{{/<span class="hljs-name">abc</span>}}</span>
-
-text

@@ -1,2 +1,0 @@
-<span class="hljs-meta.prompt">&gt; </span>foo<span class="hljs-meta.prompt">
-&gt; </span>/bin/sh

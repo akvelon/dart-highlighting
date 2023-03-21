@@ -2,79 +2,90 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:highlight/highlight_core.dart';
+import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
-const highlightJsDirPath = './highlight.js';
-const errorsDirPath = './test/errors';
+const _clonePath = 'test/highlight.js';
+const _errorsDirPath = 'test/errors';
+const _extension = '.txt';
 
 void main() async {
-  if (!Directory(highlightJsDirPath).existsSync()) {
+  if (!Directory(_clonePath).existsSync()) {
     await Process.run(
-      'bash',
-      ['-c', 'git clone https://github.com/highlightjs/highlight.js.git'],
-      workingDirectory: './',
-      runInShell: true,
+      'git',
+      ['clone', 'https://github.com/highlightjs/highlight.js.git', _clonePath],
     );
   }
-  final errorsDir = Directory(errorsDirPath);
+  final errorsDir = Directory(_errorsDirPath);
 
   if (errorsDir.existsSync()) {
     errorsDir.deleteSync(recursive: true);
   }
 
-  final highlightJsTests = Directory('../../highlight.js/test/markup');
+  final highlightJsTests = Directory(p.join(_clonePath, 'test', 'markup'));
   if (!highlightJsTests.existsSync()) {
     throw AssertionError('Test directory does not exist');
   }
-  final directories =
-      highlightJsTests.listSync().sortedBy<String>((e) => e.path);
 
-  for (final directory in directories.whereType<Directory>()) {
-    final language = directory.path.replaceAll(RegExp('.*/'), '');
-    group('Golden tests for ' + language, () {
-      final fileList = directory.listSync()..sortBy<String>((e) => e.path);
+  final directories = highlightJsTests
+      .listSync()
+      .whereType<Directory>()
+      .sortedBy<String>((e) => e.path);
 
-      for (int i = 0; i < fileList.length;) {
-        if (!fileList[i].path.endsWith('.expect.txt')) {
-          i++;
-          continue;
-        }
-        if (i + 1 >= fileList.length) {
-          break;
-        }
+  group('Markup golden tests.', () {
+    for (final directory in directories) {
+      final language = p.basename(directory.path);
+      group(language, () {
+        final fileList = directory.listSync()..sortBy<String>((e) => e.path);
 
-        if (fileList[i + 1].path !=
-            fileList[i].path.replaceAll('.expect.', '.')) {
-          i++;
-          continue;
-        }
-
-        final expected = File(fileList[i].path).readAsStringSync();
-        final code = File(fileList[i + 1].path).readAsStringSync();
-
-        test(fileList[i].path, () {
-          final highlighted = HighlightV2().parse(code, language: language);
-          final actual = highlighted.toHtml();
-
-          if (actual == expected) {
-            return;
-          } else {
-            final actualFileName =
-                fileList[i].path.replaceAll(RegExp('.*/'), '');
-            final expectFileName =
-                fileList[i + 1].path.replaceAll(RegExp('.*/'), '');
-            final actualFile = File('$errorsDirPath/$language/$actualFileName')
-              ..createSync(recursive: true);
-            final expectFile = File('$errorsDirPath/$language/$expectFileName')
-              ..createSync(recursive: true);
-            actualFile.writeAsString(actual);
-            expectFile.writeAsString(expected);
-            expect(actual, expected);
+        for (final file in fileList) {
+          final path = file.path;
+          // TODO: Delete 'expected' when this land: https://github.com/highlightjs/highlight.js/pull/3738
+          if (file is! File ||
+              path.endsWith('.expect$_extension') ||
+              p.basename(path).startsWith('prompt-with-tilde') ||
+              !path.endsWith(_extension)) {
+            continue;
           }
-        });
 
-        i += 2;
-      }
-    });
-  }
+          final testName = p.basenameWithoutExtension(path);
+
+          final expectedPath = p.join(
+            directory.path,
+            '$testName.expect$_extension',
+          );
+          final expected = File(expectedPath).readAsStringSync();
+          final input = file.readAsStringSync();
+
+          test(testName, () {
+            final highlighted = HighlightV2().parse(input, language: language);
+            final actual = highlighted.toHtml();
+
+            if (actual == expected) {
+              return;
+            }
+
+            final actualFileName = '$testName.actual$_extension';
+            final actualFile = File(
+              p.join(_errorsDirPath, language, actualFileName),
+            );
+            actualFile.createSync(recursive: true);
+            actualFile.writeAsStringSync(actual);
+
+            final expectedFileCopy = File(
+              p.join(_errorsDirPath, language, p.basename(expectedPath)),
+            );
+            expectedFileCopy.writeAsStringSync(expected);
+
+            final inputFileCopy = File(
+              p.join(_errorsDirPath, language, p.basename(file.path)),
+            );
+            inputFileCopy.writeAsStringSync(input);
+
+            expect(actual, expected);
+          });
+        }
+      });
+    }
+  });
 }

@@ -1,3 +1,0 @@
-<span class="hljs-keyword">let</span> foo = <span class="hljs-literal">true</span>;
-`hello ${foo ? `Mr ${name}` : &#x27;there&#x27;}`;
-foo = <span class="hljs-literal">false</span>;

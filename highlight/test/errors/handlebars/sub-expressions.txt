@@ -1,2 +1,0 @@
-<span class="hljs-template-variable">{{<span class="hljs-name">abc</span>}}</span><span class="language-xml">
-</span>

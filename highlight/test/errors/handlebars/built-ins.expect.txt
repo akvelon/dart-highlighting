@@ -1,1 +1,0 @@
-<span class="hljs-template-tag">{{#<span class="hljs-name">block</span>}}</span>block content<span class="hljs-template-tag">{{/<span class="hljs-name">block</span>}}</span>
