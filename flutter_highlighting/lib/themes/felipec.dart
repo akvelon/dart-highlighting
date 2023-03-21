@@ -1,0 +1,48 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+import 'package:flutter/painting.dart';
+
+const felipecTheme = {
+  'root':
+      TextStyle(color: Color(0xffdddde1), backgroundColor: Color(0xff1e1e22)),
+  '.hljs::selection':
+      TextStyle(color: Color(0xff1e1e22), backgroundColor: Color(0xffbf8fef)),
+  'code': TextStyle(color: Color(0xff888896)),
+  'comment': TextStyle(color: Color(0xff888896)),
+  'quote': TextStyle(color: Color(0xff888896)),
+  'deletion': TextStyle(color: Color(0xffef8f8f)),
+  'literal': TextStyle(color: Color(0xffef8f8f), fontWeight: FontWeight.w700),
+  'number': TextStyle(color: Color(0xffef8f8f)),
+  'doctag': TextStyle(color: Color(0xffefbf8f)),
+  'meta': TextStyle(color: Color(0xffefbf8f)),
+  'operator': TextStyle(color: Color(0xffefbf8f)),
+  'punctuation': TextStyle(color: Color(0xffefbf8f)),
+  'selector-attr': TextStyle(color: Color(0xffefbf8f)),
+  'subst': TextStyle(color: Color(0xffefbf8f)),
+  'template-variable': TextStyle(color: Color(0xffefbf8f)),
+  'type': TextStyle(color: Color(0xffefef8f)),
+  'selector-class': TextStyle(color: Color(0xffbfef8f)),
+  'selector-id': TextStyle(color: Color(0xffbfef8f)),
+  'tag': TextStyle(color: Color(0xffbfef8f)),
+  'title': TextStyle(color: Color(0xffbfef8f), fontWeight: FontWeight.w700),
+  'addition': TextStyle(color: Color(0xff8fef8f)),
+  'regexp': TextStyle(color: Color(0xff8fef8f)),
+  'string': TextStyle(color: Color(0xff8fef8f)),
+  'class': TextStyle(color: Color(0xff8fefbf)),
+  'property': TextStyle(color: Color(0xff8fefbf)),
+  'name': TextStyle(color: Color(0xff8fefef)),
+  'selector-tag': TextStyle(color: Color(0xff8fefef)),
+  'builtin': TextStyle(color: Color(0xff8fbfef)),
+  'keyword': TextStyle(color: Color(0xff8fbfef)),
+  'bullet': TextStyle(color: Color(0xff8f8fef)),
+  'section': TextStyle(color: Color(0xff8f8fef)),
+  'selector-pseudo': TextStyle(color: Color(0xffbf8fef)),
+  'attr': TextStyle(color: Color(0xffef8fef)),
+  'attribute': TextStyle(color: Color(0xffef8fef)),
+  'params': TextStyle(color: Color(0xffef8fef)),
+  'variable': TextStyle(color: Color(0xffef8fef)),
+  'link': TextStyle(color: Color(0xffef8fbf)),
+  'symbol': TextStyle(color: Color(0xffef8fbf)),
+  'strong': TextStyle(fontWeight: FontWeight.w700),
+  'emphasis': TextStyle(fontStyle: FontStyle.italic),
+};

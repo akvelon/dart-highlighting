@@ -1,8 +1,11 @@
 import fs from "fs";
 import path from "path";
 import _ from "lodash";
-import hljs from "highlight.js/lib/highlight"; // TODO: Do not register languages
+import hljs from "highlight.js"; // TODO: Do not register languages
 import CircularJSON from "circular-json";
+
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 
@@ -103,37 +106,17 @@ function normalizeLanguageName(name) {
 }
 
 export function allModes() {
-  let all = "";
-  let builtin = "final builtinLanguages = {";
-  let community = "final communityLanguages = {";
+  let all = "import '../src/mode.dart';";
+  let builtin = "final builtinLanguages = <String, Mode>{";
+  let community = "final communityLanguages = <String, Mode>{";
 
   const dirs = fs.readdirSync(dir);
   const items = [
-    ...dirs.map(file => ({
+    ...dirs.filter(file => !file.endsWith(".js.js")).map(file => ({
       name: path.basename(file, path.extname(file)),
       factory: require(path.resolve(dir, file)),
       community: false
     })),
-    {
-      name: "vue",
-      factory: require("../vendor/highlightjs-vue/vue").definer,
-      community: true
-    },
-    {
-      name: "graphql",
-      factory: require("../vendor/highlightjs-graphql").definer,
-      community: true
-    },
-    {
-      name: "gn",
-      factory: require("../vendor/highlightjs-GN").definer,
-      community: true
-    },
-    {
-      name: "solidity",
-      factory: require("../vendor/highlightjs-solidity").definer,
-      community: true
-    }
   ];
 
   // ["json"]
@@ -226,3 +209,5 @@ export function allModes() {
     all.replace(/\$/g, "\\$")
   );
 }
+
+allModes();
