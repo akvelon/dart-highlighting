@@ -6,14 +6,14 @@ import 'example_map.dart';
 
 void main() => runApp(MyApp());
 
-final title = 'Flutter Highlight Gallery';
+const _title = 'Flutter Highlight Gallery by Akvelon';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: title,
+      title: _title,
       home: MyHomePage(),
     );
   }
@@ -42,9 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(_title),
         actions: <Widget>[
-          PopupMenuButton(
+          PopupMenuButton<String>(
             child: _buildMenuContent(language),
             itemBuilder: (context) {
               return exampleMap.keys.map((key) {
@@ -56,11 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
               }).toList();
             },
             onSelected: (selected) {
-              if (selected != null) {
-                setState(() {
-                  language = selected;
-                });
-              }
+              setState(() {
+                language = selected;
+              });
             },
           ),
           PopupMenuButton<String>(
@@ -96,13 +94,14 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             HighlightView(
-              exampleMap[language],
+              exampleMap[language]!,
               language: language,
-              theme: themeMap[theme],
+              theme: themeMap[theme]!,
               padding: EdgeInsets.all(12),
               textStyle: TextStyle(
-                  fontFamily:
-                      'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace'),
+                fontFamily:
+                    'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
+              ),
             )
           ],
         ),

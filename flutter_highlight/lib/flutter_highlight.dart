@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:highlight/highlight.dart' show highlight, Node;
 import 'package:highlight/highlight_core.dart';
 
 /// Highlight Flutter Widget
@@ -46,17 +45,17 @@ class HighlightView extends StatelessWidget {
       if (node.value != null) {
         currentSpans.add(node.className == null
             ? TextSpan(text: node.value)
-            : TextSpan(text: node.value, style: theme[node.className!]));
-      } else if (node.children != null) {
+            : TextSpan(text: node.value, style: theme[node.className]));
+      } else {
         List<TextSpan> tmp = [];
         currentSpans
-            .add(TextSpan(children: tmp, style: theme[node.className!]));
+            .add(TextSpan(children: tmp, style: theme[node.className]));
         stack.add(currentSpans);
         currentSpans = tmp;
 
-        node.children!.forEach((n) {
+        node.children.forEach((n) {
           _traverse(n);
-          if (n == node.children!.last) {
+          if (n == node.children.last) {
             currentSpans = stack.isEmpty ? spans : stack.removeLast();
           }
         });
