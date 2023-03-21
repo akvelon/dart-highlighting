@@ -8,18 +8,9 @@ environment:
   flutter: ">=3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-  highlighting:
-    git:
-      url: https://github.com/yescorp/highlight.dart.git
-      ref: 1138baf588ae306dde538cccb4fb0483d401b2fb
-      path: highlight/
+  flutter: { sdk: flutter }
+  highlighting: ^0.8.0
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-dependency_overrides:
-  highlighting:
-    path: ../highlighting
+#dependency_overrides:
+#  highlighting:
+#    path: ../highlighting

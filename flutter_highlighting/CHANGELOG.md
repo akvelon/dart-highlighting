@@ -1,3 +1,7 @@
+# 0.8.0
+
+* Forked by Akvelon, initial rough cleanup.
+
 # [0.7.0](https://github.com/git-touch/highlight/compare/v0.6.0...v.7.0) (2021-03-07)
 
 ### Features
