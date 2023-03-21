@@ -1,0 +1,41 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+import 'package:flutter/painting.dart';
+
+const routerosTheme = {
+  'root':
+      TextStyle(color: Color(0xff444444), backgroundColor: Color(0xfff0f0f0)),
+  'subst': TextStyle(color: Color(0xff444444)),
+  'comment': TextStyle(color: Color(0xff888888)),
+  'doctag': TextStyle(fontWeight: FontWeight.w700),
+  'keyword': TextStyle(fontWeight: FontWeight.w700),
+  'name': TextStyle(fontWeight: FontWeight.w700),
+  'selector-tag': TextStyle(fontWeight: FontWeight.w700),
+  'attribute': TextStyle(color: Color(0xff0e9a00)),
+  'function': TextStyle(color: Color(0xff99069a)),
+  'deletion': TextStyle(color: Color(0xff880000)),
+  'number': TextStyle(color: Color(0xff880000)),
+  'quote': TextStyle(color: Color(0xff880000)),
+  'selector-class': TextStyle(color: Color(0xff880000)),
+  'selector-id': TextStyle(color: Color(0xff880000)),
+  'string': TextStyle(color: Color(0xff880000)),
+  'template-tag': TextStyle(color: Color(0xff880000)),
+  'type': TextStyle(color: Color(0xff880000)),
+  'section': TextStyle(color: Color(0xff880000), fontWeight: FontWeight.w700),
+  'title': TextStyle(color: Color(0xff880000), fontWeight: FontWeight.w700),
+  'link': TextStyle(color: Color(0xffbc6060)),
+  'regexp': TextStyle(color: Color(0xffbc6060)),
+  'selector-attr': TextStyle(color: Color(0xffbc6060)),
+  'selector-pseudo': TextStyle(color: Color(0xffbc6060)),
+  'symbol': TextStyle(color: Color(0xffbc6060)),
+  'template-variable': TextStyle(color: Color(0xffbc6060)),
+  'variable': TextStyle(color: Color(0xffbc6060)),
+  'literal': TextStyle(color: Color(0xff78a960)),
+  'addition': TextStyle(color: Color(0xff0c9a9a)),
+  'builtin': TextStyle(color: Color(0xff0c9a9a)),
+  'bullet': TextStyle(color: Color(0xff0c9a9a)),
+  'code': TextStyle(color: Color(0xff0c9a9a)),
+  'meta': TextStyle(color: Color(0xff1f7199)),
+  'emphasis': TextStyle(fontStyle: FontStyle.italic),
+  'strong': TextStyle(fontWeight: FontWeight.w700),
+};
