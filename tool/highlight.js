@@ -85,7 +85,7 @@ function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
 }
 
 /**
- * highlight/src/common_modes.dart
+ * highlighting/src/common_modes.dart
  */
 export function commonModes() {
   let common = `${NOTICE_COMMENT}import 'mode.dart';`;
@@ -93,7 +93,7 @@ export function commonModes() {
     common += `final ${k}=${generateMode(v, false)};`;
   });
   fs.writeFileSync(
-    `../highlight/lib/src/common_modes.dart`,
+    `../highlighting/lib/src/common_modes.dart`,
     common.replace(/\$/g, "\\$")
   );
 }
@@ -180,7 +180,7 @@ export function allModes() {
       const data = generateMode(nonCircularObj, true);
 
       fs.writeFileSync(
-        `../highlight/lib/languages/${originalLang}.dart`,
+        `../highlighting/lib/languages/${originalLang}.dart`,
         `${NOTICE_COMMENT}import '../src/mode.dart'; import '../src/common_modes.dart'; final ${lang}=Mode(${commonStr} ${data.slice(
           5
         )};`
@@ -205,7 +205,7 @@ export function allModes() {
   all += community + builtin;
   all += "final allLanguages = {...builtinLanguages,...communityLanguages};";
   fs.writeFileSync(
-    `../highlight/lib/languages/all.dart`,
+    `../highlighting/lib/languages/all.dart`,
     all.replace(/\$/g, "\\$")
   );
 }
