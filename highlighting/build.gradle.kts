@@ -33,7 +33,7 @@ tasks.register("format") {
     doLast {
         exec {
             executable("dart")
-            args("format", "--set-exit-if-changed")
+            args("format", "-o", "none", "--set-exit-if-changed")
         }
     }
 }

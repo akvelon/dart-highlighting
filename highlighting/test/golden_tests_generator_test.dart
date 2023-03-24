@@ -10,12 +10,6 @@ const _errorsDirPath = 'test/errors';
 const _extension = '.txt';
 
 void main() async {
-  if (!Directory(_clonePath).existsSync()) {
-    await Process.run(
-      'git',
-      ['clone', 'https://github.com/highlightjs/highlight.js.git', _clonePath],
-    );
-  }
   final errorsDir = Directory(_errorsDirPath);
 
   if (errorsDir.existsSync()) {
