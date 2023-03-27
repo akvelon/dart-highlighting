@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import 'package:highlighting/languages/common/end_same_as_begin_callbacks.dart';
-
 import '../src/mode.dart';
 import '../src/common_modes.dart';
 
@@ -43,8 +41,6 @@ final c = Mode(
     ]),
     '~contains~0~contains~0~contains~1~variants~2': Mode(
         begin: "(?:u8?|U|L)?R\"([^()\\\\ ]{0,16})\\(",
-        onBegin: endSameAsBeginOnBegin,
-        onEnd: endSameAsBeginOnEnd,
         end: "\\)([^()\\\\ ]{0,16})\""),
     '~contains~0~contains~0~contains~1~variants~1': Mode(
         begin:

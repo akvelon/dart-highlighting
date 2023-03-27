@@ -213,4 +213,4 @@ export function allModes() {
   );
 }
 
-commonModes();
+allModes();

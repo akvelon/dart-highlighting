@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import 'package:highlighting/languages/common/end_same_as_begin_callbacks.dart';
-
 import '../src/mode.dart';
 import '../src/common_modes.dart';
 
@@ -284,13 +282,7 @@ final bash = Mode(
       Mode(
           begin: "<<-?\\s*(?=\\w+)",
           starts: Mode(contains: [
-            Mode(
-              begin: "(\\w+)",
-              onBegin: endSameAsBeginOnBegin,
-              onEnd: endSameAsBeginOnEnd,
-              end: "(\\w+)",
-              className: "string",
-            )
+            Mode(begin: "(\\w+)", end: "(\\w+)", className: "string")
           ])),
       Mode(match: "(\\/[a-z._-]+)+"),
       Mode(ref: '~contains~7'),

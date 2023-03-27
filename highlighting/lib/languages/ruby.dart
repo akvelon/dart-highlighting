@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import 'package:highlighting/languages/common/end_same_as_begin_callbacks.dart';
-
 import '../src/mode.dart';
 import '../src/common_modes.dart';
 
@@ -588,16 +586,10 @@ final ruby = Mode(
             begin:
                 "<<[-\\x7e]?'?(?=(\\w+)(?=\\W)[^\\n]*\\n(?:[^\\n]*\\n)*?\\s*\\1\\b)",
             contains: [
-              Mode(
-                begin: "(\\w+)",
-                onBegin: endSameAsBeginOnBegin,
-                onEnd: endSameAsBeginOnEnd,
-                end: "(\\w+)",
-                contains: [
-                  BACKSLASH_ESCAPE,
-                  Mode(ref: '~contains~1~starts~contains~0~contains~1')
-                ],
-              )
+              Mode(begin: "(\\w+)", end: "(\\w+)", contains: [
+                BACKSLASH_ESCAPE,
+                Mode(ref: '~contains~1~starts~contains~0~contains~1')
+              ])
             ])
       ]),
     },
