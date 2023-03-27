@@ -225,7 +225,7 @@ class HighlightV2 {
           }
         }
         if (matched) {
-          while (mode.endsWithParent == true && mode.parent != null) {
+          while (mode.endsParent == true && mode.parent != null) {
             mode = mode.parent!;
           }
           return mode;
