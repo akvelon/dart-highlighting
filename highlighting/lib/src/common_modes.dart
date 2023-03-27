@@ -8,7 +8,7 @@ final APOS_STRING_MODE = Mode(
     begin: "'",
     end: "'",
     illegal: "\\n",
-    contains: [BACKSLASH_ESCAPE]);
+    contains: [Mode(begin: "\\\\[\\s\\S]", relevance: 0)]);
 final QUOTE_STRING_MODE = Mode(
     className: "string",
     begin: "\"",
@@ -54,29 +54,18 @@ final CSS_NUMBER_MODE = Mode(
         "\\b\\d+(\\.\\d+)?(%|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc|px|deg|grad|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?",
     relevance: 0);
 final REGEXP_MODE = Mode(
-  className: "regexp",
-  begin: "(?=\\/[^/\\n]*\\/)",
-  contains: [
-    Mode(
-      begin: "\\/",
-      scope: 'regexp',
-      end: "\\/[gimuy]*",
-      illegal: '\\n',
-      relevance: 0,
-      contains: [
-        BACKSLASH_ESCAPE,
-        Mode(
-          begin: '\\[',
-          end: '\\]',
+    className: "regexp",
+    begin: "\\/",
+    end: "\\/[gimuy]*",
+    illegal: "\\n",
+    contains: [
+      Mode(begin: "\\\\[\\s\\S]", relevance: 0),
+      Mode(
+          begin: "\\[",
+          end: "\\]",
           relevance: 0,
-          contains: [
-            BACKSLASH_ESCAPE,
-          ],
-        ),
-      ],
-    )
-  ],
-);
+          contains: [Mode(begin: "\\\\[\\s\\S]", relevance: 0)])
+    ]);
 final TITLE_MODE =
     Mode(className: "title", begin: "[a-zA-Z]\\w*", relevance: 0);
 final UNDERSCORE_TITLE_MODE =
