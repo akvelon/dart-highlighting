@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 import 'domain_regexp_match.dart';
 import 'extension/reg_exp.dart';
 import 'utils.dart';
@@ -19,7 +21,7 @@ class DomainRegex {
   DomainRegexMatch? exec(String input) {
     var cutInput = substring(input, lastIndex);
 
-    final match = regex.firstMatch(cutInput);
+    final match = regex.allMatches(input, lastIndex).firstOrNull;
     if (match == null) {
       lastIndex = 0;
       return null;
@@ -27,7 +29,7 @@ class DomainRegex {
 
     final lastIndexSnapshot = lastIndex;
 
-    lastIndex += match.end;
+    lastIndex = match.end;
 
     for (int i = 0; i < match.groupCount; i++) {
       print(match.group(i));

@@ -1,3 +1,5 @@
+import 'package:highlighting/src/html_renderer.dart';
+
 import 'node.dart';
 import 'mode.dart';
 
@@ -20,15 +22,6 @@ class Result {
   }) : rootNode = Node() {
     this.nodes = nodes ?? [rootNode];
     stack.add(rootNode);
-  }
-
-  String _escape(String value) {
-    return value
-        .replaceAll(RegExp(r'&'), '&amp;')
-        .replaceAll(RegExp(r'<'), '&lt;')
-        .replaceAll(RegExp(r'>'), '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll('\'', '&#x27;');
   }
 
   void add(Node node) {
@@ -81,30 +74,24 @@ class Result {
   void finalize() {}
 
   String toHtml() {
-    var str = '';
+    return HtmlRenderer(classPrefix: 'hljs-', result: this).value;
+  }
 
-    void _traverse(Node node) {
-      final shouldAddSpan = node.className != null &&
-          ((node.value != null && node.value!.isNotEmpty) ||
-              (node.children.isNotEmpty));
+  HtmlRenderer walk(HtmlRenderer htmlRenderer) {
+    return _walk(htmlRenderer, rootNode);
+  }
 
-      if (shouldAddSpan) {
-        var prefix = node.noPrefix ? '' : 'hljs-';
-        str += '<span class="${prefix + node.className!}">';
-      }
-
-      if (node.value != null) {
-        str += _escape(node.value!);
-      } else {
-        node.children.forEach(_traverse);
-      }
-
-      if (shouldAddSpan) {
-        str += '</span>';
-      }
+  HtmlRenderer _walk(HtmlRenderer builder, Node node) {
+    if (node.value != null) {
+      builder.addText(node.value!);
+    } else if (node.children.isNotEmpty) {
+      builder.openNode(node);
+      node.children.forEach((element) {
+        _walk(builder, element);
+      });
+      builder.closeNode(node);
     }
 
-    nodes?.forEach(_traverse);
-    return str;
+    return builder;
   }
 }

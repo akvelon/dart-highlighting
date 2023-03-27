@@ -214,15 +214,15 @@ class HighlightV2 {
 
       if (matched) {
         if (mode.onEnd != null) {
-          final resp = new Response(mode: mode);
+          final resp = Response(mode: mode);
 
-          mode.onEnd(match, resp);
+          mode.onEnd?.call(match, resp);
           if (resp.isMatchIgnored) {
             matched = false;
           }
         }
         if (matched) {
-          while (mode.endsWithParent == true && mode.parent != null) {
+          while (mode.endsParent == true && mode.parent != null) {
             mode = mode.parent!;
           }
           return mode;

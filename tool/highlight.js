@@ -90,7 +90,10 @@ function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
 export function commonModes() {
   let common = `${NOTICE_COMMENT}import 'mode.dart';`;
   modeEntries.forEach(([k, v]) => {
-    common += `final ${k}=${generateMode(v, false)};`;
+    const str = CircularJSON.stringify(v);
+    const nonCircularObj = JSON.parse(str);
+
+    common += `final ${k}=${generateMode(nonCircularObj, false)};`;
   });
   fs.writeFileSync(
     `../highlighting/lib/src/common_modes.dart`,

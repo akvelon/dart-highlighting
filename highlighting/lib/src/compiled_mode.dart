@@ -18,7 +18,7 @@ class CompiledMode {
 
   Map<String, Tuple2<String, int>> keywords = {};
 
-  Map<String, dynamic> data = {};
+  Map<String, dynamic>? data = {};
   String? terminatorEnd;
   DomainRegex? keywordPatternRe;
   DomainRegex? beginRe;
