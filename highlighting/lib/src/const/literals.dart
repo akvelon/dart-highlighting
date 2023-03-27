@@ -20,3 +20,6 @@ const $illegal = 'illegal';
 const kDefaultKeywordScope = 'keyword';
 
 const $pattern = r'$pattern';
+
+
+const $beginMatch = 'beginMatch';

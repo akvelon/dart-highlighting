@@ -27,6 +27,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String language = 'dart';
   String theme = 'a11y-dark';
+  TextEditingController controller = TextEditingController();
 
   Widget _buildMenuContent(String text) {
     return Container(
@@ -44,6 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(_title),
         actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              icon: Icon(Icons.format_color_text)),
           PopupMenuButton<String>(
             child: _buildMenuContent(language),
             itemBuilder: (context) {
@@ -58,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onSelected: (selected) {
               setState(() {
                 language = selected;
+                controller.value = TextEditingValue.empty;
               });
             },
           ),
@@ -90,11 +97,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
           children: <Widget>[
+            TextField(
+              controller: controller,
+              maxLines: null,
+            ),
+            const SizedBox(height: 20),
             HighlightView(
-              exampleMap[language]!,
+              controller.text.isEmpty ? exampleMap[language]! : controller.text,
               language: language,
               theme: themeMap[theme]!,
               padding: EdgeInsets.all(12),

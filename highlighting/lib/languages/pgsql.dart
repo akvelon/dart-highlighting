@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:highlighting/languages/common/end_same_as_begin_callbacks.dart';
+
 import '../src/mode.dart';
 import '../src/common_modes.dart';
 
@@ -141,6 +143,8 @@ final pgsql = Mode(
           relevance: 10),
       Mode(
           begin: "\\\$([a-zA-Z_]?|[a-zA-Z_][a-zA-Z_0-9]*)\\\$",
+          onBegin: endSameAsBeginOnBegin,
+          onEnd: endSameAsBeginOnEnd,
           end: "\\\$([a-zA-Z_]?|[a-zA-Z_][a-zA-Z_0-9]*)\\\$",
           contains: [
             Mode(subLanguage: [

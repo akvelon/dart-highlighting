@@ -1,4 +1,7 @@
+import 'package:highlighting/src/response.dart';
+
 import 'domain_regex.dart';
+import 'domain_regexp_match.dart';
 import 'multi_regex.dart';
 
 class Mode {
@@ -35,7 +38,7 @@ class Mode {
   bool? endsWithParent;
   double? relevance;
 
-  dynamic data;
+  Map<String, dynamic>? data;
 
   dynamic beforeBegin;
 
@@ -88,9 +91,8 @@ class Mode {
 
   ResumableMultiRegex? matcher;
 
-  dynamic onBegin;
-
-  dynamic onEnd;
+  void Function(DomainRegexMatch mode, Response response)? onBegin;
+  void Function(DomainRegexMatch mode, Response response)? onEnd;
 
   Mode({
     this.ref,
@@ -116,8 +118,10 @@ class Mode {
     this.starts,
     this.className,
     this.begin,
+    this.onBegin,
     this.beginKeywords,
     this.end,
+    this.onEnd,
     this.lexemes,
     this.endSameAsBegin,
     this.endsParent,
@@ -152,6 +156,7 @@ class Mode {
       ..compiled = b.compiled ?? a.compiled
       ..contains = b.contains ?? a.contains
       ..disableAutodetect = b.disableAutodetect ?? a.disableAutodetect
+      ..data = b.data ?? a.data
       ..end = b.end ?? a.end
       ..endRe = b.endRe ?? a.endRe
       ..endSameAsBegin = b.endSameAsBegin ?? a.endSameAsBegin

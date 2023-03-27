@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:highlighting/src/const/literals.dart';
+
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'common/end_same_as_begin_callbacks.dart';
 
 final cpp = Mode(
     refs: {
@@ -38,8 +41,11 @@ final cpp = Mode(
                 "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}")
       ]),
       '~contains~0~contains~1~contains~1~variants~2': Mode(
-          begin: "(?:u8?|U|L)?R\"([^()\\\\ ]{0,16})\\(",
-          end: "\\)([^()\\\\ ]{0,16})\""),
+        begin: "(?:u8?|U|L)?R\"([^()\\\\ ]{0,16})\\(",
+        onBegin: endSameAsBeginOnBegin,
+        end: "\\)([^()\\\\ ]{0,16})\"",
+        onEnd: endSameAsBeginOnEnd,
+      ),
       '~contains~0~contains~1~contains~1~variants~1': Mode(
           begin:
               "(u8?|U|L)?'(\\\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4,8}|[0-7]{3}|\\S)|.)",

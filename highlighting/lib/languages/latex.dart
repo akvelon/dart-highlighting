@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:highlighting/languages/common/end_same_as_begin_callbacks.dart';
+
 import '../src/mode.dart';
 import '../src/common_modes.dart';
 
@@ -174,6 +176,8 @@ final latex = Mode(
             Mode(
                 className: "string",
                 begin: "(.|\\r?\\n)",
+                onBegin: endSameAsBeginOnBegin,
+                onEnd: endSameAsBeginOnEnd,
                 end: "(.|\\r?\\n)",
                 excludeBegin: true,
                 excludeEnd: true,

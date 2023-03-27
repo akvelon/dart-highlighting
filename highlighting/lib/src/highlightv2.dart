@@ -25,6 +25,9 @@ class HighlightV2 {
     String text, {
     required String language,
   }) {
+    if (language == 'bash') {
+      int a;
+    }
     return highlight(language, text, true);
   }
 
@@ -214,9 +217,9 @@ class HighlightV2 {
 
       if (matched) {
         if (mode.onEnd != null) {
-          final resp = new Response(mode: mode);
+          final resp = Response(mode: mode);
 
-          mode.onEnd(match, resp);
+          mode.onEnd?.call(match, resp);
           if (resp.isMatchIgnored) {
             matched = false;
           }

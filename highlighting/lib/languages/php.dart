@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:highlighting/languages/common/end_same_as_begin_callbacks.dart';
+
 import '../src/mode.dart';
 import '../src/common_modes.dart';
 
@@ -252,10 +254,16 @@ final php = Mode(
             end: "'",
             illegal: null,
             contains: [BACKSLASH_ESCAPE]),
-        Mode(begin: "<<<[ \\t]*(\\w+)\\n", end: "[ \\t]*(\\w+)\\b", contains: [
-          BACKSLASH_ESCAPE,
-          Mode(ref: '~contains~0~contains~0~contains~4~variants~0~contains~1')
-        ])
+        Mode(
+          begin: "<<<[ \\t]*(\\w+)\\n",
+          onBegin: endSameAsBeginOnBegin,
+          onEnd: endSameAsBeginOnEnd,
+          end: "[ \\t]*(\\w+)\\b",
+          contains: [
+            BACKSLASH_ESCAPE,
+            Mode(ref: '~contains~0~contains~0~contains~4~variants~0~contains~1')
+          ],
+        )
       ]),
       '~contains~0~contains~0~contains~2': Mode(variants: [
         Mode(match: [
