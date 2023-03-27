@@ -52,7 +52,7 @@ class MultiRegex {
       return null;
     }
 
-    lastIndex += match.match.end;
+    lastIndex = match.match.end;
 
     final index = match.findIndex((el, index) => index > 0 && el != null);
     if (index == -1) {

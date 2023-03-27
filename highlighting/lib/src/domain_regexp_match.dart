@@ -23,7 +23,7 @@ class DomainRegexMatch {
     }
   }
 
-  int get index => match.start + startIndex;
+  int get index => match.start;
 
   int get length => _matchGroups.length;
 
