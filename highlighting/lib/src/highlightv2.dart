@@ -25,9 +25,6 @@ class HighlightV2 {
     String text, {
     required String language,
   }) {
-    if (language == 'bash') {
-      int a;
-    }
     return highlight(language, text, true);
   }
 

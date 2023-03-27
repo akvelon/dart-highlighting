@@ -69,9 +69,6 @@ Mode replaceIfRef({required Mode self, Map<String, Mode>? refs}) {
   if (refs == null) {
     return self;
   }
-  if (refs[self.ref!] == null) {
-    int a;
-  }
 
   final newMode = refs[self.ref!]!;
   if (newMode.starts != null) {
