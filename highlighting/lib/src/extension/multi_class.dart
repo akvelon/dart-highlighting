@@ -4,9 +4,8 @@ import 'reg_exp.dart';
 
 final MultiClassError = Exception('MultiClass Error');
 
-/// `regexes` - `List<String | RegExp>`
-///
-/// `key` - `"beginScope" | "endScope"`
+/// [regexes] -- A list of [RegExp] or strings to be compiled to [RegExp].
+/// [key] - `"beginScope" | "endScope"`
 void remapScopeNames(
   Mode mode,
   List<Pattern> regexes,
