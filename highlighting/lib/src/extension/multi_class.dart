@@ -4,12 +4,11 @@ import 'reg_exp.dart';
 
 final MultiClassError = Exception('MultiClass Error');
 
-/// `regexes` - `List<String | RegExp>`
-///
-/// `key` - `"beginScope" | "endScope"`
+/// [regexes] -- A list of [RegExp] or strings to be compiled to [RegExp].
+/// [key] - `"beginScope" | "endScope"`
 void remapScopeNames(
   Mode mode,
-  List<dynamic> regexes,
+  List<Pattern> regexes,
   String key,
 ) {
   var offset = 0;
@@ -20,6 +19,7 @@ void remapScopeNames(
   for (var i = 1; i <= regexes.length; i++) {
     positions[(i + offset).toString()] = scopeNames[i.toString()];
     emit[i + offset] = true;
+    offset += RegExp(source(regexes[i - 1]) ?? '').countMatchGroups();
   }
 
   positions[$emit] = emit;

@@ -70,6 +70,10 @@ Mode replaceIfRef({required Mode self, Map<String, Mode>? refs}) {
     return self;
   }
 
+  if (refs[self.ref!] == null) {
+    throw Exception('The language definition is incorrect! Check "refs" field');
+  }
+
   final newMode = refs[self.ref!]!;
   if (newMode.starts != null) {
     newMode.starts = replaceIfRef(self: newMode.starts!, refs: refs);

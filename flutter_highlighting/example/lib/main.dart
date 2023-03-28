@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_highlighting/flutter_highlighting.dart';
 import 'package:flutter_highlighting/theme_map.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:highlighting/languages/all.dart';
+
 import 'example_map.dart';
 
 void main() => runApp(MyApp());
@@ -53,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
           PopupMenuButton<String>(
             child: _buildMenuContent(language),
             itemBuilder: (context) {
-              return exampleMap.keys.map((key) {
+              return builtinLanguages.keys.map((key) {
                 return CheckedPopupMenuItem(
                   value: key,
                   child: Text(key),
@@ -105,7 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 20),
             HighlightView(
-              controller.text.isEmpty ? exampleMap[language]! : controller.text,
+              controller.text.isEmpty
+                  ? exampleMap[language] ?? ''
+                  : controller.text,
               language: language,
               theme: themeMap[theme]!,
               padding: EdgeInsets.all(12),
@@ -113,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontFamily:
                     'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
               ),
-            )
+            ),
           ],
         ),
       ),

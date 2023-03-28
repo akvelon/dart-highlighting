@@ -84,7 +84,7 @@ class Result {
   HtmlRenderer _walk(HtmlRenderer builder, Node node) {
     if (node.value != null) {
       builder.addText(node.value!);
-    } else if (node.children.isNotEmpty) {
+    } else {
       builder.openNode(node);
       node.children.forEach((element) {
         _walk(builder, element);

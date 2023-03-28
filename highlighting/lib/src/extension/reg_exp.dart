@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 import '../const/regexes.dart';
 import '../utils.dart';
 
@@ -55,20 +57,20 @@ String rewriteBackReferences(
         var out = '';
 
         while (re != null && re.isNotEmpty) {
-          final matches = kBackRefRe.allMatches(re).toList();
-          if (matches.isEmpty) {
+          final matches = kBackRefRe.allMatches(re).firstOrNull;
+          if (matches == null) {
             out += re;
             break;
           }
 
-          out += substring(re, 0, matches[0].start);
-          re = substring(re, matches[0].end);
+          out += substring(re, 0, matches.start);
+          re = substring(re, matches.end);
 
-          if (matches[0].group(0)?[0] == '\\' && matches[0].group(1) != null) {
-            out += '\\' + (int.parse(matches[0].group(1)!) + offset).toString();
+          if (matches.group(0)?[0] == '\\' && matches.group(1) != null) {
+            out += '\\' + (int.parse(matches.group(1)!) + offset).toString();
           } else {
-            out += matches[0].group(0)!;
-            if (matches[0].group(0) == '(') {
+            out += matches.group(0)!;
+            if (matches.group(0) == '(') {
               numCaptures++;
             }
           }
