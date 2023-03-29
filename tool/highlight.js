@@ -223,7 +223,7 @@ export function allModes() {
         `${NOTICE_COMMENT}
         import '../src/mode.dart';
         import '../src/common_modes.dart';
-        ${containsCallbacks ? `import 'package:highlighting/languages/common/callbacks.dart';` : ''}
+        ${containsCallbacks ? "import 'package:highlighting/languages/common/callbacks.dart';" : ""}
         final ${lang}=Mode(${commonStr} ${data.slice(
           5
         )};`
