@@ -12,15 +12,15 @@ const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 let callbackDictionary = new Map([
   [
     hljs.END_SAME_AS_BEGIN({})['on:begin'].toString(),
-    `endSameAsBeginOnBegin`
+    "endSameAsBeginOnBegin"
   ],
   [
     hljs.END_SAME_AS_BEGIN({})['on:end'].toString(),
-    `endSameAsBeginOnEnd`
+    "endSameAsBeginOnEnd"
   ],
   [
     hljs.SHEBANG()['on:begin'].toString(),
-    'shebangOnBegin',
+    "shebangOnBegin",
   ],
 ]);
 
@@ -74,14 +74,14 @@ function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
           code += `onBegin: ${callbackDictionary.get(v.toString())}`;
           break;
         }
-        code += `onBegin: null`;
+        code += `onBegin: (match, resp) => throw Exception(r'''Callback not ported: ${v.toString().replace(/'/g, "r'")}''')`;
         break;
       case "on:end":
         if (callbackDictionary.has(v.toString())) {
           code += `onEnd: ${callbackDictionary.get(v.toString())}`;
           break;
         }
-        code += `onEnd: null`;
+        code += `onEnd: (match, resp) => throw Exception(r'''Callback not ported: ${v.toString().replace(/'/g, "r'")}''')`;
         break;
 
       case "starts":
@@ -139,7 +139,7 @@ function normalizeLanguageName(name) {
 }
 
 export function allModes() {
-  let all = `import '../src/mode.dart';`;
+  let all = "import '../src/mode.dart';";
   let builtin = "final builtinLanguages = <String, Mode>{";
   let community = "final communityLanguages = <String, Mode>{";
 

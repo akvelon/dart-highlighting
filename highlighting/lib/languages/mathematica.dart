@@ -46,7 +46,10 @@ final mathematica = Mode(
         Mode(
             className: "builtin-symbol",
             begin: "[a-zA-Z\$][a-zA-Z0-9\$]*",
-            onBegin: null),
+            onBegin: (match, resp) =>
+                throw Exception(r'''Callback not ported: (match, response) => {
+        if (!SYSTEM_SYMBOLS_SET.has(match[0])) response.ignoreMatch();
+      }''')),
         Mode(
             className: "symbol",
             relevance: 0,
