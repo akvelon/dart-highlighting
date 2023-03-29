@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final latex = Mode(
     refs: {
@@ -177,7 +178,9 @@ final latex = Mode(
                 end: "(.|\\r?\\n)",
                 excludeBegin: true,
                 excludeEnd: true,
-                endsParent: true)
+                endsParent: true,
+                onBegin: endSameAsBeginOnBegin,
+                onEnd: endSameAsBeginOnEnd)
           ])),
       Mode(
           begin: "\\\\lstinline(?![a-zA-Z@:_])",
@@ -191,7 +194,9 @@ final latex = Mode(
                 end: "(.|\\r?\\n)",
                 excludeBegin: true,
                 excludeEnd: true,
-                endsParent: true)
+                endsParent: true,
+                onBegin: endSameAsBeginOnBegin,
+                onEnd: endSameAsBeginOnEnd)
           ])),
       Mode(
           begin: "\\\\mint(?![a-zA-Z@:_])",
@@ -210,7 +215,9 @@ final latex = Mode(
                         end: "(.|\\r?\\n)",
                         excludeBegin: true,
                         excludeEnd: true,
-                        endsParent: true)
+                        endsParent: true,
+                        onBegin: endSameAsBeginOnBegin,
+                        onEnd: endSameAsBeginOnEnd)
                   ])))),
       Mode(
           begin: "\\\\mintinline(?![a-zA-Z@:_])",
@@ -245,7 +252,9 @@ final latex = Mode(
                         end: "(.|\\r?\\n)",
                         excludeBegin: true,
                         excludeEnd: true,
-                        endsParent: true)
+                        endsParent: true,
+                        onBegin: endSameAsBeginOnBegin,
+                        onEnd: endSameAsBeginOnEnd)
                   ])))),
       Mode(
           begin: "\\\\url(?![a-zA-Z@:_])",

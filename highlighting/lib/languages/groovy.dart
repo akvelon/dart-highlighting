@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final groovy = Mode(
     refs: {
@@ -102,6 +103,7 @@ final groovy = Mode(
           begin: "^#![ ]*\\/.*\\bgroovy\\b.*",
           end: "\$",
           relevance: 10,
+          onBegin: shebangOnBegin,
           binary: "groovy"),
       Mode(ref: '~contains~1'),
       Mode(ref: '~contains~2'),

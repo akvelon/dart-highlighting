@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final hy = Mode(
     refs: {
@@ -109,7 +110,12 @@ final hy = Mode(
     aliases: ["hylang"],
     illegal: "\\S",
     contains: [
-      Mode(scope: "meta", begin: "^#![ ]*\\/", end: "\$", relevance: 0),
+      Mode(
+          scope: "meta",
+          begin: "^#![ ]*\\/",
+          end: "\$",
+          relevance: 0,
+          onBegin: shebangOnBegin),
       Mode(ref: '~contains~1'),
       Mode(ref: '~contains~1~contains~1~starts~contains~1'),
       Mode(ref: '~contains~1~contains~1~starts~contains~2'),

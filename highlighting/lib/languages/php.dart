@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final php = Mode(
     refs: {
@@ -252,10 +253,17 @@ final php = Mode(
             end: "'",
             illegal: null,
             contains: [BACKSLASH_ESCAPE]),
-        Mode(begin: "<<<[ \\t]*(\\w+)\\n", end: "[ \\t]*(\\w+)\\b", contains: [
-          BACKSLASH_ESCAPE,
-          Mode(ref: '~contains~0~contains~0~contains~4~variants~0~contains~1')
-        ])
+        Mode(
+            begin: "<<<[ \\t]*(\\w+)\\n",
+            end: "[ \\t]*(\\w+)\\b",
+            contains: [
+              BACKSLASH_ESCAPE,
+              Mode(
+                  ref:
+                      '~contains~0~contains~0~contains~4~variants~0~contains~1')
+            ],
+            onBegin: endSameAsBeginOnBegin,
+            onEnd: endSameAsBeginOnEnd)
       ]),
       '~contains~0~contains~0~contains~2': Mode(variants: [
         Mode(match: [

@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final arduino = Mode(
     refs: {
@@ -39,7 +40,9 @@ final arduino = Mode(
       ]),
       '~contains~0~contains~1~contains~1~variants~2': Mode(
           begin: "(?:u8?|U|L)?R\"([^()\\\\ ]{0,16})\\(",
-          end: "\\)([^()\\\\ ]{0,16})\""),
+          end: "\\)([^()\\\\ ]{0,16})\"",
+          onBegin: endSameAsBeginOnBegin,
+          onEnd: endSameAsBeginOnEnd),
       '~contains~0~contains~1~contains~1~variants~1': Mode(
           begin:
               "(u8?|U|L)?'(\\\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4,8}|[0-7]{3}|\\S)|.)",

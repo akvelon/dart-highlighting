@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final pgsql = Mode(
     refs: {},
@@ -158,7 +159,9 @@ final pgsql = Mode(
               "xml",
               "json"
             ], endsWithParent: true)
-          ]),
+          ],
+          onBegin: endSameAsBeginOnBegin,
+          onEnd: endSameAsBeginOnEnd),
       Mode(begin: "\"", end: "\"", contains: [Mode(begin: "\"\"")]),
       C_NUMBER_MODE,
       C_BLOCK_COMMENT_MODE,

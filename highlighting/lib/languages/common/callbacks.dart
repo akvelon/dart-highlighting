@@ -12,3 +12,7 @@ final endSameAsBeginOnEnd = (DomainRegexMatch match, Response response) {
     response.ignoreMatch();
   }
 };
+
+final shebangOnBegin = (DomainRegexMatch m, Response resp) {
+  if (m.index != 0) resp.ignoreMatch();
+};
