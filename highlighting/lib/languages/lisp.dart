@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final lisp = Mode(
     refs: {
@@ -98,7 +99,12 @@ final lisp = Mode(
     illegal: "\\S",
     contains: [
       Mode(ref: '~contains~0'),
-      Mode(scope: "meta", begin: "^#![ ]*\\/", end: "\$", relevance: 0),
+      Mode(
+          scope: "meta",
+          begin: "^#![ ]*\\/",
+          end: "\$",
+          relevance: 0,
+          onBegin: shebangOnBegin),
       Mode(ref: '~contains~2'),
       Mode(ref: '~contains~3'),
       Mode(ref: '~contains~4'),

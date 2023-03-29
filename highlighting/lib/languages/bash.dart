@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final bash = Mode(
     refs: {
@@ -263,8 +264,14 @@ final bash = Mode(
               "^#![ ]*\\/.*\\b(fish|bash|zsh|sh|csh|ksh|tcsh|dash|scsh)\\b.*",
           end: "\$",
           relevance: 10,
+          onBegin: shebangOnBegin,
           binary: "(fish|bash|zsh|sh|csh|ksh|tcsh|dash|scsh)"),
-      Mode(scope: "meta", begin: "^#![ ]*\\/", end: "\$", relevance: 0),
+      Mode(
+          scope: "meta",
+          begin: "^#![ ]*\\/",
+          end: "\$",
+          relevance: 0,
+          onBegin: shebangOnBegin),
       Mode(
           className: "function",
           begin: "\\w[\\w\\d_]*\\s*\\(\\s*\\)\\s*\\{",
@@ -282,7 +289,12 @@ final bash = Mode(
       Mode(
           begin: "<<-?\\s*(?=\\w+)",
           starts: Mode(contains: [
-            Mode(begin: "(\\w+)", end: "(\\w+)", className: "string")
+            Mode(
+                begin: "(\\w+)",
+                end: "(\\w+)",
+                className: "string",
+                onBegin: endSameAsBeginOnBegin,
+                onEnd: endSameAsBeginOnEnd)
           ])),
       Mode(match: "(\\/[a-z._-]+)+"),
       Mode(ref: '~contains~7'),

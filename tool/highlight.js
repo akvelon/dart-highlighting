@@ -9,6 +9,21 @@ const require = createRequire(import.meta.url);
 
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 
+let callbackDictionary = new Map([
+  [
+    hljs.END_SAME_AS_BEGIN({})['on:begin'].toString(),
+    `endSameAsBeginOnBegin`
+  ],
+  [
+    hljs.END_SAME_AS_BEGIN({})['on:end'].toString(),
+    `endSameAsBeginOnEnd`
+  ],
+  [
+    hljs.SHEBANG()['on:begin'].toString(),
+    'shebangOnBegin',
+  ],
+]);
+
 const dir = "node_modules/highlight.js/lib/languages";
 hljs.registerLanguage("cpp", require(path.resolve(dir, "cpp"))); // exports
 
@@ -54,6 +69,21 @@ function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
     }
 
     switch (k) {
+      case "on:begin":
+        if (callbackDictionary.has(v.toString())) {
+          code += `onBegin: ${callbackDictionary.get(v.toString())}`;
+          break;
+        }
+        code += `onBegin: null`;
+        break;
+      case "on:end":
+        if (callbackDictionary.has(v.toString())) {
+          code += `onEnd: ${callbackDictionary.get(v.toString())}`;
+          break;
+        }
+        code += `onEnd: null`;
+        break;
+
       case "starts":
         code += `${k}: ${generateMode(v, true, commonSet)}`;
         break;
@@ -109,7 +139,7 @@ function normalizeLanguageName(name) {
 }
 
 export function allModes() {
-  let all = "import '../src/mode.dart';";
+  let all = `import '../src/mode.dart';`;
   let builtin = "final builtinLanguages = <String, Mode>{";
   let community = "final communityLanguages = <String, Mode>{";
 
@@ -126,6 +156,7 @@ export function allModes() {
   items.forEach(item => {
     let originalLang = item.name;
     let lang = normalizeLanguageName(originalLang);
+    let containsCallbacks = false;
 
     try {
       // Handle circular object
@@ -145,6 +176,11 @@ export function allModes() {
 
         if (k === "keywords" || Array.isArray(v)) {
           return _.clone(v);
+        }
+
+        if (v instanceof Function) {
+          containsCallbacks = true;
+          return v.toString();
         }
 
         return v;
@@ -184,7 +220,11 @@ export function allModes() {
 
       fs.writeFileSync(
         `../highlighting/lib/languages/${originalLang}.dart`,
-        `${NOTICE_COMMENT}import '../src/mode.dart'; import '../src/common_modes.dart'; final ${lang}=Mode(${commonStr} ${data.slice(
+        `${NOTICE_COMMENT}
+        import '../src/mode.dart';
+        import '../src/common_modes.dart';
+        ${containsCallbacks ? `import 'package:highlighting/languages/common/callbacks.dart';` : ''}
+        final ${lang}=Mode(${commonStr} ${data.slice(
           5
         )};`
           .replace(/"hljs\.(.*?)"/g, "$1")

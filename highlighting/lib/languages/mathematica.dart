@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final mathematica = Mode(
     refs: {},
@@ -42,7 +43,10 @@ final mathematica = Mode(
           relevance: 0,
           begin: "::[a-zA-Z\$][a-zA-Z0-9\$]*"),
       Mode(variants: [
-        Mode(className: "builtin-symbol", begin: "[a-zA-Z\$][a-zA-Z0-9\$]*"),
+        Mode(
+            className: "builtin-symbol",
+            begin: "[a-zA-Z\$][a-zA-Z0-9\$]*",
+            onBegin: null),
         Mode(
             className: "symbol",
             relevance: 0,

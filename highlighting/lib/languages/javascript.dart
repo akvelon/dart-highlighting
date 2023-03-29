@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final javascript = Mode(
     refs: {
@@ -832,6 +833,7 @@ final javascript = Mode(
           begin: "^#![ ]*\\/.*\\bnode\\b.*",
           end: "\$",
           relevance: 5,
+          onBegin: shebangOnBegin,
           label: "shebang",
           binary: "node"),
       Mode(
@@ -1047,6 +1049,7 @@ final javascript = Mode(
               Mode(match: "<[A-Za-z0-9\\\\._:-]+\\s*\\/>"),
               Mode(
                   begin: "<[A-Za-z0-9\\\\._:-]+",
+                  onBegin: null,
                   end: "\\/[A-Za-z0-9\\\\._:-]+>|\\/>")
             ], subLanguage: [
               "xml"

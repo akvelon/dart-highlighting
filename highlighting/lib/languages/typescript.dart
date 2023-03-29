@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final typescript = Mode(
     refs: {
@@ -940,7 +941,12 @@ final typescript = Mode(
     },
     illegal: "#(?![\$_A-z])",
     contains: [
-      Mode(scope: "meta", begin: "^#![ ]*\\/", end: "\$", relevance: 0),
+      Mode(
+          scope: "meta",
+          begin: "^#![ ]*\\/",
+          end: "\$",
+          relevance: 0,
+          onBegin: shebangOnBegin),
       Mode(
           className: "meta", relevance: 10, begin: "^\\s*['\"]use strict['\"]"),
       APOS_STRING_MODE,
@@ -1174,6 +1180,7 @@ final typescript = Mode(
               Mode(match: "<[A-Za-z0-9\\\\._:-]+\\s*\\/>"),
               Mode(
                   begin: "<[A-Za-z0-9\\\\._:-]+",
+                  onBegin: null,
                   end: "\\/[A-Za-z0-9\\\\._:-]+>|\\/>")
             ], subLanguage: [
               "xml"

@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final ruby = Mode(
     refs: {
@@ -586,10 +587,15 @@ final ruby = Mode(
             begin:
                 "<<[-\\x7e]?'?(?=(\\w+)(?=\\W)[^\\n]*\\n(?:[^\\n]*\\n)*?\\s*\\1\\b)",
             contains: [
-              Mode(begin: "(\\w+)", end: "(\\w+)", contains: [
-                BACKSLASH_ESCAPE,
-                Mode(ref: '~contains~1~starts~contains~0~contains~1')
-              ])
+              Mode(
+                  begin: "(\\w+)",
+                  end: "(\\w+)",
+                  contains: [
+                    BACKSLASH_ESCAPE,
+                    Mode(ref: '~contains~1~starts~contains~0~contains~1')
+                  ],
+                  onBegin: endSameAsBeginOnBegin,
+                  onEnd: endSameAsBeginOnEnd)
             ])
       ]),
     },
@@ -660,6 +666,7 @@ final ruby = Mode(
           begin: "^#![ ]*\\/.*\\bruby\\b.*",
           end: "\$",
           relevance: 0,
+          onBegin: shebangOnBegin,
           binary: "ruby"),
       Mode(
           begin: "^\\s*=>",

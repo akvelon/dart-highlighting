@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final scheme = Mode(
     refs: {
@@ -106,7 +107,12 @@ final scheme = Mode(
     aliases: ["scm"],
     illegal: "\\S",
     contains: [
-      Mode(scope: "meta", begin: "^#![ ]*\\/", end: "\$", relevance: 0),
+      Mode(
+          scope: "meta",
+          begin: "^#![ ]*\\/",
+          end: "\$",
+          relevance: 0,
+          onBegin: shebangOnBegin),
       Mode(ref: '~contains~1'),
       QUOTE_STRING_MODE,
       Mode(ref: '~contains~3'),

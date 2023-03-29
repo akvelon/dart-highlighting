@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'package:highlighting/languages/common/callbacks.dart';
 
 final r = Mode(
     refs: {},
@@ -49,12 +50,36 @@ final r = Mode(
       Mode(scope: "string", contains: [
         BACKSLASH_ESCAPE
       ], variants: [
-        Mode(begin: "[rR]\"(-*)\\(", end: "\\)(-*)\""),
-        Mode(begin: "[rR]\"(-*)\\{", end: "\\}(-*)\""),
-        Mode(begin: "[rR]\"(-*)\\[", end: "\\](-*)\""),
-        Mode(begin: "[rR]'(-*)\\(", end: "\\)(-*)'"),
-        Mode(begin: "[rR]'(-*)\\{", end: "\\}(-*)'"),
-        Mode(begin: "[rR]'(-*)\\[", end: "\\](-*)'"),
+        Mode(
+            begin: "[rR]\"(-*)\\(",
+            end: "\\)(-*)\"",
+            onBegin: endSameAsBeginOnBegin,
+            onEnd: endSameAsBeginOnEnd),
+        Mode(
+            begin: "[rR]\"(-*)\\{",
+            end: "\\}(-*)\"",
+            onBegin: endSameAsBeginOnBegin,
+            onEnd: endSameAsBeginOnEnd),
+        Mode(
+            begin: "[rR]\"(-*)\\[",
+            end: "\\](-*)\"",
+            onBegin: endSameAsBeginOnBegin,
+            onEnd: endSameAsBeginOnEnd),
+        Mode(
+            begin: "[rR]'(-*)\\(",
+            end: "\\)(-*)'",
+            onBegin: endSameAsBeginOnBegin,
+            onEnd: endSameAsBeginOnEnd),
+        Mode(
+            begin: "[rR]'(-*)\\{",
+            end: "\\}(-*)'",
+            onBegin: endSameAsBeginOnBegin,
+            onEnd: endSameAsBeginOnEnd),
+        Mode(
+            begin: "[rR]'(-*)\\[",
+            end: "\\](-*)'",
+            onBegin: endSameAsBeginOnBegin,
+            onEnd: endSameAsBeginOnEnd),
         Mode(begin: "\"", end: "\"", relevance: 0),
         Mode(begin: "'", end: "'", relevance: 0)
       ]),
