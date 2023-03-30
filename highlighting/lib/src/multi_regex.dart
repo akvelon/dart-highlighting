@@ -6,9 +6,20 @@ import 'domain_regexp_match.dart';
 import 'extension/reg_exp.dart';
 import 'mode.dart';
 
+class RuleOptions {
+  RuleOptions({
+    this.rule,
+    required this.type,
+  });
+
+  final Mode? rule;
+  final String type;
+  int position = 0;
+}
+
 class MultiRegex {
-  Map<int, dynamic> matchIndexes = {};
-  List<Tuple2<Map<dynamic, dynamic>, RegExp>> regexes = [];
+  Map<int, RuleOptions> matchIndexes = {};
+  List<Tuple2<RuleOptions, RegExp>> regexes = [];
 
   int matchAt = 1;
   int position = 0;
@@ -20,18 +31,14 @@ class MultiRegex {
     this.language,
   });
 
-  void addRule(RegExp re, Map<dynamic, dynamic> opts) {
-    opts[position] = position++;
+  void addRule(RegExp re, RuleOptions opts) {
+    opts.position = position++;
     matchIndexes[matchAt] = opts;
     regexes.add(Tuple2(opts, re));
     matchAt += re.countMatchGroups() + 1;
   }
 
   void compile() {
-    if (regexes.isEmpty) {
-      exec = (string) => null;
-    }
-
     final terminators = regexes.map((el) => el.item2).toList();
     matcherRe = DomainRegex(
       langRe(
@@ -44,7 +51,9 @@ class MultiRegex {
     lastIndex = 0;
   }
 
-  late DomainRegexMatch? Function(String string) exec = (string) {
+  DomainRegexMatch? exec(String string) {
+    if (regexes.isEmpty) return null;
+
     // final input = string.substring(lastIndex);
     matcherRe.lastIndex = lastIndex;
     var match = matcherRe.exec(string);
@@ -59,19 +68,20 @@ class MultiRegex {
       return null;
     }
 
-    final matchData = matchIndexes[index] as Map;
+    final matchData = matchIndexes[index]!;
     // trim off any earlier non-relevant match groups (ie, the other regex
     // match groups that make up the multi-matcher)
     match.splice(0, index);
-    match.matchType = matchData[$type];
-    match.rule = matchData[$rule];
+    match.matchType = matchData.type;
+    match.rule = matchData.rule;
+    match.position = matchData.position;
     return match;
     // return Object.assign(match, matchData);
-  };
+  }
 }
 
 class ResumableMultiRegex {
-  List<Tuple2<Map<dynamic, dynamic>, RegExp>> rules = [];
+  List<Tuple2<RuleOptions, RegExp>> rules = [];
   Map<int, MultiRegex> multiRegexes = {};
   int count = 0;
   int lastIndex = 0;
@@ -104,9 +114,9 @@ class ResumableMultiRegex {
     regexIndex = 0;
   }
 
-  void addRule(RegExp re, Map<dynamic, dynamic> opts) {
+  void addRule(RegExp re, RuleOptions opts) {
     rules.add(Tuple2(opts, re));
-    if (opts[$type] == $begin) {
+    if (opts.type == $begin) {
       count++;
     }
   }
@@ -160,13 +170,7 @@ class ResumableMultiRegex {
     }
 
     if (result != null) {
-      // yescorp: One way of getting the id of the match group. Need to check this.
-      for (var i = 1; i < result.length; i++) {
-        if (result[i] != null) {
-          regexIndex += i + 1;
-          break;
-        }
-      }
+      regexIndex += result.position + 1;
 
       if (regexIndex == count) {
         // wrap-around to considering all matches again

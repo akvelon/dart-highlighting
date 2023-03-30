@@ -5,6 +5,7 @@ class DomainRegexMatch {
   final RegExpMatch match;
   final String input;
   final int startIndex;
+  int position = 0;
   Mode? rule;
   List<String?> _matchGroups = [];
 
