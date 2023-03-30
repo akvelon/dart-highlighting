@@ -35,15 +35,15 @@ ResumableMultiRegex buildModeRegex(
     if (term.beginRe == null) {
       int a = 0;
     }
-    mm.addRule(term.beginRe!, {$rule: term, $type: $begin});
+    mm.addRule(term.beginRe!, RuleOptions(rule: term, type: $begin));
   });
 
   if (mode.terminator_end != null) {
-    mm.addRule(RegExp(mode.terminator_end!), {$type: $end});
+    mm.addRule(RegExp(mode.terminator_end!), RuleOptions(type: $end));
   }
 
   if (mode.illegal != null) {
-    mm.addRule(mode.illegalRe!, {$type: $illegal});
+    mm.addRule(mode.illegalRe!, RuleOptions(type: $illegal));
   }
 
   return mm;
