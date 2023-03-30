@@ -161,7 +161,7 @@ class ResumableMultiRegex {
 
     if (result != null) {
       // yescorp: One way of getting the id of the match group. Need to check this.
-      for (var i = 1; i < result.length; i++) {
+      for (var i = 0; i < result.length; i++) {
         if (result[i] != null) {
           regexIndex += i + 1;
           break;
