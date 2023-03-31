@@ -21,45 +21,44 @@ export function getLodashGetKey(str: String): PropertyPath {
 }
 
 /**
- * Recursively takes all of the references from [nonCircularObject] and adds them into [commonSet]
- * 
- * When first called, circularObj needs to be the same as nonCircularObj
+ * Recursively takes all of the references from [rootObject] and adds them into [commonSet]
 */
-export function expandRefs(circularObj: Object, commonSet = new Set<String>(), nonCircularObject: Object | undefined,): void {
-  if (nonCircularObject == undefined) {
-    nonCircularObject = circularObj;
-  }
+export function expandRefs(rootObject: Object, commonSet = new Set<String>()): void {
+  expandRefsInternal(rootObject, commonSet, rootObject);
+}
 
-  if (typeof nonCircularObject === "string") {
-    if (commonSet.has(nonCircularObject)) {
+function expandRefsInternal(rootObject: Object, commonSet = new Set<String>(), currentObject: Object): void {
+
+  if (typeof currentObject === "string") {
+    if (commonSet.has(currentObject)) {
       return;
     }
-    if (nonCircularObject.startsWith("~")) {
-      commonSet.add(nonCircularObject);
-      let lodashGetKey: PropertyPath = getLodashGetKey(nonCircularObject);
+    if (currentObject.startsWith("~")) {
+      commonSet.add(currentObject);
+      let lodashGetKey: PropertyPath = getLodashGetKey(currentObject);
 
-      expandRefs(circularObj, commonSet, _.get(circularObj, lodashGetKey));
+      expandRefsInternal(rootObject, commonSet, _.get(rootObject, lodashGetKey));
     }
   }
 
-  if (nonCircularObject == null) {
+  if (currentObject == null) {
     return;
   }
 
-  Object.entries(nonCircularObject).forEach(([k, v]) => {
+  Object.entries(currentObject).forEach(([k, v]) => {
     switch (k) {
       case "starts":
-        expandRefs(circularObj, commonSet, v);
+        expandRefsInternal(rootObject, commonSet, v);
         break;
       case "contains":
       case "variants":
         if (v == null) {
         } else if (Array.isArray(v)) {
           v.forEach(m => {
-            expandRefs(circularObj, commonSet, m);
+            expandRefsInternal(rootObject, commonSet, m);
           });
         } else if (typeof v === "string") {
-          expandRefs(circularObj, commonSet, v);
+          expandRefsInternal(rootObject, commonSet, v);
           return;
         } else {
           throw "should not be here";
