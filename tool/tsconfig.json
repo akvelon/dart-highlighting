@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "es2020",
+    "moduleResolution": "nodenext",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "js",
+    "sourceMap": true,
+    "strict": true,
+    "preserveConstEnums": true,
+    "target": "ES2021"
+  },
+
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

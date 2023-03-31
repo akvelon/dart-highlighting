@@ -7,24 +7,11 @@ import CircularJSON from "circular-json";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
+import { callbackDictionary } from "./callback_dictionary.js";
+
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 
-let callbackDictionary = new Map([
-  [
-    hljs.END_SAME_AS_BEGIN({})['on:begin'].toString(),
-    "endSameAsBeginOnBegin"
-  ],
-  [
-    hljs.END_SAME_AS_BEGIN({})['on:end'].toString(),
-    "endSameAsBeginOnEnd"
-  ],
-  [
-    hljs.SHEBANG()['on:begin'].toString(),
-    "shebangOnBegin",
-  ],
-]);
-
-const dir = "node_modules/highlight.js/lib/languages";
+const dir = "../node_modules/highlight.js/lib/languages";
 hljs.registerLanguage("cpp", require(path.resolve(dir, "cpp"))); // exports
 
 const modeEntries = Object.entries(hljs).filter(
@@ -170,7 +157,7 @@ export function commonModes() {
     common += `final ${k}=${generateMode(nonCircularObj, false)};`;
   });
   fs.writeFileSync(
-    `../highlighting/lib/src/common_modes.dart`,
+    `../../highlighting/lib/src/common_modes.dart`,
     common.replace(/\$/g, "\\$")
   );
 }
@@ -257,7 +244,7 @@ export function allModes() {
       const data = generateMode(nonCircularObj, true);
 
       fs.writeFileSync(
-        `../highlighting/lib/languages/${originalLang}.dart`,
+        `../../highlighting/lib/languages/${originalLang}.dart`,
         `${NOTICE_COMMENT}
         import '../src/mode.dart';
         import '../src/common_modes.dart';
@@ -286,7 +273,7 @@ export function allModes() {
   all += community + builtin;
   all += "final allLanguages = {...builtinLanguages,...communityLanguages};";
   fs.writeFileSync(
-    `../highlighting/lib/languages/all.dart`,
+    `../../highlighting/lib/languages/all.dart`,
     all.replace(/\$/g, "\\$")
   );
 }
