@@ -34,7 +34,7 @@ const modeEntries = Object.entries(hljs).filter(
 );
 
 
-function expandRefs(circularObj, nonCircularObject, matchCommonKey = true, commonSet = new Set()) {
+function expandRefs(circularObj, nonCircularObject, commonSet = new Set()) {
   if (typeof nonCircularObject === "string") {
     if (commonSet.has(nonCircularObject)) {
       return;
@@ -51,7 +51,7 @@ function expandRefs(circularObj, nonCircularObject, matchCommonKey = true, commo
       }
       lodashGetKey = lodashGetKey.slice(1);
 
-      expandRefs(circularObj, _.get(circularObj, lodashGetKey), matchCommonKey, commonSet);
+      expandRefs(circularObj, _.get(circularObj, lodashGetKey), commonSet);
     }
   }
 
@@ -59,51 +59,26 @@ function expandRefs(circularObj, nonCircularObject, matchCommonKey = true, commo
     return;
   }
 
-  let code = "Mode(";
   Object.entries(nonCircularObject).forEach(([k, v], i, arr) => {
     if (k === "exports") return; // CPP
 
-    if (v instanceof RegExp) v = v.source;
-    if (k === "end" && typeof v === "boolean") v = v.toString();
-    if (k === "subLanguage" && typeof v === "string") {
-      v = [v];
-    }
-
     switch (k) {
-      case "on:begin":
-        if (callbackDictionary.has(v.toString())) {
-          code += `onBegin: ${callbackDictionary.get(v.toString())}`;
-          break;
-        }
-        code += `onBegin: (match, resp) => throw Exception(r'''Callback not ported: ${v.toString().replace(/'/g, "r'")}''')`;
-        break;
-      case "on:end":
-        if (callbackDictionary.has(v.toString())) {
-          code += `onEnd: ${callbackDictionary.get(v.toString())}`;
-          break;
-        }
-        code += `onEnd: (match, resp) => throw Exception(r'''Callback not ported: ${v.toString().replace(/'/g, "r'")}''')`;
-        break;
-
       case "starts":
-        expandRefs(circularObj, v, true, commonSet);
+        expandRefs(circularObj, v, commonSet);
         break;
       case "contains":
       case "variants":
         if (v == null) {
         } else if (Array.isArray(v)) {
           v.forEach(m => {
-            expandRefs(circularObj, m, true, commonSet);
+            expandRefs(circularObj, m, commonSet);
           });
         } else if (typeof v === "string") {
-          expandRefs(circularObj, v, true, commonSet);
-          return `Mode(ref: '${v}')`;
+          expandRefs(circularObj, v, commonSet);
+          return;
         } else {
           throw "should not be here";
         }
-        break;
-      default:
-        break;
     }
   });
   return;
@@ -266,7 +241,7 @@ export function allModes() {
       // console.log(str);
       const commonSet = new Set();
 
-      expandRefs(nonCircularObj, nonCircularObj, true, commonSet);
+      expandRefs(nonCircularObj, nonCircularObj, commonSet);
 
       generateMode(nonCircularObj, true, commonSet);
 
