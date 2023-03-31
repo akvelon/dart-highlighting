@@ -5,7 +5,6 @@ import hljs from "highlight.js"; // TODO: Do not register languages
 import CircularJSON from "circular-json";
 
 import { createRequire } from "module";
-import { match } from "assert";
 const require = createRequire(import.meta.url);
 
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
@@ -81,7 +80,6 @@ function expandRefs(circularObj, nonCircularObject, commonSet = new Set()) {
         }
     }
   });
-  return;
 }
 
 function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
