@@ -3,6 +3,7 @@ import path from "path";
 import _ from "lodash";
 import hljs from "highlight.js"; // TODO: Do not register languages
 import CircularJSON from "circular-json";
+import { getLodashGetKey, expandRefs } from './porting.js';
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -18,50 +19,6 @@ const modeEntries = Object.entries(hljs).filter(
   ([k]) =>
     /^[A-Z]/.test(k) && !k.endsWith("_RE") && typeof hljs[k] !== "function"
 );
-
-/**
- * Recursively takes all of the references from [nonCircularObject] and adds them into [commonSet]
- * 
- * When first called, circularObj needs to be the same as nonCircularObj
-*/
-function expandRefs(circularObj, nonCircularObject, commonSet = new Set()) {
-  if (typeof nonCircularObject === "string") {
-    if (commonSet.has(nonCircularObject)) {
-      return;
-    }
-    if (nonCircularObject.startsWith("~")) {
-      commonSet.add(nonCircularObject);
-      let lodashGetKey = getLodashGetKey(nonCircularObject);
-
-      expandRefs(circularObj, _.get(circularObj, lodashGetKey), commonSet);
-    }
-  }
-
-  if (nonCircularObject == null) {
-    return;
-  }
-
-  Object.entries(nonCircularObject).forEach(([k, v], i, arr) => {
-    switch (k) {
-      case "starts":
-        expandRefs(circularObj, v, commonSet);
-        break;
-      case "contains":
-      case "variants":
-        if (v == null) {
-        } else if (Array.isArray(v)) {
-          v.forEach(m => {
-            expandRefs(circularObj, m, commonSet);
-          });
-        } else if (typeof v === "string") {
-          expandRefs(circularObj, v, commonSet);
-          return;
-        } else {
-          throw "should not be here";
-        }
-    }
-  });
-}
 
 function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
   if (typeof obj === "string") {
@@ -220,7 +177,7 @@ export function allModes() {
       // console.log(str);
       const commonSet = new Set();
 
-      expandRefs(nonCircularObj, nonCircularObj, commonSet);
+      expandRefs(nonCircularObj, commonSet);
 
       generateMode(nonCircularObj, true, commonSet);
 
@@ -276,20 +233,6 @@ export function allModes() {
     `../../highlighting/lib/languages/all.dart`,
     all.replace(/\$/g, "\\$")
   );
-}
-
-function getLodashGetKey(str) {
-  let lodashGetKey = "";
-  for (let item of str.split("~").slice(1)) {
-    if (isNaN(parseInt(item, 10))) {
-      lodashGetKey += "." + item;
-    } else {
-      lodashGetKey += "[" + item + "]";
-    }
-  }
-
-  lodashGetKey = lodashGetKey.slice(1);
-  return lodashGetKey;
 }
 
 allModes();
