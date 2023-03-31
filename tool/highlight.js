@@ -5,6 +5,7 @@ import hljs from "highlight.js"; // TODO: Do not register languages
 import CircularJSON from "circular-json";
 
 import { createRequire } from "module";
+import { match } from "assert";
 const require = createRequire(import.meta.url);
 
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
@@ -32,8 +33,86 @@ const modeEntries = Object.entries(hljs).filter(
     /^[A-Z]/.test(k) && !k.endsWith("_RE") && typeof hljs[k] !== "function"
 );
 
+
+function expandRefs(circularObj, nonCircularObject, matchCommonKey = true, commonSet = new Set()) {
+  if (typeof nonCircularObject === "string") {
+    if (commonSet.has(nonCircularObject)) {
+      return;
+    }
+    console.log(nonCircularObject);
+    if (nonCircularObject.startsWith("~")) {
+      commonSet.add(nonCircularObject);
+      let lodashGetKey = "";
+      for (let item of nonCircularObject.split("~").slice(1)) {
+        if (isNaN(parseInt(item, 10))) {
+          lodashGetKey += "." + item;
+        } else {
+          lodashGetKey += "[" + item + "]";
+        }
+      }
+      lodashGetKey = lodashGetKey.slice(1);
+
+      expandRefs(circularObj, _.get(circularObj, lodashGetKey), matchCommonKey, commonSet);
+    }
+  }
+
+  if (nonCircularObject == null) {
+    return;
+  }
+
+  let code = "Mode(";
+  Object.entries(nonCircularObject).forEach(([k, v], i, arr) => {
+    if (k === "exports") return; // CPP
+
+    if (v instanceof RegExp) v = v.source;
+    if (k === "end" && typeof v === "boolean") v = v.toString();
+    if (k === "subLanguage" && typeof v === "string") {
+      v = [v];
+    }
+
+    switch (k) {
+      case "on:begin":
+        if (callbackDictionary.has(v.toString())) {
+          code += `onBegin: ${callbackDictionary.get(v.toString())}`;
+          break;
+        }
+        code += `onBegin: (match, resp) => throw Exception(r'''Callback not ported: ${v.toString().replace(/'/g, "r'")}''')`;
+        break;
+      case "on:end":
+        if (callbackDictionary.has(v.toString())) {
+          code += `onEnd: ${callbackDictionary.get(v.toString())}`;
+          break;
+        }
+        code += `onEnd: (match, resp) => throw Exception(r'''Callback not ported: ${v.toString().replace(/'/g, "r'")}''')`;
+        break;
+
+      case "starts":
+        expandRefs(circularObj, v, true, commonSet);
+        break;
+      case "contains":
+      case "variants":
+        if (v == null) {
+        } else if (Array.isArray(v)) {
+          v.forEach(m => {
+            expandRefs(circularObj, m, true, commonSet);
+          });
+        } else if (typeof v === "string") {
+          expandRefs(circularObj, v, true, commonSet);
+          return `Mode(ref: '${v}')`;
+        } else {
+          throw "should not be here";
+        }
+        break;
+      default:
+        break;
+    }
+  });
+  return;
+}
+
 function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
   if (typeof obj === "string") {
+    console.log(obj);
     if (matchCommonKey) {
       for (const entry of modeEntries) {
         if (entry[0] === obj) {
@@ -188,7 +267,24 @@ export function allModes() {
       const nonCircularObj = JSON.parse(str);
       // console.log(str);
       const commonSet = new Set();
+
+      expandRefs(nonCircularObj, nonCircularObj, true, commonSet);
+
+      console.log(1);
+
+      for (item of [...commonSet]) {
+        console.log(item);
+      }
+
       generateMode(nonCircularObj, true, commonSet);
+
+      console.log(2);
+
+      for (item of [...commonSet]) {
+        console.log(item);
+      }
+
+      console.log(3);
 
       var commonStr = "refs: {";
       [...commonSet]
