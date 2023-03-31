@@ -40,15 +40,7 @@ function expandRefs(circularObj, nonCircularObject, commonSet = new Set()) {
     }
     if (nonCircularObject.startsWith("~")) {
       commonSet.add(nonCircularObject);
-      let lodashGetKey = "";
-      for (let item of nonCircularObject.split("~").slice(1)) {
-        if (isNaN(parseInt(item, 10))) {
-          lodashGetKey += "." + item;
-        } else {
-          lodashGetKey += "[" + item + "]";
-        }
-      }
-      lodashGetKey = lodashGetKey.slice(1);
+      let lodashGetKey = getLodashGetKey(nonCircularObject);
 
       expandRefs(circularObj, _.get(circularObj, lodashGetKey), commonSet);
     }
@@ -250,16 +242,7 @@ export function allModes() {
           // console.log(commonKey);
 
           // ~contains~0 -> lang.contains[0]
-          let lodashGetKey = "";
-          for (let item of commonKey.split("~").slice(1)) {
-            if (isNaN(parseInt(item, 10))) {
-              lodashGetKey += "." + item;
-            } else {
-              lodashGetKey += "[" + item + "]";
-            }
-          }
-
-          lodashGetKey = lodashGetKey.slice(1);
+          let lodashGetKey = getLodashGetKey(commonKey);
 
           const data = generateMode(_.get(nonCircularObj, lodashGetKey), true);
           commonStr += `'${commonKey}': ${data},`;
@@ -304,6 +287,20 @@ export function allModes() {
     `../highlighting/lib/languages/all.dart`,
     all.replace(/\$/g, "\\$")
   );
+}
+
+function getLodashGetKey(str) {
+  let lodashGetKey = "";
+  for (let item of str.split("~").slice(1)) {
+    if (isNaN(parseInt(item, 10))) {
+      lodashGetKey += "." + item;
+    } else {
+      lodashGetKey += "[" + item + "]";
+    }
+  }
+
+  lodashGetKey = lodashGetKey.slice(1);
+  return lodashGetKey;
 }
 
 allModes();
