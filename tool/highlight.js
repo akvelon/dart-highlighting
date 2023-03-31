@@ -51,8 +51,6 @@ function expandRefs(circularObj, nonCircularObject, commonSet = new Set()) {
   }
 
   Object.entries(nonCircularObject).forEach(([k, v], i, arr) => {
-    if (k === "exports") return; // CPP
-
     switch (k) {
       case "starts":
         expandRefs(circularObj, v, commonSet);
