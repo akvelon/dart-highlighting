@@ -3,6 +3,23 @@ tasks.register("port") {
 }
 
 tasks.register("portLanguages") {
+    dependsOn("npxTsc")
+
+    doLast {
+        exec {
+            executable("node")
+            args("highlight.js")
+            workingDir("tool/js")
+        }
+
+        exec {
+            executable("dart")
+            args("format", "highlighting/lib/languages")
+        }
+    }
+}
+
+tasks.register("npxTsc") {
     doLast {
         exec {
             executable("npm")
@@ -11,14 +28,9 @@ tasks.register("portLanguages") {
         }
 
         exec {
-            executable("node")
-            args("highlight.js")
+            executable("npx")
+            args("tsc")
             workingDir("tool")
-        }
-
-        exec {
-            executable("dart")
-            args("format", "highlighting/lib/languages")
         }
     }
 }
