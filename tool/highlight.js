@@ -32,7 +32,11 @@ const modeEntries = Object.entries(hljs).filter(
     /^[A-Z]/.test(k) && !k.endsWith("_RE") && typeof hljs[k] !== "function"
 );
 
-
+/**
+ * Recursively takes all of the references from [nonCircularObject] and adds them into [commonSet]
+ * 
+ * When first called, circularObj needs to be the same as nonCircularObj
+*/
 function expandRefs(circularObj, nonCircularObject, commonSet = new Set()) {
   if (typeof nonCircularObject === "string") {
     if (commonSet.has(nonCircularObject)) {
