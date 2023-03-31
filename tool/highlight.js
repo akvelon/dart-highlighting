@@ -39,7 +39,6 @@ function expandRefs(circularObj, nonCircularObject, matchCommonKey = true, commo
     if (commonSet.has(nonCircularObject)) {
       return;
     }
-    console.log(nonCircularObject);
     if (nonCircularObject.startsWith("~")) {
       commonSet.add(nonCircularObject);
       let lodashGetKey = "";
@@ -112,7 +111,6 @@ function expandRefs(circularObj, nonCircularObject, matchCommonKey = true, commo
 
 function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
   if (typeof obj === "string") {
-    console.log(obj);
     if (matchCommonKey) {
       for (const entry of modeEntries) {
         if (entry[0] === obj) {
@@ -270,21 +268,7 @@ export function allModes() {
 
       expandRefs(nonCircularObj, nonCircularObj, true, commonSet);
 
-      console.log(1);
-
-      for (item of [...commonSet]) {
-        console.log(item);
-      }
-
       generateMode(nonCircularObj, true, commonSet);
-
-      console.log(2);
-
-      for (item of [...commonSet]) {
-        console.log(item);
-      }
-
-      console.log(3);
 
       var commonStr = "refs: {";
       [...commonSet]
