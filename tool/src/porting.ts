@@ -61,7 +61,7 @@ function expandRefsInternal(rootObject: Object, commonSet: Set<String>, currentO
       case "contains":
       case "variants":
         if (v === null) {
-          continue;
+          break;
         }
 
         if (Array.isArray(v)) {
@@ -69,12 +69,12 @@ function expandRefsInternal(rootObject: Object, commonSet: Set<String>, currentO
             expandRefsInternal(rootObject, commonSet, m);
           }
 
-          continue;
+          break;
         }
 
         if (typeof v === "string") {
           expandRefsInternal(rootObject, commonSet, v);
-          continue;
+          break;
         }
 
         throw "should not be here";
