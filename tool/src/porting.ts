@@ -21,13 +21,16 @@ export function getLodashGetKey(str: String): PropertyPath {
 }
 
 /**
- * Recursively takes all of the references from [rootObject] and adds them into [commonSet]
+ * Recursively takes all of the references from [rootObject] and return them in a set.
 */
-export function expandRefs(rootObject: Object, commonSet = new Set<String>()): void {
+export function expandRefs(rootObject: Object): Set<String> {
+  let commonSet = new Set<String>();
   expandRefsInternal(rootObject, commonSet, rootObject);
+
+  return commonSet;
 }
 
-function expandRefsInternal(rootObject: Object, commonSet = new Set<String>(), currentObject: Object): void {
+function expandRefsInternal(rootObject: Object, commonSet: Set<String>, currentObject: Object): void {
 
   if (typeof currentObject === "string") {
     if (commonSet.has(currentObject)) {
@@ -41,28 +44,40 @@ function expandRefsInternal(rootObject: Object, commonSet = new Set<String>(), c
     }
   }
 
-  if (currentObject == null) {
+  if (currentObject === null) {
     return;
   }
 
-  Object.entries(currentObject).forEach(([k, v]) => {
+  let entries = Object.entries(currentObject);
+
+  for (const item of entries) {
+    let [k, v] = item;
+
     switch (k) {
       case "starts":
         expandRefsInternal(rootObject, commonSet, v);
         break;
+
       case "contains":
       case "variants":
-        if (v == null) {
-        } else if (Array.isArray(v)) {
-          v.forEach(m => {
-            expandRefsInternal(rootObject, commonSet, m);
-          });
-        } else if (typeof v === "string") {
-          expandRefsInternal(rootObject, commonSet, v);
-          return;
-        } else {
-          throw "should not be here";
+        if (v === null) {
+          continue;
         }
+
+        if (Array.isArray(v)) {
+          for (const m of v) {
+            expandRefsInternal(rootObject, commonSet, m);
+          }
+
+          continue;
+        }
+
+        if (typeof v === "string") {
+          expandRefsInternal(rootObject, commonSet, v);
+          continue;
+        }
+
+        throw "should not be here";
     }
-  });
+  }
 }

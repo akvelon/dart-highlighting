@@ -1,14 +1,14 @@
-import fs from "fs";
-import path from "path";
-import _ from "lodash";
-import hljs from "highlight.js"; // TODO: Do not register languages
 import CircularJSON from "circular-json";
-import { getLodashGetKey, expandRefs } from './porting.js';
+import fs from "fs";
+import hljs from "highlight.js"; // TODO: Do not register languages
+import _ from "lodash";
+import path from "path";
+
+import { callbackDictionary } from "./callback_dictionary.js";
+import { expandRefs, getLodashGetKey } from './porting.js';
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-
-import { callbackDictionary } from "./callback_dictionary.js";
 
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 
@@ -175,9 +175,7 @@ export function allModes() {
       });
       const nonCircularObj = JSON.parse(str);
       // console.log(str);
-      const commonSet = new Set();
-
-      expandRefs(nonCircularObj, commonSet);
+      const commonSet = expandRefs(nonCircularObj);
 
       generateMode(nonCircularObj, true, commonSet);
 
