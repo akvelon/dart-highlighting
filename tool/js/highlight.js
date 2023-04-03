@@ -107,11 +107,42 @@ function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
  */
 export function commonModes() {
   let common = `${NOTICE_COMMENT}import 'mode.dart';`;
-  modeEntries.forEach(([k, v]) => {
-    const str = CircularJSON.stringify(v);
+  modeEntries.forEach(([key, value]) => {
+    const str = CircularJSON.stringify(value, (k, v) => {
+      // console.log(v);
+      // RegExp -> string
+      if (v instanceof RegExp) {
+        return v.source;
+      }
+
+      // hljs common mode -> string
+      for (let entry of modeEntries) {
+        if (entry[1] === v) {
+          if (entry[0] === key) {
+            return v;
+          }
+
+          return entry[0];
+        }
+      }
+
+      if (k === "keywords" || Array.isArray(v)) {
+        return _.clone(v);
+      }
+
+      if (v instanceof Function) {
+        return v.toString();
+      }
+
+      return v;
+    });
     const nonCircularObj = JSON.parse(str);
 
-    common += `final ${k}=${generateMode(nonCircularObj, false)};`;
+    if (key === 'HighlightJS') {
+      return;
+    }
+
+    common += `final ${key}=${generateMode(nonCircularObj, true)};`;
   });
   fs.writeFileSync(
     `../../highlighting/lib/src/common_modes.dart`,
@@ -233,4 +264,5 @@ export function allModes() {
   );
 }
 
+commonModes();
 allModes();
