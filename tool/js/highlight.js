@@ -1,13 +1,14 @@
-import fs from "fs";
-import path from "path";
-import _ from "lodash";
-import hljs from "highlight.js"; // TODO: Do not register languages
 import CircularJSON from "circular-json";
+import fs from "fs";
+import hljs from "highlight.js"; // TODO: Do not register languages
+import _ from "lodash";
+import path from "path";
+
+import { callbackDictionary } from "./callback_dictionary.js";
+import { expandRefs, getLodashGetKey } from './porting.js';
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-
-import { callbackDictionary } from "./callback_dictionary.js";
 
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 
@@ -174,7 +175,8 @@ export function allModes() {
       });
       const nonCircularObj = JSON.parse(str);
       // console.log(str);
-      const commonSet = new Set();
+      const commonSet = expandRefs(nonCircularObj);
+
       generateMode(nonCircularObj, true, commonSet);
 
       var commonStr = "refs: {";
@@ -184,16 +186,7 @@ export function allModes() {
           // console.log(commonKey);
 
           // ~contains~0 -> lang.contains[0]
-          let lodashGetKey = "";
-          for (let item of commonKey.split("~").slice(1)) {
-            if (isNaN(parseInt(item, 10))) {
-              lodashGetKey += "." + item;
-            } else {
-              lodashGetKey += "[" + item + "]";
-            }
-          }
-
-          lodashGetKey = lodashGetKey.slice(1);
+          let lodashGetKey = getLodashGetKey(commonKey);
 
           const data = generateMode(_.get(nonCircularObj, lodashGetKey), true);
           commonStr += `'${commonKey}': ${data},`;
