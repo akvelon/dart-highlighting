@@ -16,6 +16,11 @@ tasks.register("portLanguages") {
             executable("dart")
             args("format", "highlighting/lib/languages")
         }
+
+        exec {
+            executable("dart")
+            args("format", "highlighting/lib/src/common_modes.dart")
+        }
     }
 }
 
