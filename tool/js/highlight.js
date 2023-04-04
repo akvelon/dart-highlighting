@@ -17,7 +17,7 @@ hljs.registerLanguage("cpp", require(path.resolve(dir, "cpp"))); // exports
 
 const modeEntries = Object.entries(hljs).filter(
   ([k]) =>
-    /^[A-Z]/.test(k) && !k.endsWith("_RE") && typeof hljs[k] !== "function"
+    /^[A-Z]/.test(k) && !k.endsWith("_RE") && typeof hljs[k] !== "function" && k !== "HighlightJS"
 );
 
 function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
@@ -107,12 +107,12 @@ function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
  */
 export function commonModes() {
   let common = `${NOTICE_COMMENT}import 'mode.dart';`;
-  modeEntries.forEach(([k, v]) => {
-    const str = CircularJSON.stringify(v);
-    const nonCircularObj = JSON.parse(str);
+  modeEntries.forEach(([key, value]) => {
+    let [nonCircularObj, containsCallbacks] = getNonCircularObject(value, key);
 
-    common += `final ${k}=${generateMode(nonCircularObj, false)};`;
+    common += `final ${key}=${generateMode(nonCircularObj, true)};`;
   });
+
   fs.writeFileSync(
     `../../highlighting/lib/src/common_modes.dart`,
     common.replace(/\$/g, "\\$")
@@ -144,37 +144,9 @@ export function allModes() {
   items.forEach(item => {
     let originalLang = item.name;
     let lang = normalizeLanguageName(originalLang);
-    let containsCallbacks = false;
 
     try {
-      // Handle circular object
-      const str = CircularJSON.stringify(item.factory(hljs), (k, v) => {
-        // console.log(v);
-        // RegExp -> string
-        if (v instanceof RegExp) {
-          return v.source;
-        }
-
-        // hljs common mode -> string
-        for (let entry of modeEntries) {
-          if (entry[1] === v) {
-            return entry[0];
-          }
-        }
-
-        if (k === "keywords" || Array.isArray(v)) {
-          return _.clone(v);
-        }
-
-        if (v instanceof Function) {
-          containsCallbacks = true;
-          return v.toString();
-        }
-
-        return v;
-      });
-      const nonCircularObj = JSON.parse(str);
-      // console.log(str);
+      const [nonCircularObj, containsCallbacks] = getNonCircularObject(item.factory(hljs));
       const commonSet = expandRefs(nonCircularObj);
 
       generateMode(nonCircularObj, true, commonSet);
@@ -233,4 +205,40 @@ export function allModes() {
   );
 }
 
+function getNonCircularObject(circularObject, name = "") {
+  let containsCallbacks = false;
+  const str = CircularJSON.stringify(circularObject, (k, v) => {
+    // console.log(v);
+    // RegExp -> string
+    if (v instanceof RegExp) {
+      return v.source;
+    }
+
+    // hljs common mode -> string
+    for (let entry of modeEntries) {
+      if (entry[1] === v) {
+        if (entry[0] === name) {
+          return v;
+        }
+
+        return entry[0];
+      }
+    }
+
+    if (k === "keywords" || Array.isArray(v)) {
+      return _.clone(v);
+    }
+
+    if (v instanceof Function) {
+      containsCallbacks = true;
+      return v.toString();
+    }
+
+    return v;
+  });
+
+  return [JSON.parse(str), containsCallbacks];
+}
+
+commonModes();
 allModes();
