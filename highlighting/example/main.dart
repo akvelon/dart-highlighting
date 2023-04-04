@@ -1,15 +1,15 @@
-import 'package:highlighting/highlighting_core.dart' show highlight;
+import 'package:highlighting/highlighting.dart';
 import 'package:highlighting/languages/dart.dart';
 
 void main() {
-  var source = '''main() {
-  print("Hello, World!");
+  final source = '''main() {
+  print('Highlighting by Akvelon.');
 }
 ''';
 
   highlight.registerLanguage('dart', dart);
 
-  var result = highlight.parse(source, language: 'dart');
-  var html = result.toHtml();
+  final highlighted = highlight.parse(source, language: 'dart');
+  final html = highlighted.toHtml();
   print(html); // HTML string
 }

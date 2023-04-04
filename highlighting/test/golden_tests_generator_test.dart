@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:highlighting/highlighting_core.dart';
+import 'package:highlighting/highlighting.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
