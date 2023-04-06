@@ -1,9 +1,10 @@
+import { readFile, writeFileSync } from "fs";
+
 export async function portMathematicaSymbolsSet(): Promise<any> {
     const notice_comment = "// GENERATED CODE - DO NOT MODIFY BY HAND\n";
-    const fs = await import('fs');
     const fileName = '../node_modules/highlight.js/lib/languages/mathematica.js';
 
-    fs.readFile(fileName, 'utf8', (err: any, data: any) => {
+    readFile(fileName, 'utf8', (err: any, data: any) => {
         if (err) {
             throw Error("mathematica.js doesn't exist");
         }
@@ -17,6 +18,6 @@ export async function portMathematicaSymbolsSet(): Promise<any> {
                 .replace(/\]/, '}')
                 .replace(/\s"/g, 'r"')
             + ";";
-        fs.writeFileSync("../../highlighting/lib/languages/common/mathematica_symbols.dart", output);
+        writeFileSync("../../highlighting/lib/languages/common/mathematica_symbols.dart", output);
     });
 }
