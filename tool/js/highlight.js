@@ -6,6 +6,7 @@ import path from "path";
 
 import { callbackDictionary } from "./callback_dictionary.js";
 import { expandRefs, getLodashGetKey } from './porting.js';
+import { portMathematicaSymbolsSet } from './specific_ports.js';
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -240,5 +241,6 @@ function getNonCircularObject(circularObject, name = "") {
   return [JSON.parse(str), containsCallbacks];
 }
 
+portMathematicaSymbolsSet();
 commonModes();
 allModes();
