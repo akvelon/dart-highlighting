@@ -40,6 +40,12 @@ export const callbackDictionary = new Map<string, string>([
 function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
   let result: [string, string][] = [];
 
+  const addResult = (k: string, v: string) => {
+    if (!commonCallbacks.has(v.toString())) {
+      result.push([v.toString(), k]);
+    }
+  };
+
   let objects = <StringObject<any>>[];
   let languageName: string = language.name;
   let currentName: string[] = ['k'];
@@ -47,8 +53,7 @@ function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
     currentName.push(languageName.toLowerCase());
   }
 
-
-  function iterate(language: StringObject<any>, callback: { (k: string, v: any): void }) {
+  function iterate(language: StringObject<any>) {
     if (objects.includes(language)) {
       return;
     }
@@ -68,23 +73,25 @@ function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
       switch (k) {
         case "on:begin":
           currentName.push('onBegin');
-          callback(currentName.reduce((prev, current) => {
+          const onBeginCallback = currentName.reduce((prev, current) => {
             return prev + "_" + current;
-          }), v);
+          });
+          addResult(onBeginCallback, v);
           currentName.pop();
           break;
 
         case "on:end":
           currentName.push('onEnd');
-          callback("_" + currentName.reduce((prev, current) => {
+          const onEndCallback = currentName.reduce((prev, current) => {
             return prev + "_" + current;
-          }), v);
+          });
+          addResult(onEndCallback, v);
           currentName.pop();
           break;
 
         case "starts":
           currentName.push(k);
-          iterate(v, callback);
+          iterate(v);
           currentName.pop();
           break;
 
@@ -101,7 +108,7 @@ function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
             for (const i in v) {
               currentName.push(index.toString());
               let resultLength = result.length;
-              iterate(v[i], callback);
+              iterate(v[i]);
               if (result.length != resultLength) {
                 index++;
               }
@@ -117,11 +124,7 @@ function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
     }
   }
 
-  iterate(language, (k, v) => {
-    if (!commonCallbacks.has(v.toString())) {
-      result.push([v.toString(), k]);
-    }
-  });
+  iterate(language);
 
   return result;
 }
