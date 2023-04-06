@@ -1035,7 +1035,7 @@ final javascript = Mode(
               Mode(
                   begin: "<[A-Za-z0-9\\\\._:-]+",
                   onBegin:
-                      k_typescript_contains_0_contains_0_variants_0_onBegin,
+                      language_typescript_contains_0_contains_0_variants_0_onBegin,
                   end: "\\/[A-Za-z0-9\\\\._:-]+>|\\/>")
             ], subLanguage: [
               "xml"

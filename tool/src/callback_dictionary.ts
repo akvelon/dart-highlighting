@@ -2,7 +2,6 @@ import hljs from "highlight.js";
 import mathematica from "highlight.js/lib/languages/mathematica";
 import javascript from "highlight.js/lib/languages/javascript";
 import typescript from "highlight.js/lib/languages/typescript";
-import php from "highlight.js/lib/languages/php";
 import ruby from "highlight.js/lib/languages/ruby";
 
 import { expand, StringObject } from "./util.js"
@@ -31,65 +30,59 @@ export const callbackDictionary = new Map<string, string>([
   ...expand([
     javascript(hljs),
     mathematica(hljs),
-    php(hljs),
     ruby(hljs),
     typescript(hljs),
   ].map(language => getLanguageCallbacks(language))),
 ]);
 
 function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
-  let result: [string, string][] = [];
+  const result: [string, string][] = [];
 
-  const addResult = (k: string, v: string) => {
+  function addResult(k: string, v: string): void {
     if (!commonCallbacks.has(v.toString())) {
       result.push([v.toString(), k]);
     }
   };
 
-  let objects = <StringObject<any>>[];
-  let languageName: string = language.name;
-  let currentName: string[] = ['k'];
-  if (languageName !== undefined) {
-    currentName.push(languageName.toLowerCase());
+  const visitedModes = new Set<StringObject<any>>();
+  const languageName: string = language.name;
+  const currentName: string[] = ['language'];
+  if (languageName === undefined) {
+    throw Error(`The language doesn't have a name: ${language}`);
   }
 
-  function iterate(language: StringObject<any>) {
-    if (objects.includes(language)) {
+  currentName.push(languageName.toLowerCase());
+
+  function iterate(language: StringObject<any>): void {
+    if (visitedModes.has(language)) {
       return;
     }
-    else {
-      objects.push(language);
-    }
+    visitedModes.add(language);
 
-    if (language === null) {
-      return;
-    }
-
-    let entries = Object.entries(language);
+    const entries = Object.entries(language);
 
     for (const item of entries) {
-      let [k, v] = item;
+      const [k, v] = item;
 
       switch (k) {
         case "on:begin":
-          currentName.push('onBegin');
-          const onBeginCallback = currentName.reduce((prev, current) => {
-            return prev + "_" + current;
-          });
-          addResult(onBeginCallback, v);
-          currentName.pop();
+          addResult(
+            [...currentName, "onBegin"].join("_"),
+            v,
+          );
           break;
 
         case "on:end":
-          currentName.push('onEnd');
-          const onEndCallback = currentName.reduce((prev, current) => {
-            return prev + "_" + current;
-          });
-          addResult(onEndCallback, v);
-          currentName.pop();
+          addResult(
+            [...currentName, "onEnd"].join("_"),
+            v,
+          );
           break;
 
         case "starts":
+          if (v === null) {
+            throw Error("Starts must not be null");
+          }
           currentName.push(k);
           iterate(v);
           currentName.pop();
@@ -99,23 +92,21 @@ function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
         case "variants":
           currentName.push(k);
           if (v === null) {
-            currentName.pop();
-            break;
+            throw Error("Contains and Variants must not be null");
           }
 
           if (Array.isArray(v)) {
             let index = 0;
             for (const i in v) {
               currentName.push(index.toString());
-              let resultLength = result.length;
+              const resultLengthBefore = result.length;
               iterate(v[i]);
-              if (result.length != resultLength) {
+              if (result.length != resultLengthBefore) {
                 index++;
               }
               currentName.pop();
             }
             currentName.pop();
-
             break;
           }
 

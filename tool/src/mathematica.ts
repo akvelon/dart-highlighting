@@ -1,7 +1,7 @@
 import { readFile, writeFileSync } from "fs";
+import { NOTICE_COMMENT } from "./common.js";
 
-export async function portMathematicaSymbolsSet(): Promise<any> {
-    const notice_comment = "// GENERATED CODE - DO NOT MODIFY BY HAND\n";
+export async function portMathematicaSpecific(): Promise<any> {
     const fileName = '../node_modules/highlight.js/lib/languages/mathematica.js';
 
     readFile(fileName, 'utf8', (err: any, data: any) => {
@@ -11,7 +11,7 @@ export async function portMathematicaSymbolsSet(): Promise<any> {
 
         const symbolSet = data.match(/SYSTEM_SYMBOLS\s*=\s*(\[[^\]]*\])/s);
         const output =
-            notice_comment
+            NOTICE_COMMENT
             + "final SYSTEM_SYMBOLS = "
             + symbolSet[1]
                 .replace(/\[/, '{')

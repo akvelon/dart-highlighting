@@ -46,7 +46,7 @@ final mathematica = Mode(
         Mode(
             className: "builtin-symbol",
             begin: "[a-zA-Z\$][a-zA-Z0-9\$]*",
-            onBegin: k_mathematica_contains_0_variants_0_onBegin),
+            onBegin: language_mathematica_contains_0_variants_0_onBegin),
         Mode(
             className: "symbol",
             relevance: 0,

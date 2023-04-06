@@ -5,13 +5,12 @@ import _ from "lodash";
 import path from "path";
 
 import { callbackDictionary } from "./callback_dictionary.js";
+import { NOTICE_COMMENT } from "./common.js";
 import { expandRefs, getLodashGetKey } from './porting.js';
-import { portMathematicaSymbolsSet } from './specific_ports.js';
+import { portMathematicaSpecific } from './mathematica.js';
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-
-const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
 
 const dir = "../node_modules/highlight.js/lib/languages";
 hljs.registerLanguage("cpp", require(path.resolve(dir, "cpp"))); // exports
@@ -241,6 +240,6 @@ function getNonCircularObject(circularObject, name = "") {
   return [JSON.parse(str), containsCallbacks];
 }
 
-portMathematicaSymbolsSet();
+portMathematicaSpecific();
 commonModes();
 allModes();

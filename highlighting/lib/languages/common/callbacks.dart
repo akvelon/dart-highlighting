@@ -18,7 +18,7 @@ void shebangOnBegin(DomainRegexMatch m, Response resp) {
   if (m.index != 0) resp.ignoreMatch();
 }
 
-void k_mathematica_contains_0_variants_0_onBegin(
+void language_mathematica_contains_0_variants_0_onBegin(
   DomainRegexMatch m,
   Response resp,
 ) {
@@ -27,7 +27,7 @@ void k_mathematica_contains_0_variants_0_onBegin(
   }
 }
 
-void k_typescript_contains_0_contains_0_variants_0_onBegin(
+void language_typescript_contains_0_contains_0_variants_0_onBegin(
   DomainRegexMatch match,
   Response response,
 ) {
