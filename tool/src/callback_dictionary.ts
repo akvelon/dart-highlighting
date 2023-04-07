@@ -5,24 +5,13 @@ import typescript from "highlight.js/lib/languages/typescript";
 import ruby from "highlight.js/lib/languages/ruby";
 import _ from "lodash";
 
-import {Mode, ModeCallback} from "./types.js";
+import { Mode, ModeCallback } from "./types.js";
 
-const commonCallbacks = new Map<string, string>(
-  [
-    [
-      hljs.END_SAME_AS_BEGIN({})["on:begin"]!.toString(),
-      "endSameAsBeginOnBegin"
-    ],
-    [
-      hljs.END_SAME_AS_BEGIN({})["on:end"]!.toString(),
-      "endSameAsBeginOnEnd"
-    ],
-    [
-      hljs.SHEBANG()["on:begin"]!.toString(),
-      "shebangOnBegin",
-    ],
-  ]
-);
+const commonCallbacks = new Map<string, string>([
+  [hljs.END_SAME_AS_BEGIN({})["on:begin"]!.toString(), "endSameAsBeginOnBegin"],
+  [hljs.END_SAME_AS_BEGIN({})["on:end"]!.toString(), "endSameAsBeginOnEnd"],
+  [hljs.SHEBANG()["on:begin"]!.toString(), "shebangOnBegin"],
+]);
 
 class LanguagesCallbackParser {
   languages: Mode[];
@@ -38,7 +27,9 @@ class LanguagesCallbackParser {
   private process() {
     for (const language of this.languages) {
       const parser = new LanguageCallbackParser(language);
-      parser.entries.forEach((dartFunctionName, code) => this.entries.set(code, dartFunctionName));
+      parser.entries.forEach((dartFunctionName, code) =>
+        this.entries.set(code, dartFunctionName),
+      );
     }
   }
 }
@@ -122,7 +113,7 @@ class LanguageCallbackParser {
     if (!commonCallbacks.has(code)) {
       this.entries.set(code, entry.dartFunctionName);
     }
-  };
+  }
 }
 
 export const callbackDictionary = new Map<string, string>([

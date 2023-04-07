@@ -15,7 +15,8 @@
   "devDependencies": {
     "@types/circular-json": "^0.4.0",
     "@types/lodash": "^4.14.192",
-    "@types/node": "^12.6.9"
+    "@types/node": "^12.6.9",
+    "prettier": "^2.8.7"
   },
   "scripts": {
     "start": "gulp"
