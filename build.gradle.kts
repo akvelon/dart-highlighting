@@ -3,7 +3,7 @@ tasks.register("port") {
 }
 
 tasks.register("portLanguages") {
-    dependsOn("npxTsc")
+    dependsOn("tool:npxTsc")
 
     doLast {
         exec {
@@ -14,28 +14,11 @@ tasks.register("portLanguages") {
 
         exec {
             executable("dart")
-            args("format", "highlighting/lib/languages")
-        }
-
-        exec {
-            executable("dart")
-            args("format", "highlighting/lib/src/common_modes.dart")
-        }
-    }
-}
-
-tasks.register("npxTsc") {
-    doLast {
-        exec {
-            executable("npm")
-            args("install")
-            workingDir("tool")
-        }
-
-        exec {
-            executable("npx")
-            args("tsc")
-            workingDir("tool")
+            args(
+                "format",
+                "highlighting/lib/languages",
+                "highlighting/lib/src/common_modes.dart",
+            )
         }
     }
 }

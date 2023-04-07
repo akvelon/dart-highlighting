@@ -2,9 +2,9 @@ import _, { PropertyPath } from "lodash";
 
 /**
  * Gets the path to the pbject by reference string
- * 
+ *
  * @param str reference string  `~contains~0` -> `*.contains[0]`
- * @returns 
+ * @returns
  */
 export function getLodashGetKey(str: String): PropertyPath {
   let lodashGetKey = "";
@@ -22,7 +22,7 @@ export function getLodashGetKey(str: String): PropertyPath {
 
 /**
  * Recursively takes all of the references from [rootObject] and return them in a set.
-*/
+ */
 export function expandRefs(rootObject: Object): Set<String> {
   let commonSet = new Set<String>();
   expandRefsInternal(rootObject, commonSet, rootObject);
@@ -30,8 +30,11 @@ export function expandRefs(rootObject: Object): Set<String> {
   return commonSet;
 }
 
-function expandRefsInternal(rootObject: Object, commonSet: Set<String>, currentObject: Object): void {
-
+function expandRefsInternal(
+  rootObject: Object,
+  commonSet: Set<String>,
+  currentObject: Object,
+): void {
   if (typeof currentObject === "string") {
     if (commonSet.has(currentObject)) {
       return;
@@ -40,7 +43,11 @@ function expandRefsInternal(rootObject: Object, commonSet: Set<String>, currentO
       commonSet.add(currentObject);
       let lodashGetKey: PropertyPath = getLodashGetKey(currentObject);
 
-      expandRefsInternal(rootObject, commonSet, _.get(rootObject, lodashGetKey));
+      expandRefsInternal(
+        rootObject,
+        commonSet,
+        _.get(rootObject, lodashGetKey),
+      );
     }
   }
 
