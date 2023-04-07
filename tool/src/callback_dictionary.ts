@@ -3,9 +3,9 @@ import mathematica from "highlight.js/lib/languages/mathematica";
 import javascript from "highlight.js/lib/languages/javascript";
 import typescript from "highlight.js/lib/languages/typescript";
 import ruby from "highlight.js/lib/languages/ruby";
-
-import { expand, StringObject } from "./util.js"
 import _ from "lodash";
+
+import {Mode, ModeCallback} from "./types.js";
 
 const commonCallbacks = new Map<string, string>(
   [
@@ -24,73 +24,77 @@ const commonCallbacks = new Map<string, string>(
   ]
 );
 
-export const callbackDictionary = new Map<string, string>([
-  ...commonCallbacks,
+class LanguagesCallbackParser {
+  languages: Mode[];
+  entries: Map<string, string>;
 
-  ...expand([
-    javascript(hljs),
-    mathematica(hljs),
-    ruby(hljs),
-    typescript(hljs),
-  ].map(language => getLanguageCallbacks(language))),
-]);
+  constructor(languages: Mode[]) {
+    this.languages = languages;
+    this.entries = new Map<string, string>();
 
-function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
-  const result: [string, string][] = [];
-
-  function addResult(k: string, v: string): void {
-    if (!commonCallbacks.has(v.toString())) {
-      result.push([v.toString(), k]);
-    }
-  };
-
-  const visitedModes = new Set<StringObject<any>>();
-  const languageName: string = language.name;
-  const currentName: string[] = ['language'];
-  if (languageName === undefined) {
-    throw Error(`The language doesn't have a name: ${language}`);
+    this.process();
   }
 
-  currentName.push(languageName.toLowerCase());
+  private process() {
+    for (const language of this.languages) {
+      const parser = new LanguageCallbackParser(language);
+      parser.entries.forEach((dartFunctionName, code) => this.entries.set(code, dartFunctionName));
+    }
+  }
+}
 
-  function iterate(language: StringObject<any>): void {
-    if (visitedModes.has(language)) {
+interface CallbackEntry {
+  callback: ModeCallback;
+  dartFunctionName: string;
+}
+
+class LanguageCallbackParser {
+  language: Mode;
+  visitedModes: Set<Mode>;
+  entries: Map<string, string>;
+
+  constructor(language: Mode) {
+    this.language = language;
+    this.visitedModes = new Set<Mode>();
+    this.entries = new Map<string, string>();
+
+    // TODO: Sort out types in Highlight.js, https://github.com/akvelon/dart-highlighting/issues/50
+    this.iterate(language, `language_${(language as any).name.toLowerCase()}`);
+  }
+
+  private iterate(language: Mode, currentName: string): void {
+    if (this.visitedModes.has(language)) {
       return;
     }
-    visitedModes.add(language);
+    this.visitedModes.add(language);
 
-    const entries = Object.entries(language);
-
-    for (const item of entries) {
+    for (const item of Object.entries(language)) {
       const [k, v] = item;
 
       switch (k) {
         case "on:begin":
-          addResult(
-            [...currentName, "onBegin"].join("_"),
-            v,
-          );
+          this.addEntry({
+            callback: v,
+            dartFunctionName: currentName + "_onBegin",
+          });
           break;
 
         case "on:end":
-          addResult(
-            [...currentName, "onEnd"].join("_"),
-            v,
-          );
+          this.addEntry({
+            callback: v,
+            dartFunctionName: currentName + "_onEnd",
+          });
           break;
 
         case "starts":
           if (v === null) {
             throw Error("Starts must not be null");
           }
-          currentName.push(k);
-          iterate(v);
-          currentName.pop();
+          this.iterate(v, currentName + "_" + k);
           break;
 
         case "contains":
         case "variants":
-          currentName.push(k);
           if (v === null) {
             throw Error("Contains and Variants must not be null");
           }
@@ -98,15 +102,12 @@ function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
           if (Array.isArray(v)) {
             let index = 0;
             for (const i in v) {
-              currentName.push(index.toString());
-              const resultLengthBefore = result.length;
-              iterate(v[i]);
-              if (result.length != resultLengthBefore) {
+              const sizeBefore = this.entries.size;
+              this.iterate(v[i], `${currentName}_${k}_${index}`);
+              if (this.entries.size !== sizeBefore) {
                 index++;
               }
-              currentName.pop();
             }
-            currentName.pop();
             break;
           }
 
@@ -115,7 +116,22 @@ function getLanguageCallbacks(language: StringObject<any>): [string, string][] {
     }
   }
 
-  iterate(language);
+  private addEntry(entry: CallbackEntry): void {
+    const code = entry.callback.toString();
 
-  return result;
+    if (!commonCallbacks.has(code)) {
+      this.entries.set(code, entry.dartFunctionName);
+    }
+  };
 }
+
+export const callbackDictionary = new Map<string, string>([
+  ...commonCallbacks,
+
+  ...new LanguagesCallbackParser([
+    javascript(hljs),
+    mathematica(hljs),
+    ruby(hljs),
+    typescript(hljs),
+  ]).entries,
+]);
