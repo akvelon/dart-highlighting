@@ -1,5 +1,5 @@
 import { readFile, writeFileSync } from "fs";
-import { NOTICE_COMMENT } from "./common.js";
+import { NOTICE_COMMENT } from "../common.js";
 
 export async function portMathematicaSpecific(): Promise<any> {
     const fileName = '../node_modules/highlight.js/lib/languages/mathematica.js';

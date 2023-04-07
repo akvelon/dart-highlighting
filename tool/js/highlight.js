@@ -7,7 +7,7 @@ import path from "path";
 import { callbackDictionary } from "./callback_dictionary.js";
 import { NOTICE_COMMENT } from "./common.js";
 import { expandRefs, getLodashGetKey } from './porting.js';
-import { portMathematicaSpecific } from './mathematica.js';
+import { portMathematicaSpecific } from './languages/mathematica.js';
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);

@@ -5,48 +5,12 @@ import 'package:highlighting/highlighting.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
-const _latestReleaseTag = '11.7.0';
-
 const _clonePath = 'test/highlight.js';
 const _errorsDirPath = 'test/errors';
 const _extension = '.txt';
 
 void main() async {
   final errorsDir = Directory(_errorsDirPath);
-
-  if (Directory(_clonePath).existsSync()) {
-    await Directory(_clonePath).delete(recursive: true);
-  }
-
-  await Process.run(
-    'git',
-    [
-      'clone',
-      'https://github.com/highlightjs/highlight.js.git',
-    ],
-    workingDirectory: './test',
-  );
-
-  await Process.run(
-    'git',
-    [
-      'fetch',
-      '--all',
-      '--tags',
-    ],
-    workingDirectory: './test/highlight.js',
-  );
-
-  await Process.run(
-    'git',
-    [
-      'checkout',
-      'tags/$_latestReleaseTag',
-      '-b',
-      'test_for_release$_latestReleaseTag',
-    ],
-    workingDirectory: './test/highlight.js',
-  );
 
   if (errorsDir.existsSync()) {
     errorsDir.deleteSync(recursive: true);
