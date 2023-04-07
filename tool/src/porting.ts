@@ -79,7 +79,7 @@ function generateModeFromString(
   str: string,
   matchCommonKey: boolean,
   commonSet: Set<string>,
-) {
+): string {
   if (matchCommonKey) {
     for (const entry of commonModes) {
       if (entry[0] === str) {
