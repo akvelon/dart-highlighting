@@ -6,12 +6,9 @@ import { Mode } from "./types.js";
 export const commonModes = importCommonModes();
 
 function importCommonModes(): Map<string, Mode> {
-  return new Map<string, Mode>([
-    ...(Object.entries(hljs).filter(([key, value]) => isMode(key, value)) as [
-      string,
-      Mode,
-    ][]),
-  ]);
+  const allExported = Object.entries(hljs);
+  const modeArray = allExported.filter(([key, value]) => isMode(key, value));
+  return new Map<string, Mode>(modeArray as [string, Mode][]);
 }
 
 function isMode(key: string, value: any): boolean {
