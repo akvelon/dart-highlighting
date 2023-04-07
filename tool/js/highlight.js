@@ -6,7 +6,8 @@ import path from "path";
 
 import { callbackDictionary } from "./callback_dictionary.js";
 import { NOTICE_COMMENT } from "./common.js";
-import { expandRefs, getLodashGetKey } from './porting.js';
+import { commonModes } from "./common_modes.js";
+import { expandRefs, generateMode, getLodashGetKey } from './porting.js';
 
 import { portMathematicaSpecific } from './languages/mathematica.js';
 
@@ -14,104 +15,17 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
 const dir = "../node_modules/highlight.js/lib/languages";
-hljs.registerLanguage("cpp", require(path.resolve(dir, "cpp"))); // exports
-
-const modeEntries = Object.entries(hljs).filter(
-  ([k]) =>
-    /^[A-Z]/.test(k) && !k.endsWith("_RE") && typeof hljs[k] !== "function" && k !== "HighlightJS"
-);
-
-function generateMode(obj, matchCommonKey = true, commonSet = new Set()) {
-  if (typeof obj === "string") {
-    if (matchCommonKey) {
-      for (const entry of modeEntries) {
-        if (entry[0] === obj) {
-          return entry[0];
-        }
-      }
-    }
-
-    if (obj === "self") {
-      return "Mode(self:true)";
-    }
-
-    if (obj.startsWith("~")) {
-      commonSet.add(obj);
-      return `Mode(ref: '${obj}')`;
-    }
-
-    throw new Error("should not be here: " + obj);
-  }
-
-  if (obj == null) {
-    return JSON.stringify(null);
-  }
-
-  let code = "Mode(";
-  Object.entries(obj).forEach(([k, v], i, arr) => {
-    if (k === "exports") return; // CPP
-
-    if (v instanceof RegExp) v = v.source;
-    if (k === "end" && typeof v === "boolean") v = v.toString();
-    if (k === "subLanguage" && typeof v === "string") {
-      v = [v];
-    }
-
-    switch (k) {
-      case "on:begin":
-        if (callbackDictionary.has(v.toString())) {
-          code += `onBegin: ${callbackDictionary.get(v.toString())}`;
-          break;
-        }
-        code += `onBegin: (match, resp) => throw Exception(r'''Callback not ported: ${v.toString().replace(/'/g, "r'")}''')`;
-        break;
-      case "on:end":
-        if (callbackDictionary.has(v.toString())) {
-          code += `onEnd: ${callbackDictionary.get(v.toString())}`;
-          break;
-        }
-        code += `onEnd: (match, resp) => throw Exception(r'''Callback not ported: ${v.toString().replace(/'/g, "r'")}''')`;
-        break;
-
-      case "starts":
-        code += `${k}: ${generateMode(v, true, commonSet)}`;
-        break;
-      case "contains":
-      case "variants":
-        if (v == null) {
-          code += `${k}: null`;
-        } else if (Array.isArray(v)) {
-          const arr = v.map(m => {
-            return generateMode(m, true, commonSet);
-          });
-          code += `${k}: [${arr.join(",")}]`;
-        } else if (typeof v === "string") {
-          return `Mode(ref: '${v}')`;
-        } else {
-          throw "should not be here";
-        }
-        break;
-      default:
-        code += `${k}: ${JSON.stringify(v)}`;
-    }
-
-    if (i < arr.length - 1) {
-      code += ",";
-    }
-  });
-  code += ")";
-  return code;
-}
 
 /**
  * highlighting/src/common_modes.dart
  */
-export function commonModes() {
+export function portCommonModes() {
   let common = `${NOTICE_COMMENT}import 'mode.dart';`;
-  modeEntries.forEach(([key, value]) => {
+  commonModes.forEach((value, key) => {
     let [nonCircularObj, containsCallbacks] = getNonCircularObject(value, key);
 
-    common += `final ${key}=${generateMode(nonCircularObj, true)};`;
+    const mode = generateMode(nonCircularObj, true, new Set());
+    common += `final ${key}=${mode};`;
   });
 
   fs.writeFileSync(
@@ -127,7 +41,7 @@ function normalizeLanguageName(name) {
   return _.camelCase(name);
 }
 
-export function allModes() {
+export function portAllModes() {
   let all = "import '../src/mode.dart';";
   let builtin = "final builtinLanguages = <String, Mode>{";
   let community = "final communityLanguages = <String, Mode>{";
@@ -161,7 +75,7 @@ export function allModes() {
           // ~contains~0 -> lang.contains[0]
           let lodashGetKey = getLodashGetKey(commonKey);
 
-          const data = generateMode(_.get(nonCircularObj, lodashGetKey), true);
+          const data = generateMode(_.get(nonCircularObj, lodashGetKey), true, new Set());
           commonStr += `'${commonKey}': ${data},`;
 
           // Set the first ref
@@ -169,7 +83,7 @@ export function allModes() {
         });
       commonStr += "},";
 
-      const data = generateMode(nonCircularObj, true);
+      const data = generateMode(nonCircularObj, true, commonSet);
 
       fs.writeFileSync(
         `../../highlighting/lib/languages/${originalLang}.dart`,
@@ -216,7 +130,7 @@ function getNonCircularObject(circularObject, name = "") {
     }
 
     // hljs common mode -> string
-    for (let entry of modeEntries) {
+    for (let entry of commonModes) {
       if (entry[1] === v) {
         if (entry[0] === name) {
           return v;
@@ -243,5 +157,5 @@ function getNonCircularObject(circularObject, name = "") {
 
 portMathematicaSpecific();
 
-commonModes();
-allModes();
+portCommonModes();
+portAllModes();
