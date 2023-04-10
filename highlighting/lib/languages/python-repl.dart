@@ -3,15 +3,27 @@
 import '../src/mode.dart';
 import '../src/common_modes.dart';
 
-final pythonRepl = Mode(refs: {}, aliases: [
-  "pycon"
-], contains: [
-  Mode(
+final pythonRepl = Mode(
+  refs: {},
+  aliases: ["pycon"],
+  contains: [
+    Mode(
       className: "meta.prompt",
-      starts:
-          Mode(end: " |\$", starts: Mode(end: "\$", subLanguage: ["python"])),
+      starts: Mode(
+        end: " |\$",
+        starts: Mode(
+          end: "\$",
+          subLanguage: ["python"],
+        ),
+      ),
       variants: [
-        Mode(begin: "^>>>(?=[ ]|\$)"),
-        Mode(begin: "^\\.\\.\\.(?=[ ]|\$)")
-      ])
-]);
+        Mode(
+          begin: "^>>>(?=[ ]|\$)",
+        ),
+        Mode(
+          begin: "^\\.\\.\\.(?=[ ]|\$)",
+        ),
+      ],
+    ),
+  ],
+);

@@ -28,6 +28,13 @@ export function generateMode(
     }
 
     switch (k) {
+      case "className":
+        if (v === null) {
+          code += `${k}: preserveNullString`;
+          break;
+        }
+        code += `${k}: ${JSON.stringify(v)}`;
+        break;
       case "on:begin":
         if (callbackDictionary.has(v.toString())) {
           code += `onBegin: ${callbackDictionary.get(v.toString())}`;
@@ -58,7 +65,11 @@ export function generateMode(
           const arr = v.map((m) => {
             return generateMode(m, true, commonSet);
           });
-          code += `${k}: [${arr.join(",")}]`;
+          if (arr.length != 0) {
+            code += `${k}: [${arr.join(",")},]`;
+            break;
+          }
+          code += `${k}: []`;
         } else {
           throw "should not be here";
         }
@@ -67,7 +78,7 @@ export function generateMode(
         code += `${k}: ${JSON.stringify(v)}`;
     }
 
-    if (i < arr.length - 1) {
+    if (i < arr.length) {
       code += ",";
     }
   });

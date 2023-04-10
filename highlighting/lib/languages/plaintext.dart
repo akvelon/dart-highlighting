@@ -4,7 +4,8 @@ import '../src/mode.dart';
 import '../src/common_modes.dart';
 
 final plaintext = Mode(
-    refs: {},
-    name: "Plain text",
-    aliases: ["text", "txt"],
-    disableAutodetect: true);
+  refs: {},
+  name: "Plain text",
+  aliases: ["text", "txt"],
+  disableAutodetect: true,
+);
