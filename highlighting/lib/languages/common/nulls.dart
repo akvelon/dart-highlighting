@@ -1,5 +1,5 @@
-/// Constant that denotes null, that is manually set to null,
-/// as opposed to unsound null.
+/// Constant that denotes null, that field is explicitly set to null,
+/// as opposed to implicit null.
 /// E.g.
 /// ```
 /// Class Mode {
