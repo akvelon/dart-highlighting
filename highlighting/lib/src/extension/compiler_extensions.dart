@@ -16,7 +16,8 @@ void skipIfHasPrecedingDot(DomainRegexMatch match, Response response) {
 }
 
 void scopeClassName(Mode mode, [Mode? parent]) {
-  if (mode.className != null && mode.className != '') {
+  if ((mode.className != null && mode.className != '') ||
+      mode.getRawClassName() == preserveNullString) {
     mode.scope = mode.className ?? preserveNullString;
     mode.className = null;
   }
