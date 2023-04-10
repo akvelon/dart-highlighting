@@ -34,7 +34,7 @@ final phpTemplate = Mode(
           end: "'",
           illegal: null,
           contains: null,
-          className: preserveNullString,
+          className: null,
           skip: true,
         ),
         Mode(
@@ -43,7 +43,7 @@ final phpTemplate = Mode(
           end: "\"",
           illegal: null,
           contains: null,
-          className: preserveNullString,
+          className: null,
           skip: true,
         ),
       ],

@@ -28,13 +28,6 @@ export function generateMode(
     }
 
     switch (k) {
-      case "className":
-        if (v === null) {
-          code += `${k}: preserveNullString`;
-          break;
-        }
-        code += `${k}: ${JSON.stringify(v)}`;
-        break;
       case "on:begin":
         if (callbackDictionary.has(v.toString())) {
           code += `onBegin: ${callbackDictionary.get(v.toString())}`;

@@ -1040,7 +1040,7 @@ final typescript = Mode(
                   relevance: 0,
                 ),
                 Mode(
-                  className: preserveNullString,
+                  className: null,
                   begin: "\\(\\s*\\)",
                   skip: true,
                 ),
