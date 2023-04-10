@@ -11,6 +11,6 @@ dependencies:
   flutter: { sdk: flutter }
   highlighting: ^0.8.0
 
-# dependency_overrides:
+#dependency_overrides:
 #  highlighting:
 #    path: ../highlighting
