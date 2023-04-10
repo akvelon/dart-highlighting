@@ -1,3 +1,5 @@
+import 'package:highlighting/languages/common/nulls.dart';
+
 import '../domain_regexp_match.dart';
 import '../mode.dart';
 import '../response.dart';
@@ -15,7 +17,7 @@ void skipIfHasPrecedingDot(DomainRegexMatch match, Response response) {
 
 void scopeClassName(Mode mode, [Mode? parent]) {
   if (mode.className != null && mode.className != '') {
-    mode.scope = mode.className;
+    mode.scope = mode.className ?? preserveNullString;
     mode.className = null;
   }
 }

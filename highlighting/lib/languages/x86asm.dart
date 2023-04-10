@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'common/nulls.dart';
 
 final x86Asm = Mode(
     refs: {},

@@ -1,3 +1,4 @@
+import 'package:highlighting/languages/common/nulls.dart';
 import 'package:highlighting/src/response.dart';
 
 import 'domain_regex.dart';
@@ -24,7 +25,15 @@ class Mode {
   List<dynamic>? compilerExtensions;
 
   /// `String | Map<String, String>`
-  dynamic className;
+  dynamic get className => _className == preserveNullString ? null : _className;
+  dynamic _className;
+  set className(dynamic value) {
+    _className = value;
+  }
+
+  dynamic getRawClassName() {
+    return _className;
+  }
 
   /// `String | List<String>` | RegExp
   dynamic begin;
@@ -64,7 +73,15 @@ class Mode {
   dynamic match;
 
   /// `String | Map<String, String>`
-  dynamic scope;
+  dynamic get scope => _scope == preserveNullString ? null : _scope;
+  dynamic _scope;
+  set scope(dynamic value) {
+    _scope = value;
+  }
+
+  dynamic getRawScope() {
+    return _scope;
+  }
 
   /// `String | RegExp`
   dynamic beforeMatch;
@@ -99,7 +116,6 @@ class Mode {
     this.refs,
     this.name,
     this.match,
-    this.scope,
     this.beginScope,
     this.unicodeRegex,
     this.label,
@@ -116,7 +132,6 @@ class Mode {
     this.contains,
     this.variants,
     this.starts,
-    this.className,
     this.begin,
     this.onBegin,
     this.beginKeywords,
@@ -137,11 +152,14 @@ class Mode {
     this.self,
     this.disableAutodetect,
     this.parent,
-  });
+    dynamic className,
+    dynamic scope,
+  })  : _className = className,
+        _scope = scope;
 
   static Mode inherit(Mode a, [Mode? b]) {
     b ??= Mode();
-    return Mode()
+    var toReturn = Mode()
       ..aliases = b.aliases ?? a.aliases
       ..beforeMatch = b.beforeMatch ?? a.beforeMatch
       ..begin = b.begin ?? a.begin
@@ -193,5 +211,15 @@ class Mode {
       ..terminators = b.terminators ?? a.terminators
       ..unicodeRegex = b.unicodeRegex ?? a.unicodeRegex
       ..variants = b.variants ?? a.variants;
+
+    if (b.getRawScope() == preserveNullString) {
+      toReturn.scope = preserveNullString;
+    }
+
+    if (b.getRawClassName() == preserveNullString) {
+      toReturn.className = preserveNullString;
+    }
+
+    return toReturn;
   }
 }

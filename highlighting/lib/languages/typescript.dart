@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'common/nulls.dart';
 import 'package:highlighting/languages/common/callbacks.dart';
 
 final typescript = Mode(
@@ -977,7 +978,10 @@ final typescript = Mode(
                 contains: [
                   Mode(className: "params", variants: [
                     Mode(begin: "[a-zA-Z_]\\w*", relevance: 0),
-                    Mode(className: null, begin: "\\(\\s*\\)", skip: true),
+                    Mode(
+                        className: preserveNullString,
+                        begin: "\\(\\s*\\)",
+                        skip: true),
                     Mode(
                         begin: "\\(",
                         end: "\\)",

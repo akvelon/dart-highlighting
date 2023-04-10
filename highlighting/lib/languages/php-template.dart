@@ -2,6 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
+import 'common/nulls.dart';
 
 final phpTemplate = Mode(
     refs: {},
@@ -20,7 +21,7 @@ final phpTemplate = Mode(
             end: "'",
             illegal: null,
             contains: null,
-            className: null,
+            className: preserveNullString,
             skip: true),
         Mode(
             scope: "string",
@@ -28,7 +29,7 @@ final phpTemplate = Mode(
             end: "\"",
             illegal: null,
             contains: null,
-            className: null,
+            className: preserveNullString,
             skip: true)
       ])
     ]);
