@@ -88,9 +88,7 @@ export function portAllModes() {
       fs.writeFileSync(
         `../../highlighting/lib/languages/${originalLang}.dart`,
         `${NOTICE_COMMENT}
-        import '../src/mode.dart';
-        import '../src/common_modes.dart';
-        import '../src/language_definition_parts/language_definition_parts.dart';
+        import '../src/language_definition_parts.dart';
 
         final ${lang}=Mode(${commonStr} ${data.slice(
           5

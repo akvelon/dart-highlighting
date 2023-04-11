@@ -1,6 +1,6 @@
 import '../domain_regexp_match.dart';
-import '../language_definition_parts/nulls.dart';
 import '../mode.dart';
+import '../nulls.dart';
 import '../response.dart';
 import 'reg_exp.dart';
 
