@@ -30,7 +30,7 @@ export function generateMode(
     switch (k) {
       case "className":
         if (v === null) {
-          code += `${k}: preserveNullString`;
+          code += `${k}: overwritingNullString`;
           break;
         }
         code += `${k}: ${JSON.stringify(v)}`;

@@ -978,7 +978,7 @@ final typescript = Mode(
                   Mode(className: "params", variants: [
                     Mode(begin: "[a-zA-Z_]\\w*", relevance: 0),
                     Mode(
-                        className: preserveNullString,
+                        className: overwritingNullString,
                         begin: "\\(\\s*\\)",
                         skip: true),
                     Mode(

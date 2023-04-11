@@ -25,7 +25,7 @@ class Mode {
   List<dynamic>? compilerExtensions;
 
   /// `String | Map<String, String>`
-  dynamic get className => _className == preserveNullString ? null : _className;
+  dynamic get className => _className == overwritingNullString ? null : _className;
   dynamic _className;
   set className(dynamic value) {
     _className = value;
@@ -73,7 +73,7 @@ class Mode {
   dynamic match;
 
   /// `String | Map<String, String>`
-  dynamic get scope => _scope == preserveNullString ? null : _scope;
+  dynamic get scope => _scope == overwritingNullString ? null : _scope;
   dynamic _scope;
   set scope(dynamic value) {
     _scope = value;
@@ -212,12 +212,12 @@ class Mode {
       ..unicodeRegex = b.unicodeRegex ?? a.unicodeRegex
       ..variants = b.variants ?? a.variants;
 
-    if (b.getRawScope() == preserveNullString) {
-      toReturn.scope = preserveNullString;
+    if (b.getRawScope() == overwritingNullString) {
+      toReturn.scope = overwritingNullString;
     }
 
-    if (b.getRawClassName() == preserveNullString) {
-      toReturn.className = preserveNullString;
+    if (b.getRawClassName() == overwritingNullString) {
+      toReturn.className = overwritingNullString;
     }
 
     return toReturn;

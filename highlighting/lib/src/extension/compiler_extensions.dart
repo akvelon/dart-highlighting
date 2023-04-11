@@ -14,10 +14,10 @@ void skipIfHasPrecedingDot(DomainRegexMatch match, Response response) {
   }
 }
 
-void scopeClassName(Mode mode, [Mode? parent]) {
+void scopeClassName(Mode mode, Mode? parent) {
   if ((mode.className != null && mode.className != '') ||
-      mode.getRawClassName() == preserveNullString) {
-    mode.scope = mode.className ?? preserveNullString;
+      mode.getRawClassName() == overwritingNullString) {
+    mode.scope = mode.className ?? overwritingNullString;
     mode.className = null;
   }
 }

@@ -21,7 +21,7 @@ final phpTemplate = Mode(
             end: "'",
             illegal: null,
             contains: null,
-            className: preserveNullString,
+            className: overwritingNullString,
             skip: true),
         Mode(
             scope: "string",
@@ -29,7 +29,7 @@ final phpTemplate = Mode(
             end: "\"",
             illegal: null,
             contains: null,
-            className: preserveNullString,
+            className: overwritingNullString,
             skip: true)
       ])
     ]);
