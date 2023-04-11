@@ -298,7 +298,7 @@ final bash = Mode(
           ])),
       Mode(match: "(\\/[a-z._-]+)+"),
       Mode(ref: '~contains~7'),
-      Mode(className: "", begin: "\\\\\""),
+      Mode(className: overwritingNullString, begin: "\\\\\""),
       Mode(className: "string", begin: "'", end: "'"),
       Mode(ref: '~contains~3~contains~2')
     ]);

@@ -29,7 +29,8 @@ export function generateMode(
 
     switch (k) {
       case "className":
-        if (v === null) {
+      case "scope":
+        if (v === null || v === "") {
           code += `${k}: overwritingNullString`;
           break;
         }

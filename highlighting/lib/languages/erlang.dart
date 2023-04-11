@@ -122,7 +122,7 @@ final erlang = Mode(
             end: "'",
             illegal: "\\n",
             contains: [BACKSLASH_ESCAPE],
-            className: ""),
+            className: overwritingNullString),
         Mode(ref: '~contains~0~contains~0~contains~2'),
         Mode(ref: '~contains~0~contains~0~contains~2~contains~4'),
         QUOTE_STRING_MODE,
