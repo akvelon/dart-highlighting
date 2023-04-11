@@ -22,7 +22,7 @@ const dir = "../node_modules/highlight.js/lib/languages";
 export function portCommonModes() {
   let common = `${NOTICE_COMMENT}import 'mode.dart';`;
   commonModes.forEach((value, key) => {
-    let [nonCircularObj, containsCallbacks] = getNonCircularObject(value, key);
+    let nonCircularObj = getNonCircularObject(value, key);
 
     const mode = generateMode(nonCircularObj, true, new Set());
     common += `final ${key}=${mode};`;
@@ -61,7 +61,7 @@ export function portAllModes() {
     let lang = normalizeLanguageName(originalLang);
 
     try {
-      const [nonCircularObj, containsCallbacks] = getNonCircularObject(item.factory(hljs));
+      const nonCircularObj = getNonCircularObject(item.factory(hljs));
       const commonSet = expandRefs(nonCircularObj);
 
       generateMode(nonCircularObj, true, commonSet);
@@ -122,7 +122,6 @@ export function portAllModes() {
 }
 
 function getNonCircularObject(circularObject, name = "") {
-  let containsCallbacks = false;
   const str = CircularJSON.stringify(circularObject, (k, v) => {
     // console.log(v);
     // RegExp -> string
@@ -146,14 +145,13 @@ function getNonCircularObject(circularObject, name = "") {
     }
 
     if (v instanceof Function) {
-      containsCallbacks = true;
       return v.toString();
     }
 
     return v;
   });
 
-  return [JSON.parse(str), containsCallbacks];
+  return JSON.parse(str);
 }
 
 portMathematicaSpecific();
