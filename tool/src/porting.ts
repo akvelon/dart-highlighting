@@ -66,7 +66,11 @@ export function generateMode(
           const arr = v.map((m) => {
             return generateMode(m, true, commonSet);
           });
-          code += `${k}: [${arr.join(",")}]`;
+          if (arr.length === 0) {
+            code += `${k}: []`;
+            break;
+          }
+          code += `${k}: [${arr.join(",")},]`;
         } else {
           throw "should not be here";
         }
@@ -75,9 +79,7 @@ export function generateMode(
         code += `${k}: ${JSON.stringify(v)}`;
     }
 
-    if (i < arr.length - 1) {
-      code += ",";
-    }
+    code += ",";
   });
   code += ")";
   return code;
