@@ -22,7 +22,7 @@ const dir = "../node_modules/highlight.js/lib/languages";
 export function portCommonModes() {
   let common = `${NOTICE_COMMENT}import 'mode.dart';`;
   commonModes.forEach((value, key) => {
-    let nonCircularObj = getNonCircularObject(value, key);
+    const nonCircularObj = getNonCircularObject(value, key);
 
     const mode = generateMode(nonCircularObj, true, new Set());
     common += `final ${key}=${mode};`;

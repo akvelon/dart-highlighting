@@ -159,7 +159,7 @@ class Mode {
 
   static Mode inherit(Mode a, [Mode? b]) {
     b ??= Mode();
-    var toReturn = Mode()
+    final result = Mode()
       ..aliases = b.aliases ?? a.aliases
       ..beforeMatch = b.beforeMatch ?? a.beforeMatch
       ..begin = b.begin ?? a.begin
@@ -213,13 +213,13 @@ class Mode {
       ..variants = b.variants ?? a.variants;
 
     if (b.getRawScope() == overwritingNullString) {
-      toReturn.scope = overwritingNullString;
+      result.scope = overwritingNullString;
     }
 
     if (b.getRawClassName() == overwritingNullString) {
-      toReturn.className = overwritingNullString;
+      result.className = overwritingNullString;
     }
 
-    return toReturn;
+    return result;
   }
 }
