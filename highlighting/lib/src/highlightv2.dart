@@ -165,7 +165,7 @@ class HighlightV2 {
           continue;
         }
         final klass =
-            language.classNameAliases[scope[i]] ?? scope[i.toString()];
+            language.classNameAliases[scope[i.toString()]] ?? scope[i.toString()];
         final text = match[i];
 
         if (klass != null) {

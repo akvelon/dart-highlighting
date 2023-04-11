@@ -1,8 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import '../src/mode.dart';
-import '../src/common_modes.dart';
-import 'package:highlighting/languages/common/callbacks.dart';
+import '../src/language_definition_parts.dart';
 
 final bash = Mode(
   refs: {
@@ -340,7 +338,7 @@ final bash = Mode(
     ),
     Mode(ref: '~contains~7'),
     Mode(
-      className: "",
+      className: overwritingNullString,
       begin: "\\\\\"",
     ),
     Mode(

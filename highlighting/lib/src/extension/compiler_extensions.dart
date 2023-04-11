@@ -1,5 +1,6 @@
 import '../domain_regexp_match.dart';
 import '../mode.dart';
+import '../nulls.dart';
 import '../response.dart';
 import 'reg_exp.dart';
 
@@ -13,9 +14,11 @@ void skipIfHasPrecedingDot(DomainRegexMatch match, Response response) {
   }
 }
 
-void scopeClassName(Mode mode, [Mode? parent]) {
-  if (mode.className != null && mode.className != '') {
-    mode.scope = mode.className;
+void scopeClassName(Mode mode) {
+  final rawClassName = mode.getRawClassName();
+
+  if (rawClassName != null) {
+    mode.scope = rawClassName;
     mode.className = null;
   }
 }
