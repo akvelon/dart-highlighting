@@ -15,9 +15,9 @@ void skipIfHasPrecedingDot(DomainRegexMatch match, Response response) {
 }
 
 void scopeClassName(Mode mode, Mode? parent) {
-  final classNameIsMeaningful = mode.className != null;
-  final classNameIsExplicitNull =
-      mode.getRawClassName() == overwritingNullString;
+  final rawClassName = mode.getRawClassName();
+  final classNameIsMeaningful = rawClassName != null;
+  final classNameIsExplicitNull = rawClassName == overwritingNullString;
 
   if (classNameIsMeaningful || classNameIsExplicitNull) {
     mode.scope = mode.className ?? overwritingNullString;
