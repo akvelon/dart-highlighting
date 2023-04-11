@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import '../src/mode.dart';
-import '../src/common_modes.dart';
+import '../src/language_definition_parts.dart';
 
 final erlang = Mode(
     refs: {
@@ -121,7 +120,7 @@ final erlang = Mode(
             end: "'",
             illegal: "\\n",
             contains: [BACKSLASH_ESCAPE],
-            className: ""),
+            className: overwritingNullString),
         Mode(ref: '~contains~0~contains~0~contains~2'),
         Mode(ref: '~contains~0~contains~0~contains~2~contains~4'),
         QUOTE_STRING_MODE,

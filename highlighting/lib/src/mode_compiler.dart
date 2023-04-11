@@ -66,7 +66,7 @@ Mode compileMode(
     mode.starts = replaceIfRef(self: mode.starts!, refs: refs);
   }
 
-  scopeClassName(mode, parent);
+  scopeClassName(mode);
   compileMatch(mode, parent);
   multiClass(mode, parent);
   beforeMatchExt(mode, parent);

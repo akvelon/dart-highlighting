@@ -1,12 +1,11 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import '../src/mode.dart';
-import '../src/common_modes.dart';
+import '../src/language_definition_parts.dart';
 
 final python = Mode(
     refs: {
       '~contains~7~contains~0': Mode(className: "params", variants: [
-        Mode(className: "", begin: "\\(\\s*\\)", skip: true),
+        Mode(className: overwritingNullString, begin: "\\(\\s*\\)", skip: true),
         Mode(
             begin: "\\(",
             end: "\\)",

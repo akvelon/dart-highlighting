@@ -1,8 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import '../src/mode.dart';
-import '../src/common_modes.dart';
-import 'package:highlighting/languages/common/callbacks.dart';
+import '../src/language_definition_parts.dart';
 
 final typescript = Mode(
     refs: {
@@ -977,7 +975,10 @@ final typescript = Mode(
                 contains: [
                   Mode(className: "params", variants: [
                     Mode(begin: "[a-zA-Z_]\\w*", relevance: 0),
-                    Mode(className: null, begin: "\\(\\s*\\)", skip: true),
+                    Mode(
+                        className: overwritingNullString,
+                        begin: "\\(\\s*\\)",
+                        skip: true),
                     Mode(
                         begin: "\\(",
                         end: "\\)",

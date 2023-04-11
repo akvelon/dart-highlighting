@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import '../src/mode.dart';
-import '../src/common_modes.dart';
+import '../src/language_definition_parts.dart';
 
 final phpTemplate = Mode(
     refs: {},
@@ -20,7 +19,7 @@ final phpTemplate = Mode(
             end: "'",
             illegal: null,
             contains: null,
-            className: null,
+            className: overwritingNullString,
             skip: true),
         Mode(
             scope: "string",
@@ -28,7 +27,7 @@ final phpTemplate = Mode(
             end: "\"",
             illegal: null,
             contains: null,
-            className: null,
+            className: overwritingNullString,
             skip: true)
       ])
     ]);

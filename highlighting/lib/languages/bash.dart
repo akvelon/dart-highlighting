@@ -1,8 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import '../src/mode.dart';
-import '../src/common_modes.dart';
-import 'package:highlighting/languages/common/callbacks.dart';
+import '../src/language_definition_parts.dart';
 
 final bash = Mode(
     refs: {
@@ -298,7 +296,7 @@ final bash = Mode(
           ])),
       Mode(match: "(\\/[a-z._-]+)+"),
       Mode(ref: '~contains~7'),
-      Mode(className: "", begin: "\\\\\""),
+      Mode(className: overwritingNullString, begin: "\\\\\""),
       Mode(className: "string", begin: "'", end: "'"),
       Mode(ref: '~contains~3~contains~2')
     ]);
