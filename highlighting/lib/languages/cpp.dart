@@ -2,8 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
-import 'common/nulls.dart';
-import 'package:highlighting/languages/common/callbacks.dart';
+import '../src/language_definition_parts/language_definition_parts.dart';
 
 final cpp = Mode(
     refs: {

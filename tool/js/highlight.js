@@ -90,8 +90,8 @@ export function portAllModes() {
         `${NOTICE_COMMENT}
         import '../src/mode.dart';
         import '../src/common_modes.dart';
-        import 'common/nulls.dart';
-        ${containsCallbacks ? "import 'package:highlighting/languages/common/callbacks.dart';" : ""}
+        import '../src/language_definition_parts/language_definition_parts.dart';
+
         final ${lang}=Mode(${commonStr} ${data.slice(
           5
         )};`

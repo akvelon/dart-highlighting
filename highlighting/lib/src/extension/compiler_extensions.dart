@@ -1,6 +1,5 @@
-import 'package:highlighting/languages/common/nulls.dart';
-
 import '../domain_regexp_match.dart';
+import '../language_definition_parts/nulls.dart';
 import '../mode.dart';
 import '../response.dart';
 import 'reg_exp.dart';

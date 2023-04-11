@@ -1,8 +1,8 @@
-import 'package:highlighting/languages/common/nulls.dart';
 import 'package:highlighting/src/response.dart';
 
 import 'domain_regex.dart';
 import 'domain_regexp_match.dart';
+import 'language_definition_parts/nulls.dart';
 import 'multi_regex.dart';
 
 class Mode {

@@ -18,7 +18,7 @@ export function portMathematicaSpecific(): void {
     ";";
 
   writeFileSync(
-    "../../highlighting/lib/languages/common/mathematica_symbols.dart",
+    "../../highlighting/lib/src/language_definition_parts/mathematica_symbols.dart",
     output,
   );
 }

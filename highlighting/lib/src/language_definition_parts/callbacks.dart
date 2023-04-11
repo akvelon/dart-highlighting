@@ -1,8 +1,8 @@
-import 'package:highlighting/languages/common/mathematica_symbols.dart';
 import 'package:highlighting/src/domain_regexp_match.dart';
 import 'package:highlighting/src/response.dart';
 
-import '../../src/const/literals.dart';
+import '../const/literals.dart';
+import 'mathematica_symbols.dart';
 
 void endSameAsBeginOnBegin(DomainRegexMatch match, Response response) {
   response.data[$beginMatch] = match[1];

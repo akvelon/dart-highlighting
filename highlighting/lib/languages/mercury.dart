@@ -2,7 +2,7 @@
 
 import '../src/mode.dart';
 import '../src/common_modes.dart';
-import 'common/nulls.dart';
+import '../src/language_definition_parts/language_definition_parts.dart';
 
 final mercury = Mode(
     refs: {},
