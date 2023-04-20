@@ -4,7 +4,7 @@ import 'node.dart';
 import 'mode.dart';
 
 class Result {
-  double? relevance;
+  double relevance;
   List<Node>? nodes;
   String? language;
   Mode? top;
@@ -14,7 +14,7 @@ class Result {
   Node rootNode;
 
   Result({
-    this.relevance,
+    this.relevance = 0,
     this.language,
     this.top,
     this.secondBest,
@@ -64,7 +64,7 @@ class Result {
     add(Node(value: text));
   }
 
-  void addSublanguage(Result emitter, String sublanguage) {
+  void addSublanguage(Result emitter, String? sublanguage) {
     final node = emitter.rootNode;
     node.sublanguage = true;
     node.language = sublanguage;

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:highlighting/languages/all.dart';
 import 'package:tuple/tuple.dart';
 
@@ -127,7 +128,7 @@ class HighlightV2 {
       }
       Result result;
       // TODO(yescorp): Find out how to handle multiple sublanguages
-      if ((top.subLanguage?.length ?? 0) >= 1) {
+      if (top.subLanguage?.length == 1) {
         if (builtinLanguages[top.subLanguage!.first] == null) {
           emitter.addText(modeBuffer);
           return;
@@ -138,13 +139,13 @@ class HighlightV2 {
             continuation: continuations[top.subLanguage!.first]);
         continuations[top.subLanguage!.first] = result.top;
       } else {
-        result = Result(language: 'unknown');
+        result = highlightAuto(modeBuffer, top.subLanguage!);
       }
 
-      if (result.relevance != null && top.relevance! > 0) {
-        relevance += result.relevance!;
+      if (top.relevance! > 0) {
+        relevance += result.relevance;
       }
-      emitter.addSublanguage(result, result.language!);
+      emitter.addSublanguage(result, result.language);
     }
 
     void processBuffer() {
@@ -164,8 +165,8 @@ class HighlightV2 {
           i++;
           continue;
         }
-        final klass =
-            language.classNameAliases[scope[i.toString()]] ?? scope[i.toString()];
+        final klass = language.classNameAliases[scope[i.toString()]] ??
+            scope[i.toString()];
         final text = match[i];
 
         if (klass != null) {
@@ -401,9 +402,77 @@ class HighlightV2 {
       emitter.top = top;
       return emitter;
     } on Exception catch (e) {
-      print(e);
+      print("trycatch inside highlight$e");
     }
 
     return emitter;
+  }
+
+  Result highlightAuto(
+    String code,
+    List<String> languageSubset,
+  ) {
+    final plainText = justTextHighlightResult(code);
+    try {
+      final results = languageSubset
+          .where((e) => _languages[e] != null || builtinLanguages[e] != null)
+          .where((e) =>
+              _languages[e]?.disableAutodetect != true ||
+              builtinLanguages[e]?.disableAutodetect != true)
+          .map((name) {
+        return highlight(name, code, false);
+      }).toList();
+
+      results.insert(0, plainText);
+
+      results.sortByCompare<Result>((element) => element, (a, b) {
+        // sort base on relevance
+        if ((a.relevance - b.relevance).abs() > 0.0001) {
+          if (a.relevance < b.relevance) {
+            return 1;
+          }
+          if (a.relevance > b.relevance) {
+            return -1;
+          }
+        }
+
+        // always award the tie to the base language
+        // ie if C++ and Arduino are tied, it's more likely to be C++
+        if (a.language != null && b.language != null) {
+          if (getLanguage(a.language!).supersetOf == b.language) {
+            return 1;
+          } else if (getLanguage(b.language!).supersetOf == a.language) {
+            return -1;
+          }
+        }
+
+        // otherwise say they are equal, which has the effect of sorting on
+        // relevance while preserving the original ordering - which is how ties
+        // have historically been settled, ie the language that comes first always
+        // wins in the case of a tie
+        return 0;
+      });
+
+      return results[0];
+    } on Exception catch (e) {
+      print(e);
+      return plainText;
+    }
+  }
+
+  Result justTextHighlightResult(String code) {
+    final emitter = Result(
+      language: null,
+      top: Mode(
+        name: 'text-plain',
+        disableAutodetect: true,
+      ),
+    );
+
+    return emitter..addText(code);
+  }
+
+  Mode getLanguage(String name) {
+    return _languages[name] ?? builtinLanguages[name] ?? Mode();
   }
 }

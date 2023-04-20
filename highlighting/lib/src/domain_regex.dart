@@ -31,9 +31,9 @@ class DomainRegex {
 
     lastIndex = match.end;
 
-    for (int i = 0; i < match.groupCount; i++) {
-      print(match.group(i));
-    }
+    // for (int i = 0; i < match.groupCount; i++) {
+    //   print(match.group(i));
+    // }
 
     return DomainRegexMatch(
       match: match,
