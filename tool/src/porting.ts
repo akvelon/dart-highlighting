@@ -27,6 +27,15 @@ export function generateMode(
       v = [v];
     }
 
+    // This is a workaround for CircularJSON serialization.
+    // Symbol `~` is reserved by CircularJSON and corresponds to
+    // `\\x7e` in radix16 String.
+    // That is why when an Object is serialized
+    // CircularJSON replaces `\\x7e` with `\\\\x7e`.
+    if (k === "begin" && v && v.includes("\\\\x7e")) {
+      v = v.replaceAll("\\\\x7e", "\\x7e");
+    }
+
     switch (k) {
       case "className":
       case "scope":
