@@ -138,48 +138,50 @@ export function getLodashGetKey(str: String): PropertyPath {
 }
 
 /**
- * Recursively takes all of the references from [rootObject] and return them in a set.
+ * Returns all CircularJSON tokens found in obj recursively.
+ * obj should be a plain JSON deserialization of an object stringified with CircularJSON.
  */
-export function expandRefs(rootObject: Object): Set<String> {
-  let commonSet = new Set<String>();
-  expandRefsInternal(rootObject, commonSet, rootObject);
+export function getCircularJsonTokens(obj: Object): Set<string> {
+  const result = new Set<string>();
+  addCircularJsonTokens(obj, result, obj);
 
-  return commonSet;
+  return result;
 }
 
-function expandRefsInternal(
+function addCircularJsonTokens(
   rootObject: Object,
-  commonSet: Set<String>,
+  tokens: Set<string>,
   currentObject: Object,
 ): void {
   if (typeof currentObject === "string") {
-    if (commonSet.has(currentObject)) {
+    if (tokens.has(currentObject)) {
       return;
     }
     if (currentObject.startsWith("~")) {
-      commonSet.add(currentObject);
+      tokens.add(currentObject);
       let lodashGetKey: PropertyPath = getLodashGetKey(currentObject);
 
-      expandRefsInternal(
+      addCircularJsonTokens(
         rootObject,
-        commonSet,
+        tokens,
         _.get(rootObject, lodashGetKey),
       );
     }
+    return;
   }
 
   if (currentObject === null) {
     return;
   }
 
-  let entries = Object.entries(currentObject);
+  const entries = Object.entries(currentObject);
 
   for (const item of entries) {
-    let [k, v] = item;
+    const [k, v] = item;
 
     switch (k) {
       case "starts":
-        expandRefsInternal(rootObject, commonSet, v);
+        addCircularJsonTokens(rootObject, tokens, v);
         break;
 
       case "contains":
@@ -188,16 +190,16 @@ function expandRefsInternal(
           break;
         }
 
-        if (Array.isArray(v)) {
-          for (const m of v) {
-            expandRefsInternal(rootObject, commonSet, m);
-          }
-
+        if (typeof v === "string") {
+          addCircularJsonTokens(rootObject, tokens, v);
           break;
         }
 
-        if (typeof v === "string") {
-          expandRefsInternal(rootObject, commonSet, v);
+        if (Array.isArray(v)) {
+          for (const element of v) {
+            addCircularJsonTokens(rootObject, tokens, element);
+          }
+
           break;
         }
 

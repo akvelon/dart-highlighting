@@ -7,7 +7,7 @@ import path from "path";
 import { callbackDictionary } from "./callback_dictionary.js";
 import { NOTICE_COMMENT } from "./common.js";
 import { commonModes } from "./common_modes.js";
-import { expandRefs, generateMode, getLodashGetKey } from './porting.js';
+import { generateMode, getCircularJsonTokens, getLodashGetKey } from './porting.js';
 
 import { portMathematicaSpecific } from './languages/mathematica.js';
 
@@ -62,7 +62,7 @@ export function portAllModes() {
 
     try {
       const nonCircularObj = getNonCircularObject(item.factory(hljs));
-      const commonSet = expandRefs(nonCircularObj);
+      const commonSet = getCircularJsonTokens(nonCircularObj);
 
       generateMode(nonCircularObj, true, commonSet);
 
