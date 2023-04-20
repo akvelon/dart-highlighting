@@ -26,6 +26,9 @@ export function generateMode(
     if (k === "subLanguage" && typeof v === "string") {
       v = [v];
     }
+    if (k === "begin" && v && v.includes("\\\\x7e")) {
+      v = v.replaceAll("\\\\x7e", "\\x7e");
+    }
 
     switch (k) {
       case "className":
