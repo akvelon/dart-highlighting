@@ -402,7 +402,7 @@ class HighlightV2 {
       emitter.top = top;
       return emitter;
     } on Exception catch (e) {
-      print("trycatch inside highlight$e");
+      print(e);
     }
 
     return emitter;
@@ -419,43 +419,14 @@ class HighlightV2 {
           .where((e) =>
               _languages[e]?.disableAutodetect != true ||
               builtinLanguages[e]?.disableAutodetect != true)
-          .map((name) {
-        return highlight(name, code, false);
-      }).toList();
+          .map((name) => highlight(name, code, false))
+          .toList();
 
       results.insert(0, plainText);
-
-      results.sortByCompare<Result>((element) => element, (a, b) {
-        // sort base on relevance
-        if ((a.relevance - b.relevance).abs() > 0.0001) {
-          if (a.relevance < b.relevance) {
-            return 1;
-          }
-          if (a.relevance > b.relevance) {
-            return -1;
-          }
-        }
-
-        // always award the tie to the base language
-        // ie if C++ and Arduino are tied, it's more likely to be C++
-        if (a.language != null && b.language != null) {
-          if (getLanguage(a.language!).supersetOf == b.language) {
-            return 1;
-          } else if (getLanguage(b.language!).supersetOf == a.language) {
-            return -1;
-          }
-        }
-
-        // otherwise say they are equal, which has the effect of sorting on
-        // relevance while preserving the original ordering - which is how ties
-        // have historically been settled, ie the language that comes first always
-        // wins in the case of a tie
-        return 0;
-      });
+      results.sortByCompare<Result>((element) => element, _resultComparator);
 
       return results[0];
-    } on Exception catch (e) {
-      print(e);
+    } on Exception {
       return plainText;
     }
   }
@@ -472,7 +443,36 @@ class HighlightV2 {
     return emitter..addText(code);
   }
 
-  Mode getLanguage(String name) {
-    return _languages[name] ?? builtinLanguages[name] ?? Mode();
+  int _resultComparator(Result a, Result b) {
+    // sort base on relevance
+    if ((a.relevance - b.relevance).abs() > 0.0001) {
+      if (a.relevance < b.relevance) {
+        return 1;
+      }
+      if (a.relevance > b.relevance) {
+        return -1;
+      }
+    }
+
+    // always award the tie to the base language
+    // ie if C++ and Arduino are tied, it's more likely to be C++
+    if (a.language != null && b.language != null) {
+      if (_getLanguage(a.language!)?.supersetOf == b.language) {
+        return 1;
+      }
+      if (_getLanguage(b.language!)?.supersetOf == a.language) {
+        return -1;
+      }
+    }
+
+    // otherwise say they are equal, which has the effect of sorting on
+    // relevance while preserving the original ordering - which is how ties
+    // have historically been settled, ie the language that comes first always
+    // wins in the case of a tie
+    return 0;
+  }
+
+  Mode? _getLanguage(String name) {
+    return _languages[name] ?? builtinLanguages[name];
   }
 }

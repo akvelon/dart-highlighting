@@ -25,7 +25,8 @@ class Mode {
   List<dynamic>? compilerExtensions;
 
   /// `String | Map<String, String>`
-  dynamic get className => _className == overwritingNullString ? null : _className;
+  dynamic get className =>
+      _className == overwritingNullString ? null : _className;
   dynamic _className;
   set className(dynamic value) {
     _className = value;
