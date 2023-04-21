@@ -1,5 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:highlighting/languages/all.dart';
+import 'package:highlighting/languages/plaintext.dart';
+import 'package:meta/meta.dart';
 import 'package:tuple/tuple.dart';
 
 import 'const/literals.dart';
@@ -123,22 +125,25 @@ class HighlightV2 {
     }
 
     void processSubLanguage() {
-      assert(
-        top.subLanguage != null,
-        'processSublanguage can only be called with non-null sublanguage',
-      );
+      if (top.subLanguage.isEmpty) {
+        throw Exception('processSublanguage called on empty sublanguage');
+      }
 
       if (modeBuffer.isEmpty) {
         return;
       }
 
       Result result;
-      if (top.subLanguage?.length == 1) {
-        result = highlight(top.subLanguage!.first, modeBuffer, true,
-            continuation: continuations[top.subLanguage!.first]);
-        continuations[top.subLanguage!.first] = result.top;
+      if (top.subLanguage.length > 1) {
+        result = highlightAuto(modeBuffer, top.subLanguage);
       } else {
-        result = highlightAuto(modeBuffer, top.subLanguage!);
+        result = highlight(
+          top.subLanguage.first,
+          modeBuffer,
+          true,
+          continuation: continuations[top.subLanguage.first],
+        );
+        continuations[top.subLanguage.first] = result.top;
       }
 
       if (top.relevance! > 0) {
@@ -148,7 +153,7 @@ class HighlightV2 {
     }
 
     void processBuffer() {
-      if (top.subLanguage != null) {
+      if (top.subLanguage.isNotEmpty) {
         processSubLanguage();
       } else {
         processKeywords();
@@ -309,7 +314,7 @@ class HighlightV2 {
         if (top.scope != null) {
           emitter.closeNode();
         }
-        if (top.skip != true && top.subLanguage == null) {
+        if (top.skip != true && top.subLanguage.isEmpty) {
           relevance += top.relevance!;
         }
         top = top.parent!;
@@ -407,6 +412,7 @@ class HighlightV2 {
     return emitter;
   }
 
+  @internal
   Result highlightAuto(
     String code,
     List<String> languageSubset,
@@ -433,28 +439,21 @@ class HighlightV2 {
   Result justTextHighlightResult(String code) {
     final emitter = Result(
       language: null,
-      top: Mode(
-        name: 'text-plain',
-        disableAutodetect: true,
-      ),
+      top: plaintext,
     );
 
     return emitter..addText(code);
   }
 
+  /// Compares results based on relevance, then on one being a superset.
   int _resultComparator(Result a, Result b) {
-    // sort base on relevance
+    // Sort base on relevance.
     if ((a.relevance - b.relevance).abs() > 0.0001) {
-      if (a.relevance < b.relevance) {
-        return 1;
-      }
-      if (a.relevance > b.relevance) {
-        return -1;
-      }
+      return (b.relevance - a.relevance).sign.round();
     }
 
-    // always award the tie to the base language
-    // ie if C++ and Arduino are tied, it's more likely to be C++
+    // Always award the tie to the base language
+    // i.e. if C++ and Arduino are tied, it's more likely to be C++.
     if (a.language != null && b.language != null) {
       if (_getLanguage(a.language!)?.supersetOf == b.language) {
         return 1;
@@ -464,10 +463,10 @@ class HighlightV2 {
       }
     }
 
-    // otherwise say they are equal, which has the effect of sorting on
+    // Otherwise say they are equal, which has the effect of sorting on
     // relevance while preserving the original ordering - which is how ties
-    // have historically been settled, ie the language that comes first always
-    // wins in the case of a tie
+    // have historically been settled, i.e. the language that comes first always
+    // wins in the case of a tie.
     return 0;
   }
 
