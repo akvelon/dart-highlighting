@@ -123,18 +123,17 @@ class HighlightV2 {
     }
 
     void processSubLanguage() {
-      if (modeBuffer == '') {
+      assert(
+        top.subLanguage != null,
+        'processSublanguage can only be called with non-null sublanguage',
+      );
+
+      if (modeBuffer.isEmpty) {
         return;
       }
-      Result result;
-      // TODO(yescorp): Find out how to handle multiple sublanguages
-      if (top.subLanguage?.length == 1) {
-        if (builtinLanguages[top.subLanguage!.first] == null) {
-          emitter.addText(modeBuffer);
-          return;
-        }
 
-        // check type of subLanguage
+      Result result;
+      if (top.subLanguage?.length == 1) {
         result = highlight(top.subLanguage!.first, modeBuffer, true,
             continuation: continuations[top.subLanguage!.first]);
         continuations[top.subLanguage!.first] = result.top;
