@@ -25,7 +25,8 @@ class Mode {
   List<dynamic>? compilerExtensions;
 
   /// `String | Map<String, String>`
-  dynamic get className => _className == overwritingNullString ? null : _className;
+  dynamic get className =>
+      _className == overwritingNullString ? null : _className;
   dynamic _className;
   set className(dynamic value) {
     _className = value;
@@ -51,7 +52,7 @@ class Mode {
 
   dynamic beforeBegin;
 
-  List<String>? subLanguage;
+  List<String> subLanguage;
   bool? excludeBegin;
   bool? excludeEnd;
   bool? skip;
@@ -112,6 +113,7 @@ class Mode {
   void Function(DomainRegexMatch mode, Response response)? onEnd;
 
   Mode({
+    this.subLanguage = const [],
     this.ref,
     this.refs,
     this.name,
@@ -142,7 +144,6 @@ class Mode {
     this.endsParent,
     this.endsWithParent,
     this.relevance,
-    this.subLanguage,
     this.excludeBegin,
     this.excludeEnd,
     this.skip,
@@ -205,7 +206,7 @@ class Mode {
       ..self = b.self ?? a.self
       ..skip = b.skip ?? a.skip
       ..starts = b.starts ?? a.starts
-      ..subLanguage = b.subLanguage ?? a.subLanguage
+      ..subLanguage = b.subLanguage.isNotEmpty ? b.subLanguage : a.subLanguage
       ..supersetOf = b.supersetOf ?? a.supersetOf
       ..terminator_end = b.terminator_end ?? a.terminator_end
       ..terminators = b.terminators ?? a.terminators

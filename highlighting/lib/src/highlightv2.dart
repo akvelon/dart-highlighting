@@ -1,4 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:highlighting/languages/all.dart';
+import 'package:highlighting/languages/plaintext.dart';
+import 'package:meta/meta.dart';
 import 'package:tuple/tuple.dart';
 
 import 'const/literals.dart';
@@ -122,33 +125,35 @@ class HighlightV2 {
     }
 
     void processSubLanguage() {
-      if (modeBuffer == '') {
+      if (top.subLanguage.isEmpty) {
+        throw Exception('processSublanguage called on empty sublanguage');
+      }
+
+      if (modeBuffer.isEmpty) {
         return;
       }
+
       Result result;
-      // TODO(yescorp): Find out how to handle multiple sublanguages
-      if ((top.subLanguage?.length ?? 0) >= 1) {
-        if (builtinLanguages[top.subLanguage!.first] == null) {
-          emitter.addText(modeBuffer);
-          return;
-        }
-
-        // check type of subLanguage
-        result = highlight(top.subLanguage!.first, modeBuffer, true,
-            continuation: continuations[top.subLanguage!.first]);
-        continuations[top.subLanguage!.first] = result.top;
+      if (top.subLanguage.length > 1) {
+        result = highlightAuto(modeBuffer, top.subLanguage);
       } else {
-        result = Result(language: 'unknown');
+        result = highlight(
+          top.subLanguage.first,
+          modeBuffer,
+          true,
+          continuation: continuations[top.subLanguage.first],
+        );
+        continuations[top.subLanguage.first] = result.top;
       }
 
-      if (result.relevance != null && top.relevance! > 0) {
-        relevance += result.relevance!;
+      if (top.relevance! > 0) {
+        relevance += result.relevance;
       }
-      emitter.addSublanguage(result, result.language!);
+      emitter.addSublanguage(result, result.language);
     }
 
     void processBuffer() {
-      if (top.subLanguage != null) {
+      if (top.subLanguage.isNotEmpty) {
         processSubLanguage();
       } else {
         processKeywords();
@@ -164,8 +169,8 @@ class HighlightV2 {
           i++;
           continue;
         }
-        final klass =
-            language.classNameAliases[scope[i.toString()]] ?? scope[i.toString()];
+        final klass = language.classNameAliases[scope[i.toString()]] ??
+            scope[i.toString()];
         final text = match[i];
 
         if (klass != null) {
@@ -309,7 +314,7 @@ class HighlightV2 {
         if (top.scope != null) {
           emitter.closeNode();
         }
-        if (top.skip != true && top.subLanguage == null) {
+        if (top.skip != true && top.subLanguage.isEmpty) {
           relevance += top.relevance!;
         }
         top = top.parent!;
@@ -405,5 +410,67 @@ class HighlightV2 {
     }
 
     return emitter;
+  }
+
+  @internal
+  Result highlightAuto(
+    String code,
+    List<String> languageSubset,
+  ) {
+    final plainText = justTextHighlightResult(code);
+    try {
+      final results = languageSubset
+          .where((e) => _languages[e] != null || builtinLanguages[e] != null)
+          .where((e) =>
+              _languages[e]?.disableAutodetect != true ||
+              builtinLanguages[e]?.disableAutodetect != true)
+          .map((name) => highlight(name, code, false))
+          .toList();
+
+      results.insert(0, plainText);
+      results.sortByCompare<Result>((element) => element, _resultComparator);
+
+      return results[0];
+    } on Exception {
+      return plainText;
+    }
+  }
+
+  Result justTextHighlightResult(String code) {
+    final emitter = Result(
+      language: null,
+      top: plaintext,
+    );
+
+    return emitter..addText(code);
+  }
+
+  /// Compares results based on relevance, then on one being a superset.
+  int _resultComparator(Result a, Result b) {
+    // Sort base on relevance.
+    if ((a.relevance - b.relevance).abs() > 0.0001) {
+      return (b.relevance - a.relevance).sign.round();
+    }
+
+    // Always award the tie to the base language
+    // i.e. if C++ and Arduino are tied, it's more likely to be C++.
+    if (a.language != null && b.language != null) {
+      if (_getLanguage(a.language!)?.supersetOf == b.language) {
+        return 1;
+      }
+      if (_getLanguage(b.language!)?.supersetOf == a.language) {
+        return -1;
+      }
+    }
+
+    // Otherwise say they are equal, which has the effect of sorting on
+    // relevance while preserving the original ordering - which is how ties
+    // have historically been settled, i.e. the language that comes first always
+    // wins in the case of a tie.
+    return 0;
+  }
+
+  Mode? _getLanguage(String name) {
+    return _languages[name] ?? builtinLanguages[name];
   }
 }
