@@ -27,7 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String language = 'pgsql';
+  String language = 'dart';
   String theme = 'a11y-dark';
   TextEditingController controller = TextEditingController();
 
