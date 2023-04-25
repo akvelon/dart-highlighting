@@ -8,7 +8,7 @@ import 'example_map.dart';
 
 void main() => runApp(MyApp());
 
-const _title = 'Flutter Highlight Gallery by Akvelon';
+const _title = 'Flutter Highlighting by Akvelon';
 
 class MyApp extends StatelessWidget {
   @override
