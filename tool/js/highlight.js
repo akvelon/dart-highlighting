@@ -24,7 +24,7 @@ export function portCommonModes() {
   commonModes.forEach((value, key) => {
     const nonCircularObj = getNonCircularObject(value, key);
 
-    const mode = generateMode(nonCircularObj, true, new Set());
+    const mode = generateMode(nonCircularObj);
     common += `final ${key}=${mode};`;
   });
 
@@ -73,7 +73,7 @@ export function portAllModes() {
           let lodashGetKey = getLodashGetKey(token);
 
           const mode = _.get(nonCircularObj, lodashGetKey);
-          const data = generateMode(mode, true, new Set());
+          const data = generateMode(mode);
           refs += `'${token}': ${data},`;
 
           // The first occurrence of this Mode is the full object.
@@ -82,7 +82,7 @@ export function portAllModes() {
         });
       refs += "},";
 
-      const data = generateMode(nonCircularObj, true, tokens);
+      const data = generateMode(nonCircularObj);
 
       fs.writeFileSync(
         `../../highlighting/lib/languages/${originalLang}.dart`,

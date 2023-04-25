@@ -4,17 +4,9 @@ import { callbackDictionary } from "./callback_dictionary.js";
 import { commonModes } from "./common_modes.js";
 import { Mode } from "./types.js";
 
-export function generateMode(
-  mode: string | Mode,
-  matchCommonKey: boolean,
-  commonSet: Set<string>,
-): string {
+export function generateMode(mode: string | Mode): string {
   if (typeof mode === "string") {
-    return generateModeFromString(mode, matchCommonKey, commonSet);
-  }
-
-  if (mode == null) {
-    return JSON.stringify(null);
+    return generateModeFromString(mode);
   }
 
   let code = "Mode(";
@@ -65,7 +57,7 @@ export function generateMode(
         break;
 
       case "starts":
-        code += `${k}: ${generateMode(v, true, commonSet)}`;
+        code += `${k}: ${generateMode(v)}`;
         break;
       case "contains":
       case "variants":
@@ -73,7 +65,7 @@ export function generateMode(
           code += `${k}: null`;
         } else if (Array.isArray(v)) {
           const arr = v.map((m) => {
-            return generateMode(m, true, commonSet);
+            return generateMode(m);
           });
           code += `${k}: [${arr.join(",")}]`;
         } else {
@@ -92,16 +84,10 @@ export function generateMode(
   return code;
 }
 
-function generateModeFromString(
-  str: string,
-  matchCommonKey: boolean,
-  commonSet: Set<string>,
-): string {
-  if (matchCommonKey) {
-    for (const entry of commonModes) {
-      if (entry[0] === str) {
-        return entry[0];
-      }
+function generateModeFromString(str: string): string {
+  for (const entry of commonModes) {
+    if (entry[0] === str) {
+      return entry[0];
     }
   }
 
@@ -110,7 +96,6 @@ function generateModeFromString(
   }
 
   if (str.startsWith("~")) {
-    commonSet.add(str);
     return `Mode(ref: '${str}')`;
   }
 
