@@ -1,8 +1,6 @@
 import hljs from "highlight.js";
 import mathematica from "highlight.js/lib/languages/mathematica";
 import javascript from "highlight.js/lib/languages/javascript";
-import typescript from "highlight.js/lib/languages/typescript";
-import ruby from "highlight.js/lib/languages/ruby";
 import _ from "lodash";
 
 import { Mode, ModeCallback } from "./types.js";
@@ -117,12 +115,10 @@ class LanguageCallbackParser {
 }
 
 export const callbackDictionary = new Map<string, string>([
-  ...commonCallbacks,
-
   ...new LanguagesCallbackParser([
-    javascript(hljs),
     mathematica(hljs),
-    ruby(hljs),
-    typescript(hljs),
+    javascript(hljs),
   ]).entries,
+
+  ...commonCallbacks,
 ]);

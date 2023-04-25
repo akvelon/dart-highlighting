@@ -61,36 +61,35 @@ export function portAllModes() {
     let lang = normalizeLanguageName(originalLang);
 
     try {
-      const nonCircularObj = getNonCircularObject(item.factory(hljs));
-      const commonSet = getCircularJsonTokens(nonCircularObj);
+      const circularObj = item.factory(hljs);
+      const nonCircularObj = getNonCircularObject(circularObj);
+      const tokens = getCircularJsonTokens(nonCircularObj);
 
-      generateMode(nonCircularObj, true, commonSet);
-
-      var commonStr = "refs: {";
-      [...commonSet]
+      let refs = "refs: {";
+      [...tokens]
         .sort((a, b) => (a < b ? 1 : -1))
-        .forEach(commonKey => {
-          // console.log(commonKey);
-
+        .forEach(token => {
           // ~contains~0 -> lang.contains[0]
-          let lodashGetKey = getLodashGetKey(commonKey);
+          let lodashGetKey = getLodashGetKey(token);
 
-          const data = generateMode(_.get(nonCircularObj, lodashGetKey), true, new Set());
-          commonStr += `'${commonKey}': ${data},`;
+          const mode = _.get(nonCircularObj, lodashGetKey);
+          const data = generateMode(mode, true, new Set());
+          refs += `'${token}': ${data},`;
 
-          // Set the first ref
-          _.set(nonCircularObj, lodashGetKey, commonKey);
+          // The first occurrence of this Mode is the full object.
+          // Replace it with the token.
+          _.set(nonCircularObj, lodashGetKey, token);
         });
-      commonStr += "},";
+      refs += "},";
 
-      const data = generateMode(nonCircularObj, true, commonSet);
+      const data = generateMode(nonCircularObj, true, tokens);
 
       fs.writeFileSync(
         `../../highlighting/lib/languages/${originalLang}.dart`,
         `${NOTICE_COMMENT}
         import '../src/language_definition_parts.dart';
 
-        final ${lang}=Mode(${commonStr} ${data.slice(
+        final ${lang}=Mode(${refs} ${data.slice(
           5
         )};`
           .replace(/"hljs\.(.*?)"/g, "$1")

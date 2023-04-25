@@ -27,7 +27,7 @@ void language_mathematica_contains_0_variants_0_onBegin(
   }
 }
 
-void language_typescript_contains_0_contains_0_variants_0_onBegin(
+void language_javascript_contains_0_contains_0_variants_0_onBegin(
   DomainRegexMatch match,
   Response response,
 ) {
