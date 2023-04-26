@@ -115,10 +115,7 @@ class LanguageCallbackParser {
 }
 
 export const callbackDictionary = new Map<string, string>([
-  ...new LanguagesCallbackParser([
-    mathematica(hljs),
-    javascript(hljs),
-  ]).entries,
+  ...new LanguagesCallbackParser([mathematica(hljs), javascript(hljs)]).entries,
 
   ...commonCallbacks,
 ]);

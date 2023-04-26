@@ -9,79 +9,18 @@ export function generateMode(mode: string | Mode): string {
     return generateModeFromString(mode);
   }
 
-  let code = "Mode(";
-  Object.entries(mode).forEach(([k, v], i, arr) => {
-    if (k === "exports") return; // CPP
+  let entries: MapEntry<string, string>[] = [];
 
-    if (v instanceof RegExp) v = v.source;
-    if (k === "end" && typeof v === "boolean") v = v.toString();
-    if (k === "subLanguage" && typeof v === "string") {
-      v = [v];
+  for (const [k, v] of Object.entries(mode)) {
+    const entry = generateModeEntry(k, v);
+    if (entry !== undefined) {
+      entries.push(entry);
     }
+  }
 
-    // This is a workaround for CircularJSON serialization.
-    // Symbol `~` is reserved by CircularJSON and corresponds to
-    // `\\x7e` in radix16 String.
-    // That is why when an Object is serialized
-    // CircularJSON replaces `\\x7e` with `\\\\x7e`.
-    if (k === "begin" && v && v.includes("\\\\x7e")) {
-      v = v.replaceAll("\\\\x7e", "\\x7e");
-    }
-
-    switch (k) {
-      case "className":
-      case "scope":
-        if (v === null || v === "") {
-          code += `${k}: overwritingNullString`;
-          break;
-        }
-        code += `${k}: ${JSON.stringify(v)}`;
-        break;
-      case "on:begin":
-        if (callbackDictionary.has(v.toString())) {
-          code += `onBegin: ${callbackDictionary.get(v.toString())}`;
-          break;
-        }
-        code += `onBegin: (match, resp) => throw Exception(r'''Callback not ported: ${v
-          .toString()
-          .replace(/'/g, "r'")}''')`;
-        break;
-      case "on:end":
-        if (callbackDictionary.has(v.toString())) {
-          code += `onEnd: ${callbackDictionary.get(v.toString())}`;
-          break;
-        }
-        code += `onEnd: (match, resp) => throw Exception(r'''Callback not ported: ${v
-          .toString()
-          .replace(/'/g, "r'")}''')`;
-        break;
-
-      case "starts":
-        code += `${k}: ${generateMode(v)}`;
-        break;
-      case "contains":
-      case "variants":
-        if (v == null) {
-          code += `${k}: null`;
-        } else if (Array.isArray(v)) {
-          const arr = v.map((m) => {
-            return generateMode(m);
-          });
-          code += `${k}: [${arr.join(",")}]`;
-        } else {
-          throw "should not be here";
-        }
-        break;
-      default:
-        code += `${k}: ${JSON.stringify(v)}`;
-    }
-
-    if (i < arr.length - 1) {
-      code += ",";
-    }
-  });
-  code += ")";
-  return code;
+  return `Mode(${entries
+    .map(({ key, value }) => `${key}: ${value},`)
+    .join("")})`;
 }
 
 function generateModeFromString(str: string): string {
@@ -100,6 +39,135 @@ function generateModeFromString(str: string): string {
   }
 
   throw new Error(`Should not be here: ${str}`);
+}
+
+function generateModeEntry(
+  key: string,
+  value: any,
+): MapEntry<string, string> | undefined {
+  key = preprocessModeEntryKey(key);
+  value = preprocessModeEntryValue(value);
+
+  switch (key) {
+    case "begin":
+      if (value && value.includes("\\\\x7e")) {
+        value = value.replaceAll("\\\\x7e", "\\x7e");
+      }
+      return { key: key, value: JSON.stringify(value) };
+
+    case "end":
+      if (typeof value === "boolean") value = value.toString();
+      return { key: key, value: JSON.stringify(value) };
+
+    case "onBegin":
+    case "onEnd":
+      return modeEntryCallback(key, value);
+
+    case "starts":
+      return { key: key, value: generateMode(value) };
+
+    case "subLanguage":
+      if (typeof value === "string") value = [value];
+      return { key: key, value: JSON.stringify(value) };
+
+    case "className":
+    case "scope":
+      if (value === null || value === "") {
+        return { key: key, value: "overwritingNullString" };
+      }
+      return { key: key, value: JSON.stringify(value) };
+
+    case "contains":
+    case "variants":
+      if (value == null) {
+        return { key: key, value: "null" };
+      }
+
+      if (Array.isArray(value)) {
+        const arr = value.map((mode) => generateMode(mode) + ",");
+        return { key: key, value: `[${arr.join("")}]` };
+      }
+
+      throw "should not be here";
+
+    // This is the whitelist of fields we transpile as they are.
+    // TODO: Find unused ones and comment them out.
+
+    // Mode:
+    case "match":
+    case "className":
+    case "scope":
+    case "beginScope":
+    case "endScope":
+    case "endsParent":
+    case "endsWithParent":
+    case "endSameAsBegin":
+    case "skip":
+    case "excludeBegin":
+    case "excludeEnd":
+    case "returnBegin":
+    case "returnEnd":
+    case "__beforeBegin":
+    case "parent":
+    case "lexemes":
+    case "keywords":
+    case "beginKeywords":
+    case "relevance":
+    case "illegal":
+    case "cachedVariants":
+    case "subLanguage":
+    case "isCompiled":
+    case "label":
+
+    // Language:
+    case "name":
+    case "unicodeRegex":
+    case "rawDefinition":
+    case "aliases":
+    case "disableAutodetect":
+    case "case_insensitive":
+    case "keywords":
+    // case "exports": unused
+    case "classNameAliases":
+    case "compilerExtensions":
+    case "supersetOf":
+      return { key: key, value: JSON.stringify(value) };
+  }
+
+  return undefined;
+}
+
+function preprocessModeEntryValue(value: any): any {
+  if (value instanceof RegExp) return value.source;
+  return value;
+}
+
+interface MapEntry<K, V> {
+  key: K;
+  value: V;
+}
+
+function modeEntryCallback(key: string, value: any): MapEntry<string, string> {
+  const code = value.toString();
+  const dartFunctionName = callbackDictionary.get(code);
+
+  return {
+    key: key,
+    value:
+      dartFunctionName === undefined
+        ? `throw Exception(r'''Callback not ported: ${code}''')`
+        : dartFunctionName,
+  };
+}
+
+function preprocessModeEntryKey(key: string): string {
+  switch (key) {
+    case "on:begin":
+      return "onBegin";
+    case "on:end":
+      return "onEnd";
+  }
+  return key;
 }
 
 /**

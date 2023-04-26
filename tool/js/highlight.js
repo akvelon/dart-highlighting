@@ -25,7 +25,7 @@ export function portCommonModes() {
     const nonCircularObj = getNonCircularObject(value, key);
 
     const mode = generateMode(nonCircularObj);
-    common += `final ${key}=${mode};`;
+    common += `final ${key}=${mode};\n\n`;
   });
 
   fs.writeFileSync(

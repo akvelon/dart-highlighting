@@ -3,28 +3,32 @@
 import '../src/language_definition_parts.dart';
 
 final fix = Mode(
-    refs: {},
-    name: "FIX",
-    contains: [
-      Mode(
-          begin: "[^\\u2401\\u0001]+",
-          end: "[\\u2401\\u0001]",
+  refs: {},
+  name: "FIX",
+  contains: [
+    Mode(
+      begin: "[^\\u2401\\u0001]+",
+      end: "[\\u2401\\u0001]",
+      excludeEnd: true,
+      returnBegin: true,
+      returnEnd: false,
+      contains: [
+        Mode(
+          begin: "([^\\u2401\\u0001=]+)",
+          end: "=([^\\u2401\\u0001=]+)",
+          returnEnd: true,
+          returnBegin: false,
+          className: "attr",
+        ),
+        Mode(
+          begin: "=",
+          end: "([\\u2401\\u0001])",
           excludeEnd: true,
-          returnBegin: true,
-          returnEnd: false,
-          contains: [
-            Mode(
-                begin: "([^\\u2401\\u0001=]+)",
-                end: "=([^\\u2401\\u0001=]+)",
-                returnEnd: true,
-                returnBegin: false,
-                className: "attr"),
-            Mode(
-                begin: "=",
-                end: "([\\u2401\\u0001])",
-                excludeEnd: true,
-                excludeBegin: true,
-                className: "string")
-          ])
-    ],
-    case_insensitive: true);
+          excludeBegin: true,
+          className: "string",
+        ),
+      ],
+    ),
+  ],
+  case_insensitive: true,
+);
