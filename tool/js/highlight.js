@@ -4,10 +4,9 @@ import hljs from "highlight.js"; // TODO: Do not register languages
 import _ from "lodash";
 import path from "path";
 
-import { callbackDictionary } from "./callback_dictionary.js";
 import { NOTICE_COMMENT } from "./common.js";
 import { commonModes } from "./common_modes.js";
-import { generateMode, getCircularJsonTokens, getLodashGetKey } from './porting.js';
+import { generateLanguage, generateMode, getCircularJsonTokens, getLodashGetKey } from './porting.js';
 
 import { portMathematicaSpecific } from './languages/mathematica.js';
 
@@ -42,9 +41,9 @@ function normalizeLanguageName(name) {
 }
 
 export function portAllModes() {
-  let all = "import '../src/mode.dart';";
-  let builtin = "final builtinLanguages = <String, Mode>{";
-  let community = "final communityLanguages = <String, Mode>{";
+  let all = "import '../src/language.dart';";
+  let builtin = "final builtinLanguages = <String, Language>{";
+  let community = "final communityLanguages = <String, Language>{";
 
   const dirs = fs.readdirSync(dir);
   const items = [
@@ -80,18 +79,16 @@ export function portAllModes() {
           // Replace it with the token.
           _.set(nonCircularObj, lodashGetKey, token);
         });
-      refs += "},";
+      refs += "}";
 
-      const data = generateMode(nonCircularObj);
+      const data = generateLanguage(nonCircularObj, item.name, refs);
 
       fs.writeFileSync(
         `../../highlighting/lib/languages/${originalLang}.dart`,
         `${NOTICE_COMMENT}
         import '../src/language_definition_parts.dart';
 
-        final ${lang}=Mode(${refs} ${data.slice(
-          5
-        )};`
+        final ${lang}=${data};`
           .replace(/"hljs\.(.*?)"/g, "$1")
           .replace(/\$/g, "\\$")
       );

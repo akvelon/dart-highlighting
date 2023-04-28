@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final mercury = Mode(
+final mercury = Language(
+  id: "mercury",
   refs: {},
   name: "Mercury",
   aliases: ["m", "moo"],

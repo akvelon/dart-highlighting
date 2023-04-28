@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final elixir = Mode(
+final elixir = Language(
+  id: "elixir",
   refs: {
     '~contains~0~contains~1~contains~9': Mode(
       className: "symbol",
@@ -13,7 +14,7 @@ final elixir = Mode(
       className: "symbol",
       begin: ":(?![\\s:])",
       contains: [
-        Mode(ref: '~contains~0'),
+        ModeReference('~contains~0'),
         Mode(
           begin:
               "[a-zA-Z_]\\w*[!?=]?|[-+\\x7e]@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?",
@@ -29,7 +30,7 @@ final elixir = Mode(
       beginKeywords: "def defp defmacro defmacrop",
       end: "\\B\\b",
       contains: [
-        Mode(ref: '~contains~0~contains~1~contains~5~contains~0'),
+        ModeReference('~contains~0~contains~1~contains~5~contains~0'),
       ],
     ),
     '~contains~0~contains~1~contains~5~contains~0': Mode(
@@ -43,7 +44,7 @@ final elixir = Mode(
       beginKeywords: "defimpl defmodule defprotocol defrecord",
       end: "\\bdo\\b|\$|;",
       contains: [
-        Mode(ref: '~contains~0~contains~1~contains~5~contains~0'),
+        ModeReference('~contains~0~contains~1~contains~5~contains~0'),
       ],
     ),
     '~contains~0~contains~1~contains~3': Mode(
@@ -59,10 +60,9 @@ final elixir = Mode(
               begin: "\\\\\"",
               relevance: 0,
             ),
-            Mode(
-                ref:
-                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~1'),
           ],
         ),
         Mode(
@@ -74,10 +74,9 @@ final elixir = Mode(
               begin: "\\\\'",
               relevance: 0,
             ),
-            Mode(
-                ref:
-                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~1'),
           ],
         ),
         Mode(
@@ -89,10 +88,9 @@ final elixir = Mode(
               begin: "\\\\\\/",
               relevance: 0,
             ),
-            Mode(
-                ref:
-                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~1'),
           ],
         ),
         Mode(
@@ -104,10 +102,9 @@ final elixir = Mode(
               begin: "\\\\\\|",
               relevance: 0,
             ),
-            Mode(
-                ref:
-                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~1'),
           ],
         ),
         Mode(
@@ -119,10 +116,9 @@ final elixir = Mode(
               begin: "\\\\\\)",
               relevance: 0,
             ),
-            Mode(
-                ref:
-                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~1'),
           ],
         ),
         Mode(
@@ -134,10 +130,9 @@ final elixir = Mode(
               begin: "\\\\\\]",
               relevance: 0,
             ),
-            Mode(
-                ref:
-                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~1'),
           ],
         ),
         Mode(
@@ -149,10 +144,9 @@ final elixir = Mode(
               begin: "\\\\\\}",
               relevance: 0,
             ),
-            Mode(
-                ref:
-                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~1'),
           ],
         ),
         Mode(
@@ -164,10 +158,9 @@ final elixir = Mode(
               begin: "\\\\>",
               relevance: 0,
             ),
-            Mode(
-                ref:
-                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~1'),
           ],
         ),
       ],
@@ -301,10 +294,9 @@ final elixir = Mode(
                   begin: "\\\\\"",
                   relevance: 0,
                 ),
-                Mode(
-                    ref:
-                        '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-                Mode(ref: '~contains~0~contains~1'),
+                ModeReference(
+                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~1'),
               ],
             ),
             Mode(
@@ -316,10 +308,9 @@ final elixir = Mode(
                   begin: "\\\\'",
                   relevance: 0,
                 ),
-                Mode(
-                    ref:
-                        '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-                Mode(ref: '~contains~0~contains~1'),
+                ModeReference(
+                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~1'),
               ],
             ),
             Mode(
@@ -331,10 +322,9 @@ final elixir = Mode(
                   begin: "\\\\\\/",
                   relevance: 0,
                 ),
-                Mode(
-                    ref:
-                        '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-                Mode(ref: '~contains~0~contains~1'),
+                ModeReference(
+                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~1'),
               ],
             ),
             Mode(
@@ -346,10 +336,9 @@ final elixir = Mode(
                   begin: "\\\\\\|",
                   relevance: 0,
                 ),
-                Mode(
-                    ref:
-                        '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-                Mode(ref: '~contains~0~contains~1'),
+                ModeReference(
+                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~1'),
               ],
             ),
             Mode(
@@ -361,10 +350,9 @@ final elixir = Mode(
                   begin: "\\\\\\)",
                   relevance: 0,
                 ),
-                Mode(
-                    ref:
-                        '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-                Mode(ref: '~contains~0~contains~1'),
+                ModeReference(
+                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~1'),
               ],
             ),
             Mode(
@@ -376,10 +364,9 @@ final elixir = Mode(
                   begin: "\\\\\\]",
                   relevance: 0,
                 ),
-                Mode(
-                    ref:
-                        '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-                Mode(ref: '~contains~0~contains~1'),
+                ModeReference(
+                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~1'),
               ],
             ),
             Mode(
@@ -391,10 +378,9 @@ final elixir = Mode(
                   begin: "\\\\\\}",
                   relevance: 0,
                 ),
-                Mode(
-                    ref:
-                        '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-                Mode(ref: '~contains~0~contains~1'),
+                ModeReference(
+                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~1'),
               ],
             ),
             Mode(
@@ -406,10 +392,9 @@ final elixir = Mode(
                   begin: "\\\\>",
                   relevance: 0,
                 ),
-                Mode(
-                    ref:
-                        '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
-                Mode(ref: '~contains~0~contains~1'),
+                ModeReference(
+                    '~contains~0~contains~1~contains~1~variants~0~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~1'),
               ],
             ),
           ],
@@ -551,26 +536,26 @@ final elixir = Mode(
         "literal": ["false", "nil", "true"]
       },
       contains: [
-        Mode(ref: '~contains~0'),
-        Mode(ref: '~contains~0~contains~1~contains~1'),
-        Mode(ref: '~contains~0~contains~1~contains~2'),
-        Mode(ref: '~contains~0~contains~1~contains~3'),
+        ModeReference('~contains~0'),
+        ModeReference('~contains~0~contains~1~contains~1'),
+        ModeReference('~contains~0~contains~1~contains~2'),
+        ModeReference('~contains~0~contains~1~contains~3'),
         HASH_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~1~contains~5'),
-        Mode(ref: '~contains~0~contains~1~contains~6'),
-        Mode(ref: '~contains~0~contains~1~contains~7'),
-        Mode(ref: '~contains~0~contains~1~contains~8'),
-        Mode(ref: '~contains~0~contains~1~contains~9'),
-        Mode(ref: '~contains~0~contains~1~contains~10'),
-        Mode(ref: '~contains~0~contains~1~contains~11'),
-        Mode(ref: '~contains~0~contains~1~contains~12'),
+        ModeReference('~contains~0~contains~1~contains~5'),
+        ModeReference('~contains~0~contains~1~contains~6'),
+        ModeReference('~contains~0~contains~1~contains~7'),
+        ModeReference('~contains~0~contains~1~contains~8'),
+        ModeReference('~contains~0~contains~1~contains~9'),
+        ModeReference('~contains~0~contains~1~contains~10'),
+        ModeReference('~contains~0~contains~1~contains~11'),
+        ModeReference('~contains~0~contains~1~contains~12'),
       ],
     ),
     '~contains~0': Mode(
       className: "string",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~1'),
       ],
       variants: [
         Mode(
@@ -652,18 +637,18 @@ final elixir = Mode(
     "literal": ["false", "nil", "true"]
   },
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~0~contains~1~contains~1'),
-    Mode(ref: '~contains~0~contains~1~contains~2'),
-    Mode(ref: '~contains~0~contains~1~contains~3'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~0~contains~1~contains~1'),
+    ModeReference('~contains~0~contains~1~contains~2'),
+    ModeReference('~contains~0~contains~1~contains~3'),
     HASH_COMMENT_MODE,
-    Mode(ref: '~contains~0~contains~1~contains~5'),
-    Mode(ref: '~contains~0~contains~1~contains~6'),
-    Mode(ref: '~contains~0~contains~1~contains~7'),
-    Mode(ref: '~contains~0~contains~1~contains~8'),
-    Mode(ref: '~contains~0~contains~1~contains~9'),
-    Mode(ref: '~contains~0~contains~1~contains~10'),
-    Mode(ref: '~contains~0~contains~1~contains~11'),
-    Mode(ref: '~contains~0~contains~1~contains~12'),
+    ModeReference('~contains~0~contains~1~contains~5'),
+    ModeReference('~contains~0~contains~1~contains~6'),
+    ModeReference('~contains~0~contains~1~contains~7'),
+    ModeReference('~contains~0~contains~1~contains~8'),
+    ModeReference('~contains~0~contains~1~contains~9'),
+    ModeReference('~contains~0~contains~1~contains~10'),
+    ModeReference('~contains~0~contains~1~contains~11'),
+    ModeReference('~contains~0~contains~1~contains~12'),
   ],
 );

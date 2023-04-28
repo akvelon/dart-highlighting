@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final coq = Mode(
+final coq = Language(
+  id: "coq",
   refs: {},
   name: "Coq",
   keywords: {

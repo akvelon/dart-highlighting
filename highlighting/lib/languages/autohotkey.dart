@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final autohotkey = Mode(
+final autohotkey = Language(
+  id: "autohotkey",
   refs: {
     '~contains~0': Mode(
       begin: "`[\\s\\S]",
@@ -18,14 +19,14 @@ final autohotkey = Mode(
     "built_in": "ComSpec Clipboard ClipboardAll ErrorLevel"
   },
   contains: [
-    Mode(ref: '~contains~0'),
+    ModeReference('~contains~0'),
     Mode(
       scope: "string",
       begin: "\"",
       end: "\"",
       illegal: "\\n",
       contains: [
-        Mode(ref: '~contains~0'),
+        ModeReference('~contains~0'),
       ],
     ),
     Mode(

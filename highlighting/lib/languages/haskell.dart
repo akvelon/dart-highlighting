@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final haskell = Mode(
+final haskell = Language(
+  id: "haskell",
   refs: {
     '~contains~2~contains~0': Mode(
       className: "type",
@@ -34,7 +35,7 @@ final haskell = Mode(
           begin: "\\{-",
           end: "-\\}",
           contains: [
-            Mode(self: true),
+            ModeSelfReference(),
             Mode(
               scope: "doctag",
               begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
@@ -74,11 +75,11 @@ final haskell = Mode(
       end: "\\)",
       illegal: "\"",
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~0~contains~2'),
-        Mode(ref: '~contains~0~contains~0~contains~3'),
-        Mode(ref: '~contains~0~contains~0~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~0~contains~3'),
+        ModeReference('~contains~0~contains~0~contains~4'),
       ],
     ),
   },
@@ -92,8 +93,8 @@ final haskell = Mode(
       end: "where",
       keywords: "module where",
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~4'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~4'),
       ],
       illegal: "\\W\\.|;",
     ),
@@ -102,8 +103,8 @@ final haskell = Mode(
       end: "\$",
       keywords: "import qualified as hiding",
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~4'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~4'),
       ],
       illegal: "\\W\\.|;",
     ),
@@ -113,9 +114,9 @@ final haskell = Mode(
       end: "where",
       keywords: "class family instance where",
       contains: [
-        Mode(ref: '~contains~2~contains~0'),
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~4'),
+        ModeReference('~contains~2~contains~0'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~4'),
       ],
     ),
     Mode(
@@ -124,30 +125,30 @@ final haskell = Mode(
       end: "\$",
       keywords: "data family type newtype deriving",
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~0'),
-        Mode(ref: '~contains~2~contains~0'),
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~0'),
+        ModeReference('~contains~2~contains~0'),
+        ModeReference('~contains~0~contains~0'),
         Mode(
           begin: "\\{",
           end: "\\}",
           contains: [
-            Mode(ref: '~contains~0~contains~0~contains~0'),
-            Mode(ref: '~contains~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~0~contains~2'),
-            Mode(ref: '~contains~0~contains~0~contains~3'),
-            Mode(ref: '~contains~0~contains~0~contains~4'),
+            ModeReference('~contains~0~contains~0~contains~0'),
+            ModeReference('~contains~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~0~contains~2'),
+            ModeReference('~contains~0~contains~0~contains~3'),
+            ModeReference('~contains~0~contains~0~contains~4'),
           ],
         ),
-        Mode(ref: '~contains~0~contains~0~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~4'),
       ],
     ),
     Mode(
       beginKeywords: "default",
       end: "\$",
       contains: [
-        Mode(ref: '~contains~2~contains~0'),
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~4'),
+        ModeReference('~contains~2~contains~0'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~4'),
       ],
     ),
     Mode(
@@ -155,7 +156,7 @@ final haskell = Mode(
       end: "\$",
       contains: [
         C_NUMBER_MODE,
-        Mode(ref: '~contains~0~contains~0~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~4'),
       ],
     ),
     Mode(
@@ -164,9 +165,9 @@ final haskell = Mode(
       keywords:
           "foreign import export ccall stdcall cplusplus jvm dotnet safe unsafe",
       contains: [
-        Mode(ref: '~contains~2~contains~0'),
+        ModeReference('~contains~2~contains~0'),
         QUOTE_STRING_MODE,
-        Mode(ref: '~contains~0~contains~0~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~4'),
       ],
     ),
     Mode(
@@ -174,8 +175,8 @@ final haskell = Mode(
       begin: "#!\\/usr\\/bin\\/env runhaskell",
       end: "\$",
     ),
-    Mode(ref: '~contains~0~contains~0~contains~0'),
-    Mode(ref: '~contains~0~contains~0~contains~1'),
+    ModeReference('~contains~0~contains~0~contains~0'),
+    ModeReference('~contains~0~contains~0~contains~1'),
     QUOTE_STRING_MODE,
     Mode(
       className: "number",
@@ -196,13 +197,13 @@ final haskell = Mode(
         ),
       ],
     ),
-    Mode(ref: '~contains~2~contains~0'),
+    ModeReference('~contains~2~contains~0'),
     Mode(
       scope: "title",
       begin: "^[_a-z][\\w']*",
       relevance: 0,
     ),
-    Mode(ref: '~contains~0~contains~0~contains~4'),
+    ModeReference('~contains~0~contains~0~contains~4'),
     Mode(
       begin: "->|<-",
     ),

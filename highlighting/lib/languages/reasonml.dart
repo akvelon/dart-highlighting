@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final reasonml = Mode(
+final reasonml = Language(
+  id: "reasonml",
   refs: {
     '~contains~6': Mode(
       className: "constructor",
@@ -18,7 +19,7 @@ final reasonml = Mode(
       },
       contains: [
         QUOTE_STRING_MODE,
-        Mode(ref: '~contains~4~contains~1'),
+        ModeReference('~contains~4~contains~1'),
         Mode(
           className: "params",
           begin: "\\b\\x7e?[a-z\$_][0-9a-zA-Z\$_]*",
@@ -85,7 +86,7 @@ final reasonml = Mode(
           end: "\\)",
           returnBegin: true,
           contains: [
-            Mode(ref: '~contains~11'),
+            ModeReference('~contains~11'),
             Mode(
               begin: "\\(",
               end: "\\)",
@@ -93,11 +94,10 @@ final reasonml = Mode(
               skip: true,
             ),
             QUOTE_STRING_MODE,
-            Mode(ref: '~contains~4~contains~1'),
-            Mode(
-                ref:
-                    '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1~variants~1~contains~4'),
-            Mode(ref: '~contains~11'),
+            ModeReference('~contains~4~contains~1'),
+            ModeReference(
+                '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1~variants~1~contains~4'),
+            ModeReference('~contains~11'),
           ],
         ),
         Mode(
@@ -107,11 +107,10 @@ final reasonml = Mode(
       ],
       contains: [
         QUOTE_STRING_MODE,
-        Mode(ref: '~contains~4~contains~1'),
-        Mode(
-            ref:
-                '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1~variants~1~contains~4'),
-        Mode(ref: '~contains~11'),
+        ModeReference('~contains~4~contains~1'),
+        ModeReference(
+            '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1~variants~1~contains~4'),
+        ModeReference('~contains~11'),
       ],
     ),
     '~contains~11': Mode(
@@ -163,7 +162,7 @@ final reasonml = Mode(
                   end: "(,|\\n|\\))",
                   relevance: 0,
                   contains: [
-                    Mode(ref: '~contains~4~contains~1'),
+                    ModeReference('~contains~4~contains~1'),
                     Mode(
                       className: "typing",
                       begin: ":",
@@ -185,9 +184,8 @@ final reasonml = Mode(
                             ),
                           ],
                         ),
-                        Mode(
-                            ref:
-                                '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1'),
+                        ModeReference(
+                            '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1'),
                       ],
                     ),
                   ],
@@ -250,9 +248,9 @@ final reasonml = Mode(
       end: "\\|\\]",
       relevance: 0,
       contains: [
-        Mode(ref: '~contains~4~contains~0'),
-        Mode(ref: '~contains~4~contains~1'),
-        Mode(ref: '~contains~4~contains~2'),
+        ModeReference('~contains~4~contains~0'),
+        ModeReference('~contains~4~contains~1'),
+        ModeReference('~contains~4~contains~2'),
       ],
     ),
     Mode(
@@ -261,12 +259,12 @@ final reasonml = Mode(
       end: "\\]",
       relevance: 0,
       contains: [
-        Mode(ref: '~contains~4~contains~0'),
-        Mode(ref: '~contains~4~contains~1'),
-        Mode(ref: '~contains~4~contains~2'),
+        ModeReference('~contains~4~contains~0'),
+        ModeReference('~contains~4~contains~1'),
+        ModeReference('~contains~4~contains~2'),
       ],
     ),
-    Mode(ref: '~contains~6'),
+    ModeReference('~contains~6'),
     Mode(
       className: "operator",
       begin:
@@ -274,7 +272,7 @@ final reasonml = Mode(
       illegal: "-->",
       relevance: 0,
     ),
-    Mode(ref: '~contains~4~contains~2'),
+    ModeReference('~contains~4~contains~2'),
     C_LINE_COMMENT_MODE,
     Mode(
       className: "pattern-match",
@@ -290,8 +288,8 @@ final reasonml = Mode(
       end: "=>",
       relevance: 0,
       contains: [
-        Mode(ref: '~contains~6'),
-        Mode(ref: '~contains~4~contains~1'),
+        ModeReference('~contains~6'),
+        ModeReference('~contains~4~contains~1'),
         Mode(
           relevance: 0,
           className: "constructor",
@@ -299,7 +297,7 @@ final reasonml = Mode(
         ),
       ],
     ),
-    Mode(ref: '~contains~11'),
+    ModeReference('~contains~11'),
     Mode(
       className: "module-def",
       begin:
@@ -327,15 +325,13 @@ final reasonml = Mode(
           skip: true,
         ),
         QUOTE_STRING_MODE,
-        Mode(ref: '~contains~4~contains~1'),
-        Mode(
-            ref:
-                '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1~variants~1~contains~4'),
-        Mode(ref: '~contains~11'),
+        ModeReference('~contains~4~contains~1'),
+        ModeReference(
+            '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1~variants~1~contains~4'),
+        ModeReference('~contains~11'),
       ],
     ),
-    Mode(
-        ref:
-            '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1'),
+    ModeReference(
+        '~contains~11~variants~1~contains~0~variants~0~contains~1~contains~1'),
   ],
 );

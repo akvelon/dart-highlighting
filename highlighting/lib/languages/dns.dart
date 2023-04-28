@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final dns = Mode(
+final dns = Language(
+  id: "dns",
   refs: {},
   name: "DNS Zone",
   aliases: ["bind", "zone"],

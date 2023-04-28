@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final clojureRepl = Mode(
+final clojureRepl = Language(
+  id: "clojure-repl",
   refs: {},
   name: "Clojure REPL",
   contains: [

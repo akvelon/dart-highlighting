@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final abnf = Mode(
+final abnf = Language(
+  id: "abnf",
   refs: {},
   name: "Augmented Backus-Naur Form",
   illegal: "[!@#\$^&',?+\\x7e`|:]",

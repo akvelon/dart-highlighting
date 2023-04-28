@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final pythonRepl = Mode(
+final pythonRepl = Language(
+  id: "python-repl",
   refs: {},
   aliases: ["pycon"],
   contains: [

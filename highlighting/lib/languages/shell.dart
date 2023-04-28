@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final shell = Mode(
+final shell = Language(
+  id: "shell",
   refs: {},
   name: "Shell Session",
   aliases: ["console", "shellsession"],

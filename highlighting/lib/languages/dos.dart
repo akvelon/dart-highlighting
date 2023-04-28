@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final dos = Mode(
+final dos = Language(
+  id: "dos",
   refs: {
     '~contains~1~contains~1': Mode(
       scope: "comment",
@@ -155,7 +156,7 @@ final dos = Mode(
           begin: "([_a-zA-Z]\\w*\\.)*([_a-zA-Z]\\w*:)?[_a-zA-Z]\\w*",
           relevance: 0,
         ),
-        Mode(ref: '~contains~1~contains~1'),
+        ModeReference('~contains~1~contains~1'),
       ],
     ),
     Mode(
@@ -163,6 +164,6 @@ final dos = Mode(
       begin: "\\b\\d+",
       relevance: 0,
     ),
-    Mode(ref: '~contains~1~contains~1'),
+    ModeReference('~contains~1~contains~1'),
   ],
 );

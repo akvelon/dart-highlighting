@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final axapta = Mode(
+final axapta = Language(
+  id: "axapta",
   refs: {},
   name: "X++",
   aliases: ["x++"],

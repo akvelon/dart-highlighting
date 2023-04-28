@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final haxe = Mode(
+final haxe = Language(
+  id: "haxe",
   refs: {},
   name: "Haxe",
   aliases: ["hx"],

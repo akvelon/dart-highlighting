@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_highlighting/flutter_highlighting.dart';
 import 'package:flutter_highlighting/theme_map.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:highlighting/languages/all.dart';
 
 import 'example_map.dart';
@@ -89,13 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
               }
             },
           ),
-          IconButton(
-            icon: const Icon(Icons.code),
-            tooltip: 'Source Code',
-            onPressed: () {
-              launch('https://github.com/pd4d10/highlight');
-            },
-          )
         ],
       ),
       body: Center(

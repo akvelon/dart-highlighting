@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final d = Mode(
+final d = Language(
+  id: "d",
   refs: {},
   name: "D",
   keywords: {
@@ -21,7 +22,7 @@ final d = Mode(
       begin: "\\/\\+",
       end: "\\+\\/",
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final gherkin = Mode(
+final gherkin = Language(
+  id: "gherkin",
   refs: {},
   name: "Gherkin",
   aliases: ["feature"],

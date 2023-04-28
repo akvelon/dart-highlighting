@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final rsl = Mode(
+final rsl = Language(
+  id: "rsl",
   refs: {},
   name: "RenderMan RSL",
   keywords: {

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final moonscript = Mode(
+final moonscript = Language(
+  id: "moonscript",
   refs: {
     '~contains~6~contains~1': Mode(
       className: "params",
@@ -20,12 +21,12 @@ final moonscript = Mode(
                 "_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring module next pairs pcall print rawequal rawget rawset require select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug io math os package string table"
           },
           contains: [
-            Mode(self: true),
-            Mode(ref: '~contains~0'),
-            Mode(ref: '~contains~1'),
-            Mode(ref: '~contains~1~variants~1~contains~1~contains~2'),
-            Mode(ref: '~contains~1~variants~1~contains~1~contains~3'),
-            Mode(ref: '~contains~1~variants~1~contains~1~contains~4'),
+            ModeSelfReference(),
+            ModeReference('~contains~0'),
+            ModeReference('~contains~1'),
+            ModeReference('~contains~1~variants~1~contains~1~contains~2'),
+            ModeReference('~contains~1~variants~1~contains~1~contains~3'),
+            ModeReference('~contains~1~variants~1~contains~1~contains~4'),
           ],
         ),
       ],
@@ -72,11 +73,11 @@ final moonscript = Mode(
                     "_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring module next pairs pcall print rawequal rawget rawset require select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug io math os package string table"
               },
               contains: [
-                Mode(ref: '~contains~0'),
-                Mode(ref: '~contains~1'),
-                Mode(ref: '~contains~1~variants~1~contains~1~contains~2'),
-                Mode(ref: '~contains~1~variants~1~contains~1~contains~3'),
-                Mode(ref: '~contains~1~variants~1~contains~1~contains~4'),
+                ModeReference('~contains~0'),
+                ModeReference('~contains~1'),
+                ModeReference('~contains~1~variants~1~contains~1~contains~2'),
+                ModeReference('~contains~1~variants~1~contains~1~contains~3'),
+                ModeReference('~contains~1~variants~1~contains~1~contains~4'),
               ],
             ),
           ],
@@ -105,11 +106,11 @@ final moonscript = Mode(
   },
   illegal: "\\/\\*",
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~1'),
-    Mode(ref: '~contains~1~variants~1~contains~1~contains~2'),
-    Mode(ref: '~contains~1~variants~1~contains~1~contains~3'),
-    Mode(ref: '~contains~1~variants~1~contains~1~contains~4'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~1'),
+    ModeReference('~contains~1~variants~1~contains~1~contains~2'),
+    ModeReference('~contains~1~variants~1~contains~1~contains~3'),
+    ModeReference('~contains~1~variants~1~contains~1~contains~4'),
     Mode(
       scope: "comment",
       begin: "--",
@@ -134,8 +135,8 @@ final moonscript = Mode(
       end: "[-=]>",
       returnBegin: true,
       contains: [
-        Mode(ref: '~contains~6~contains~0'),
-        Mode(ref: '~contains~6~contains~1'),
+        ModeReference('~contains~6~contains~0'),
+        ModeReference('~contains~6~contains~1'),
       ],
     ),
     Mode(
@@ -148,7 +149,7 @@ final moonscript = Mode(
           end: "[-=]>",
           returnBegin: true,
           contains: [
-            Mode(ref: '~contains~6~contains~1'),
+            ModeReference('~contains~6~contains~1'),
           ],
         ),
       ],
@@ -164,10 +165,10 @@ final moonscript = Mode(
           endsWithParent: true,
           illegal: "[:=\"\\[\\]]",
           contains: [
-            Mode(ref: '~contains~6~contains~0'),
+            ModeReference('~contains~6~contains~0'),
           ],
         ),
-        Mode(ref: '~contains~6~contains~0'),
+        ModeReference('~contains~6~contains~0'),
       ],
     ),
     Mode(

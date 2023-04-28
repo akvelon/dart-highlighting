@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final ldif = Mode(
+final ldif = Language(
+  id: "ldif",
   refs: {},
   name: "LDIF",
   contains: [

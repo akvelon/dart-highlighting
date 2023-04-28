@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final sqf = Mode(
+final sqf = Language(
+  id: "sqf",
   refs: {
     '~contains~5~variants~1': Mode(
       begin: "'",
@@ -2473,8 +2474,8 @@ final sqf = Mode(
     Mode(
       className: "string",
       variants: [
-        Mode(ref: '~contains~5~variants~0'),
-        Mode(ref: '~contains~5~variants~1'),
+        ModeReference('~contains~5~variants~0'),
+        ModeReference('~contains~5~variants~1'),
       ],
     ),
     Mode(
@@ -2490,8 +2491,8 @@ final sqf = Mode(
         Mode(
           className: "string",
           variants: [
-            Mode(ref: '~contains~5~variants~0'),
-            Mode(ref: '~contains~5~variants~1'),
+            ModeReference('~contains~5~variants~0'),
+            ModeReference('~contains~5~variants~1'),
           ],
         ),
         Mode(

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final protobuf = Mode(
+final protobuf = Language(
+  id: "protobuf",
   refs: {},
   name: "Protocol Buffers",
   keywords: {

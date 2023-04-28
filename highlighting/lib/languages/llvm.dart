@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final llvm = Mode(
+final llvm = Language(
+  id: "llvm",
   refs: {},
   name: "LLVM IR",
   keywords:

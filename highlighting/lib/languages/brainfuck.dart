@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final brainfuck = Mode(
+final brainfuck = Language(
+  id: "brainfuck",
   refs: {
     '~contains~3~contains~0': Mode(
       className: "literal",
@@ -50,9 +51,9 @@ final brainfuck = Mode(
     Mode(
       begin: "(?=\\+\\+|--)",
       contains: [
-        Mode(ref: '~contains~3~contains~0'),
+        ModeReference('~contains~3~contains~0'),
       ],
     ),
-    Mode(ref: '~contains~3~contains~0'),
+    ModeReference('~contains~3~contains~0'),
   ],
 );

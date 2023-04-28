@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final xl = Mode(
+final xl = Language(
+  id: "xl",
   refs: {
     '~contains~2': Mode(
       className: "string",
@@ -145,7 +146,7 @@ final xl = Mode(
   contains: [
     C_LINE_COMMENT_MODE,
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~2'),
+    ModeReference('~contains~2'),
     Mode(
       className: "string",
       begin: "'",
@@ -435,7 +436,7 @@ final xl = Mode(
         ]
       },
       contains: [
-        Mode(ref: '~contains~2'),
+        ModeReference('~contains~2'),
       ],
     ),
     Mode(

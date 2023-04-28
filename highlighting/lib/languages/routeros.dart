@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final routeros = Mode(
+final routeros = Language(
+  id: "routeros",
   refs: {
     '~contains~3': Mode(
       className: "string",
@@ -26,7 +27,7 @@ final routeros = Mode(
       end: "\"",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~2~contains~1'),
+        ModeReference('~contains~2~contains~1'),
         Mode(
           className: "variable",
           begin: "\\\$\\(",
@@ -83,9 +84,9 @@ final routeros = Mode(
         ),
       ],
     ),
-    Mode(ref: '~contains~2'),
-    Mode(ref: '~contains~3'),
-    Mode(ref: '~contains~2~contains~1'),
+    ModeReference('~contains~2'),
+    ModeReference('~contains~3'),
+    ModeReference('~contains~2~contains~1'),
     Mode(
       begin: "[\\w-]+=([^\\s{}[\\]()>]+)",
       relevance: 0,
@@ -100,9 +101,9 @@ final routeros = Mode(
           endsWithParent: true,
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~3'),
-            Mode(ref: '~contains~2~contains~1'),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~3'),
+            ModeReference('~contains~2~contains~1'),
             Mode(
               className: "literal",
               begin: "\\b(true|false|yes|no|nothing|nil|null)\\b",

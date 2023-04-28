@@ -51,3 +51,23 @@ interface ModeDetails {
 }
 
 export interface Mode extends ModeCallbacks, ModeDetails {}
+
+export type Language = LanguageDetail & Partial<Mode>;
+
+export interface LanguageDetail {
+  name?: string;
+  unicodeRegex?: boolean;
+  rawDefinition?: () => Language;
+  aliases?: string[];
+  disableAutodetect?: boolean;
+  contains: Mode[];
+  case_insensitive?: boolean;
+  keywords?: Record<string, any> | string;
+  isCompiled?: boolean;
+  exports?: any;
+  classNameAliases?: Record<string, string>;
+  compilerExtensions?: CompilerExt[];
+  supersetOf?: string;
+}
+
+export type CompilerExt = (mode: Mode, parent: Mode | Language | null) => void;

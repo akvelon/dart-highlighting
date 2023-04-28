@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final ini = Mode(
+final ini = Language(
+  id: "ini",
   refs: {
     '~contains~2~starts~contains~1~contains~4': Mode(
       className: "number",
@@ -89,7 +90,7 @@ final ini = Mode(
   case_insensitive: true,
   illegal: "\\S",
   contains: [
-    Mode(ref: '~contains~0'),
+    ModeReference('~contains~0'),
     Mode(
       className: "section",
       begin: "\\[+",
@@ -102,24 +103,24 @@ final ini = Mode(
       starts: Mode(
         end: "\$",
         contains: [
-          Mode(ref: '~contains~0'),
+          ModeReference('~contains~0'),
           Mode(
             begin: "\\[",
             end: "\\]",
             contains: [
-              Mode(ref: '~contains~0'),
-              Mode(ref: '~contains~2~starts~contains~1~contains~1'),
-              Mode(ref: '~contains~2~starts~contains~1~contains~2'),
-              Mode(ref: '~contains~2~starts~contains~1~contains~3'),
-              Mode(ref: '~contains~2~starts~contains~1~contains~4'),
-              Mode(self: true),
+              ModeReference('~contains~0'),
+              ModeReference('~contains~2~starts~contains~1~contains~1'),
+              ModeReference('~contains~2~starts~contains~1~contains~2'),
+              ModeReference('~contains~2~starts~contains~1~contains~3'),
+              ModeReference('~contains~2~starts~contains~1~contains~4'),
+              ModeSelfReference(),
             ],
             relevance: 0,
           ),
-          Mode(ref: '~contains~2~starts~contains~1~contains~1'),
-          Mode(ref: '~contains~2~starts~contains~1~contains~2'),
-          Mode(ref: '~contains~2~starts~contains~1~contains~3'),
-          Mode(ref: '~contains~2~starts~contains~1~contains~4'),
+          ModeReference('~contains~2~starts~contains~1~contains~1'),
+          ModeReference('~contains~2~starts~contains~1~contains~2'),
+          ModeReference('~contains~2~starts~contains~1~contains~3'),
+          ModeReference('~contains~2~starts~contains~1~contains~4'),
         ],
       ),
     ),

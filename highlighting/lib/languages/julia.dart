@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final julia = Mode(
+final julia = Language(
+  id: "julia",
   refs: {
     '~contains~2~contains~1~contains~8': Mode(
       begin: "<:",
@@ -37,8 +38,8 @@ final julia = Mode(
       className: "string",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~2~contains~1'),
-        Mode(ref: '~contains~2~contains~1~contains~3~contains~2'),
+        ModeReference('~contains~2~contains~1'),
+        ModeReference('~contains~2~contains~1~contains~3~contains~2'),
       ],
       begin: "`",
       end: "`",
@@ -314,23 +315,23 @@ final julia = Mode(
         ]
       },
       contains: [
-        Mode(ref: '~contains~0'),
-        Mode(ref: '~contains~1'),
-        Mode(ref: '~contains~2'),
-        Mode(ref: '~contains~2~contains~1~contains~3'),
-        Mode(ref: '~contains~2~contains~1~contains~4'),
-        Mode(ref: '~contains~2~contains~1~contains~5'),
+        ModeReference('~contains~0'),
+        ModeReference('~contains~1'),
+        ModeReference('~contains~2'),
+        ModeReference('~contains~2~contains~1~contains~3'),
+        ModeReference('~contains~2~contains~1~contains~4'),
+        ModeReference('~contains~2~contains~1~contains~5'),
         HASH_COMMENT_MODE,
-        Mode(ref: '~contains~2~contains~1~contains~7'),
-        Mode(ref: '~contains~2~contains~1~contains~8'),
+        ModeReference('~contains~2~contains~1~contains~7'),
+        ModeReference('~contains~2~contains~1~contains~8'),
       ],
     ),
     '~contains~2': Mode(
       className: "string",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~2~contains~1'),
-        Mode(ref: '~contains~2~contains~1~contains~3~contains~2'),
+        ModeReference('~contains~2~contains~1'),
+        ModeReference('~contains~2~contains~1~contains~3~contains~2'),
       ],
       variants: [
         Mode(
@@ -624,14 +625,14 @@ final julia = Mode(
   illegal: "<\\/",
   name: "Julia",
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~1'),
-    Mode(ref: '~contains~2'),
-    Mode(ref: '~contains~2~contains~1~contains~3'),
-    Mode(ref: '~contains~2~contains~1~contains~4'),
-    Mode(ref: '~contains~2~contains~1~contains~5'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~1'),
+    ModeReference('~contains~2'),
+    ModeReference('~contains~2~contains~1~contains~3'),
+    ModeReference('~contains~2~contains~1~contains~4'),
+    ModeReference('~contains~2~contains~1~contains~5'),
     HASH_COMMENT_MODE,
-    Mode(ref: '~contains~2~contains~1~contains~7'),
-    Mode(ref: '~contains~2~contains~1~contains~8'),
+    ModeReference('~contains~2~contains~1~contains~7'),
+    ModeReference('~contains~2~contains~1~contains~8'),
   ],
 );

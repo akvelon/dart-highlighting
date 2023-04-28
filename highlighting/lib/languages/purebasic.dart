@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final purebasic = Mode(
+final purebasic = Language(
+  id: "purebasic",
   refs: {},
   name: "PureBASIC",
   aliases: ["pb", "pbi"],

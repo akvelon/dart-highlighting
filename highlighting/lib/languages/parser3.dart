@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final parser3 = Mode(
+final parser3 = Language(
+  id: "parser3",
   refs: {},
   name: "Parser3",
   subLanguage: ["xml"],
@@ -36,7 +37,7 @@ final parser3 = Mode(
           begin: "\\{",
           end: "\\}",
           contains: [
-            Mode(self: true),
+            ModeSelfReference(),
             Mode(
               scope: "doctag",
               begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",

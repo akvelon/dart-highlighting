@@ -2,13 +2,14 @@
 
 import '../src/language_definition_parts.dart';
 
-final puppet = Mode(
+final puppet = Language(
+  id: "puppet",
   refs: {
     '~contains~2': Mode(
       className: "string",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~1'),
+        ModeReference('~contains~1'),
       ],
       variants: [
         Mode(
@@ -47,9 +48,9 @@ final puppet = Mode(
   name: "Puppet",
   aliases: ["pp"],
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~1'),
-    Mode(ref: '~contains~2'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~1'),
+    ModeReference('~contains~2'),
     Mode(
       beginKeywords: "class",
       end: "\\{|;",
@@ -60,7 +61,7 @@ final puppet = Mode(
           begin: "([A-Za-z_]|::)(\\w|::)*",
           relevance: 0,
         ),
-        Mode(ref: '~contains~0'),
+        ModeReference('~contains~0'),
       ],
     ),
     Mode(
@@ -97,8 +98,8 @@ final puppet = Mode(
           },
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~0'),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~0'),
             Mode(
               begin: "[a-zA-Z_]+\\s*=>",
               returnBegin: true,
@@ -116,7 +117,7 @@ final puppet = Mode(
                   "(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",
               relevance: 0,
             ),
-            Mode(ref: '~contains~1'),
+            ModeReference('~contains~1'),
           ],
         ),
       ],

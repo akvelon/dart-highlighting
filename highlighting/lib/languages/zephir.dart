@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final zephir = Mode(
+final zephir = Language(
+  id: "zephir",
   refs: {
     '~contains~4~contains~1~contains~3': Mode(
       variants: [
@@ -91,10 +92,10 @@ final zephir = Mode(
           keywords:
               "namespace class interface use extends function return abstract final public protected private static deprecated throw try catch Exception echo empty isset instanceof unset let var new const self require if else elseif switch case default do while loop for continue break likely unlikely __LINE__ __FILE__ __DIR__ __FUNCTION__ __CLASS__ __TRAIT__ __METHOD__ __NAMESPACE__ array boolean float double integer object resource string char long unsigned bool int uint ulong uchar true false null undefined",
           contains: [
-            Mode(self: true),
+            ModeSelfReference(),
             C_BLOCK_COMMENT_MODE,
-            Mode(ref: '~contains~4~contains~1~contains~2'),
-            Mode(ref: '~contains~4~contains~1~contains~3'),
+            ModeReference('~contains~4~contains~1~contains~2'),
+            ModeReference('~contains~4~contains~1~contains~3'),
           ],
         ),
       ],
@@ -130,7 +131,7 @@ final zephir = Mode(
     Mode(
       begin: "=>",
     ),
-    Mode(ref: '~contains~4~contains~1~contains~2'),
-    Mode(ref: '~contains~4~contains~1~contains~3'),
+    ModeReference('~contains~4~contains~1~contains~2'),
+    ModeReference('~contains~4~contains~1~contains~3'),
   ],
 );

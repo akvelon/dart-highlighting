@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final handlebars = Mode(
+final handlebars = Language(
+  id: "handlebars",
   refs: {
     '~contains~5~contains~0': Mode(
       begin:
@@ -90,14 +91,12 @@ final handlebars = Mode(
               NUMBER_MODE,
               QUOTE_STRING_MODE,
               APOS_STRING_MODE,
-              Mode(ref: '~contains~4~contains~0~starts~contains~3'),
-              Mode(ref: '~contains~4~contains~0~starts~contains~4'),
-              Mode(
-                  ref:
-                      '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
-              Mode(
-                  ref:
-                      '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4'),
+              ModeReference('~contains~4~contains~0~starts~contains~3'),
+              ModeReference('~contains~4~contains~0~starts~contains~4'),
+              ModeReference(
+                  '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
+              ModeReference(
+                  '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4'),
             ],
             returnEnd: true,
             end: "\\)",
@@ -126,12 +125,10 @@ final handlebars = Mode(
             NUMBER_MODE,
             QUOTE_STRING_MODE,
             APOS_STRING_MODE,
-            Mode(
-                ref:
-                    '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
-            Mode(
-                ref:
-                    '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4'),
+            ModeReference(
+                '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
+            ModeReference(
+                '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4'),
           ],
         ),
       ),
@@ -189,14 +186,12 @@ final handlebars = Mode(
           NUMBER_MODE,
           QUOTE_STRING_MODE,
           APOS_STRING_MODE,
-          Mode(ref: '~contains~4~contains~0~starts~contains~3'),
-          Mode(ref: '~contains~4~contains~0~starts~contains~4'),
-          Mode(
-              ref:
-                  '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
-          Mode(
-              ref:
-                  '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4'),
+          ModeReference('~contains~4~contains~0~starts~contains~3'),
+          ModeReference('~contains~4~contains~0~starts~contains~4'),
+          ModeReference(
+              '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
+          ModeReference(
+              '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4'),
         ],
         returnEnd: true,
         end: "\\}\\}",
@@ -245,14 +240,12 @@ final handlebars = Mode(
           NUMBER_MODE,
           QUOTE_STRING_MODE,
           APOS_STRING_MODE,
-          Mode(ref: '~contains~4~contains~0~starts~contains~3'),
-          Mode(ref: '~contains~4~contains~0~starts~contains~4'),
-          Mode(
-              ref:
-                  '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
-          Mode(
-              ref:
-                  '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4'),
+          ModeReference('~contains~4~contains~0~starts~contains~3'),
+          ModeReference('~contains~4~contains~0~starts~contains~4'),
+          ModeReference(
+              '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
+          ModeReference(
+              '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4'),
         ],
         returnEnd: true,
         end: "\\}\\}",
@@ -313,7 +306,7 @@ final handlebars = Mode(
       begin: "\\{\\{\\{\\{(?!\\/)",
       end: "\\}\\}\\}\\}",
       contains: [
-        Mode(ref: '~contains~4~contains~0'),
+        ModeReference('~contains~4~contains~0'),
       ],
       starts: Mode(
         end: "\\{\\{\\{\\{\\/",
@@ -326,7 +319,7 @@ final handlebars = Mode(
       begin: "\\{\\{\\{\\{\\/",
       end: "\\}\\}\\}\\}",
       contains: [
-        Mode(ref: '~contains~5~contains~0'),
+        ModeReference('~contains~5~contains~0'),
       ],
     ),
     Mode(
@@ -334,7 +327,7 @@ final handlebars = Mode(
       begin: "\\{\\{#",
       end: "\\}\\}",
       contains: [
-        Mode(ref: '~contains~4~contains~0'),
+        ModeReference('~contains~4~contains~0'),
       ],
     ),
     Mode(
@@ -354,7 +347,7 @@ final handlebars = Mode(
       begin: "\\{\\{\\/",
       end: "\\}\\}",
       contains: [
-        Mode(ref: '~contains~5~contains~0'),
+        ModeReference('~contains~5~contains~0'),
       ],
     ),
     Mode(
@@ -362,7 +355,7 @@ final handlebars = Mode(
       begin: "\\{\\{\\{",
       end: "\\}\\}\\}",
       contains: [
-        Mode(ref: '~contains~10~contains~0'),
+        ModeReference('~contains~10~contains~0'),
       ],
     ),
     Mode(
@@ -370,7 +363,7 @@ final handlebars = Mode(
       begin: "\\{\\{",
       end: "\\}\\}",
       contains: [
-        Mode(ref: '~contains~10~contains~0'),
+        ModeReference('~contains~10~contains~0'),
       ],
     ),
   ],

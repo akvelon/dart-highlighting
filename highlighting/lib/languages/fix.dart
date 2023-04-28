@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final fix = Mode(
+final fix = Language(
+  id: "fix",
   refs: {},
   name: "FIX",
   contains: [

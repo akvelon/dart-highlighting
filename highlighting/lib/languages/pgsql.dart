@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final pgsql = Mode(
+final pgsql = Language(
+  id: "pgsql",
   refs: {},
   name: "PostgreSQL",
   aliases: ["postgres", "postgresql"],

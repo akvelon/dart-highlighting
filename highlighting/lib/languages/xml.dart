@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final xml = Mode(
+final xml = Language(
+  id: "xml",
   refs: {
     '~contains~5~contains~0': Mode(
       endsWithParent: true,
@@ -26,14 +27,14 @@ final xml = Mode(
                   begin: "\"",
                   end: "\"",
                   contains: [
-                    Mode(ref: '~contains~3'),
+                    ModeReference('~contains~3'),
                   ],
                 ),
                 Mode(
                   begin: "'",
                   end: "'",
                   contains: [
-                    Mode(ref: '~contains~3'),
+                    ModeReference('~contains~3'),
                   ],
                 ),
                 Mode(
@@ -52,7 +53,7 @@ final xml = Mode(
     '~contains~0~contains~3': Mode(
       begin: "\\(",
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~0'),
       ],
       end: "\\)",
     ),
@@ -84,7 +85,7 @@ final xml = Mode(
     '~contains~0~contains~0': Mode(
       begin: "\\s",
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~0'),
       ],
     ),
   },
@@ -110,10 +111,10 @@ final xml = Mode(
       end: ">",
       relevance: 10,
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~2'),
-        Mode(ref: '~contains~0~contains~3'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~3'),
         Mode(
           begin: "\\[",
           end: "\\]",
@@ -123,10 +124,10 @@ final xml = Mode(
               begin: "<![a-z]",
               end: ">",
               contains: [
-                Mode(ref: '~contains~0~contains~0'),
-                Mode(ref: '~contains~0~contains~3'),
-                Mode(ref: '~contains~0~contains~1'),
-                Mode(ref: '~contains~0~contains~2'),
+                ModeReference('~contains~0~contains~0'),
+                ModeReference('~contains~0~contains~3'),
+                ModeReference('~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~2'),
               ],
             ),
           ],
@@ -157,7 +158,7 @@ final xml = Mode(
       end: "\\]\\]>",
       relevance: 10,
     ),
-    Mode(ref: '~contains~3'),
+    ModeReference('~contains~3'),
     Mode(
       className: "meta",
       end: "\\?>",
@@ -166,7 +167,7 @@ final xml = Mode(
           begin: "<\\?xml",
           relevance: 10,
           contains: [
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~1'),
           ],
         ),
         Mode(
@@ -180,7 +181,7 @@ final xml = Mode(
       end: ">",
       keywords: {"name": "style"},
       contains: [
-        Mode(ref: '~contains~5~contains~0'),
+        ModeReference('~contains~5~contains~0'),
       ],
       starts: Mode(
         end: "<\\/style>",
@@ -194,7 +195,7 @@ final xml = Mode(
       end: ">",
       keywords: {"name": "script"},
       contains: [
-        Mode(ref: '~contains~5~contains~0'),
+        ModeReference('~contains~5~contains~0'),
       ],
       starts: Mode(
         end: "<\\/script>",
@@ -215,7 +216,7 @@ final xml = Mode(
           className: "name",
           begin: "[\\p{L}_](?:[\\p{L}0-9_.-]*:)?[\\p{L}0-9_.-]*",
           relevance: 0,
-          starts: Mode(ref: '~contains~5~contains~0'),
+          starts: ModeReference('~contains~5~contains~0'),
         ),
       ],
     ),

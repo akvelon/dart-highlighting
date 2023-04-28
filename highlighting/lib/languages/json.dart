@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final json = Mode(
+final json = Language(
+  id: "json",
   refs: {},
   name: "JSON",
   keywords: {

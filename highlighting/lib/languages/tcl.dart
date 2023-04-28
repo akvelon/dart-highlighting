@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final tcl = Mode(
+final tcl = Language(
+  id: "tcl",
   refs: {
     '~contains~3~variants~1~contains~0': Mode(
       className: "number",
@@ -195,7 +196,7 @@ final tcl = Mode(
           begin: "\\\$\\{(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_])*",
           end: "\\}",
           contains: [
-            Mode(ref: '~contains~3~variants~1~contains~0'),
+            ModeReference('~contains~3~variants~1~contains~0'),
           ],
         ),
       ],
@@ -217,6 +218,6 @@ final tcl = Mode(
         ),
       ],
     ),
-    Mode(ref: '~contains~3~variants~1~contains~0'),
+    ModeReference('~contains~3~variants~1~contains~0'),
   ],
 );

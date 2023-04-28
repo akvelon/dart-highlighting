@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final sas = Mode(
+final sas = Language(
+  id: "sas",
   refs: {},
   name: "SAS",
   case_insensitive: true,

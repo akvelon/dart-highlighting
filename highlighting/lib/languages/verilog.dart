@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final verilog = Mode(
+final verilog = Language(
+  id: "verilog",
   refs: {},
   name: "Verilog",
   aliases: ["v", "sv", "svh"],

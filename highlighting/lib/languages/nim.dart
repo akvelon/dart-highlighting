@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final nim = Mode(
+final nim = Language(
+  id: "nim",
   refs: {},
   name: "Nim",
   keywords: {

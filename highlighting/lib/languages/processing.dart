@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final processing = Mode(
+final processing = Language(
+  id: "processing",
   refs: {},
   name: "Processing",
   aliases: ["pde"],

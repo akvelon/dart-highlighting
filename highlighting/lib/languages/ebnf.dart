@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final ebnf = Mode(
+final ebnf = Language(
+  id: "ebnf",
   refs: {
     '~contains~0': Mode(
       scope: "comment",
@@ -26,7 +27,7 @@ final ebnf = Mode(
   name: "Extended Backus-Naur Form",
   illegal: "\\S",
   contains: [
-    Mode(ref: '~contains~0'),
+    ModeReference('~contains~0'),
     Mode(
       className: "attribute",
       begin: "^[ ]*[a-zA-Z]+([\\s_-]+[a-zA-Z]+)*",
@@ -35,7 +36,7 @@ final ebnf = Mode(
       begin: "=",
       end: "[.;]",
       contains: [
-        Mode(ref: '~contains~0'),
+        ModeReference('~contains~0'),
         Mode(
           className: "meta",
           begin: "\\?.*\\?",

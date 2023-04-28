@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final vala = Mode(
+final vala = Language(
+  id: "vala",
   refs: {},
   name: "Vala",
   keywords: {

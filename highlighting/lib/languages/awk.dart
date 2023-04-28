@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final awk = Mode(
+final awk = Language(
+  id: "awk",
   refs: {},
   name: "Awk",
   keywords: {

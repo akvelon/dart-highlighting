@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final clean = Mode(
+final clean = Language(
+  id: "clean",
   refs: {},
   name: "Clean",
   aliases: ["icl", "dcl"],

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final gml = Mode(
+final gml = Language(
+  id: "gml",
   refs: {},
   name: "GML",
   case_insensitive: false,

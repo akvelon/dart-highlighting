@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final q = Mode(
+final q = Language(
+  id: "q",
   refs: {},
   name: "Q",
   aliases: ["k", "kdb"],

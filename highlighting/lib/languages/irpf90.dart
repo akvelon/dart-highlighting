@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final irpf90 = Mode(
+final irpf90 = Language(
+  id: "irpf90",
   refs: {},
   name: "IRPF90",
   case_insensitive: true,

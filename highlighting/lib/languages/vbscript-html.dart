@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final vbscriptHtml = Mode(
+final vbscriptHtml = Language(
+  id: "vbscript-html",
   refs: {},
   name: "VBScript in HTML",
   subLanguage: ["xml"],

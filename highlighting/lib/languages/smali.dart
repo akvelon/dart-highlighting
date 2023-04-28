@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final smali = Mode(
+final smali = Language(
+  id: "smali",
   refs: {},
   name: "Smali",
   contains: [

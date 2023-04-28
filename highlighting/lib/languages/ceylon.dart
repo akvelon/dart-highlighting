@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final ceylon = Mode(
+final ceylon = Language(
+  id: "ceylon",
   refs: {
     '~contains~4~contains~0~contains~3': Mode(
       className: "number",
@@ -73,10 +74,10 @@ final ceylon = Mode(
           ],
           relevance: 10,
           contains: [
-            Mode(ref: '~contains~3'),
-            Mode(ref: '~contains~4'),
-            Mode(ref: '~contains~4~contains~0~contains~2'),
-            Mode(ref: '~contains~4~contains~0~contains~3'),
+            ModeReference('~contains~3'),
+            ModeReference('~contains~4'),
+            ModeReference('~contains~4~contains~0~contains~2'),
+            ModeReference('~contains~4~contains~0~contains~3'),
           ],
         ),
       ],
@@ -159,7 +160,7 @@ final ceylon = Mode(
       begin: "/\\*",
       end: "\\*/",
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
@@ -177,9 +178,9 @@ final ceylon = Mode(
       className: "meta",
       begin: "@[a-z]\\w*(?::\"[^\"]*\")?",
     ),
-    Mode(ref: '~contains~3'),
-    Mode(ref: '~contains~4'),
-    Mode(ref: '~contains~4~contains~0~contains~2'),
-    Mode(ref: '~contains~4~contains~0~contains~3'),
+    ModeReference('~contains~3'),
+    ModeReference('~contains~4'),
+    ModeReference('~contains~4~contains~0~contains~2'),
+    ModeReference('~contains~4~contains~0~contains~3'),
   ],
 );

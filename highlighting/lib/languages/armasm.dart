@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final armasm = Mode(
+final armasm = Language(
+  id: "armasm",
   refs: {},
   name: "ARM Assembly",
   case_insensitive: true,

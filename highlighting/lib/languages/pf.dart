@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final pf = Mode(
+final pf = Language(
+  id: "pf",
   refs: {},
   name: "Packet Filter config",
   aliases: ["pf.conf"],

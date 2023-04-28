@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final scilab = Mode(
+final scilab = Language(
+  id: "scilab",
   refs: {
     '~contains~2~contains~1': Mode(
       className: "string",
@@ -51,7 +52,7 @@ final scilab = Mode(
       relevance: 0,
       contains: [
         C_NUMBER_MODE,
-        Mode(ref: '~contains~2~contains~1'),
+        ModeReference('~contains~2~contains~1'),
       ],
     ),
     Mode(
@@ -73,6 +74,6 @@ final scilab = Mode(
       ],
     ),
     C_NUMBER_MODE,
-    Mode(ref: '~contains~2~contains~1'),
+    ModeReference('~contains~2~contains~1'),
   ],
 );

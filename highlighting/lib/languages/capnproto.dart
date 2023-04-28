@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final capnproto = Mode(
+final capnproto = Language(
+  id: "capnproto",
   refs: {},
   name: "Cap’n Proto",
   aliases: ["capnp"],

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final cal = Mode(
+final cal = Language(
+  id: "cal",
   refs: {
     '~contains~2': Mode(
       className: "string",
@@ -59,8 +60,8 @@ final cal = Mode(
       scope: "attribute",
       relevance: 0,
     ),
-    Mode(ref: '~contains~1'),
-    Mode(ref: '~contains~2'),
+    ModeReference('~contains~1'),
+    ModeReference('~contains~2'),
     Mode(
       className: "number",
       begin: "\\b\\d+(\\.\\d+)?(DT|D|T)",
@@ -123,8 +124,8 @@ final cal = Mode(
             "var"
           ],
           contains: [
-            Mode(ref: '~contains~1'),
-            Mode(ref: '~contains~2'),
+            ModeReference('~contains~1'),
+            ModeReference('~contains~2'),
             NUMBER_MODE,
           ],
         ),

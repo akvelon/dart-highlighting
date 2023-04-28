@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final n1Ql = Mode(
+final n1Ql = Language(
+  id: "n1ql",
   refs: {},
   name: "N1QL",
   case_insensitive: true,

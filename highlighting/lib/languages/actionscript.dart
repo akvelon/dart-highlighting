@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final actionscript = Mode(
+final actionscript = Language(
+  id: "actionscript",
   refs: {},
   name: "ActionScript",
   aliases: ["as"],

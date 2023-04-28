@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final livescript = Mode(
+final livescript = Language(
+  id: "livescript",
   refs: {
     '~contains~2~variants~2~contains~2': Mode(
       className: "subst",
@@ -180,7 +181,7 @@ final livescript = Mode(
           begin: "//",
           end: "//[gim]*",
           contains: [
-            Mode(ref: '~contains~2~variants~2~contains~1'),
+            ModeReference('~contains~2~variants~2~contains~1'),
             HASH_COMMENT_MODE,
           ],
         ),
@@ -349,11 +350,11 @@ final livescript = Mode(
       },
       contains: [
         BINARY_NUMBER_MODE,
-        Mode(ref: '~contains~1'),
-        Mode(ref: '~contains~2'),
-        Mode(ref: '~contains~2~variants~2~contains~1~contains~3'),
-        Mode(ref: '~contains~2~variants~2~contains~1~contains~4'),
-        Mode(ref: '~contains~2~variants~2~contains~1~contains~5'),
+        ModeReference('~contains~1'),
+        ModeReference('~contains~2'),
+        ModeReference('~contains~2~variants~2~contains~1~contains~3'),
+        ModeReference('~contains~2~variants~2~contains~1~contains~4'),
+        ModeReference('~contains~2~variants~2~contains~1~contains~5'),
       ],
     ),
     '~contains~2': Mode(
@@ -378,8 +379,8 @@ final livescript = Mode(
           end: "\"\"\"",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~2~variants~2~contains~1'),
-            Mode(ref: '~contains~2~variants~2~contains~2'),
+            ModeReference('~contains~2~variants~2~contains~1'),
+            ModeReference('~contains~2~variants~2~contains~2'),
           ],
         ),
         Mode(
@@ -387,8 +388,8 @@ final livescript = Mode(
           end: "\"",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~2~variants~2~contains~1'),
-            Mode(ref: '~contains~2~variants~2~contains~2'),
+            ModeReference('~contains~2~variants~2~contains~1'),
+            ModeReference('~contains~2~variants~2~contains~2'),
           ],
         ),
         Mode(
@@ -568,11 +569,11 @@ final livescript = Mode(
   illegal: "\\/\\*",
   contains: [
     BINARY_NUMBER_MODE,
-    Mode(ref: '~contains~1'),
-    Mode(ref: '~contains~2'),
-    Mode(ref: '~contains~2~variants~2~contains~1~contains~3'),
-    Mode(ref: '~contains~2~variants~2~contains~1~contains~4'),
-    Mode(ref: '~contains~2~variants~2~contains~1~contains~5'),
+    ModeReference('~contains~1'),
+    ModeReference('~contains~2'),
+    ModeReference('~contains~2~variants~2~contains~1~contains~3'),
+    ModeReference('~contains~2~variants~2~contains~1~contains~4'),
+    ModeReference('~contains~2~variants~2~contains~1~contains~5'),
     Mode(
       scope: "comment",
       begin: "\\/\\*",
@@ -766,13 +767,13 @@ final livescript = Mode(
                 ]
               },
               contains: [
-                Mode(self: true),
+                ModeSelfReference(),
                 BINARY_NUMBER_MODE,
-                Mode(ref: '~contains~1'),
-                Mode(ref: '~contains~2'),
-                Mode(ref: '~contains~2~variants~2~contains~1~contains~3'),
-                Mode(ref: '~contains~2~variants~2~contains~1~contains~4'),
-                Mode(ref: '~contains~2~variants~2~contains~1~contains~5'),
+                ModeReference('~contains~1'),
+                ModeReference('~contains~2'),
+                ModeReference('~contains~2~variants~2~contains~1~contains~3'),
+                ModeReference('~contains~2~variants~2~contains~1~contains~4'),
+                ModeReference('~contains~2~variants~2~contains~1~contains~5'),
               ],
             ),
           ],

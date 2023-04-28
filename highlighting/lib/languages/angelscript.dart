@@ -2,13 +2,14 @@
 
 import '../src/language_definition_parts.dart';
 
-final angelscript = Mode(
+final angelscript = Language(
+  id: "angelscript",
   refs: {
     '~contains~8~contains~0~contains~1': Mode(
       className: "symbol",
       begin: "[a-zA-Z0-9_]+@",
       contains: [
-        Mode(ref: '~contains~8~contains~0'),
+        ModeReference('~contains~8~contains~0'),
       ],
     ),
     '~contains~8~contains~0': Mode(
@@ -16,8 +17,8 @@ final angelscript = Mode(
       begin: "<",
       end: ">",
       contains: [
-        Mode(ref: '~contains~8'),
-        Mode(ref: '~contains~8~contains~0~contains~1'),
+        ModeReference('~contains~8'),
+        ModeReference('~contains~8~contains~0~contains~1'),
       ],
     ),
     '~contains~8': Mode(
@@ -25,7 +26,7 @@ final angelscript = Mode(
       begin:
           "\\b(void|bool|int8|int16|int32|int64|int|uint8|uint16|uint32|uint64|uint|string|ref|array|double|float|auto|dictionary)",
       contains: [
-        Mode(ref: '~contains~8~contains~0'),
+        ModeReference('~contains~8~contains~0'),
       ],
     ),
   },
@@ -146,8 +147,8 @@ final angelscript = Mode(
         ),
       ],
     ),
-    Mode(ref: '~contains~8'),
-    Mode(ref: '~contains~8~contains~0~contains~1'),
+    ModeReference('~contains~8'),
+    ModeReference('~contains~8~contains~0~contains~1'),
     Mode(
       className: "literal",
       begin: "\\b(null|true|false)",

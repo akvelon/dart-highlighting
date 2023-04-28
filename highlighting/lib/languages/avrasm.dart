@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final avrasm = Mode(
+final avrasm = Language(
+  id: "avrasm",
   refs: {},
   name: "AVR Assembly",
   case_insensitive: true,

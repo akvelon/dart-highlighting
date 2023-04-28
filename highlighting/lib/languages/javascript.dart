@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final javascript = Mode(
+final javascript = Language(
+  id: "javascript",
   refs: {
     '~exports~PARAMS_CONTAINS~9': Mode(
       begin: "\\(",
@@ -129,16 +130,21 @@ final javascript = Mode(
         ]
       },
       contains: [
-        Mode(self: true),
-        Mode(ref: '~exports~PARAMS_CONTAINS~0'),
+        ModeSelfReference(),
+        ModeReference('~exports~PARAMS_CONTAINS~0'),
         APOS_STRING_MODE,
         QUOTE_STRING_MODE,
-        Mode(ref: '~exports~PARAMS_CONTAINS~3'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
+        ModeReference('~exports~PARAMS_CONTAINS~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
       ],
     ),
     '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7': Mode(
@@ -266,14 +272,18 @@ final javascript = Mode(
         ]
       },
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
         APOS_STRING_MODE,
         QUOTE_STRING_MODE,
-        Mode(ref: '~exports~PARAMS_CONTAINS~3'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
+        ModeReference('~exports~PARAMS_CONTAINS~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
       ],
     ),
     '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6': Mode(
@@ -314,7 +324,7 @@ final javascript = Mode(
       end: "`",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1'),
+        ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1'),
       ],
     ),
     '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3': Mode(
@@ -325,7 +335,7 @@ final javascript = Mode(
         returnEnd: false,
         contains: [
           BACKSLASH_ESCAPE,
-          Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1'),
+          ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1'),
         ],
         subLanguage: ["css"],
       ),
@@ -458,12 +468,17 @@ final javascript = Mode(
       contains: [
         APOS_STRING_MODE,
         QUOTE_STRING_MODE,
-        Mode(ref: '~exports~PARAMS_CONTAINS~3'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
+        ModeReference('~exports~PARAMS_CONTAINS~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
       ],
     ),
     '~exports~PARAMS_CONTAINS~3': Mode(
@@ -474,7 +489,7 @@ final javascript = Mode(
         returnEnd: false,
         contains: [
           BACKSLASH_ESCAPE,
-          Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1'),
+          ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1'),
         ],
         subLanguage: ["xml"],
       ),
@@ -718,16 +733,21 @@ final javascript = Mode(
         ]
       },
       contains: [
-        Mode(ref: '~exports~PARAMS_CONTAINS~0'),
+        ModeReference('~exports~PARAMS_CONTAINS~0'),
         APOS_STRING_MODE,
         QUOTE_STRING_MODE,
-        Mode(ref: '~exports~PARAMS_CONTAINS~3'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
-        Mode(ref: '~exports~PARAMS_CONTAINS~9'),
+        ModeReference('~exports~PARAMS_CONTAINS~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
+        ModeReference('~exports~PARAMS_CONTAINS~9'),
       ],
     ),
   },
@@ -872,15 +892,15 @@ final javascript = Mode(
     ),
     APOS_STRING_MODE,
     QUOTE_STRING_MODE,
-    Mode(ref: '~exports~PARAMS_CONTAINS~3'),
-    Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
-    Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
-    Mode(ref: '~exports~PARAMS_CONTAINS~0'),
+    ModeReference('~exports~PARAMS_CONTAINS~3'),
+    ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
+    ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
+    ModeReference('~exports~PARAMS_CONTAINS~0'),
     Mode(
       match: "\\\$\\d+",
     ),
-    Mode(ref: '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
-    Mode(ref: '~exports~CLASS_REFERENCE'),
+    ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
+    ModeReference('~exports~CLASS_REFERENCE'),
     Mode(
       className: "attr",
       begin: "[A-Za-z\$_][0-9A-Za-z\$_]*(?=:)",
@@ -899,7 +919,7 @@ final javascript = Mode(
       keywords: "async",
       className: {"1": "keyword", "3": "title.function"},
       contains: [
-        Mode(ref: '~contains~12~contains~0'),
+        ModeReference('~contains~12~contains~0'),
       ],
     ),
     Mode(
@@ -908,7 +928,7 @@ final javascript = Mode(
       keywords: "return throw case",
       relevance: 0,
       contains: [
-        Mode(ref: '~exports~PARAMS_CONTAINS~0'),
+        ModeReference('~exports~PARAMS_CONTAINS~0'),
         REGEXP_MODE,
         Mode(
           className: "function",
@@ -1063,26 +1083,21 @@ final javascript = Mode(
                     ]
                   },
                   contains: [
-                    Mode(ref: '~exports~PARAMS_CONTAINS~0'),
+                    ModeReference('~exports~PARAMS_CONTAINS~0'),
                     APOS_STRING_MODE,
                     QUOTE_STRING_MODE,
-                    Mode(ref: '~exports~PARAMS_CONTAINS~3'),
-                    Mode(
-                        ref:
-                            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
-                    Mode(
-                        ref:
-                            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
-                    Mode(
-                        ref:
-                            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
-                    Mode(
-                        ref:
-                            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
-                    Mode(
-                        ref:
-                            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
-                    Mode(ref: '~exports~PARAMS_CONTAINS~9'),
+                    ModeReference('~exports~PARAMS_CONTAINS~3'),
+                    ModeReference(
+                        '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
+                    ModeReference(
+                        '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
+                    ModeReference(
+                        '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
+                    ModeReference(
+                        '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
+                    ModeReference(
+                        '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
+                    ModeReference('~exports~PARAMS_CONTAINS~9'),
                   ],
                 ),
               ],
@@ -1120,7 +1135,7 @@ final javascript = Mode(
               end: "\\/[A-Za-z0-9\\\\._:-]+>|\\/>",
               skip: true,
               contains: [
-                Mode(self: true),
+                ModeSelfReference(),
               ],
             ),
           ],
@@ -1144,7 +1159,7 @@ final javascript = Mode(
       className: {"1": "keyword", "3": "title.function"},
       label: "func.def",
       contains: [
-        Mode(ref: '~contains~12~contains~0'),
+        ModeReference('~contains~12~contains~0'),
       ],
       illegal: "%",
     ),
@@ -1157,7 +1172,7 @@ final javascript = Mode(
       returnBegin: true,
       label: "func.def",
       contains: [
-        Mode(ref: '~contains~12~contains~0'),
+        ModeReference('~contains~12~contains~0'),
         Mode(
           scope: "title",
           begin: "[A-Za-z\$_][0-9A-Za-z\$_]*",
@@ -1186,7 +1201,7 @@ final javascript = Mode(
       match: ["\\bconstructor(?=\\s*\\()"],
       className: {"1": "title.function"},
       contains: [
-        Mode(ref: '~contains~12~contains~0'),
+        ModeReference('~contains~12~contains~0'),
       ],
     ),
     Mode(
@@ -1232,7 +1247,7 @@ final javascript = Mode(
         Mode(
           begin: "\\(\\)",
         ),
-        Mode(ref: '~contains~12~contains~0'),
+        ModeReference('~contains~12~contains~0'),
       ],
     ),
     Mode(

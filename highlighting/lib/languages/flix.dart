@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final flix = Mode(
+final flix = Language(
+  id: "flix",
   refs: {},
   name: "Flix",
   keywords: {

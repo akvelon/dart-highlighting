@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final vbscript = Mode(
+final vbscript = Language(
+  id: "vbscript",
   refs: {},
   name: "VBScript",
   aliases: ["vbs"],

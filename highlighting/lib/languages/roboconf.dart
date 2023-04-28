@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final roboconf = Mode(
+final roboconf = Language(
+  id: "roboconf",
   refs: {
     '~contains~0~contains~0': Mode(
       className: "attribute",
@@ -35,7 +36,7 @@ final roboconf = Mode(
       end: "\\}",
       keywords: "facet",
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0'),
         HASH_COMMENT_MODE,
       ],
     ),
@@ -45,8 +46,8 @@ final roboconf = Mode(
       keywords: "name count channels instance-data instance-state instance of",
       illegal: "\\S",
       contains: [
-        Mode(self: true),
-        Mode(ref: '~contains~0~contains~0'),
+        ModeSelfReference(),
+        ModeReference('~contains~0~contains~0'),
         HASH_COMMENT_MODE,
       ],
     ),
@@ -54,7 +55,7 @@ final roboconf = Mode(
       begin: "^[a-zA-Z-_][^\\n{]+\\{",
       end: "\\}",
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0'),
         HASH_COMMENT_MODE,
       ],
     ),

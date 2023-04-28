@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final qml = Mode(
+final qml = Language(
+  id: "qml",
   refs: {},
   name: "QML",
   aliases: ["qt"],

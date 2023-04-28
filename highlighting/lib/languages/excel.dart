@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final excel = Mode(
+final excel = Language(
+  id: "excel",
   refs: {},
   name: "Excel formulae",
   aliases: ["xlsx", "xls"],

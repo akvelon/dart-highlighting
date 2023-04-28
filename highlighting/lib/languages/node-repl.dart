@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final nodeRepl = Mode(
+final nodeRepl = Language(
+  id: "node-repl",
   refs: {},
   name: "Node REPL",
   contains: [

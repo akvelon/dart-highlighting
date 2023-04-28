@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final subunit = Mode(
+final subunit = Language(
+  id: "subunit",
   refs: {},
   name: "SubUnit",
   case_insensitive: true,

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final monkey = Mode(
+final monkey = Language(
+  id: "monkey",
   refs: {},
   name: "Monkey",
   case_insensitive: true,

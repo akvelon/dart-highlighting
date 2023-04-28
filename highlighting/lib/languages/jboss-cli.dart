@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final jbossCli = Mode(
+final jbossCli = Language(
+  id: "jboss-cli",
   refs: {},
   name: "JBoss CLI",
   aliases: ["wildfly-cli"],

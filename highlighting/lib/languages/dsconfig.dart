@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final dsconfig = Mode(
+final dsconfig = Language(
+  id: "dsconfig",
   refs: {},
   keywords: "dsconfig",
   contains: [

@@ -64,22 +64,18 @@ void compileRelevance(Mode mode, Mode? parent) {
   mode.relevance ??= 1;
 }
 
-Mode replaceIfRef({required Mode self, Map<String, Mode>? refs}) {
-  if (self.ref == null) {
-    return self;
-  }
-
-  if (refs == null) {
-    return self;
-  }
-
-  if (refs[self.ref!] == null) {
+Mode replaceRef(
+  ModeReference self, {
+  required Map<String, Mode> refs,
+}) {
+  if (refs[self.ref] == null) {
     throw Exception('The language definition is incorrect! Check "refs" field');
   }
 
-  final newMode = refs[self.ref!]!;
-  if (newMode.starts != null) {
-    newMode.starts = replaceIfRef(self: newMode.starts!, refs: refs);
+  final newMode = refs[self.ref]!;
+  final starts = newMode.starts;
+  if (starts is ModeReference) {
+    newMode.starts = replaceRef(starts, refs: refs);
   }
 
   return newMode;

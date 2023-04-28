@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final autoit = Mode(
+final autoit = Language(
+  id: "autoit",
   refs: {
     '~contains~3': Mode(
       variants: [
@@ -109,10 +110,10 @@ final autoit = Mode(
     "literal": "True False And Null Not Or Default"
   },
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~1'),
-    Mode(ref: '~contains~2'),
-    Mode(ref: '~contains~3'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~1'),
+    ModeReference('~contains~2'),
+    ModeReference('~contains~3'),
     Mode(
       className: "meta",
       begin: "#",
@@ -145,7 +146,7 @@ final autoit = Mode(
           keywords: {"keyword": "include"},
           end: "\$",
           contains: [
-            Mode(ref: '~contains~2'),
+            ModeReference('~contains~2'),
             Mode(
               className: "string",
               variants: [
@@ -177,8 +178,8 @@ final autoit = Mode(
             ),
           ],
         ),
-        Mode(ref: '~contains~2'),
-        Mode(ref: '~contains~0'),
+        ModeReference('~contains~2'),
+        ModeReference('~contains~0'),
       ],
     ),
     Mode(
@@ -201,9 +202,9 @@ final autoit = Mode(
           begin: "\\(",
           end: "\\)",
           contains: [
-            Mode(ref: '~contains~1'),
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~3'),
+            ModeReference('~contains~1'),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~3'),
           ],
         ),
       ],

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final step21 = Mode(
+final step21 = Language(
+  id: "step21",
   refs: {},
   name: "STEP Part 21",
   aliases: ["p21", "step", "stp"],

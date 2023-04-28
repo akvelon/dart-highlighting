@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final matlab = Mode(
+final matlab = Language(
+  id: "matlab",
   refs: {
     '~contains~1~starts': Mode(
       relevance: 0,
@@ -47,7 +48,7 @@ final matlab = Mode(
       className: "built_in",
       begin: "true|false",
       relevance: 0,
-      starts: Mode(ref: '~contains~1~starts'),
+      starts: ModeReference('~contains~1~starts'),
     ),
     Mode(
       begin: "[a-zA-Z][a-zA-Z_0-9]*('|\\.')+",
@@ -58,7 +59,7 @@ final matlab = Mode(
       begin:
           "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)",
       relevance: 0,
-      starts: Mode(ref: '~contains~1~starts'),
+      starts: ModeReference('~contains~1~starts'),
     ),
     Mode(
       className: "string",
@@ -73,7 +74,7 @@ final matlab = Mode(
     Mode(
       begin: "\\]|\\}|\\)",
       relevance: 0,
-      starts: Mode(ref: '~contains~1~starts'),
+      starts: ModeReference('~contains~1~starts'),
     ),
     Mode(
       className: "string",
@@ -84,7 +85,7 @@ final matlab = Mode(
           begin: "\"\"",
         ),
       ],
-      starts: Mode(ref: '~contains~1~starts'),
+      starts: ModeReference('~contains~1~starts'),
     ),
     Mode(
       scope: "comment",

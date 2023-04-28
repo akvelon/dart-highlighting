@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final inform7 = Mode(
+final inform7 = Language(
+  id: "inform7",
   refs: {},
   name: "Inform 7",
   aliases: ["i7"],
@@ -46,7 +47,7 @@ final inform7 = Mode(
       begin: "\\[",
       end: "\\]",
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
       ],
     ),
   ],

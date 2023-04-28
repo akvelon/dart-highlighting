@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final fsharp = Mode(
+final fsharp = Language(
+  id: "fsharp",
   refs: {
     '~contains~1~variants~3': Mode(
       scope: "string",
@@ -195,14 +196,16 @@ final fsharp = Mode(
         ]
       },
       contains: [
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~6'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~8~contains~1'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~6'),
+        ModeReference(
+            '~contains~1~variants~0~contains~2~contains~8~contains~1'),
         Mode(
           scope: overwritingNullString,
           begin: "``",
           end: "``",
         ),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~8~contains~3'),
+        ModeReference(
+            '~contains~1~variants~0~contains~2~contains~8~contains~3'),
       ],
     ),
     '~contains~1~variants~0~contains~2~contains~7': Mode(
@@ -217,7 +220,7 @@ final fsharp = Mode(
           begin: "\\(\\*(?!\\))",
           end: "\\*\\)",
           contains: [
-            Mode(self: true),
+            ModeSelfReference(),
             Mode(
               scope: "doctag",
               begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
@@ -291,7 +294,7 @@ final fsharp = Mode(
           match: "\\}\\}",
         ),
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~1~variants~0~contains~2'),
+        ModeReference('~contains~1~variants~0~contains~2'),
       ],
     ),
     '~contains~1~variants~0~contains~2~contains~0': Mode(
@@ -309,7 +312,7 @@ final fsharp = Mode(
           match: "\"\"",
         ),
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~1~variants~0~contains~2'),
+        ModeReference('~contains~1~variants~0~contains~2'),
       ],
     ),
     '~contains~1~variants~0~contains~2': Mode(
@@ -435,20 +438,21 @@ final fsharp = Mode(
         ]
       },
       contains: [
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~0'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~1'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~2'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~3'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~4'),
-        Mode(ref: '~contains~0'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~6'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~7'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~8'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~9'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~10'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~11'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~8~contains~1'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~13'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~0'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~1'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~2'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~3'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~4'),
+        ModeReference('~contains~0'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~6'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~7'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~8'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~9'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~10'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~11'),
+        ModeReference(
+            '~contains~1~variants~0~contains~2~contains~8~contains~1'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~13'),
       ],
     ),
     '~contains~0': Mode(
@@ -575,7 +579,7 @@ final fsharp = Mode(
   illegal: "\\/\\*",
   classNameAliases: {"computation-expression": "keyword"},
   contains: [
-    Mode(ref: '~contains~0'),
+    ModeReference('~contains~0'),
     Mode(
       variants: [
         Mode(
@@ -589,20 +593,20 @@ final fsharp = Mode(
             Mode(
               match: "\\}\\}",
             ),
-            Mode(ref: '~contains~1~variants~0~contains~2'),
+            ModeReference('~contains~1~variants~0~contains~2'),
           ],
           relevance: 2,
         ),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~0'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~1'),
-        Mode(ref: '~contains~1~variants~3'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~2'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~3'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~4'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~0'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~1'),
+        ModeReference('~contains~1~variants~3'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~2'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~3'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~4'),
       ],
     ),
-    Mode(ref: '~contains~1~variants~0~contains~2~contains~6'),
-    Mode(ref: '~contains~1~variants~0~contains~2~contains~7'),
+    ModeReference('~contains~1~variants~0~contains~2~contains~6'),
+    ModeReference('~contains~1~variants~0~contains~2~contains~7'),
     Mode(
       begin: ["(^|\\s+)", "type", "\\s+", "[a-zA-Z_](\\w|')*"],
       beginScope: {"2": "keyword", "4": "title.class"},
@@ -726,18 +730,19 @@ final fsharp = Mode(
         ]
       },
       contains: [
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~6'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~6'),
         Mode(
           scope: overwritingNullString,
           begin: "``",
           end: "``",
         ),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~8~contains~1'),
+        ModeReference(
+            '~contains~1~variants~0~contains~2~contains~8~contains~1'),
         Mode(
           scope: "operator",
           match: "<|>",
         ),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~8'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~8'),
       ],
     ),
     Mode(
@@ -746,12 +751,12 @@ final fsharp = Mode(
       end: ">\\]",
       relevance: 2,
       contains: [
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~7'),
-        Mode(ref: '~contains~1~variants~3'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~2'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~3'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~4'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~11'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~7'),
+        ModeReference('~contains~1~variants~3'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~2'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~3'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~4'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~11'),
       ],
     ),
     Mode(
@@ -917,21 +922,23 @@ final fsharp = Mode(
         ]
       },
       contains: [
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~6'),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~8~contains~1'),
+        ModeReference('~contains~1~variants~0~contains~2~contains~6'),
+        ModeReference(
+            '~contains~1~variants~0~contains~2~contains~8~contains~1'),
         Mode(
           scope: overwritingNullString,
           begin: "``",
           end: "``",
         ),
-        Mode(ref: '~contains~1~variants~0~contains~2~contains~8~contains~3'),
+        ModeReference(
+            '~contains~1~variants~0~contains~2~contains~8~contains~3'),
       ],
     ),
-    Mode(ref: '~contains~1~variants~0~contains~2~contains~8'),
-    Mode(ref: '~contains~1~variants~0~contains~2~contains~9'),
-    Mode(ref: '~contains~1~variants~0~contains~2~contains~10'),
-    Mode(ref: '~contains~1~variants~0~contains~2~contains~11'),
-    Mode(ref: '~contains~1~variants~0~contains~2~contains~8~contains~1'),
-    Mode(ref: '~contains~1~variants~0~contains~2~contains~13'),
+    ModeReference('~contains~1~variants~0~contains~2~contains~8'),
+    ModeReference('~contains~1~variants~0~contains~2~contains~9'),
+    ModeReference('~contains~1~variants~0~contains~2~contains~10'),
+    ModeReference('~contains~1~variants~0~contains~2~contains~11'),
+    ModeReference('~contains~1~variants~0~contains~2~contains~8~contains~1'),
+    ModeReference('~contains~1~variants~0~contains~2~contains~13'),
   ],
 );

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final xquery = Mode(
+final xquery = Language(
+  id: "xquery",
   refs: {},
   name: "XQuery",
   aliases: ["xpath", "xq"],
@@ -312,7 +313,7 @@ final xquery = Mode(
           end: "\\}",
           subLanguage: ["xquery"],
         ),
-        Mode(self: true),
+        ModeSelfReference(),
       ],
     ),
   ],

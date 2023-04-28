@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final coffeescript = Mode(
+final coffeescript = Language(
+  id: "coffeescript",
   refs: {
     '~contains~8~contains~1': Mode(
       className: "params",
@@ -141,13 +142,13 @@ final coffeescript = Mode(
             ]
           },
           contains: [
-            Mode(self: true),
+            ModeSelfReference(),
             BINARY_NUMBER_MODE,
-            Mode(ref: '~contains~1'),
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~2~variants~2~contains~1~contains~3'),
-            Mode(ref: '~contains~2~variants~2~contains~1~contains~4'),
-            Mode(ref: '~contains~2~variants~2~contains~1~contains~5'),
+            ModeReference('~contains~1'),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~2~variants~2~contains~1~contains~3'),
+            ModeReference('~contains~2~variants~2~contains~1~contains~4'),
+            ModeReference('~contains~2~variants~2~contains~1~contains~5'),
           ],
         ),
       ],
@@ -177,7 +178,7 @@ final coffeescript = Mode(
           begin: "///",
           end: "///",
           contains: [
-            Mode(ref: '~contains~2~variants~2~contains~1'),
+            ModeReference('~contains~2~variants~2~contains~1'),
             HASH_COMMENT_MODE,
           ],
         ),
@@ -324,11 +325,11 @@ final coffeescript = Mode(
       },
       contains: [
         BINARY_NUMBER_MODE,
-        Mode(ref: '~contains~1'),
-        Mode(ref: '~contains~2'),
-        Mode(ref: '~contains~2~variants~2~contains~1~contains~3'),
-        Mode(ref: '~contains~2~variants~2~contains~1~contains~4'),
-        Mode(ref: '~contains~2~variants~2~contains~1~contains~5'),
+        ModeReference('~contains~1'),
+        ModeReference('~contains~2'),
+        ModeReference('~contains~2~variants~2~contains~1~contains~3'),
+        ModeReference('~contains~2~variants~2~contains~1~contains~4'),
+        ModeReference('~contains~2~variants~2~contains~1~contains~5'),
       ],
     ),
     '~contains~2': Mode(
@@ -353,7 +354,7 @@ final coffeescript = Mode(
           end: "\"\"\"",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~2~variants~2~contains~1'),
+            ModeReference('~contains~2~variants~2~contains~1'),
           ],
         ),
         Mode(
@@ -361,7 +362,7 @@ final coffeescript = Mode(
           end: "\"",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~2~variants~2~contains~1'),
+            ModeReference('~contains~2~variants~2~contains~1'),
           ],
         ),
       ],
@@ -510,11 +511,11 @@ final coffeescript = Mode(
   illegal: "\\/\\*",
   contains: [
     BINARY_NUMBER_MODE,
-    Mode(ref: '~contains~1'),
-    Mode(ref: '~contains~2'),
-    Mode(ref: '~contains~2~variants~2~contains~1~contains~3'),
-    Mode(ref: '~contains~2~variants~2~contains~1~contains~4'),
-    Mode(ref: '~contains~2~variants~2~contains~1~contains~5'),
+    ModeReference('~contains~1'),
+    ModeReference('~contains~2'),
+    ModeReference('~contains~2~variants~2~contains~1~contains~3'),
+    ModeReference('~contains~2~variants~2~contains~1~contains~4'),
+    ModeReference('~contains~2~variants~2~contains~1~contains~5'),
     Mode(
       scope: "comment",
       begin: "###",
@@ -545,7 +546,7 @@ final coffeescript = Mode(
           begin: "[A-Za-z\$_][0-9A-Za-z\$_]*",
           relevance: 0,
         ),
-        Mode(ref: '~contains~8~contains~1'),
+        ModeReference('~contains~8~contains~1'),
       ],
     ),
     Mode(
@@ -558,7 +559,7 @@ final coffeescript = Mode(
           end: "[-=]>",
           returnBegin: true,
           contains: [
-            Mode(ref: '~contains~8~contains~1'),
+            ModeReference('~contains~8~contains~1'),
           ],
         ),
       ],

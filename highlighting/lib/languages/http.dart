@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final http = Mode(
+final http = Language(
+  id: "http",
   refs: {
     '~contains~0~starts~contains~1': Mode(
       begin: "\\n\\n",
@@ -27,7 +28,7 @@ final http = Mode(
     '~contains~0~starts~contains~0': Mode(
       className: "attribute",
       begin: "^[A-Za-z][A-Za-z0-9-]*(?=\\:\\s)",
-      starts: Mode(ref: '~contains~0~starts~contains~0~starts'),
+      starts: ModeReference('~contains~0~starts~contains~0~starts'),
     ),
   },
   name: "HTTP",
@@ -51,8 +52,8 @@ final http = Mode(
         end: "\\b\\B",
         illegal: "\\S",
         contains: [
-          Mode(ref: '~contains~0~starts~contains~0'),
-          Mode(ref: '~contains~0~starts~contains~1'),
+          ModeReference('~contains~0~starts~contains~0'),
+          ModeReference('~contains~0~starts~contains~1'),
         ],
       ),
     ),
@@ -80,15 +81,15 @@ final http = Mode(
         end: "\\b\\B",
         illegal: "\\S",
         contains: [
-          Mode(ref: '~contains~0~starts~contains~0'),
-          Mode(ref: '~contains~0~starts~contains~1'),
+          ModeReference('~contains~0~starts~contains~0'),
+          ModeReference('~contains~0~starts~contains~1'),
         ],
       ),
     ),
     Mode(
       className: "attribute",
       begin: "^[A-Za-z][A-Za-z0-9-]*(?=\\:\\s)",
-      starts: Mode(ref: '~contains~0~starts~contains~0~starts'),
+      starts: ModeReference('~contains~0~starts~contains~0~starts'),
       relevance: 0,
     ),
   ],

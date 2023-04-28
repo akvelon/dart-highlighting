@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final nginx = Mode(
+final nginx = Language(
+  id: "nginx",
   refs: {
     '~contains~1~contains~5': Mode(
       className: "number",
@@ -17,7 +18,7 @@ final nginx = Mode(
       className: "regexp",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~1~contains~1~contains~1'),
+        ModeReference('~contains~1~contains~1~contains~1'),
       ],
       variants: [
         Mode(
@@ -44,7 +45,7 @@ final nginx = Mode(
       endsWithParent: true,
       excludeEnd: true,
       contains: [
-        Mode(ref: '~contains~1~contains~1~contains~1'),
+        ModeReference('~contains~1~contains~1~contains~1'),
       ],
     ),
     '~contains~1~contains~1~contains~1': Mode(
@@ -65,7 +66,7 @@ final nginx = Mode(
       className: "string",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~1~contains~1~contains~1'),
+        ModeReference('~contains~1~contains~1~contains~1'),
       ],
       variants: [
         Mode(
@@ -88,12 +89,12 @@ final nginx = Mode(
       end: ";|\\{",
       contains: [
         HASH_COMMENT_MODE,
-        Mode(ref: '~contains~1~contains~1'),
-        Mode(ref: '~contains~1~contains~2'),
-        Mode(ref: '~contains~1~contains~3'),
-        Mode(ref: '~contains~1~contains~4'),
-        Mode(ref: '~contains~1~contains~5'),
-        Mode(ref: '~contains~1~contains~1~contains~1'),
+        ModeReference('~contains~1~contains~1'),
+        ModeReference('~contains~1~contains~2'),
+        ModeReference('~contains~1~contains~3'),
+        ModeReference('~contains~1~contains~4'),
+        ModeReference('~contains~1~contains~5'),
+        ModeReference('~contains~1~contains~1~contains~1'),
       ],
       keywords: {"section": "upstream location"},
     ),
@@ -144,12 +145,12 @@ final nginx = Mode(
             illegal: "=>",
             contains: [
               HASH_COMMENT_MODE,
-              Mode(ref: '~contains~1~contains~1'),
-              Mode(ref: '~contains~1~contains~2'),
-              Mode(ref: '~contains~1~contains~3'),
-              Mode(ref: '~contains~1~contains~4'),
-              Mode(ref: '~contains~1~contains~5'),
-              Mode(ref: '~contains~1~contains~1~contains~1'),
+              ModeReference('~contains~1~contains~1'),
+              ModeReference('~contains~1~contains~2'),
+              ModeReference('~contains~1~contains~3'),
+              ModeReference('~contains~1~contains~4'),
+              ModeReference('~contains~1~contains~5'),
+              ModeReference('~contains~1~contains~1~contains~1'),
             ],
           ),
         ),

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final thrift = Mode(
+final thrift = Language(
+  id: "thrift",
   refs: {},
   name: "Thrift",
   keywords: {
@@ -66,7 +67,7 @@ final thrift = Mode(
       },
       end: ">",
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
       ],
     ),
   ],

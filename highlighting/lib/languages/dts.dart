@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final dts = Mode(
+final dts = Language(
+  id: "dts",
   refs: {
     '~contains~7~contains~0': Mode(
       className: "number",
@@ -41,9 +42,9 @@ final dts = Mode(
     '~contains~11': Mode(
       className: "string",
       variants: [
-        Mode(ref: '~contains~11~variants~0'),
-        Mode(ref: '~contains~11~variants~1'),
-        Mode(ref: '~contains~11~variants~2'),
+        ModeReference('~contains~11~variants~0'),
+        ModeReference('~contains~11~variants~1'),
+        ModeReference('~contains~11~variants~2'),
       ],
     ),
     '~contains~1': Mode(
@@ -58,7 +59,7 @@ final dts = Mode(
       begin: "^\\/(?=\\s*\\{)",
       relevance: 10,
     ),
-    Mode(ref: '~contains~1'),
+    ModeReference('~contains~1'),
     Mode(
       className: "keyword",
       begin: "/[a-z][a-z\\d-]*/",
@@ -88,14 +89,14 @@ final dts = Mode(
       begin: "<",
       end: ">",
       contains: [
-        Mode(ref: '~contains~7~contains~0'),
-        Mode(ref: '~contains~1'),
+        ModeReference('~contains~7~contains~0'),
+        ModeReference('~contains~1'),
       ],
     ),
     C_LINE_COMMENT_MODE,
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~7~contains~0'),
-    Mode(ref: '~contains~11'),
+    ModeReference('~contains~7~contains~0'),
+    ModeReference('~contains~11'),
     Mode(
       className: "meta",
       begin: "#",
@@ -114,9 +115,9 @@ final dts = Mode(
             Mode(
               className: "string",
               variants: [
-                Mode(ref: '~contains~11~variants~0'),
-                Mode(ref: '~contains~11~variants~1'),
-                Mode(ref: '~contains~11~variants~2'),
+                ModeReference('~contains~11~variants~0'),
+                ModeReference('~contains~11~variants~1'),
+                ModeReference('~contains~11~variants~2'),
               ],
             ),
             Mode(
@@ -127,7 +128,7 @@ final dts = Mode(
             ),
           ],
         ),
-        Mode(ref: '~contains~11'),
+        ModeReference('~contains~11'),
         C_LINE_COMMENT_MODE,
         C_BLOCK_COMMENT_MODE,
       ],

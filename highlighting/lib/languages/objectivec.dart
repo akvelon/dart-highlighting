@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final objectivec = Mode(
+final objectivec = Language(
+  id: "objectivec",
   refs: {},
   name: "Objective-C",
   aliases: ["mm", "objc", "obj-c", "obj-c++", "objective-c++"],

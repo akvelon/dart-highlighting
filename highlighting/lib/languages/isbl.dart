@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final isbl = Mode(
+final isbl = Language(
+  id: "isbl",
   refs: {
     '~contains~0~contains~5~variants~0~contains~1': Mode(
       className: "doctag",
@@ -18,7 +19,7 @@ final isbl = Mode(
           relevance: 0,
           contains: [
             PHRASAL_WORDS_MODE,
-            Mode(ref: '~contains~0~contains~5~variants~0~contains~1'),
+            ModeReference('~contains~0~contains~5~variants~0~contains~1'),
           ],
         ),
         Mode(
@@ -28,7 +29,7 @@ final isbl = Mode(
           relevance: 0,
           contains: [
             PHRASAL_WORDS_MODE,
-            Mode(ref: '~contains~0~contains~5~variants~0~contains~1'),
+            ModeReference('~contains~0~contains~5~variants~0~contains~1'),
           ],
         ),
       ],
@@ -73,8 +74,8 @@ final isbl = Mode(
       begin: "[A-Za-zА-Яа-яёЁ_!][A-Za-zА-Яа-яёЁ_0-9]*",
       relevance: 0,
       contains: [
-        Mode(ref: '~contains~0~contains~2~contains~0'),
-        Mode(ref: '~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~2~contains~0'),
+        ModeReference('~contains~0~contains~1'),
       ],
     ),
     '~contains~0~contains~1': Mode(
@@ -135,18 +136,18 @@ final isbl = Mode(
           returnBegin: true,
           excludeEnd: true,
         ),
-        Mode(ref: '~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~2'),
-        Mode(ref: '~contains~0~contains~3'),
-        Mode(ref: '~contains~0~contains~4'),
-        Mode(ref: '~contains~0~contains~5'),
+        ModeReference('~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~3'),
+        ModeReference('~contains~0~contains~4'),
+        ModeReference('~contains~0~contains~5'),
       ],
     ),
-    Mode(ref: '~contains~0~contains~2~contains~0'),
-    Mode(ref: '~contains~0~contains~1'),
-    Mode(ref: '~contains~0~contains~2'),
-    Mode(ref: '~contains~0~contains~3'),
-    Mode(ref: '~contains~0~contains~4'),
-    Mode(ref: '~contains~0~contains~5'),
+    ModeReference('~contains~0~contains~2~contains~0'),
+    ModeReference('~contains~0~contains~1'),
+    ModeReference('~contains~0~contains~2'),
+    ModeReference('~contains~0~contains~3'),
+    ModeReference('~contains~0~contains~4'),
+    ModeReference('~contains~0~contains~5'),
   ],
 );

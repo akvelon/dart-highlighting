@@ -1,4 +1,4 @@
-import '../src/mode.dart';
+import '../src/language.dart';
 import '1c.dart';
 import 'abnf.dart';
 import 'accesslog.dart';
@@ -192,8 +192,8 @@ import 'xquery.dart';
 import 'yaml.dart';
 import 'zephir.dart';
 
-final communityLanguages = <String, Mode>{};
-final builtinLanguages = <String, Mode>{
+final communityLanguages = <String, Language>{};
+final builtinLanguages = <String, Language>{
   '1c': lang1C,
   'abnf': abnf,
   'accesslog': accesslog,

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final csharp = Mode(
+final csharp = Language(
+  id: "csharp",
   refs: {
     '~contains~6~contains~2': Mode(
       begin: "<",
@@ -11,7 +12,7 @@ final csharp = Mode(
         Mode(
           beginKeywords: "in out",
         ),
-        Mode(ref: '~contains~6~contains~1'),
+        ModeReference('~contains~6~contains~1'),
       ],
     ),
     '~contains~6~contains~1': Mode(
@@ -24,9 +25,8 @@ final csharp = Mode(
       begin: "@\"",
       end: "\"",
       contains: [
-        Mode(
-            ref:
-                '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~2~contains~0'),
+        ModeReference(
+            '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~2~contains~0'),
       ],
     ),
     '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~5': Mode(
@@ -188,28 +188,26 @@ final csharp = Mode(
             Mode(
               begin: "\"\"",
             ),
-            Mode(
-                ref: '~contains~4~variants~0~contains~3~contains~1~contains~3'),
+            ModeReference(
+                '~contains~4~variants~0~contains~3~contains~1~contains~3'),
           ],
           illegal: "\\n",
         ),
-        Mode(ref: '~contains~4~variants~0~contains~3~contains~1'),
+        ModeReference('~contains~4~variants~0~contains~3~contains~1'),
         Mode(
           className: "string",
           begin: "@\"",
           end: "\"",
           contains: [
-            Mode(
-                ref:
-                    '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~2~contains~0'),
+            ModeReference(
+                '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~2~contains~0'),
           ],
           illegal: "\\n",
         ),
         APOS_STRING_MODE,
         QUOTE_STRING_MODE,
-        Mode(
-            ref:
-                '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~5'),
+        ModeReference(
+            '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~5'),
         Mode(
           scope: "comment",
           begin: "/\\*",
@@ -244,7 +242,8 @@ final csharp = Mode(
           begin: "\\}\\}",
         ),
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~4~variants~0~contains~3~contains~1~contains~3'),
+        ModeReference(
+            '~contains~4~variants~0~contains~3~contains~1~contains~3'),
       ],
     ),
     '~contains~4~variants~0': Mode(
@@ -384,14 +383,13 @@ final csharp = Mode(
             "literal": ["default", "false", "null", "true"]
           },
           contains: [
-            Mode(ref: '~contains~4~variants~0'),
-            Mode(ref: '~contains~4~variants~0~contains~3~contains~1'),
-            Mode(ref: '~contains~4~variants~0~contains~3~contains~2'),
+            ModeReference('~contains~4~variants~0'),
+            ModeReference('~contains~4~variants~0~contains~3~contains~1'),
+            ModeReference('~contains~4~variants~0~contains~3~contains~2'),
             APOS_STRING_MODE,
             QUOTE_STRING_MODE,
-            Mode(
-                ref:
-                    '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~5'),
+            ModeReference(
+                '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~5'),
             C_BLOCK_COMMENT_MODE,
           ],
         ),
@@ -399,9 +397,9 @@ final csharp = Mode(
     ),
     '~contains~4': Mode(
       variants: [
-        Mode(ref: '~contains~4~variants~0'),
-        Mode(ref: '~contains~4~variants~0~contains~3~contains~1'),
-        Mode(ref: '~contains~4~variants~0~contains~3~contains~2'),
+        ModeReference('~contains~4~variants~0'),
+        ModeReference('~contains~4~variants~0~contains~3~contains~1'),
+        ModeReference('~contains~4~variants~0~contains~3~contains~2'),
         APOS_STRING_MODE,
         QUOTE_STRING_MODE,
       ],
@@ -575,10 +573,9 @@ final csharp = Mode(
             "if else elif endif define undef warning error line region endregion pragma checksum"
       },
     ),
-    Mode(ref: '~contains~4'),
-    Mode(
-        ref:
-            '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~5'),
+    ModeReference('~contains~4'),
+    ModeReference(
+        '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~5'),
     Mode(
       beginKeywords: "class interface",
       relevance: 0,
@@ -588,8 +585,8 @@ final csharp = Mode(
         Mode(
           beginKeywords: "where class",
         ),
-        Mode(ref: '~contains~6~contains~1'),
-        Mode(ref: '~contains~6~contains~2'),
+        ModeReference('~contains~6~contains~1'),
+        ModeReference('~contains~6~contains~2'),
         C_LINE_COMMENT_MODE,
         C_BLOCK_COMMENT_MODE,
       ],
@@ -600,7 +597,7 @@ final csharp = Mode(
       end: "[{;=]",
       illegal: "[^\\s:]",
       contains: [
-        Mode(ref: '~contains~6~contains~1'),
+        ModeReference('~contains~6~contains~1'),
         C_LINE_COMMENT_MODE,
         C_BLOCK_COMMENT_MODE,
       ],
@@ -611,8 +608,8 @@ final csharp = Mode(
       end: "[{;=]",
       illegal: "[^\\s:]",
       contains: [
-        Mode(ref: '~contains~6~contains~1'),
-        Mode(ref: '~contains~6~contains~2'),
+        ModeReference('~contains~6~contains~1'),
+        ModeReference('~contains~6~contains~2'),
         C_LINE_COMMENT_MODE,
         C_BLOCK_COMMENT_MODE,
       ],
@@ -771,7 +768,7 @@ final csharp = Mode(
           returnBegin: true,
           contains: [
             TITLE_MODE,
-            Mode(ref: '~contains~6~contains~2'),
+            ModeReference('~contains~6~contains~2'),
           ],
           relevance: 0,
         ),
@@ -904,10 +901,9 @@ final csharp = Mode(
           },
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~4'),
-            Mode(
-                ref:
-                    '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~5'),
+            ModeReference('~contains~4'),
+            ModeReference(
+                '~contains~4~variants~0~contains~3~contains~1~contains~3~contains~5'),
             C_BLOCK_COMMENT_MODE,
           ],
         ),

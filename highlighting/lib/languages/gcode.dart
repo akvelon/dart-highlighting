@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final gcode = Mode(
+final gcode = Language(
+  id: "gcode",
   refs: {
     '~contains~5': Mode(
       scope: "number",
@@ -48,7 +49,7 @@ final gcode = Mode(
         ),
       ],
     ),
-    Mode(ref: '~contains~5'),
+    ModeReference('~contains~5'),
     Mode(
       scope: "string",
       begin: "'",
@@ -88,7 +89,7 @@ final gcode = Mode(
       className: "built_in",
       begin: "(ATAN|ABS|ACOS|ASIN|SIN|COS|EXP|FIX|FUP|ROUND|LN|TAN)(\\[)",
       contains: [
-        Mode(ref: '~contains~5'),
+        ModeReference('~contains~5'),
       ],
       end: "\\]",
     ),

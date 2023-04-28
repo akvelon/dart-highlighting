@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final go = Mode(
+final go = Language(
+  id: "go",
   refs: {},
   name: "Go",
   aliases: ["golang"],

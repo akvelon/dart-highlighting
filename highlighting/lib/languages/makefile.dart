@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final makefile = Mode(
+final makefile = Language(
+  id: "makefile",
   refs: {
     '~contains~1': Mode(
       className: "variable",
@@ -28,14 +29,14 @@ final makefile = Mode(
   },
   contains: [
     HASH_COMMENT_MODE,
-    Mode(ref: '~contains~1'),
+    ModeReference('~contains~1'),
     Mode(
       className: "string",
       begin: "\"",
       end: "\"",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~1'),
+        ModeReference('~contains~1'),
       ],
     ),
     Mode(
@@ -47,7 +48,7 @@ final makefile = Mode(
             "subst patsubst strip findstring filter filter-out sort word wordlist firstword lastword dir notdir suffix basename addsuffix addprefix join wildcard realpath abspath error warning shell origin flavor foreach if or and call eval file value"
       },
       contains: [
-        Mode(ref: '~contains~1'),
+        ModeReference('~contains~1'),
       ],
     ),
     Mode(
@@ -64,7 +65,7 @@ final makefile = Mode(
       begin: "^[^\\s]+:",
       end: "\$",
       contains: [
-        Mode(ref: '~contains~1'),
+        ModeReference('~contains~1'),
       ],
     ),
   ],

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final erb = Mode(
+final erb = Language(
+  id: "erb",
   refs: {},
   name: "ERB",
   subLanguage: ["xml"],

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final elm = Mode(
+final elm = Language(
+  id: "elm",
   refs: {
     '~contains~2~contains~0': Mode(
       className: "type",
@@ -34,7 +35,7 @@ final elm = Mode(
           begin: "\\{-",
           end: "-\\}",
           contains: [
-            Mode(self: true),
+            ModeSelfReference(),
             Mode(
               scope: "doctag",
               begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
@@ -59,8 +60,8 @@ final elm = Mode(
       end: "\\)",
       illegal: "\"",
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~1'),
       ],
     ),
   },
@@ -94,8 +95,8 @@ final elm = Mode(
       end: "exposing",
       keywords: "port effect module where command subscription exposing",
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~1'),
       ],
       illegal: "\\W\\.|;",
     ),
@@ -104,8 +105,8 @@ final elm = Mode(
       end: "\$",
       keywords: "import as exposing",
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~1'),
       ],
       illegal: "\\W\\.|;",
     ),
@@ -114,17 +115,17 @@ final elm = Mode(
       end: "\$",
       keywords: "type alias",
       contains: [
-        Mode(ref: '~contains~2~contains~0'),
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~2~contains~0'),
+        ModeReference('~contains~0~contains~0'),
         Mode(
           begin: "\\{",
           end: "\\}",
           contains: [
-            Mode(ref: '~contains~0~contains~0~contains~0'),
-            Mode(ref: '~contains~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~0~contains~0'),
+            ModeReference('~contains~0~contains~0~contains~1'),
           ],
         ),
-        Mode(ref: '~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~1'),
       ],
     ),
     Mode(
@@ -132,7 +133,7 @@ final elm = Mode(
       end: "\$",
       contains: [
         C_NUMBER_MODE,
-        Mode(ref: '~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~1'),
       ],
     ),
     Mode(
@@ -140,7 +141,7 @@ final elm = Mode(
       end: "\$",
       keywords: "port",
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~1'),
       ],
     ),
     Mode(
@@ -151,13 +152,13 @@ final elm = Mode(
     ),
     QUOTE_STRING_MODE,
     C_NUMBER_MODE,
-    Mode(ref: '~contains~2~contains~0'),
+    ModeReference('~contains~2~contains~0'),
     Mode(
       scope: "title",
       begin: "^[_a-z][\\w']*",
       relevance: 0,
     ),
-    Mode(ref: '~contains~0~contains~0~contains~1'),
+    ModeReference('~contains~0~contains~0~contains~1'),
     Mode(
       begin: "->|<-",
     ),

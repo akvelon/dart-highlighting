@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final cmake = Mode(
+final cmake = Language(
+  id: "cmake",
   refs: {},
   name: "CMake",
   aliases: ["cmake.in"],

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final groovy = Mode(
+final groovy = Language(
+  id: "groovy",
   refs: {
     '~contains~4': Mode(
       variants: [
@@ -135,10 +136,10 @@ final groovy = Mode(
       relevance: 10,
       onBegin: shebangOnBegin,
     ),
-    Mode(ref: '~contains~1'),
-    Mode(ref: '~contains~2'),
-    Mode(ref: '~contains~3'),
-    Mode(ref: '~contains~4'),
+    ModeReference('~contains~1'),
+    ModeReference('~contains~2'),
+    ModeReference('~contains~3'),
+    ModeReference('~contains~4'),
     Mode(
       match: [
         "(class|interface|trait|enum|extends|implements)",
@@ -162,11 +163,11 @@ final groovy = Mode(
       end: ":",
       relevance: 0,
       contains: [
-        Mode(ref: '~contains~1'),
-        Mode(ref: '~contains~2'),
-        Mode(ref: '~contains~3'),
-        Mode(ref: '~contains~4'),
-        Mode(self: true),
+        ModeReference('~contains~1'),
+        ModeReference('~contains~2'),
+        ModeReference('~contains~3'),
+        ModeReference('~contains~4'),
+        ModeSelfReference(),
       ],
     ),
     Mode(

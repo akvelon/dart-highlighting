@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final vim = Mode(
+final vim = Language(
+  id: "vim",
   refs: {},
   name: "Vim Script",
   keywords: {

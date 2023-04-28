@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final leaf = Mode(
+final leaf = Language(
+  id: "leaf",
   refs: {},
   name: "Leaf",
   contains: [

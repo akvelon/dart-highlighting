@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final x86Asm = Mode(
+final x86Asm = Language(
+  id: "x86asm",
   refs: {},
   name: "Intel x86 Assembly",
   case_insensitive: true,

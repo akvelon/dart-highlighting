@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final accesslog = Mode(
+final accesslog = Language(
+  id: "accesslog",
   refs: {},
   name: "Apache Access Log",
   contains: [

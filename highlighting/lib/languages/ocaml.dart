@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final ocaml = Mode(
+final ocaml = Language(
+  id: "ocaml",
   refs: {},
   name: "OCaml",
   aliases: ["ml"],
@@ -26,7 +27,7 @@ final ocaml = Mode(
       begin: "\\(\\*",
       end: "\\*\\)",
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",

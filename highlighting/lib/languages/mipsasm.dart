@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final mipsasm = Mode(
+final mipsasm = Language(
+  id: "mipsasm",
   refs: {},
   name: "MIPS Assembly",
   case_insensitive: true,

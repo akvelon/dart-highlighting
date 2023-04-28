@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final mathematica = Mode(
+final mathematica = Language(
+  id: "mathematica",
   refs: {},
   name: "Mathematica",
   aliases: ["mma", "wl"],
@@ -21,7 +22,7 @@ final mathematica = Mode(
       begin: "\\(\\*",
       end: "\\*\\)",
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",

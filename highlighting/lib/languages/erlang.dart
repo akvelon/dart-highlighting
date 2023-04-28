@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final erlang = Mode(
+final erlang = Language(
+  id: "erlang",
   refs: {
     '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9':
         Mode(
@@ -19,26 +20,21 @@ final erlang = Mode(
           end: "\\}",
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~0~contains~0~contains~0'),
-            Mode(ref: '~contains~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~0~contains~2'),
-            Mode(ref: '~contains~0~contains~0~contains~2~contains~4'),
+            ModeReference('~contains~0~contains~0~contains~0'),
+            ModeReference('~contains~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~0~contains~2'),
+            ModeReference('~contains~0~contains~0~contains~2~contains~4'),
             QUOTE_STRING_MODE,
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
           ],
         ),
       ],
@@ -58,26 +54,21 @@ final erlang = Mode(
       end: "\\}",
       relevance: 0,
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~0~contains~2'),
-        Mode(ref: '~contains~0~contains~0~contains~2~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~0~contains~2~contains~4'),
         QUOTE_STRING_MODE,
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
       ],
     ),
     '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5': Mode(
@@ -105,26 +96,21 @@ final erlang = Mode(
           returnEnd: true,
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~0~contains~0~contains~0'),
-            Mode(ref: '~contains~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~0~contains~2'),
-            Mode(ref: '~contains~0~contains~0~contains~2~contains~4'),
+            ModeReference('~contains~0~contains~0~contains~0'),
+            ModeReference('~contains~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~0~contains~2'),
+            ModeReference('~contains~0~contains~0~contains~2~contains~4'),
             QUOTE_STRING_MODE,
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
+            ModeReference(
+                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
           ],
         ),
       ],
@@ -138,8 +124,8 @@ final erlang = Mode(
         "literal": "false true"
       },
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~1'),
         Mode(
           scope: "string",
           begin: "'",
@@ -150,24 +136,19 @@ final erlang = Mode(
           ],
           className: overwritingNullString,
         ),
-        Mode(ref: '~contains~0~contains~0~contains~2'),
-        Mode(ref: '~contains~0~contains~0~contains~2~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~0~contains~2~contains~4'),
         QUOTE_STRING_MODE,
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
       ],
     ),
     '~contains~0~contains~0~contains~1': Mode(
@@ -196,26 +177,21 @@ final erlang = Mode(
       begin: "\\(",
       end: "\\)",
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~0~contains~2'),
-        Mode(ref: '~contains~0~contains~0~contains~2~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~0~contains~2~contains~4'),
         QUOTE_STRING_MODE,
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
+        ModeReference(
+            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
       ],
     ),
   },
@@ -235,7 +211,7 @@ final erlang = Mode(
       returnBegin: true,
       illegal: "\\(|#|//|/\\*|\\\\|:|;",
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0'),
         Mode(
           scope: "title",
           begin: "[a-z'][a-zA-Z0-9_']*",
@@ -250,30 +226,25 @@ final erlang = Mode(
           "literal": "false true"
         },
         contains: [
-          Mode(ref: '~contains~0~contains~0~contains~0'),
-          Mode(ref: '~contains~0~contains~0~contains~1'),
-          Mode(ref: '~contains~0~contains~0~contains~2'),
-          Mode(ref: '~contains~0~contains~0~contains~2~contains~4'),
+          ModeReference('~contains~0~contains~0~contains~0'),
+          ModeReference('~contains~0~contains~0~contains~1'),
+          ModeReference('~contains~0~contains~0~contains~2'),
+          ModeReference('~contains~0~contains~0~contains~2~contains~4'),
           QUOTE_STRING_MODE,
-          Mode(
-              ref:
-                  '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
-          Mode(
-              ref:
-                  '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
-          Mode(
-              ref:
-                  '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
-          Mode(
-              ref:
-                  '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
-          Mode(
-              ref:
-                  '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
+          ModeReference(
+              '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
+          ModeReference(
+              '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
+          ModeReference(
+              '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
+          ModeReference(
+              '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
+          ModeReference(
+              '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
         ],
       ),
     ),
-    Mode(ref: '~contains~0~contains~0~contains~0'),
+    ModeReference('~contains~0~contains~0~contains~0'),
     Mode(
       begin: "^-",
       end: "\\.",
@@ -286,25 +257,20 @@ final erlang = Mode(
             "-module|1.5 -record|1.5 -undef|1.5 -export|1.5 -ifdef|1.5 -ifndef|1.5 -author|1.5 -copyright|1.5 -doc|1.5 -vsn|1.5 -import|1.5 -include|1.5 -include_lib|1.5 -compile|1.5 -define|1.5 -else|1.5 -endif|1.5 -file|1.5 -behaviour|1.5 -behavior|1.5 -spec|1.5"
       },
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0'),
       ],
     ),
-    Mode(
-        ref:
-            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
+    ModeReference(
+        '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~5'),
     QUOTE_STRING_MODE,
-    Mode(
-        ref:
-            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
-    Mode(
-        ref:
-            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
-    Mode(
-        ref:
-            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
-    Mode(
-        ref:
-            '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
+    ModeReference(
+        '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~9'),
+    ModeReference(
+        '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~7'),
+    ModeReference(
+        '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6~contains~8'),
+    ModeReference(
+        '~contains~0~contains~0~contains~2~contains~4~contains~1~contains~6'),
     Mode(
       begin: "\\.\$",
     ),

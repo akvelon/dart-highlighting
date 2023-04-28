@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final kotlin = Mode(
+final kotlin = Language(
+  id: "kotlin",
   refs: {
     '~contains~7~contains~2~contains~0~contains~0': Mode(
       variants: [
@@ -14,7 +15,7 @@ final kotlin = Mode(
           begin: "\\(",
           end: "\\)",
           contains: [
-            Mode(ref: '~contains~7~contains~2~contains~0~contains~0'),
+            ModeReference('~contains~7~contains~2~contains~0~contains~0'),
           ],
         ),
       ],
@@ -26,8 +27,10 @@ final kotlin = Mode(
       illegal: "\\n",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~6~contains~0~contains~0~variants~0~contains~0'),
-        Mode(ref: '~contains~6~contains~0~contains~0~variants~0~contains~1'),
+        ModeReference(
+            '~contains~6~contains~0~contains~0~variants~0~contains~0'),
+        ModeReference(
+            '~contains~6~contains~0~contains~0~variants~0~contains~1'),
       ],
     ),
     '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1~variants~1':
@@ -42,13 +45,11 @@ final kotlin = Mode(
     '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1': Mode(
       className: "string",
       variants: [
-        Mode(ref: '~contains~6~contains~0~contains~0~variants~0'),
-        Mode(
-            ref:
-                '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1~variants~1'),
-        Mode(
-            ref:
-                '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1~variants~2'),
+        ModeReference('~contains~6~contains~0~contains~0~variants~0'),
+        ModeReference(
+            '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1~variants~1'),
+        ModeReference(
+            '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1~variants~2'),
       ],
     ),
     '~contains~6~contains~0~contains~0~variants~0~contains~1': Mode(
@@ -57,9 +58,8 @@ final kotlin = Mode(
       end: "\\}",
       contains: [
         C_NUMBER_MODE,
-        Mode(
-            ref:
-                '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1'),
+        ModeReference(
+            '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1'),
       ],
     ),
     '~contains~6~contains~0~contains~0~variants~0~contains~0': Mode(
@@ -70,8 +70,10 @@ final kotlin = Mode(
       begin: "\"\"\"",
       end: "\"\"\"(?=[^\"])",
       contains: [
-        Mode(ref: '~contains~6~contains~0~contains~0~variants~0~contains~0'),
-        Mode(ref: '~contains~6~contains~0~contains~0~variants~0~contains~1'),
+        ModeReference(
+            '~contains~6~contains~0~contains~0~variants~0~contains~0'),
+        ModeReference(
+            '~contains~6~contains~0~contains~0~variants~0~contains~1'),
       ],
     ),
     '~contains~6': Mode(
@@ -85,16 +87,14 @@ final kotlin = Mode(
             Mode(
               className: "string",
               variants: [
-                Mode(ref: '~contains~6~contains~0~contains~0~variants~0'),
-                Mode(
-                    ref:
-                        '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1~variants~1'),
-                Mode(
-                    ref:
-                        '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1~variants~2'),
+                ModeReference('~contains~6~contains~0~contains~0~variants~0'),
+                ModeReference(
+                    '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1~variants~1'),
+                ModeReference(
+                    '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1~variants~2'),
               ],
             ),
-            Mode(self: true),
+            ModeSelfReference(),
           ],
         ),
       ],
@@ -158,7 +158,7 @@ final kotlin = Mode(
       relevance: 0,
     ),
     C_LINE_COMMENT_MODE,
-    Mode(ref: '~contains~2'),
+    ModeReference('~contains~2'),
     Mode(
       className: "keyword",
       begin: "\\b(break|continue|return|this)\\b",
@@ -175,8 +175,8 @@ final kotlin = Mode(
       className: "symbol",
       begin: "[a-zA-Z_]\\w*@",
     ),
-    Mode(ref: '~contains~5'),
-    Mode(ref: '~contains~6'),
+    ModeReference('~contains~5'),
+    ModeReference('~contains~6'),
     Mode(
       className: "function",
       beginKeywords: "fun",
@@ -226,23 +226,22 @@ final kotlin = Mode(
               end: "[=,\\/]",
               endsWithParent: true,
               contains: [
-                Mode(ref: '~contains~7~contains~2~contains~0~contains~0'),
+                ModeReference('~contains~7~contains~2~contains~0~contains~0'),
                 C_LINE_COMMENT_MODE,
-                Mode(ref: '~contains~2'),
+                ModeReference('~contains~2'),
               ],
               relevance: 0,
             ),
             C_LINE_COMMENT_MODE,
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~5'),
-            Mode(ref: '~contains~6'),
-            Mode(
-                ref:
-                    '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1'),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~5'),
+            ModeReference('~contains~6'),
+            ModeReference(
+                '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1'),
             C_NUMBER_MODE,
           ],
         ),
-        Mode(ref: '~contains~2'),
+        ModeReference('~contains~2'),
       ],
     ),
     Mode(
@@ -272,13 +271,12 @@ final kotlin = Mode(
           excludeBegin: true,
           returnEnd: true,
         ),
-        Mode(ref: '~contains~5'),
-        Mode(ref: '~contains~6'),
+        ModeReference('~contains~5'),
+        ModeReference('~contains~6'),
       ],
     ),
-    Mode(
-        ref:
-            '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1'),
+    ModeReference(
+        '~contains~6~contains~0~contains~0~variants~0~contains~1~contains~1'),
     Mode(
       className: "meta",
       begin: "^#!/usr/bin/env",

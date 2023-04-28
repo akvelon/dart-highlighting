@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final erlangRepl = Mode(
+final erlangRepl = Language(
+  id: "erlang-repl",
   refs: {},
   name: "Erlang REPL",
   keywords: {

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final cos = Mode(
+final cos = Language(
+  id: "cos",
   refs: {},
   name: "Caché Object Script",
   case_insensitive: true,

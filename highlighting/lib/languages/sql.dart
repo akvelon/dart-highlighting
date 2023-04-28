@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final sql = Mode(
+final sql = Language(
+  id: "sql",
   refs: {},
   name: "SQL",
   case_insensitive: true,

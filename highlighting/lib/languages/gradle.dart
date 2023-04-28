@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final gradle = Mode(
+final gradle = Language(
+  id: "gradle",
   refs: {},
   name: "Gradle",
   case_insensitive: true,

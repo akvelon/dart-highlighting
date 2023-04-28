@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final hsp = Mode(
+final hsp = Language(
+  id: "hsp",
   refs: {},
   name: "HSP",
   case_insensitive: true,

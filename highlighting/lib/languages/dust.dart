@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final dust = Mode(
+final dust = Language(
+  id: "dust",
   refs: {},
   name: "Dust",
   aliases: ["dst"],

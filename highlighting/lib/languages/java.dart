@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final java = Mode(
+final java = Language(
+  id: "java",
   refs: {
     '~contains~12~contains~0~contains~3': Mode(
       className: "number",
@@ -48,7 +49,7 @@ final java = Mode(
           begin: "\\(",
           end: "\\)",
           contains: [
-            Mode(self: true),
+            ModeSelfReference(),
           ],
         ),
       ],
@@ -392,10 +393,10 @@ final java = Mode(
           },
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~12~contains~0~contains~0'),
+            ModeReference('~contains~12~contains~0~contains~0'),
             APOS_STRING_MODE,
             QUOTE_STRING_MODE,
-            Mode(ref: '~contains~12~contains~0~contains~3'),
+            ModeReference('~contains~12~contains~0~contains~3'),
             C_BLOCK_COMMENT_MODE,
           ],
         ),
@@ -403,7 +404,7 @@ final java = Mode(
         C_BLOCK_COMMENT_MODE,
       ],
     ),
-    Mode(ref: '~contains~12~contains~0~contains~3'),
-    Mode(ref: '~contains~12~contains~0~contains~0'),
+    ModeReference('~contains~12~contains~0~contains~3'),
+    ModeReference('~contains~12~contains~0~contains~0'),
   ],
 );

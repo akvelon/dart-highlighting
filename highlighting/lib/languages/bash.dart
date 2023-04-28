@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final bash = Mode(
+final bash = Language(
+  id: "bash",
   refs: {
     '~contains~7': Mode(
       className: "string",
@@ -10,14 +11,14 @@ final bash = Mode(
       end: "\"",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~3~contains~2'),
+        ModeReference('~contains~3~contains~2'),
         Mode(
           className: "subst",
           begin: "\\\$\\(",
           end: "\\)",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~7'),
+            ModeReference('~contains~7'),
           ],
         ),
       ],
@@ -32,11 +33,11 @@ final bash = Mode(
           begin: "\\\$\\{",
           end: "\\}",
           contains: [
-            Mode(self: true),
+            ModeSelfReference(),
             Mode(
               begin: ":-",
               contains: [
-                Mode(ref: '~contains~3~contains~2'),
+                ModeReference('~contains~3~contains~2'),
               ],
             ),
           ],
@@ -314,7 +315,7 @@ final bash = Mode(
           className: "number",
         ),
         NUMBER_MODE,
-        Mode(ref: '~contains~3~contains~2'),
+        ModeReference('~contains~3~contains~2'),
       ],
     ),
     HASH_COMMENT_MODE,
@@ -335,7 +336,7 @@ final bash = Mode(
     Mode(
       match: "(\\/[a-z._-]+)+",
     ),
-    Mode(ref: '~contains~7'),
+    ModeReference('~contains~7'),
     Mode(
       className: overwritingNullString,
       begin: "\\\\\"",
@@ -345,6 +346,6 @@ final bash = Mode(
       begin: "'",
       end: "'",
     ),
-    Mode(ref: '~contains~3~contains~2'),
+    ModeReference('~contains~3~contains~2'),
   ],
 );

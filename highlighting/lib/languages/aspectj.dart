@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final aspectj = Mode(
+final aspectj = Language(
+  id: "aspectj",
   refs: {},
   name: "AspectJ",
   keywords: [

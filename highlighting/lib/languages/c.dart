@@ -2,14 +2,15 @@
 
 import '../src/language_definition_parts.dart';
 
-final c = Mode(
+final c = Language(
+  id: "c",
   refs: {
     '~contains~0~contains~5': Mode(
       className: "string",
       variants: [
-        Mode(ref: '~contains~0~contains~0~contains~1~variants~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1~variants~1'),
-        Mode(ref: '~contains~0~contains~0~contains~1~variants~2'),
+        ModeReference('~contains~0~contains~0~contains~1~variants~0'),
+        ModeReference('~contains~0~contains~0~contains~1~variants~1'),
+        ModeReference('~contains~0~contains~0~contains~1~variants~2'),
       ],
     ),
     '~contains~0~contains~4': Mode(
@@ -97,16 +98,16 @@ final c = Mode(
         Mode(
           className: "string",
           variants: [
-            Mode(ref: '~contains~0~contains~0~contains~1~variants~0'),
-            Mode(ref: '~contains~0~contains~0~contains~1~variants~1'),
-            Mode(ref: '~contains~0~contains~0~contains~1~variants~2'),
+            ModeReference('~contains~0~contains~0~contains~1~variants~0'),
+            ModeReference('~contains~0~contains~0~contains~1~variants~1'),
+            ModeReference('~contains~0~contains~0~contains~1~variants~2'),
           ],
         ),
         Mode(
           className: "string",
           begin: "<.*?>",
         ),
-        Mode(ref: '~contains~0~contains~0~contains~3'),
+        ModeReference('~contains~0~contains~0~contains~3'),
         C_BLOCK_COMMENT_MODE,
       ],
     ),
@@ -266,12 +267,12 @@ final c = Mode(
             "std string wstring cin cout cerr clog stdin stdout stderr stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set pair bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap priority_queue make_pair array shared_ptr abort terminate abs acos asin atan2 atan calloc ceil cosh cos exit exp fabs floor fmod fprintf fputs free frexp fscanf future isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper isxdigit tolower toupper labs ldexp log10 log malloc realloc memchr memcmp memcpy memset modf pow printf putchar puts scanf sinh sin snprintf sprintf sqrt sscanf strcat strchr strcmp strcpy strcspn strlen strncat strncmp strncpy strpbrk strrchr strspn strstr tanh tan vfprintf vprintf vsprintf endl initializer_list unique_ptr"
       },
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~0~contains~3'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~3'),
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~4'),
-        Mode(ref: '~contains~0~contains~5'),
+        ModeReference('~contains~0~contains~4'),
+        ModeReference('~contains~0~contains~5'),
         Mode(
           begin: "\\(",
           end: "\\)",
@@ -343,13 +344,13 @@ final c = Mode(
                 "std string wstring cin cout cerr clog stdin stdout stderr stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set pair bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap priority_queue make_pair array shared_ptr abort terminate abs acos asin atan2 atan calloc ceil cosh cos exit exp fabs floor fmod fprintf fputs free frexp fscanf future isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper isxdigit tolower toupper labs ldexp log10 log malloc realloc memchr memcmp memcpy memset modf pow printf putchar puts scanf sinh sin snprintf sprintf sqrt sscanf strcat strchr strcmp strcpy strcspn strlen strncat strncmp strncpy strpbrk strrchr strspn strstr tanh tan vfprintf vprintf vsprintf endl initializer_list unique_ptr"
           },
           contains: [
-            Mode(ref: '~contains~0~contains~0'),
-            Mode(ref: '~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~0~contains~3'),
+            ModeReference('~contains~0~contains~0'),
+            ModeReference('~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~0~contains~3'),
             C_BLOCK_COMMENT_MODE,
-            Mode(ref: '~contains~0~contains~4'),
-            Mode(ref: '~contains~0~contains~5'),
-            Mode(self: true),
+            ModeReference('~contains~0~contains~4'),
+            ModeReference('~contains~0~contains~5'),
+            ModeSelfReference(),
           ],
           relevance: 0,
         ),
@@ -591,11 +592,11 @@ final c = Mode(
           },
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~0~contains~0~contains~3'),
+            ModeReference('~contains~0~contains~0~contains~3'),
             C_BLOCK_COMMENT_MODE,
-            Mode(ref: '~contains~0~contains~5'),
-            Mode(ref: '~contains~0~contains~4'),
-            Mode(ref: '~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~5'),
+            ModeReference('~contains~0~contains~4'),
+            ModeReference('~contains~0~contains~1'),
             Mode(
               begin: "\\(",
               end: "\\)",
@@ -668,29 +669,29 @@ final c = Mode(
               },
               relevance: 0,
               contains: [
-                Mode(self: true),
-                Mode(ref: '~contains~0~contains~0~contains~3'),
+                ModeSelfReference(),
+                ModeReference('~contains~0~contains~0~contains~3'),
                 C_BLOCK_COMMENT_MODE,
-                Mode(ref: '~contains~0~contains~5'),
-                Mode(ref: '~contains~0~contains~4'),
-                Mode(ref: '~contains~0~contains~1'),
+                ModeReference('~contains~0~contains~5'),
+                ModeReference('~contains~0~contains~4'),
+                ModeReference('~contains~0~contains~1'),
               ],
             ),
           ],
         ),
-        Mode(ref: '~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~0~contains~3'),
+        ModeReference('~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~3'),
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0'),
       ],
     ),
-    Mode(ref: '~contains~0~contains~0'),
-    Mode(ref: '~contains~0~contains~1'),
-    Mode(ref: '~contains~0~contains~0~contains~3'),
+    ModeReference('~contains~0~contains~0'),
+    ModeReference('~contains~0~contains~1'),
+    ModeReference('~contains~0~contains~0~contains~3'),
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~0~contains~4'),
-    Mode(ref: '~contains~0~contains~5'),
-    Mode(ref: '~contains~0~contains~0'),
+    ModeReference('~contains~0~contains~4'),
+    ModeReference('~contains~0~contains~5'),
+    ModeReference('~contains~0~contains~0'),
     Mode(
       begin: "[a-zA-Z]\\w*::",
       keywords: {

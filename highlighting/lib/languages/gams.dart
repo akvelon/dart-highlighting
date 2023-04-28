@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final gams = Mode(
+final gams = Language(
+  id: "gams",
   refs: {
     '~contains~9~contains~2': Mode(
       className: "symbol",
@@ -21,8 +22,8 @@ final gams = Mode(
       end: "\$",
       endsWithParent: true,
       contains: [
-        Mode(ref: '~contains~7~contains~5~contains~0'),
-        Mode(ref: '~contains~7~contains~5'),
+        ModeReference('~contains~7~contains~5~contains~0'),
+        ModeReference('~contains~7~contains~5'),
         Mode(
           className: "comment",
           begin:
@@ -59,7 +60,7 @@ final gams = Mode(
             "abs arccos arcsin arctan arctan2 Beta betaReg binomial ceil centropy cos cosh cvPower div div0 eDist entropy errorf execSeed exp fact floor frac gamma gammaReg log logBeta logGamma log10 log2 mapVal max min mod ncpCM ncpF ncpVUpow ncpVUsin normal pi poly power randBinomial randLinear randTriangle round rPower sigmoid sign signPower sin sinh slexp sllog10 slrec sqexp sqlog10 sqr sqrec sqrt tan tanh trunc uniform uniformInt vcPower bool_and bool_eqv bool_imp bool_not bool_or bool_xor ifThen rel_eq rel_ge rel_gt rel_le rel_lt rel_ne gday gdow ghour gleap gmillisec gminute gmonth gsecond gyear jdate jnow jstart jtime errorLevel execError gamsRelease gamsVersion handleCollect handleDelete handleStatus handleSubmit heapFree heapLimit heapSize jobHandle jobKill jobStatus jobTerminate licenseLevel licenseStatus maxExecError sleep timeClose timeComp timeElapsed timeExec timeStart"
       },
       contains: [
-        Mode(ref: '~contains~7~contains~5~contains~0'),
+        ModeReference('~contains~7~contains~5~contains~0'),
         C_LINE_COMMENT_MODE,
         C_BLOCK_COMMENT_MODE,
         QUOTE_STRING_MODE,
@@ -158,8 +159,8 @@ final gams = Mode(
         C_BLOCK_COMMENT_MODE,
         QUOTE_STRING_MODE,
         APOS_STRING_MODE,
-        Mode(ref: '~contains~7~contains~5'),
-        Mode(ref: '~contains~7~contains~6'),
+        ModeReference('~contains~7~contains~5'),
+        ModeReference('~contains~7~contains~6'),
       ],
     ),
     Mode(
@@ -171,7 +172,7 @@ final gams = Mode(
           beginKeywords: "table",
           end: "\$",
           contains: [
-            Mode(ref: '~contains~7~contains~6'),
+            ModeReference('~contains~7~contains~6'),
           ],
         ),
         Mode(
@@ -215,10 +216,10 @@ final gams = Mode(
           excludeBegin: true,
           excludeEnd: true,
         ),
-        Mode(ref: '~contains~9~contains~2'),
+        ModeReference('~contains~9~contains~2'),
       ],
     ),
     C_NUMBER_MODE,
-    Mode(ref: '~contains~9~contains~2'),
+    ModeReference('~contains~9~contains~2'),
   ],
 );

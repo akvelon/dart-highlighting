@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final asciidoc = Mode(
+final asciidoc = Language(
+  id: "asciidoc",
   refs: {},
   name: "AsciiDoc",
   aliases: ["adoc"],

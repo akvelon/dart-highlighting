@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final apache = Mode(
+final apache = Language(
+  id: "apache",
   refs: {
     '~contains~1~contains~0': Mode(
       className: "number",
@@ -19,7 +20,7 @@ final apache = Mode(
       begin: "<\\/?",
       end: ">",
       contains: [
-        Mode(ref: '~contains~1~contains~0'),
+        ModeReference('~contains~1~contains~0'),
         Mode(
           className: "number",
           begin: ":\\d{1,5}",
@@ -75,14 +76,14 @@ final apache = Mode(
             begin: "[\\\$%]\\{",
             end: "\\}",
             contains: [
-              Mode(self: true),
+              ModeSelfReference(),
               Mode(
                 className: "number",
                 begin: "[\$%]\\d+",
               ),
             ],
           ),
-          Mode(ref: '~contains~1~contains~0'),
+          ModeReference('~contains~1~contains~0'),
           Mode(
             className: "number",
             begin: "\\b\\d+",

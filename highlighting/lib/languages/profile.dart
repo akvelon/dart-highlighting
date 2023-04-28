@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final profile = Mode(
+final profile = Language(
+  id: "profile",
   refs: {},
   name: "Python profiler",
   contains: [

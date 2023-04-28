@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final openscad = Mode(
+final openscad = Language(
+  id: "openscad",
   refs: {
     '~contains~5': Mode(
       className: "keyword",
@@ -34,15 +35,15 @@ final openscad = Mode(
   contains: [
     C_LINE_COMMENT_MODE,
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~2'),
+    ModeReference('~contains~2'),
     Mode(
       className: "meta",
       keywords: {"keyword": "include use"},
       begin: "include|use <",
       end: ">",
     ),
-    Mode(ref: '~contains~4'),
-    Mode(ref: '~contains~5'),
+    ModeReference('~contains~4'),
+    ModeReference('~contains~5'),
     Mode(
       begin: "[*!#%]",
       relevance: 0,
@@ -57,10 +58,10 @@ final openscad = Mode(
           begin: "\\(",
           end: "\\)",
           contains: [
-            Mode(self: true),
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~4'),
-            Mode(ref: '~contains~5'),
+            ModeSelfReference(),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~4'),
+            ModeReference('~contains~5'),
             Mode(
               className: "literal",
               begin: "false|true|PI|undef",

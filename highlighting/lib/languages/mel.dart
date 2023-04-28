@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final mel = Mode(
+final mel = Language(
+  id: "mel",
   refs: {},
   name: "MEL",
   keywords:

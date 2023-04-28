@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final haml = Mode(
+final haml = Language(
+  id: "haml",
   refs: {},
   name: "HAML",
   case_insensitive: true,

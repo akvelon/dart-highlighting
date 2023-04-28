@@ -2,34 +2,35 @@
 
 import '../src/language_definition_parts.dart';
 
-final crystal = Mode(
+final crystal = Language(
+  id: "crystal",
   refs: {
     '~contains~0~contains~0~variants~6~contains~0': Mode(
       begin: "<",
       end: ">",
       contains: [
-        Mode(ref: '~contains~0~contains~0~variants~6~contains~0'),
+        ModeReference('~contains~0~contains~0~variants~6~contains~0'),
       ],
     ),
     '~contains~0~contains~0~variants~5~contains~0': Mode(
       begin: "\\{",
       end: "\\}",
       contains: [
-        Mode(ref: '~contains~0~contains~0~variants~5~contains~0'),
+        ModeReference('~contains~0~contains~0~variants~5~contains~0'),
       ],
     ),
     '~contains~0~contains~0~variants~4~contains~0': Mode(
       begin: "\\[",
       end: "\\]",
       contains: [
-        Mode(ref: '~contains~0~contains~0~variants~4~contains~0'),
+        ModeReference('~contains~0~contains~0~variants~4~contains~0'),
       ],
     ),
     '~contains~0~contains~0~variants~3~contains~0': Mode(
       begin: "\\(",
       end: "\\)",
       contains: [
-        Mode(ref: '~contains~0~contains~0~variants~3~contains~0'),
+        ModeReference('~contains~0~contains~0~variants~3~contains~0'),
       ],
     ),
     '~contains~0~contains~0~contains~1~contains~9': Mode(
@@ -93,7 +94,7 @@ final crystal = Mode(
           className: "regexp",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~0~contains~1'),
           ],
           variants: [
             Mode(
@@ -113,79 +114,71 @@ final crystal = Mode(
       begin: "<",
       end: ">",
       contains: [
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~1~contains~3~variants~3~contains~0'),
+        ModeReference(
+            '~contains~0~contains~0~contains~1~contains~3~variants~3~contains~0'),
       ],
     ),
     '~contains~0~contains~0~contains~1~contains~3~variants~2~contains~0': Mode(
       begin: "\\{",
       end: "\\}",
       contains: [
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~1~contains~3~variants~2~contains~0'),
+        ModeReference(
+            '~contains~0~contains~0~contains~1~contains~3~variants~2~contains~0'),
       ],
     ),
     '~contains~0~contains~0~contains~1~contains~3~variants~1~contains~0': Mode(
       begin: "\\[",
       end: "\\]",
       contains: [
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~1~contains~3~variants~1~contains~0'),
+        ModeReference(
+            '~contains~0~contains~0~contains~1~contains~3~variants~1~contains~0'),
       ],
     ),
     '~contains~0~contains~0~contains~1~contains~3~variants~0~contains~0': Mode(
       begin: "\\(",
       end: "\\)",
       contains: [
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~1~contains~3~variants~0~contains~0'),
+        ModeReference(
+            '~contains~0~contains~0~contains~1~contains~3~variants~0~contains~0'),
       ],
     ),
     '~contains~0~contains~0~contains~1~contains~3': Mode(
       className: "regexp",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~1'),
       ],
       variants: [
         Mode(
           begin: "%r\\(",
           end: "\\)",
           contains: [
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~1~contains~3~variants~0~contains~0'),
+            ModeReference(
+                '~contains~0~contains~0~contains~1~contains~3~variants~0~contains~0'),
           ],
         ),
         Mode(
           begin: "%r\\[",
           end: "\\]",
           contains: [
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~1~contains~3~variants~1~contains~0'),
+            ModeReference(
+                '~contains~0~contains~0~contains~1~contains~3~variants~1~contains~0'),
           ],
         ),
         Mode(
           begin: "%r\\{",
           end: "\\}",
           contains: [
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~1~contains~3~variants~2~contains~0'),
+            ModeReference(
+                '~contains~0~contains~0~contains~1~contains~3~variants~2~contains~0'),
           ],
         ),
         Mode(
           begin: "%r<",
           end: ">",
           contains: [
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~1~contains~3~variants~3~contains~0'),
+            ModeReference(
+                '~contains~0~contains~0~contains~1~contains~3~variants~3~contains~0'),
           ],
         ),
         Mode(
@@ -199,36 +192,32 @@ final crystal = Mode(
       begin: "<",
       end: ">",
       contains: [
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~1~contains~2~variants~3~contains~0'),
+        ModeReference(
+            '~contains~0~contains~0~contains~1~contains~2~variants~3~contains~0'),
       ],
     ),
     '~contains~0~contains~0~contains~1~contains~2~variants~2~contains~0': Mode(
       begin: "\\{",
       end: "\\}",
       contains: [
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~1~contains~2~variants~2~contains~0'),
+        ModeReference(
+            '~contains~0~contains~0~contains~1~contains~2~variants~2~contains~0'),
       ],
     ),
     '~contains~0~contains~0~contains~1~contains~2~variants~1~contains~0': Mode(
       begin: "\\[",
       end: "\\]",
       contains: [
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~1~contains~2~variants~1~contains~0'),
+        ModeReference(
+            '~contains~0~contains~0~contains~1~contains~2~variants~1~contains~0'),
       ],
     ),
     '~contains~0~contains~0~contains~1~contains~2~variants~0~contains~0': Mode(
       begin: "\\(",
       end: "\\)",
       contains: [
-        Mode(
-            ref:
-                '~contains~0~contains~0~contains~1~contains~2~variants~0~contains~0'),
+        ModeReference(
+            '~contains~0~contains~0~contains~1~contains~2~variants~0~contains~0'),
       ],
     ),
     '~contains~0~contains~0~contains~1~contains~2': Mode(
@@ -238,36 +227,32 @@ final crystal = Mode(
           begin: "%q\\(",
           end: "\\)",
           contains: [
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~1~contains~2~variants~0~contains~0'),
+            ModeReference(
+                '~contains~0~contains~0~contains~1~contains~2~variants~0~contains~0'),
           ],
         ),
         Mode(
           begin: "%q\\[",
           end: "\\]",
           contains: [
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~1~contains~2~variants~1~contains~0'),
+            ModeReference(
+                '~contains~0~contains~0~contains~1~contains~2~variants~1~contains~0'),
           ],
         ),
         Mode(
           begin: "%q\\{",
           end: "\\}",
           contains: [
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~1~contains~2~variants~2~contains~0'),
+            ModeReference(
+                '~contains~0~contains~0~contains~1~contains~2~variants~2~contains~0'),
           ],
         ),
         Mode(
           begin: "%q<",
           end: ">",
           contains: [
-            Mode(
-                ref:
-                    '~contains~0~contains~0~contains~1~contains~2~variants~3~contains~0'),
+            ModeReference(
+                '~contains~0~contains~0~contains~1~contains~2~variants~3~contains~0'),
           ],
         ),
         Mode(
@@ -307,7 +292,7 @@ final crystal = Mode(
       className: "symbol",
       begin: ":",
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0'),
         Mode(
           begin:
               "[a-zA-Z_]\\w*[!?=]?|[-+\\x7e]@|<<|>>|[=!]~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~|]|//|//=|&[-+*]=?|&\\*\\*|\\[\\][=?]?",
@@ -374,29 +359,29 @@ final crystal = Mode(
         "literal": "false nil true"
       },
       contains: [
-        Mode(ref: '~contains~0'),
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~2'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~3'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~4'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~5'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~6'),
+        ModeReference('~contains~0'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~2'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~3'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~5'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~6'),
         HASH_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~8'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~9'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~10'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~11'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~12'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~13'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~14'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~15'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~8'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~9'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~10'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~11'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~12'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~13'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~14'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~15'),
       ],
     ),
     '~contains~0~contains~0': Mode(
       className: "string",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~1'),
       ],
       variants: [
         Mode(
@@ -415,28 +400,28 @@ final crystal = Mode(
           begin: "%[Qwi]?\\(",
           end: "\\)",
           contains: [
-            Mode(ref: '~contains~0~contains~0~variants~3~contains~0'),
+            ModeReference('~contains~0~contains~0~variants~3~contains~0'),
           ],
         ),
         Mode(
           begin: "%[Qwi]?\\[",
           end: "\\]",
           contains: [
-            Mode(ref: '~contains~0~contains~0~variants~4~contains~0'),
+            ModeReference('~contains~0~contains~0~variants~4~contains~0'),
           ],
         ),
         Mode(
           begin: "%[Qwi]?\\{",
           end: "\\}",
           contains: [
-            Mode(ref: '~contains~0~contains~0~variants~5~contains~0'),
+            ModeReference('~contains~0~contains~0~variants~5~contains~0'),
           ],
         ),
         Mode(
           begin: "%[Qwi]?<",
           end: ">",
           contains: [
-            Mode(ref: '~contains~0~contains~0~variants~6~contains~0'),
+            ModeReference('~contains~0~contains~0~variants~6~contains~0'),
           ],
         ),
         Mode(
@@ -469,21 +454,21 @@ final crystal = Mode(
         "literal": "false nil true"
       },
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~2'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~3'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~4'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~5'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~6'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~2'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~3'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~5'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~6'),
         HASH_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~8'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~9'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~10'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~11'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~12'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~13'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~14'),
-        Mode(ref: '~contains~0~contains~0~contains~1~contains~15'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~8'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~9'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~10'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~11'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~12'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~13'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~14'),
+        ModeReference('~contains~0~contains~0~contains~1~contains~15'),
       ],
     ),
   },
@@ -496,21 +481,21 @@ final crystal = Mode(
     "literal": "false nil true"
   },
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~0~contains~0'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~2'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~3'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~4'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~5'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~6'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~0~contains~0'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~2'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~3'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~4'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~5'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~6'),
     HASH_COMMENT_MODE,
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~8'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~9'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~10'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~11'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~12'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~13'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~14'),
-    Mode(ref: '~contains~0~contains~0~contains~1~contains~15'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~8'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~9'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~10'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~11'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~12'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~13'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~14'),
+    ModeReference('~contains~0~contains~0~contains~1~contains~15'),
   ],
 );

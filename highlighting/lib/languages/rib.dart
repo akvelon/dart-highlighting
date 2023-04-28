@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final rib = Mode(
+final rib = Language(
+  id: "rib",
   refs: {},
   name: "RenderMan RIB",
   keywords:

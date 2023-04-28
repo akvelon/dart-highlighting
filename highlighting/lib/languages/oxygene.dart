@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final oxygene = Mode(
+final oxygene = Language(
+  id: "oxygene",
   refs: {
     '~contains~4': Mode(
       className: "string",
@@ -66,11 +67,11 @@ final oxygene = Mode(
   },
   illegal: "(\"|\\\$[G-Zg-z]|\\/\\*|</|=>|->)",
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~1'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~1'),
     C_LINE_COMMENT_MODE,
-    Mode(ref: '~contains~3'),
-    Mode(ref: '~contains~4'),
+    ModeReference('~contains~3'),
+    ModeReference('~contains~4'),
     NUMBER_MODE,
     Mode(
       beginKeywords: "function constructor destructor procedure method",
@@ -92,12 +93,12 @@ final oxygene = Mode(
                 "abstract add and array as asc aspect assembly async begin break block by case class concat const copy constructor continue create default delegate desc distinct div do downto dynamic each else empty end ensure enum equals event except exit extension external false final finalize finalizer finally flags for forward from function future global group has if implementation implements implies in index inherited inline interface into invariants is iterator join locked locking loop matching method mod module namespace nested new nil not notify nullable of old on operator or order out override parallel params partial pinned private procedure property protected public queryable raise read readonly record reintroduce remove repeat require result reverse sealed select self sequence set shl shr skip static step soft take then to true try tuple type union unit unsafe until uses using var virtual raises volatile where while with write xor yield await mapped deprecated stdcall cdecl pascal register safecall overload library platform reference packed strict published autoreleasepool selector strong weak unretained"
           },
           contains: [
-            Mode(ref: '~contains~3'),
-            Mode(ref: '~contains~4'),
+            ModeReference('~contains~3'),
+            ModeReference('~contains~4'),
           ],
         ),
-        Mode(ref: '~contains~0'),
-        Mode(ref: '~contains~1'),
+        ModeReference('~contains~0'),
+        ModeReference('~contains~1'),
       ],
     ),
     Mode(

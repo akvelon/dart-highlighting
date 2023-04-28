@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final csp = Mode(
+final csp = Language(
+  id: "csp",
   refs: {},
   name: "CSP",
   case_insensitive: false,

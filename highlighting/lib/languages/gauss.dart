@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final gauss = Mode(
+final gauss = Language(
+  id: "gauss",
   refs: {
     '~contains~9~contains~2~contains~4': Mode(
       begin: "[a-zA-Z_]\\w*\\s*\\(",
@@ -21,13 +22,13 @@ final gauss = Mode(
           beginKeywords:
               "bool break call callexe checkinterrupt clear clearg closeall cls comlog compile continue create debug declare delete disable dlibrary dllcall do dos ed edit else elseif enable end endfor endif endp endo errorlog errorlogat expr external fn for format goto gosub graph if keyword let lib library line load loadarray loadexe loadf loadk loadm loadp loads loadx local locate loopnextindex lprint lpwidth lshow matrix msym ndpclex new open output outwidth plot plotsym pop prcsn print printdos proc push retp return rndcon rndmod rndmult rndseed run save saveall screen scroll setarray show sparse stop string struct system trace trap threadfor threadendfor threadbegin threadjoin threadstat threadend until use while winprint ne ge le gt lt and xor or not eq eqv",
         ),
-        Mode(ref: '~contains~9~contains~2~contains~3'),
+        ModeReference('~contains~9~contains~2~contains~3'),
         Mode(
           className: "built_in",
           begin: "[a-zA-Z_]\\w*",
           relevance: 0,
         ),
-        Mode(ref: '~contains~9~contains~2'),
+        ModeReference('~contains~9~contains~2'),
       ],
     ),
     '~contains~9~contains~2~contains~3': Mode(
@@ -48,11 +49,11 @@ final gauss = Mode(
       contains: [
         C_NUMBER_MODE,
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~3'),
-        Mode(ref: '~contains~9~contains~2~contains~3'),
-        Mode(ref: '~contains~9~contains~2~contains~4'),
-        Mode(ref: '~contains~4'),
-        Mode(self: true),
+        ModeReference('~contains~3'),
+        ModeReference('~contains~9~contains~2~contains~3'),
+        ModeReference('~contains~9~contains~2~contains~4'),
+        ModeReference('~contains~4'),
+        ModeSelfReference(),
       ],
     ),
     '~contains~7~contains~1': Mode(
@@ -87,8 +88,8 @@ final gauss = Mode(
         ),
         C_NUMBER_MODE,
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~3'),
-        Mode(ref: '~contains~7~contains~0~contains~4'),
+        ModeReference('~contains~3'),
+        ModeReference('~contains~7~contains~0~contains~4'),
       ],
     ),
     '~contains~4': Mode(
@@ -135,8 +136,8 @@ final gauss = Mode(
     C_NUMBER_MODE,
     C_LINE_COMMENT_MODE,
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~3'),
-    Mode(ref: '~contains~4'),
+    ModeReference('~contains~3'),
+    ModeReference('~contains~4'),
     Mode(
       className: "meta",
       begin: "#",
@@ -165,7 +166,7 @@ final gauss = Mode(
         ),
         C_LINE_COMMENT_MODE,
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~3'),
+        ModeReference('~contains~3'),
       ],
     ),
     Mode(
@@ -179,11 +180,11 @@ final gauss = Mode(
       end: ";",
       excludeEnd: true,
       contains: [
-        Mode(ref: '~contains~7~contains~0'),
-        Mode(ref: '~contains~7~contains~1'),
+        ModeReference('~contains~7~contains~0'),
+        ModeReference('~contains~7~contains~1'),
         C_NUMBER_MODE,
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~3'),
+        ModeReference('~contains~3'),
       ],
     ),
     Mode(
@@ -192,11 +193,11 @@ final gauss = Mode(
       end: "=",
       excludeEnd: true,
       contains: [
-        Mode(ref: '~contains~7~contains~0'),
-        Mode(ref: '~contains~7~contains~1'),
+        ModeReference('~contains~7~contains~0'),
+        ModeReference('~contains~7~contains~1'),
         C_NUMBER_MODE,
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~3'),
+        ModeReference('~contains~3'),
       ],
     ),
     Mode(
@@ -205,8 +206,8 @@ final gauss = Mode(
       relevance: 0,
       contains: [
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~3'),
-        Mode(ref: '~contains~9~contains~2'),
+        ModeReference('~contains~3'),
+        ModeReference('~contains~9~contains~2'),
       ],
     ),
     Mode(
@@ -220,7 +221,7 @@ final gauss = Mode(
       ],
       relevance: 0,
     ),
-    Mode(ref: '~contains~9~contains~2~contains~4'),
-    Mode(ref: '~contains~7~contains~0~contains~4'),
+    ModeReference('~contains~9~contains~2~contains~4'),
+    ModeReference('~contains~7~contains~0~contains~4'),
   ],
 );

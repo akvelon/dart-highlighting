@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final fortran = Mode(
+final fortran = Language(
+  id: "fortran",
   refs: {},
   name: "Fortran",
   case_insensitive: true,

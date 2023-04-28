@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final ruleslanguage = Mode(
+final ruleslanguage = Language(
+  id: "ruleslanguage",
   refs: {},
   name: "Oracle Rules Language",
   keywords: {

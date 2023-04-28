@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final sml = Mode(
+final sml = Language(
+  id: "sml",
   refs: {},
   name: "SML (Standard ML)",
   aliases: ["ml"],
@@ -26,7 +27,7 @@ final sml = Mode(
       begin: "\\(\\*",
       end: "\\*\\)",
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",

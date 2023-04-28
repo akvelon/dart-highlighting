@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final mizar = Mode(
+final mizar = Language(
+  id: "mizar",
   refs: {},
   name: "Mizar",
   keywords:

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final lsl = Mode(
+final lsl = Language(
+  id: "lsl",
   refs: {},
   name: "LSL (Linden Scripting Language)",
   illegal: ":",

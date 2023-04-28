@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final css = Mode(
+final css = Language(
+  id: "css",
   refs: {
     '~contains~2': Mode(
       scope: "number",
@@ -21,7 +22,7 @@ final css = Mode(
     Mode(
       begin: "-(webkit|moz|ms|o)-(?=[a-z])",
     ),
-    Mode(ref: '~contains~2'),
+    ModeReference('~contains~2'),
     Mode(
       className: "selector-id",
       begin: "#[A-Za-z0-9_-]+",
@@ -77,7 +78,7 @@ final css = Mode(
           scope: "meta",
           begin: "!important",
         ),
-        Mode(ref: '~contains~2'),
+        ModeReference('~contains~2'),
         APOS_STRING_MODE,
         QUOTE_STRING_MODE,
         Mode(
@@ -130,7 +131,7 @@ final css = Mode(
             ),
             APOS_STRING_MODE,
             QUOTE_STRING_MODE,
-            Mode(ref: '~contains~2'),
+            ModeReference('~contains~2'),
           ],
         ),
       ],

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final taggerscript = Mode(
+final taggerscript = Language(
+  id: "taggerscript",
   refs: {},
   name: "Tagger Script",
   contains: [
@@ -21,7 +22,7 @@ final taggerscript = Mode(
             Mode(
               begin: "\\\\[()]",
             ),
-            Mode(self: true),
+            ModeSelfReference(),
           ],
         ),
       ],

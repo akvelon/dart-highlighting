@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final django = Mode(
+final django = Language(
+  id: "django",
   refs: {
     '~contains~2~contains~0~starts~contains~0': Mode(
       begin: "\\|[A-Za-z]+:?",
@@ -73,7 +74,7 @@ final django = Mode(
             endsWithParent: true,
             keywords: "in by as",
             contains: [
-              Mode(ref: '~contains~2~contains~0~starts~contains~0'),
+              ModeReference('~contains~2~contains~0~starts~contains~0'),
             ],
             relevance: 0,
           ),
@@ -85,7 +86,7 @@ final django = Mode(
       begin: "\\{\\{",
       end: "\\}\\}",
       contains: [
-        Mode(ref: '~contains~2~contains~0~starts~contains~0'),
+        ModeReference('~contains~2~contains~0~starts~contains~0'),
       ],
     ),
   ],

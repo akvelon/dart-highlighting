@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final lang1C = Mode(
+final lang1C = Language(
+  id: "1c",
   refs: {
     '~contains~1~contains~0~contains~0~contains~2': Mode(
       begin: "'",
@@ -75,7 +76,7 @@ final lang1C = Mode(
             "далее возврат вызватьисключение выполнить для если и из или иначе иначеесли исключение каждого конецесли конецпопытки конеццикла не новый перейти перем по пока попытка прервать продолжить тогда цикл экспорт загрузитьизфайла вебклиент вместо внешнеесоединение клиент конецобласти мобильноеприложениеклиент мобильноеприложениесервер наклиенте наклиентенасервере наклиентенасерверебезконтекста насервере насерверебезконтекста область перед после сервер толстыйклиентобычноеприложение толстыйклиентуправляемоеприложение тонкийклиент "
       },
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0'),
       ],
     ),
     Mode(
@@ -109,12 +110,12 @@ final lang1C = Mode(
                 "literal": "null истина ложь неопределено"
               },
               contains: [
-                Mode(ref: '~contains~1~contains~0~contains~0~contains~0'),
-                Mode(ref: '~contains~1~contains~0~contains~0~contains~1'),
-                Mode(ref: '~contains~1~contains~0~contains~0~contains~2'),
+                ModeReference('~contains~1~contains~0~contains~0~contains~0'),
+                ModeReference('~contains~1~contains~0~contains~0~contains~1'),
+                ModeReference('~contains~1~contains~0~contains~0~contains~2'),
               ],
             ),
-            Mode(ref: '~contains~0~contains~0'),
+            ModeReference('~contains~0~contains~0'),
           ],
         ),
         Mode(
@@ -124,15 +125,15 @@ final lang1C = Mode(
         ),
       ],
     ),
-    Mode(ref: '~contains~0~contains~0'),
+    ModeReference('~contains~0~contains~0'),
     Mode(
       className: "symbol",
       begin: "\\x7e",
       end: ";|:",
       excludeEnd: true,
     ),
-    Mode(ref: '~contains~1~contains~0~contains~0~contains~0'),
-    Mode(ref: '~contains~1~contains~0~contains~0~contains~1'),
-    Mode(ref: '~contains~1~contains~0~contains~0~contains~2'),
+    ModeReference('~contains~1~contains~0~contains~0~contains~0'),
+    ModeReference('~contains~1~contains~0~contains~0~contains~1'),
+    ModeReference('~contains~1~contains~0~contains~0~contains~2'),
   ],
 );

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final markdown = Mode(
+final markdown = Language(
+  id: "markdown",
   refs: {
     '~contains~0~variants~0~contains~3': Mode(
       className: "emphasis",
@@ -10,20 +11,22 @@ final markdown = Mode(
         Mode(
           className: "strong",
           contains: [
-            Mode(ref: '~contains~0~variants~0~contains~0'),
-            Mode(ref: '~contains~0~variants~0~contains~1'),
+            ModeReference('~contains~0~variants~0~contains~0'),
+            ModeReference('~contains~0~variants~0~contains~1'),
           ],
           variants: [
-            Mode(ref: '~contains~0~variants~0~contains~2~variants~0'),
-            Mode(ref: '~contains~0~variants~0~contains~2~variants~1'),
+            ModeReference('~contains~0~variants~0~contains~2~variants~0'),
+            ModeReference('~contains~0~variants~0~contains~2~variants~1'),
           ],
         ),
-        Mode(ref: '~contains~0~variants~0~contains~0'),
-        Mode(ref: '~contains~0~variants~0~contains~1'),
+        ModeReference('~contains~0~variants~0~contains~0'),
+        ModeReference('~contains~0~variants~0~contains~1'),
       ],
       variants: [
-        Mode(ref: '~contains~0~variants~0~contains~2~contains~0~variants~0'),
-        Mode(ref: '~contains~0~variants~0~contains~2~contains~0~variants~1'),
+        ModeReference(
+            '~contains~0~variants~0~contains~2~contains~0~variants~0'),
+        ModeReference(
+            '~contains~0~variants~0~contains~2~contains~0~variants~1'),
       ],
     ),
     '~contains~0~variants~0~contains~2~variants~1': Mode(
@@ -49,22 +52,22 @@ final markdown = Mode(
         Mode(
           className: "emphasis",
           contains: [
-            Mode(ref: '~contains~0~variants~0~contains~0'),
-            Mode(ref: '~contains~0~variants~0~contains~1'),
+            ModeReference('~contains~0~variants~0~contains~0'),
+            ModeReference('~contains~0~variants~0~contains~1'),
           ],
           variants: [
-            Mode(
-                ref: '~contains~0~variants~0~contains~2~contains~0~variants~0'),
-            Mode(
-                ref: '~contains~0~variants~0~contains~2~contains~0~variants~1'),
+            ModeReference(
+                '~contains~0~variants~0~contains~2~contains~0~variants~0'),
+            ModeReference(
+                '~contains~0~variants~0~contains~2~contains~0~variants~1'),
           ],
         ),
-        Mode(ref: '~contains~0~variants~0~contains~0'),
-        Mode(ref: '~contains~0~variants~0~contains~1'),
+        ModeReference('~contains~0~variants~0~contains~0'),
+        ModeReference('~contains~0~variants~0~contains~1'),
       ],
       variants: [
-        Mode(ref: '~contains~0~variants~0~contains~2~variants~0'),
-        Mode(ref: '~contains~0~variants~0~contains~2~variants~1'),
+        ModeReference('~contains~0~variants~0~contains~2~variants~0'),
+        ModeReference('~contains~0~variants~0~contains~2~variants~1'),
       ],
     ),
     '~contains~0~variants~0~contains~1': Mode(
@@ -139,10 +142,10 @@ final markdown = Mode(
           begin: "^#{1,6}",
           end: "\$",
           contains: [
-            Mode(ref: '~contains~0~variants~0~contains~0'),
-            Mode(ref: '~contains~0~variants~0~contains~1'),
-            Mode(ref: '~contains~0~variants~0~contains~2'),
-            Mode(ref: '~contains~0~variants~0~contains~3'),
+            ModeReference('~contains~0~variants~0~contains~0'),
+            ModeReference('~contains~0~variants~0~contains~1'),
+            ModeReference('~contains~0~variants~0~contains~2'),
+            ModeReference('~contains~0~variants~0~contains~3'),
           ],
         ),
         Mode(
@@ -155,33 +158,33 @@ final markdown = Mode(
               begin: "^",
               end: "\\n",
               contains: [
-                Mode(ref: '~contains~0~variants~0~contains~0'),
-                Mode(ref: '~contains~0~variants~0~contains~1'),
-                Mode(ref: '~contains~0~variants~0~contains~2'),
-                Mode(ref: '~contains~0~variants~0~contains~3'),
+                ModeReference('~contains~0~variants~0~contains~0'),
+                ModeReference('~contains~0~variants~0~contains~1'),
+                ModeReference('~contains~0~variants~0~contains~2'),
+                ModeReference('~contains~0~variants~0~contains~3'),
               ],
             ),
           ],
         ),
       ],
     ),
-    Mode(ref: '~contains~0~variants~0~contains~0'),
+    ModeReference('~contains~0~variants~0~contains~0'),
     Mode(
       className: "bullet",
       begin: "^[ \t]*([*+-]|(\\d+\\.))(?=\\s+)",
       end: "\\s+",
       excludeEnd: true,
     ),
-    Mode(ref: '~contains~0~variants~0~contains~2'),
-    Mode(ref: '~contains~0~variants~0~contains~3'),
+    ModeReference('~contains~0~variants~0~contains~2'),
+    ModeReference('~contains~0~variants~0~contains~3'),
     Mode(
       className: "quote",
       begin: "^>\\s+",
       contains: [
-        Mode(ref: '~contains~0~variants~0~contains~0'),
-        Mode(ref: '~contains~0~variants~0~contains~1'),
-        Mode(ref: '~contains~0~variants~0~contains~2'),
-        Mode(ref: '~contains~0~variants~0~contains~3'),
+        ModeReference('~contains~0~variants~0~contains~0'),
+        ModeReference('~contains~0~variants~0~contains~1'),
+        ModeReference('~contains~0~variants~0~contains~2'),
+        ModeReference('~contains~0~variants~0~contains~3'),
       ],
       end: "\$",
     ),
@@ -221,7 +224,7 @@ final markdown = Mode(
       begin: "^[-\\*]{3,}",
       end: "\$",
     ),
-    Mode(ref: '~contains~0~variants~0~contains~1'),
+    ModeReference('~contains~0~variants~0~contains~1'),
     Mode(
       begin: "^\\[[^\\n]+\\]:",
       returnBegin: true,

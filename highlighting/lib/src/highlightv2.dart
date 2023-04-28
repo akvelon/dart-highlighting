@@ -7,6 +7,7 @@ import 'package:tuple/tuple.dart';
 import 'const/literals.dart';
 import 'const/magic_numbers.dart';
 import 'domain_regexp_match.dart';
+import 'language.dart';
 import 'mode.dart';
 import 'mode_compiler.dart';
 import 'response.dart';
@@ -14,14 +15,12 @@ import 'result.dart';
 import 'utils.dart';
 
 class HighlightV2 {
-  final _languages = {}.cast<String, Mode>();
+  final _languages = <String, Language>{};
   final _aliases = {}.cast<String, String>();
   Mode? _languageMode;
 
-  void registerLanguage(String name, Mode mode) {
-    _languages.addAll({
-      name: mode,
-    });
+  void registerLanguage(Language language, {String? name}) {
+    _languages[name ?? language.id] = language;
   }
 
   Result parse(

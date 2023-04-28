@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final diff = Mode(
+final diff = Language(
+  id: "diff",
   refs: {},
   name: "Diff",
   aliases: ["patch"],

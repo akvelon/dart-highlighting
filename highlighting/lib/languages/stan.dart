@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final stan = Mode(
+final stan = Language(
+  id: "stan",
   refs: {},
   name: "Stan",
   aliases: ["stanfuncs"],

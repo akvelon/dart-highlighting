@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final glsl = Mode(
+final glsl = Language(
+  id: "glsl",
   refs: {},
   name: "GLSL",
   keywords: {

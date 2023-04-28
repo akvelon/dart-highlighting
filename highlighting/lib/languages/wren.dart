@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final wren = Mode(
+final wren = Language(
+  id: "wren",
   refs: {
     '~contains~2~contains~0~contains~4': Mode(
       relevance: 0,
@@ -53,11 +54,11 @@ final wren = Mode(
           end: "\\)",
           contains: [
             C_NUMBER_MODE,
-            Mode(ref: '~contains~2~contains~0~contains~1'),
-            Mode(ref: '~contains~2~contains~0~contains~2'),
-            Mode(ref: '~contains~2~contains~0~contains~3'),
-            Mode(ref: '~contains~2~contains~0~contains~4'),
-            Mode(ref: '~contains~2'),
+            ModeReference('~contains~2~contains~0~contains~1'),
+            ModeReference('~contains~2~contains~0~contains~2'),
+            ModeReference('~contains~2~contains~0~contains~3'),
+            ModeReference('~contains~2~contains~0~contains~4'),
+            ModeReference('~contains~2'),
           ],
         ),
         Mode(
@@ -124,7 +125,7 @@ final wren = Mode(
       ],
     ),
     C_NUMBER_MODE,
-    Mode(ref: '~contains~2'),
+    ModeReference('~contains~2'),
     Mode(
       className: "string",
       begin: "\"\"\"",
@@ -139,7 +140,7 @@ final wren = Mode(
           match: "@[a-z]+",
           scope: "doctag",
         ),
-        Mode(self: true),
+        ModeSelfReference(),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
@@ -155,7 +156,7 @@ final wren = Mode(
     ),
     C_LINE_COMMENT_MODE,
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~2~contains~0~contains~1'),
+    ModeReference('~contains~2~contains~0~contains~1'),
     Mode(
       variants: [
         Mode(
@@ -217,9 +218,9 @@ final wren = Mode(
         ],
       ),
     ),
-    Mode(ref: '~contains~2~contains~0~contains~2'),
-    Mode(ref: '~contains~2~contains~0~contains~4'),
-    Mode(ref: '~contains~2~contains~0~contains~3'),
+    ModeReference('~contains~2~contains~0~contains~2'),
+    ModeReference('~contains~2~contains~0~contains~4'),
+    ModeReference('~contains~2~contains~0~contains~3'),
     Mode(
       className: "property",
       begin: "\\.(?=[a-zA-Z]\\w*)",

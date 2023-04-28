@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final php = Mode(
+final php = Language(
+  id: "php",
   refs: {
     '~contains~8': Mode(
       relevance: 0,
@@ -205,14 +206,14 @@ final php = Mode(
             ]
           },
           contains: [
-            Mode(ref: '~contains~0~contains~0~contains~1'),
-            Mode(ref: '~contains~7'),
-            Mode(ref: '~contains~0~contains~0~contains~2'),
+            ModeReference('~contains~0~contains~0~contains~1'),
+            ModeReference('~contains~7'),
+            ModeReference('~contains~0~contains~0~contains~2'),
             C_BLOCK_COMMENT_MODE,
-            Mode(ref: '~contains~0~contains~0~contains~4'),
-            Mode(ref: '~contains~0~contains~0~contains~5'),
-            Mode(ref: '~contains~0~contains~0~contains~6'),
-            Mode(ref: '~contains~8'),
+            ModeReference('~contains~0~contains~0~contains~4'),
+            ModeReference('~contains~0~contains~0~contains~5'),
+            ModeReference('~contains~0~contains~0~contains~6'),
+            ModeReference('~contains~8'),
           ],
         ),
       ],
@@ -276,8 +277,8 @@ final php = Mode(
           illegal: null,
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(
-                ref: '~contains~0~contains~0~contains~4~variants~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~0~contains~4~variants~0~contains~1'),
           ],
         ),
         Mode(
@@ -294,8 +295,8 @@ final php = Mode(
           end: "[ \\t]*(\\w+)\\b",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(
-                ref: '~contains~0~contains~0~contains~4~variants~0~contains~1'),
+            ModeReference(
+                '~contains~0~contains~0~contains~4~variants~0~contains~1'),
           ],
           onBegin: endSameAsBeginOnBegin,
           onEnd: endSameAsBeginOnEnd,
@@ -552,21 +553,21 @@ final php = Mode(
             "keyword": ["new", "array"]
           },
           contains: [
-            Mode(self: true),
-            Mode(ref: '~contains~0~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~0~contains~2'),
+            ModeSelfReference(),
+            ModeReference('~contains~0~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~0~contains~2'),
             C_BLOCK_COMMENT_MODE,
-            Mode(ref: '~contains~0~contains~0~contains~4'),
-            Mode(ref: '~contains~0~contains~0~contains~5'),
-            Mode(ref: '~contains~0~contains~0~contains~6'),
+            ModeReference('~contains~0~contains~0~contains~4'),
+            ModeReference('~contains~0~contains~0~contains~5'),
+            ModeReference('~contains~0~contains~0~contains~6'),
           ],
         ),
-        Mode(ref: '~contains~0~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~2'),
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~0~contains~4'),
-        Mode(ref: '~contains~0~contains~0~contains~5'),
-        Mode(ref: '~contains~0~contains~0~contains~6'),
+        ModeReference('~contains~0~contains~0~contains~4'),
+        ModeReference('~contains~0~contains~0~contains~5'),
+        ModeReference('~contains~0~contains~0~contains~6'),
         Mode(
           scope: "meta",
           match:
@@ -653,9 +654,9 @@ final php = Mode(
       scope: "variable.language",
       match: "\\\$this\\b",
     ),
-    Mode(ref: '~contains~7'),
-    Mode(ref: '~contains~8'),
-    Mode(ref: '~contains~0~contains~0~contains~2'),
+    ModeReference('~contains~7'),
+    ModeReference('~contains~8'),
+    ModeReference('~contains~0~contains~0~contains~2'),
     Mode(
       match: [
         "const",
@@ -664,7 +665,7 @@ final php = Mode(
       ],
       scope: {"1": "keyword", "3": "variable.constant"},
     ),
-    Mode(ref: '~contains~0~contains~0~contains~6'),
+    ModeReference('~contains~0~contains~0~contains~6'),
     Mode(
       scope: "function",
       relevance: 0,
@@ -873,12 +874,12 @@ final php = Mode(
             ]
           },
           contains: [
-            Mode(self: true),
-            Mode(ref: '~contains~7'),
-            Mode(ref: '~contains~0~contains~0~contains~2'),
+            ModeSelfReference(),
+            ModeReference('~contains~7'),
+            ModeReference('~contains~0~contains~0~contains~2'),
             C_BLOCK_COMMENT_MODE,
-            Mode(ref: '~contains~0~contains~0~contains~4'),
-            Mode(ref: '~contains~0~contains~0~contains~5'),
+            ModeReference('~contains~0~contains~0~contains~4'),
+            ModeReference('~contains~0~contains~0~contains~5'),
           ],
         ),
       ],
@@ -930,7 +931,7 @@ final php = Mode(
         UNDERSCORE_TITLE_MODE,
       ],
     ),
-    Mode(ref: '~contains~0~contains~0~contains~4'),
-    Mode(ref: '~contains~0~contains~0~contains~5'),
+    ModeReference('~contains~0~contains~0~contains~4'),
+    ModeReference('~contains~0~contains~0~contains~5'),
   ],
 );

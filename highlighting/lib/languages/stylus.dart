@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final stylus = Mode(
+final stylus = Language(
+  id: "stylus",
   refs: {
     '~contains~4': Mode(
       scope: "number",
@@ -34,7 +35,7 @@ final stylus = Mode(
     APOS_STRING_MODE,
     C_LINE_COMMENT_MODE,
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~4'),
+    ModeReference('~contains~4'),
     Mode(
       begin: "\\.[a-zA-Z][a-zA-Z0-9_-]*(?=[.\\s\\n[:,(])",
       className: "selector-class",
@@ -80,7 +81,7 @@ final stylus = Mode(
               "any-hover any-pointer aspect-ratio color color-gamut color-index device-aspect-ratio device-height device-width display-mode forced-colors grid height hover inverted-colors monochrome orientation overflow-block overflow-inline pointer prefers-color-scheme prefers-contrast prefers-reduced-motion prefers-reduced-transparency resolution scan scripting update width min-width max-width min-height max-height"
         },
         contains: [
-          Mode(ref: '~contains~11~starts~contains~0'),
+          ModeReference('~contains~11~starts~contains~0'),
         ],
       ),
     ),
@@ -89,8 +90,8 @@ final stylus = Mode(
       begin:
           "@((-(o|moz|ms|webkit)-)?(charset|css|debug|extend|font-face|for|import|include|keyframes|media|mixin|page|warn|while))\\b",
     ),
-    Mode(ref: '~contains~13'),
-    Mode(ref: '~contains~11~starts~contains~0'),
+    ModeReference('~contains~13'),
+    ModeReference('~contains~11~starts~contains~0'),
     Mode(
       className: "function",
       begin: "^[a-zA-Z][a-zA-Z0-9_-]*\\(.*\\)",
@@ -106,10 +107,10 @@ final stylus = Mode(
           begin: "\\(",
           end: "\\)",
           contains: [
-            Mode(ref: '~contains~4'),
-            Mode(ref: '~contains~13'),
+            ModeReference('~contains~4'),
+            ModeReference('~contains~13'),
             APOS_STRING_MODE,
-            Mode(ref: '~contains~11~starts~contains~0'),
+            ModeReference('~contains~11~starts~contains~0'),
             QUOTE_STRING_MODE,
           ],
         ),
@@ -126,22 +127,22 @@ final stylus = Mode(
       starts: Mode(
         end: ";|\$",
         contains: [
-          Mode(ref: '~contains~4'),
-          Mode(ref: '~contains~13'),
+          ModeReference('~contains~4'),
+          ModeReference('~contains~13'),
           APOS_STRING_MODE,
           QUOTE_STRING_MODE,
-          Mode(ref: '~contains~11~starts~contains~0'),
+          ModeReference('~contains~11~starts~contains~0'),
           C_BLOCK_COMMENT_MODE,
           Mode(
             scope: "meta",
             begin: "!important",
           ),
-          Mode(ref: '~contains~17~starts~contains~7'),
+          ModeReference('~contains~17~starts~contains~7'),
         ],
         illegal: "\\.",
         relevance: 0,
       ),
     ),
-    Mode(ref: '~contains~17~starts~contains~7'),
+    ModeReference('~contains~17~starts~contains~7'),
   ],
 );

@@ -2,7 +2,26 @@ import _, { PropertyPath } from "lodash";
 
 import { callbackDictionary } from "./callback_dictionary.js";
 import { commonModes } from "./common_modes.js";
-import { Mode } from "./types.js";
+import { Language, Mode } from "./types.js";
+
+export function generateLanguage(
+  language: Language,
+  id: string,
+  refs: string,
+): string {
+  let entries: MapEntry<string, string>[] = [];
+
+  for (const [k, v] of Object.entries(language)) {
+    const entry = generateLanguageEntry(k, v);
+    if (entry !== undefined) {
+      entries.push(entry);
+    }
+  }
+
+  return `Language(id: "${id}", ${refs}, ${entries
+    .map(({ key, value }) => `${key}: ${value},`)
+    .join("")})`;
+}
 
 export function generateMode(mode: string | Mode): string {
   if (typeof mode === "string") {
@@ -31,14 +50,39 @@ function generateModeFromString(str: string): string {
   }
 
   if (str === "self") {
-    return "Mode(self:true)";
+    return "ModeSelfReference()";
   }
 
   if (str.startsWith("~")) {
-    return `Mode(ref: '${str}')`;
+    return `ModeReference('${str}')`;
   }
 
   throw new Error(`Should not be here: ${str}`);
+}
+
+function generateLanguageEntry(
+  key: string,
+  value: any,
+): MapEntry<string, string> | undefined {
+  key = preprocessModeEntryKey(key);
+  value = preprocessModeEntryValue(value);
+
+  switch (key) {
+    case "name":
+    case "unicodeRegex":
+    case "rawDefinition":
+    case "aliases":
+    case "disableAutodetect":
+    case "case_insensitive":
+    case "keywords":
+    // case "exports": unused in Dart core
+    case "classNameAliases":
+    case "compilerExtensions":
+    case "supersetOf":
+      return { key: key, value: JSON.stringify(value) };
+  }
+
+  return generateModeEntry(key, value);
 }
 
 function generateModeEntry(
@@ -90,10 +134,6 @@ function generateModeEntry(
 
       throw "should not be here";
 
-    // This is the whitelist of fields we transpile as they are.
-    // TODO: Find unused ones and comment them out.
-
-    // Mode:
     case "match":
     case "className":
     case "scope":
@@ -118,19 +158,6 @@ function generateModeEntry(
     case "subLanguage":
     case "isCompiled":
     case "label":
-
-    // Language:
-    case "name":
-    case "unicodeRegex":
-    case "rawDefinition":
-    case "aliases":
-    case "disableAutodetect":
-    case "case_insensitive":
-    case "keywords":
-    // case "exports": unused
-    case "classNameAliases":
-    case "compilerExtensions":
-    case "supersetOf":
       return { key: key, value: JSON.stringify(value) };
   }
 

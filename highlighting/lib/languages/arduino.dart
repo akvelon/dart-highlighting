@@ -2,14 +2,15 @@
 
 import '../src/language_definition_parts.dart';
 
-final arduino = Mode(
+final arduino = Language(
+  id: "arduino",
   refs: {
     '~contains~0~contains~6': Mode(
       className: "string",
       variants: [
-        Mode(ref: '~contains~0~contains~1~contains~1~variants~0'),
-        Mode(ref: '~contains~0~contains~1~contains~1~variants~1'),
-        Mode(ref: '~contains~0~contains~1~contains~1~variants~2'),
+        ModeReference('~contains~0~contains~1~contains~1~variants~0'),
+        ModeReference('~contains~0~contains~1~contains~1~variants~1'),
+        ModeReference('~contains~0~contains~1~contains~1~variants~2'),
       ],
     ),
     '~contains~0~contains~5': Mode(
@@ -90,16 +91,16 @@ final arduino = Mode(
         Mode(
           className: "string",
           variants: [
-            Mode(ref: '~contains~0~contains~1~contains~1~variants~0'),
-            Mode(ref: '~contains~0~contains~1~contains~1~variants~1'),
-            Mode(ref: '~contains~0~contains~1~contains~1~variants~2'),
+            ModeReference('~contains~0~contains~1~contains~1~variants~0'),
+            ModeReference('~contains~0~contains~1~contains~1~variants~1'),
+            ModeReference('~contains~0~contains~1~contains~1~variants~2'),
           ],
         ),
         Mode(
           className: "string",
           begin: "<.*?>",
         ),
-        Mode(ref: '~contains~0~contains~1~contains~3'),
+        ModeReference('~contains~0~contains~1~contains~3'),
         C_BLOCK_COMMENT_MODE,
       ],
     ),
@@ -1303,13 +1304,13 @@ final arduino = Mode(
         ]
       },
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
-        Mode(ref: '~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~2'),
-        Mode(ref: '~contains~0~contains~1~contains~3'),
+        ModeReference('~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~1~contains~3'),
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~5'),
-        Mode(ref: '~contains~0~contains~6'),
+        ModeReference('~contains~0~contains~5'),
+        ModeReference('~contains~0~contains~6'),
         Mode(
           begin: "\\(",
           end: "\\)",
@@ -1848,14 +1849,14 @@ final arduino = Mode(
             ]
           },
           contains: [
-            Mode(ref: '~contains~0~contains~0'),
-            Mode(ref: '~contains~0~contains~1'),
-            Mode(ref: '~contains~0~contains~2'),
-            Mode(ref: '~contains~0~contains~1~contains~3'),
+            ModeReference('~contains~0~contains~0'),
+            ModeReference('~contains~0~contains~1'),
+            ModeReference('~contains~0~contains~2'),
+            ModeReference('~contains~0~contains~1~contains~3'),
             C_BLOCK_COMMENT_MODE,
-            Mode(ref: '~contains~0~contains~5'),
-            Mode(ref: '~contains~0~contains~6'),
-            Mode(self: true),
+            ModeReference('~contains~0~contains~5'),
+            ModeReference('~contains~0~contains~6'),
+            ModeSelfReference(),
           ],
           relevance: 0,
         ),
@@ -2963,8 +2964,8 @@ final arduino = Mode(
           begin: ":",
           endsWithParent: true,
           contains: [
-            Mode(ref: '~contains~0~contains~6'),
-            Mode(ref: '~contains~0~contains~5'),
+            ModeReference('~contains~0~contains~6'),
+            ModeReference('~contains~0~contains~5'),
           ],
         ),
         Mode(
@@ -3511,11 +3512,11 @@ final arduino = Mode(
           },
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~0~contains~1~contains~3'),
+            ModeReference('~contains~0~contains~1~contains~3'),
             C_BLOCK_COMMENT_MODE,
-            Mode(ref: '~contains~0~contains~6'),
-            Mode(ref: '~contains~0~contains~5'),
-            Mode(ref: '~contains~0~contains~2'),
+            ModeReference('~contains~0~contains~6'),
+            ModeReference('~contains~0~contains~5'),
+            ModeReference('~contains~0~contains~2'),
             Mode(
               begin: "\\(",
               end: "\\)",
@@ -4055,31 +4056,31 @@ final arduino = Mode(
               },
               relevance: 0,
               contains: [
-                Mode(self: true),
-                Mode(ref: '~contains~0~contains~1~contains~3'),
+                ModeSelfReference(),
+                ModeReference('~contains~0~contains~1~contains~3'),
                 C_BLOCK_COMMENT_MODE,
-                Mode(ref: '~contains~0~contains~6'),
-                Mode(ref: '~contains~0~contains~5'),
-                Mode(ref: '~contains~0~contains~2'),
+                ModeReference('~contains~0~contains~6'),
+                ModeReference('~contains~0~contains~5'),
+                ModeReference('~contains~0~contains~2'),
               ],
             ),
           ],
         ),
-        Mode(ref: '~contains~0~contains~2'),
-        Mode(ref: '~contains~0~contains~1~contains~3'),
+        ModeReference('~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~1~contains~3'),
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~1'),
       ],
     ),
-    Mode(ref: '~contains~0~contains~0'),
-    Mode(ref: '~contains~0~contains~0'),
-    Mode(ref: '~contains~0~contains~1'),
-    Mode(ref: '~contains~0~contains~2'),
-    Mode(ref: '~contains~0~contains~1~contains~3'),
+    ModeReference('~contains~0~contains~0'),
+    ModeReference('~contains~0~contains~0'),
+    ModeReference('~contains~0~contains~1'),
+    ModeReference('~contains~0~contains~2'),
+    ModeReference('~contains~0~contains~1~contains~3'),
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~0~contains~5'),
-    Mode(ref: '~contains~0~contains~6'),
-    Mode(ref: '~contains~0~contains~1'),
+    ModeReference('~contains~0~contains~5'),
+    ModeReference('~contains~0~contains~6'),
+    ModeReference('~contains~0~contains~1'),
     Mode(
       begin:
           "\\b(deque|list|queue|priority_queue|pair|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array|tuple|optional|variant|function)\\s*<(?!<)",
@@ -4619,8 +4620,8 @@ final arduino = Mode(
         ]
       },
       contains: [
-        Mode(self: true),
-        Mode(ref: '~contains~0~contains~2'),
+        ModeSelfReference(),
+        ModeReference('~contains~0~contains~2'),
       ],
     ),
     Mode(

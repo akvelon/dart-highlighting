@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final python = Mode(
+final python = Language(
+  id: "python",
   refs: {
     '~contains~7~contains~0': Mode(
       className: "params",
@@ -151,10 +152,10 @@ final python = Mode(
             ]
           },
           contains: [
-            Mode(self: true),
-            Mode(ref: '~contains~0'),
-            Mode(ref: '~contains~1'),
-            Mode(ref: '~contains~4'),
+            ModeSelfReference(),
+            ModeReference('~contains~0'),
+            ModeReference('~contains~1'),
+            ModeReference('~contains~4'),
             HASH_COMMENT_MODE,
           ],
         ),
@@ -299,9 +300,9 @@ final python = Mode(
       },
       illegal: "#",
       contains: [
-        Mode(ref: '~contains~4'),
-        Mode(ref: '~contains~1'),
-        Mode(ref: '~contains~0'),
+        ModeReference('~contains~4'),
+        ModeReference('~contains~1'),
+        ModeReference('~contains~0'),
       ],
     ),
     '~contains~4~variants~2~contains~2': Mode(
@@ -319,7 +320,7 @@ final python = Mode(
           end: "'''",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~0'),
+            ModeReference('~contains~0'),
           ],
           relevance: 10,
         ),
@@ -328,7 +329,7 @@ final python = Mode(
           end: "\"\"\"",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~0'),
+            ModeReference('~contains~0'),
           ],
           relevance: 10,
         ),
@@ -337,9 +338,9 @@ final python = Mode(
           end: "'''",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~0'),
-            Mode(ref: '~contains~4~variants~2~contains~2'),
-            Mode(ref: '~contains~4~variants~2~contains~3'),
+            ModeReference('~contains~0'),
+            ModeReference('~contains~4~variants~2~contains~2'),
+            ModeReference('~contains~4~variants~2~contains~3'),
           ],
         ),
         Mode(
@@ -347,9 +348,9 @@ final python = Mode(
           end: "\"\"\"",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~0'),
-            Mode(ref: '~contains~4~variants~2~contains~2'),
-            Mode(ref: '~contains~4~variants~2~contains~3'),
+            ModeReference('~contains~0'),
+            ModeReference('~contains~4~variants~2~contains~2'),
+            ModeReference('~contains~4~variants~2~contains~3'),
           ],
         ),
         Mode(
@@ -375,8 +376,8 @@ final python = Mode(
           end: "'",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~4~variants~2~contains~2'),
-            Mode(ref: '~contains~4~variants~2~contains~3'),
+            ModeReference('~contains~4~variants~2~contains~2'),
+            ModeReference('~contains~4~variants~2~contains~3'),
           ],
         ),
         Mode(
@@ -384,8 +385,8 @@ final python = Mode(
           end: "\"",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~4~variants~2~contains~2'),
-            Mode(ref: '~contains~4~variants~2~contains~3'),
+            ModeReference('~contains~4~variants~2~contains~2'),
+            ModeReference('~contains~4~variants~2~contains~3'),
           ],
         ),
         APOS_STRING_MODE,
@@ -569,8 +570,8 @@ final python = Mode(
   },
   illegal: "(<\\/|->|\\?)|=>",
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~1'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~1'),
     Mode(
       begin: "\\bself\\b",
     ),
@@ -578,7 +579,7 @@ final python = Mode(
       beginKeywords: "if",
       relevance: 0,
     ),
-    Mode(ref: '~contains~4'),
+    ModeReference('~contains~4'),
     Mode(
       className: "comment",
       begin: "(?=# type:)",
@@ -732,7 +733,7 @@ final python = Mode(
       match: ["\\bdef", "\\s+", "[\\p{XID_Start}_]\\p{XID_Continue}*"],
       scope: {"1": "keyword", "3": "title.function"},
       contains: [
-        Mode(ref: '~contains~7~contains~0'),
+        ModeReference('~contains~7~contains~0'),
       ],
     ),
     Mode(
@@ -759,9 +760,9 @@ final python = Mode(
       begin: "^[\\t ]*@",
       end: "(?=#)|\$",
       contains: [
-        Mode(ref: '~contains~1'),
-        Mode(ref: '~contains~7~contains~0'),
-        Mode(ref: '~contains~4'),
+        ModeReference('~contains~1'),
+        ModeReference('~contains~7~contains~0'),
+        ModeReference('~contains~4'),
       ],
     ),
   ],

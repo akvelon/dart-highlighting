@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final twig = Mode(
+final twig = Language(
+  id: "twig",
   refs: {
     '~contains~1~contains~1~contains~0~contains~1': Mode(
       scope: "number",
@@ -75,8 +76,8 @@ final twig = Mode(
           excludeBegin: true,
           excludeEnd: true,
           contains: [
-            Mode(ref: '~contains~1~contains~1~contains~0~contains~0'),
-            Mode(ref: '~contains~1~contains~1~contains~0~contains~1'),
+            ModeReference('~contains~1~contains~1~contains~0~contains~0'),
+            ModeReference('~contains~1~contains~1~contains~0~contains~1'),
           ],
         ),
       ],
@@ -198,10 +199,10 @@ final twig = Mode(
       end: "%\\}",
       keywords: "in",
       contains: [
-        Mode(ref: '~contains~1~contains~0'),
-        Mode(ref: '~contains~1~contains~1'),
-        Mode(ref: '~contains~1~contains~1~contains~0~contains~0'),
-        Mode(ref: '~contains~1~contains~1~contains~0~contains~1'),
+        ModeReference('~contains~1~contains~0'),
+        ModeReference('~contains~1~contains~1'),
+        ModeReference('~contains~1~contains~1~contains~0~contains~0'),
+        ModeReference('~contains~1~contains~1~contains~0~contains~1'),
       ],
     ),
     Mode(
@@ -212,10 +213,10 @@ final twig = Mode(
       end: "%\\}",
       keywords: "in",
       contains: [
-        Mode(ref: '~contains~1~contains~0'),
-        Mode(ref: '~contains~1~contains~1'),
-        Mode(ref: '~contains~1~contains~1~contains~0~contains~0'),
-        Mode(ref: '~contains~1~contains~1~contains~0~contains~1'),
+        ModeReference('~contains~1~contains~0'),
+        ModeReference('~contains~1~contains~1'),
+        ModeReference('~contains~1~contains~1~contains~0~contains~0'),
+        ModeReference('~contains~1~contains~1~contains~0~contains~1'),
       ],
     ),
     Mode(
@@ -223,11 +224,11 @@ final twig = Mode(
       begin: "\\{\\{",
       end: "\\}\\}",
       contains: [
-        Mode(self: true),
-        Mode(ref: '~contains~1~contains~0'),
-        Mode(ref: '~contains~1~contains~1'),
-        Mode(ref: '~contains~1~contains~1~contains~0~contains~0'),
-        Mode(ref: '~contains~1~contains~1~contains~0~contains~1'),
+        ModeSelfReference(),
+        ModeReference('~contains~1~contains~0'),
+        ModeReference('~contains~1~contains~1'),
+        ModeReference('~contains~1~contains~1~contains~0~contains~0'),
+        ModeReference('~contains~1~contains~1~contains~0~contains~1'),
       ],
     ),
   ],

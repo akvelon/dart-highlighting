@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final arcade = Mode(
+final arcade = Language(
+  id: "arcade",
   refs: {
     '~contains~2~contains~1~contains~3': Mode(
       className: "number",
@@ -252,8 +253,8 @@ final arcade = Mode(
           contains: [
             APOS_STRING_MODE,
             QUOTE_STRING_MODE,
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~2~contains~1~contains~3'),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~2~contains~1~contains~3'),
             REGEXP_MODE,
           ],
         ),
@@ -484,7 +485,7 @@ final arcade = Mode(
   contains: [
     APOS_STRING_MODE,
     QUOTE_STRING_MODE,
-    Mode(ref: '~contains~2'),
+    ModeReference('~contains~2'),
     C_LINE_COMMENT_MODE,
     C_BLOCK_COMMENT_MODE,
     Mode(
@@ -492,7 +493,7 @@ final arcade = Mode(
       begin:
           "\\\$[datastore|feature|layer|map|measure|sourcefeature|sourcelayer|targetfeature|targetlayer|value|view]+",
     ),
-    Mode(ref: '~contains~2~contains~1~contains~3'),
+    ModeReference('~contains~2~contains~1~contains~3'),
     Mode(
       begin: "[{,]\\s*",
       relevance: 0,
@@ -761,8 +762,8 @@ final arcade = Mode(
                   contains: [
                     APOS_STRING_MODE,
                     QUOTE_STRING_MODE,
-                    Mode(ref: '~contains~2'),
-                    Mode(ref: '~contains~2~contains~1~contains~3'),
+                    ModeReference('~contains~2'),
+                    ModeReference('~contains~2~contains~1~contains~3'),
                     REGEXP_MODE,
                     C_BLOCK_COMMENT_MODE,
                     C_LINE_COMMENT_MODE,
@@ -795,8 +796,8 @@ final arcade = Mode(
           contains: [
             APOS_STRING_MODE,
             QUOTE_STRING_MODE,
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~2~contains~1~contains~3'),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~2~contains~1~contains~3'),
             REGEXP_MODE,
             C_BLOCK_COMMENT_MODE,
             C_LINE_COMMENT_MODE,

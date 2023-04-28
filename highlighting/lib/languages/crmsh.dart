@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final crmsh = Mode(
+final crmsh = Language(
+  id: "crmsh",
   refs: {},
   name: "crmsh",
   aliases: ["crm", "pcmk"],

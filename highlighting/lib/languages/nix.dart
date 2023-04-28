@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final nix = Mode(
+final nix = Language(
+  id: "nix",
   refs: {
     '~contains~3~contains~1~contains~4': Mode(
       begin: "[a-zA-Z0-9-_]+(\\s*=)",
@@ -58,8 +59,8 @@ final nix = Mode(
             NUMBER_MODE,
             HASH_COMMENT_MODE,
             C_BLOCK_COMMENT_MODE,
-            Mode(ref: '~contains~3'),
-            Mode(ref: '~contains~3~contains~1~contains~4'),
+            ModeReference('~contains~3'),
+            ModeReference('~contains~3~contains~1~contains~4'),
           ],
         ),
       ],
@@ -108,7 +109,7 @@ final nix = Mode(
     NUMBER_MODE,
     HASH_COMMENT_MODE,
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~3'),
-    Mode(ref: '~contains~3~contains~1~contains~4'),
+    ModeReference('~contains~3'),
+    ModeReference('~contains~3~contains~1~contains~4'),
   ],
 );

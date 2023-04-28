@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final scheme = Mode(
+final scheme = Language(
+  id: "scheme",
   refs: {
     '~contains~5~contains~2~contains~8': Mode(
       scope: "comment",
@@ -68,7 +69,7 @@ final scheme = Mode(
           endsWithParent: true,
           returnBegin: true,
           contains: [
-            Mode(ref: '~contains~5~contains~0~contains~0'),
+            ModeReference('~contains~5~contains~0~contains~0'),
             Mode(
               endsParent: true,
               variants: [
@@ -82,25 +83,25 @@ final scheme = Mode(
                 ),
               ],
               contains: [
-                Mode(ref: '~contains~4~contains~0~contains~4'),
+                ModeReference('~contains~4~contains~0~contains~4'),
               ],
             ),
           ],
         ),
-        Mode(ref: '~contains~5~contains~0~contains~0'),
+        ModeReference('~contains~5~contains~0~contains~0'),
         Mode(
           endsWithParent: true,
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~4~contains~0~contains~1'),
-            Mode(ref: '~contains~1'),
+            ModeReference('~contains~4~contains~0~contains~1'),
+            ModeReference('~contains~1'),
             QUOTE_STRING_MODE,
-            Mode(ref: '~contains~4~contains~0~contains~4'),
-            Mode(ref: '~contains~3'),
-            Mode(ref: '~contains~4'),
-            Mode(ref: '~contains~5'),
-            Mode(ref: '~contains~5~contains~2~contains~7'),
-            Mode(ref: '~contains~5~contains~2~contains~8'),
+            ModeReference('~contains~4~contains~0~contains~4'),
+            ModeReference('~contains~3'),
+            ModeReference('~contains~4'),
+            ModeReference('~contains~5'),
+            ModeReference('~contains~5~contains~2~contains~7'),
+            ModeReference('~contains~5~contains~2~contains~8'),
           ],
         ),
       ],
@@ -127,12 +128,12 @@ final scheme = Mode(
           begin: "\\(",
           end: "\\)",
           contains: [
-            Mode(self: true),
-            Mode(ref: '~contains~4~contains~0~contains~1'),
+            ModeSelfReference(),
+            ModeReference('~contains~4~contains~0~contains~1'),
             QUOTE_STRING_MODE,
-            Mode(ref: '~contains~1'),
-            Mode(ref: '~contains~4~contains~0~contains~4'),
-            Mode(ref: '~contains~3'),
+            ModeReference('~contains~1'),
+            ModeReference('~contains~4~contains~0~contains~4'),
+            ModeReference('~contains~3'),
           ],
         ),
       ],
@@ -175,12 +176,12 @@ final scheme = Mode(
       relevance: 0,
       onBegin: shebangOnBegin,
     ),
-    Mode(ref: '~contains~1'),
+    ModeReference('~contains~1'),
     QUOTE_STRING_MODE,
-    Mode(ref: '~contains~3'),
-    Mode(ref: '~contains~4'),
-    Mode(ref: '~contains~5'),
-    Mode(ref: '~contains~5~contains~2~contains~7'),
-    Mode(ref: '~contains~5~contains~2~contains~8'),
+    ModeReference('~contains~3'),
+    ModeReference('~contains~4'),
+    ModeReference('~contains~5'),
+    ModeReference('~contains~5~contains~2~contains~7'),
+    ModeReference('~contains~5~contains~2~contains~8'),
   ],
 );

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final rust = Mode(
+final rust = Language(
+  id: "rust",
   refs: {},
   name: "Rust",
   aliases: ["rs"],
@@ -159,7 +160,7 @@ final rust = Mode(
       begin: "/\\*",
       end: "\\*/",
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",

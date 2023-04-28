@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final delphi = Mode(
+final delphi = Language(
+  id: "delphi",
   refs: {
     '~contains~5~contains~1~contains~5': Mode(
       scope: "comment",
@@ -204,8 +205,8 @@ final delphi = Mode(
   ],
   illegal: "\"|\\\$[G-Zg-z]|\\/\\*|<\\/|\\|",
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~1'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~1'),
     NUMBER_MODE,
     Mode(
       className: "number",
@@ -370,23 +371,23 @@ final delphi = Mode(
             "varargs"
           ],
           contains: [
-            Mode(ref: '~contains~0'),
-            Mode(ref: '~contains~1'),
-            Mode(ref: '~contains~5~contains~1~contains~2'),
+            ModeReference('~contains~0'),
+            ModeReference('~contains~1'),
+            ModeReference('~contains~5~contains~1~contains~2'),
             C_LINE_COMMENT_MODE,
-            Mode(ref: '~contains~5~contains~1~contains~4'),
-            Mode(ref: '~contains~5~contains~1~contains~5'),
+            ModeReference('~contains~5~contains~1~contains~4'),
+            ModeReference('~contains~5~contains~1~contains~5'),
           ],
         ),
-        Mode(ref: '~contains~5~contains~1~contains~2'),
+        ModeReference('~contains~5~contains~1~contains~2'),
         C_LINE_COMMENT_MODE,
-        Mode(ref: '~contains~5~contains~1~contains~4'),
-        Mode(ref: '~contains~5~contains~1~contains~5'),
+        ModeReference('~contains~5~contains~1~contains~4'),
+        ModeReference('~contains~5~contains~1~contains~5'),
       ],
     ),
-    Mode(ref: '~contains~5~contains~1~contains~2'),
+    ModeReference('~contains~5~contains~1~contains~2'),
     C_LINE_COMMENT_MODE,
-    Mode(ref: '~contains~5~contains~1~contains~4'),
-    Mode(ref: '~contains~5~contains~1~contains~5'),
+    ModeReference('~contains~5~contains~1~contains~4'),
+    ModeReference('~contains~5~contains~1~contains~5'),
   ],
 );

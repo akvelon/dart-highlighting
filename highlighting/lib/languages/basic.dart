@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final basic = Mode(
+final basic = Language(
+  id: "basic",
   refs: {},
   name: "BASIC",
   case_insensitive: true,

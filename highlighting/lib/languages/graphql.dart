@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final graphql = Mode(
+final graphql = Language(
+  id: "graphql",
   refs: {},
   name: "GraphQL",
   aliases: ["gql"],

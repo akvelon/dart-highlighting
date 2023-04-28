@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final bnf = Mode(
+final bnf = Language(
+  id: "bnf",
   refs: {},
   name: "Backus–Naur Form",
   contains: [

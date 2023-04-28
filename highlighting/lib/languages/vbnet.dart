@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final vbnet = Mode(
+final vbnet = Language(
+  id: "vbnet",
   refs: {
     '~contains~6': Mode(
       scope: "comment",
@@ -129,7 +130,7 @@ final vbnet = Mode(
         ),
       ],
     ),
-    Mode(ref: '~contains~6'),
+    ModeReference('~contains~6'),
     Mode(
       className: "meta",
       begin:
@@ -140,7 +141,7 @@ final vbnet = Mode(
             "const disable else elseif enable end externalsource if region then"
       },
       contains: [
-        Mode(ref: '~contains~6'),
+        ModeReference('~contains~6'),
       ],
     ),
   ],

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final maxima = Mode(
+final maxima = Language(
+  id: "maxima",
   refs: {},
   name: "Maxima",
   keywords: {
@@ -20,7 +21,7 @@ final maxima = Mode(
       begin: "/\\*",
       end: "\\*/",
       contains: [
-        Mode(self: true),
+        ModeSelfReference(),
       ],
     ),
     QUOTE_STRING_MODE,

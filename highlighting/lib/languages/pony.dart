@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final pony = Mode(
+final pony = Language(
+  id: "pony",
   refs: {},
   name: "Pony",
   keywords: {

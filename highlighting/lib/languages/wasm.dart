@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final wasm = Mode(
+final wasm = Language(
+  id: "wasm",
   refs: {},
   name: "WebAssembly",
   keywords: {
@@ -90,7 +91,7 @@ final wasm = Mode(
           begin:
               "[ ]+((?:I|a|is|so|us|to|at|if|in|it|on|[A-Za-z]+['](d|ve|re|ll|t|s|n)|[A-Za-z]+[-][a-z]+|[A-Za-z][a-z]{2,})[.]?[:]?([.][ ]|[ ])){3}",
         ),
-        Mode(self: true),
+        ModeSelfReference(),
       ],
     ),
     Mode(

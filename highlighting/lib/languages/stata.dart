@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final stata = Mode(
+final stata = Language(
+  id: "stata",
   refs: {},
   name: "Stata",
   aliases: ["do", "ado"],

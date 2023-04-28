@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final dart = Mode(
+final dart = Language(
+  id: "dart",
   refs: {
     '~contains~0~variants~4~contains~2': Mode(
       className: "subst",
@@ -15,7 +16,7 @@ final dart = Mode(
       keywords: "true false null this is new super",
       contains: [
         C_NUMBER_MODE,
-        Mode(ref: '~contains~0'),
+        ModeReference('~contains~0'),
       ],
     ),
     '~contains~0~variants~4~contains~1': Mode(
@@ -52,8 +53,8 @@ final dart = Mode(
           end: "'''",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~0~variants~4~contains~1'),
-            Mode(ref: '~contains~0~variants~4~contains~2'),
+            ModeReference('~contains~0~variants~4~contains~1'),
+            ModeReference('~contains~0~variants~4~contains~2'),
           ],
         ),
         Mode(
@@ -61,8 +62,8 @@ final dart = Mode(
           end: "\"\"\"",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~0~variants~4~contains~1'),
-            Mode(ref: '~contains~0~variants~4~contains~2'),
+            ModeReference('~contains~0~variants~4~contains~1'),
+            ModeReference('~contains~0~variants~4~contains~2'),
           ],
         ),
         Mode(
@@ -71,8 +72,8 @@ final dart = Mode(
           illegal: "\\n",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~0~variants~4~contains~1'),
-            Mode(ref: '~contains~0~variants~4~contains~2'),
+            ModeReference('~contains~0~variants~4~contains~1'),
+            ModeReference('~contains~0~variants~4~contains~2'),
           ],
         ),
         Mode(
@@ -81,8 +82,8 @@ final dart = Mode(
           illegal: "\\n",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~0~variants~4~contains~1'),
-            Mode(ref: '~contains~0~variants~4~contains~2'),
+            ModeReference('~contains~0~variants~4~contains~1'),
+            ModeReference('~contains~0~variants~4~contains~2'),
           ],
         ),
       ],
@@ -220,7 +221,7 @@ final dart = Mode(
     "\$pattern": "[A-Za-z][A-Za-z0-9_]*\\??"
   },
   contains: [
-    Mode(ref: '~contains~0'),
+    ModeReference('~contains~0'),
     Mode(
       scope: "comment",
       begin: "\\/\\*\\*(?!\\/)",

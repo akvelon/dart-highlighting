@@ -5,14 +5,15 @@ import 'extension/before_match.dart';
 import 'extension/compiler_extensions.dart';
 import 'extension/multi_class.dart';
 import 'extension/reg_exp.dart';
+import 'language.dart';
 import 'mode.dart';
 import 'multi_regex.dart';
 
-Mode compileLanguage(Mode language) {
+Mode compileLanguage(Language language) {
   language.compilerExtensions ??= [];
 
   if (language.contains != null &&
-      language.contains!.any((element) => element.self == true)) {
+      language.contains!.any((element) => element is ModeSelfReference)) {
     throw Exception('Self is not supported at top level');
   }
 
@@ -52,18 +53,20 @@ ResumableMultiRegex buildModeRegex(
 Mode compileMode(
   Mode mode, {
   required Mode language,
+  required Map<String, Mode> refs,
   Mode? parent,
-  Map<String, Mode>? refs,
 }) {
   if (mode.isCompiled) {
     return mode;
   }
 
-  if (mode.ref != null) {
-    mode = replaceIfRef(refs: refs, self: mode);
+  if (mode is ModeReference) {
+    mode = replaceRef(mode, refs: refs);
   }
-  if (mode.starts?.ref != null) {
-    mode.starts = replaceIfRef(self: mode.starts!, refs: refs);
+
+  final starts = mode.starts;
+  if (starts is ModeReference) {
+    mode.starts = replaceRef(starts, refs: refs);
   }
 
   scopeClassName(mode);
@@ -129,12 +132,15 @@ Mode compileMode(
 
   var newList = <Mode>[];
   mode.contains!.forEach((element) {
-    if (element.ref != null) {
-      element = replaceIfRef(refs: refs, self: element);
-      element.ref = null;
+    if (element is ModeReference) {
+      element = replaceRef(element, refs: refs);
     }
     newList.addAll(
-        expandOrCloneMode(element.self == true ? mode : element, refs: refs));
+      expandOrCloneMode(
+        element is ModeSelfReference ? mode : element,
+        refs: refs,
+      ),
+    );
   });
   mode.contains = newList;
   for (final element in mode.contains!) {
@@ -159,13 +165,13 @@ bool dependencyOnParent(Mode? mode) {
   return mode.endsWithParent == true || dependencyOnParent(mode.starts);
 }
 
-List<Mode> expandOrCloneMode(Mode mode, {Map<String, Mode>? refs}) {
+List<Mode> expandOrCloneMode(Mode mode, {required Map<String, Mode> refs}) {
   if (mode.variants != null &&
       mode.variants!.isNotEmpty &&
       mode.cachedVariants == null) {
     mode.cachedVariants = mode.variants!.map((variant) {
-      if (variant?.ref != null) {
-        variant = replaceIfRef(refs: refs, self: variant!);
+      if (variant is ModeReference) {
+        variant = replaceRef(variant, refs: refs);
       }
       return Mode.inherit(Mode.inherit(mode, Mode(variants: [])), variant);
     }).toList();

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final vhdl = Mode(
+final vhdl = Language(
+  id: "vhdl",
   refs: {},
   name: "VHDL",
   case_insensitive: true,

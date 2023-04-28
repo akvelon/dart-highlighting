@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final smalltalk = Mode(
+final smalltalk = Language(
+  id: "smalltalk",
   refs: {
     '~contains~6': Mode(
       className: "string",
@@ -46,8 +47,8 @@ final smalltalk = Mode(
       relevance: 0,
     ),
     C_NUMBER_MODE,
-    Mode(ref: '~contains~5'),
-    Mode(ref: '~contains~6'),
+    ModeReference('~contains~5'),
+    ModeReference('~contains~6'),
     Mode(
       begin: "\\|[ ]*[a-z][a-zA-Z0-9_]*([ ]+[a-z][a-zA-Z0-9_]*)*[ ]*\\|",
       returnBegin: true,
@@ -64,9 +65,9 @@ final smalltalk = Mode(
       end: "\\)",
       contains: [
         APOS_STRING_MODE,
-        Mode(ref: '~contains~6'),
+        ModeReference('~contains~6'),
         C_NUMBER_MODE,
-        Mode(ref: '~contains~5'),
+        ModeReference('~contains~5'),
       ],
     ),
   ],

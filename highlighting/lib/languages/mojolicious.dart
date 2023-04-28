@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final mojolicious = Mode(
+final mojolicious = Language(
+  id: "mojolicious",
   refs: {},
   name: "Mojolicious",
   subLanguage: ["xml"],

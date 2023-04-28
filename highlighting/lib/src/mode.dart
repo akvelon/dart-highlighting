@@ -5,12 +5,13 @@ import 'domain_regexp_match.dart';
 import 'nulls.dart';
 import 'multi_regex.dart';
 
+/// A superset of a language and its detectable rules.
+///
+/// In HighlightJS, the `Language` interface represents a language
+/// while the `Mode` interface represents rules within it.
+/// For historical reasons, in this Dart port this class stands for both.
+/// TODO(alexeyinkin): Separate them.
 class Mode {
-  String? ref;
-  Map<String, Mode>? refs;
-
-  List<String>? aliases;
-
   /// `String | Map<String, [String, int]>`
   dynamic keywords;
 
@@ -68,7 +69,6 @@ class Mode {
   String? terminator_end;
   List<Mode>? cached_variants;
   RegExp? terminators;
-  String? name;
 
   /// `String | List<String>`
   dynamic match;
@@ -100,7 +100,6 @@ class Mode {
   String? binary;
   String? supersetOf;
 
-  bool? self;
   bool? disableAutodetect;
 
   bool isCompiled = false;
@@ -114,9 +113,6 @@ class Mode {
 
   Mode({
     this.subLanguage = const [],
-    this.ref,
-    this.refs,
-    this.name,
     this.match,
     this.beginScope,
     this.unicodeRegex,
@@ -127,7 +123,6 @@ class Mode {
     this.supersetOf,
     this.beforeMatch,
     //
-    this.aliases,
     this.keywords,
     this.illegal,
     this.case_insensitive,
@@ -150,7 +145,6 @@ class Mode {
     this.returnBegin,
     this.returnEnd,
     //
-    this.self,
     this.disableAutodetect,
     this.parent,
     dynamic className,
@@ -161,7 +155,6 @@ class Mode {
   static Mode inherit(Mode a, [Mode? b]) {
     b ??= Mode();
     final result = Mode()
-      ..aliases = b.aliases ?? a.aliases
       ..beforeMatch = b.beforeMatch ?? a.beforeMatch
       ..begin = b.begin ?? a.begin
       ..beginKeywords = b.beginKeywords ?? a.beginKeywords
@@ -193,17 +186,13 @@ class Mode {
       ..lexemesRe = b.lexemesRe ?? a.lexemesRe
       ..match = b.match ?? a.match
       ..matcher = b.matcher ?? a.matcher
-      ..name = b.name ?? a.name
       ..onBegin = b.onBegin ?? a.onBegin
       ..onEnd = b.onEnd ?? a.onEnd
       ..parent = b.parent ?? a.parent
-      ..ref = b.ref ?? a.ref
-      ..refs = b.refs ?? a.refs
       ..relevance = b.relevance ?? a.relevance
       ..returnBegin = b.returnBegin ?? a.returnBegin
       ..returnEnd = b.returnEnd ?? a.returnEnd
       ..scope = b.scope ?? a.scope
-      ..self = b.self ?? a.self
       ..skip = b.skip ?? a.skip
       ..starts = b.starts ?? a.starts
       ..subLanguage = b.subLanguage.isNotEmpty ? b.subLanguage : a.subLanguage
@@ -224,3 +213,11 @@ class Mode {
     return result;
   }
 }
+
+class ModeReference extends Mode {
+  ModeReference(this.ref);
+
+  final String ref;
+}
+
+class ModeSelfReference extends Mode {}

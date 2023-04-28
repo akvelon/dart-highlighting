@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final applescript = Mode(
+final applescript = Language(
+  id: "applescript",
   refs: {
     '~contains~7': Mode(
       scope: "comment",
@@ -43,7 +44,7 @@ final applescript = Mode(
         "alias application boolean class constant date file integer list number real record string text activate beep count delay launch log offset read round run say summarize write character characters contents day frontmost id item length month name|0 paragraph paragraphs rest reverse running time version weekday word words year"
   },
   contains: [
-    Mode(ref: '~contains~0'),
+    ModeReference('~contains~0'),
     C_NUMBER_MODE,
     Mode(
       className: "built_in",
@@ -73,21 +74,21 @@ final applescript = Mode(
           begin: "\\(",
           end: "\\)",
           contains: [
-            Mode(self: true),
+            ModeSelfReference(),
             C_NUMBER_MODE,
-            Mode(ref: '~contains~0'),
+            ModeReference('~contains~0'),
           ],
         ),
       ],
     ),
-    Mode(ref: '~contains~7'),
+    ModeReference('~contains~7'),
     Mode(
       scope: "comment",
       begin: "\\(\\*",
       end: "\\*\\)",
       contains: [
-        Mode(self: true),
-        Mode(ref: '~contains~7'),
+        ModeSelfReference(),
+        ModeReference('~contains~7'),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",

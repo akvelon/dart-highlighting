@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final r = Mode(
+final r = Language(
+  id: "r",
   refs: {},
   name: "R",
   keywords: {

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final tap = Mode(
+final tap = Language(
+  id: "tap",
   refs: {},
   name: "Test Anything Protocol",
   case_insensitive: true,

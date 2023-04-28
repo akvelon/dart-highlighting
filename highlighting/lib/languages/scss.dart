@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final scss = Mode(
+final scss = Language(
+  id: "scss",
   refs: {
     '~contains~9': Mode(
       className: "variable",
@@ -30,7 +31,7 @@ final scss = Mode(
   contains: [
     C_LINE_COMMENT_MODE,
     C_BLOCK_COMMENT_MODE,
-    Mode(ref: '~contains~2'),
+    ModeReference('~contains~2'),
     Mode(
       className: "selector-id",
       begin: "#[A-Za-z0-9_-]+",
@@ -67,12 +68,12 @@ final scss = Mode(
       begin:
           ":(:)?(after|backdrop|before|cue|cue-region|first-letter|first-line|grammar-error|marker|part|placeholder|selection|slotted|spelling-error)",
     ),
-    Mode(ref: '~contains~9'),
+    ModeReference('~contains~9'),
     Mode(
       begin: "\\(",
       end: "\\)",
       contains: [
-        Mode(ref: '~contains~2'),
+        ModeReference('~contains~2'),
       ],
     ),
     Mode(
@@ -94,16 +95,16 @@ final scss = Mode(
       relevance: 0,
       contains: [
         C_BLOCK_COMMENT_MODE,
-        Mode(ref: '~contains~9'),
-        Mode(ref: '~contains~14~contains~2'),
-        Mode(ref: '~contains~2'),
+        ModeReference('~contains~9'),
+        ModeReference('~contains~14~contains~2'),
+        ModeReference('~contains~2'),
         QUOTE_STRING_MODE,
         APOS_STRING_MODE,
         Mode(
           scope: "meta",
           begin: "!important",
         ),
-        Mode(ref: '~contains~14~contains~7'),
+        ModeReference('~contains~14~contains~7'),
       ],
     ),
     Mode(
@@ -129,13 +130,13 @@ final scss = Mode(
           begin: "[a-z-]+(?=:)",
           className: "attribute",
         ),
-        Mode(ref: '~contains~9'),
+        ModeReference('~contains~9'),
         QUOTE_STRING_MODE,
         APOS_STRING_MODE,
-        Mode(ref: '~contains~14~contains~2'),
-        Mode(ref: '~contains~2'),
+        ModeReference('~contains~14~contains~2'),
+        ModeReference('~contains~2'),
       ],
     ),
-    Mode(ref: '~contains~14~contains~7'),
+    ModeReference('~contains~14~contains~7'),
   ],
 );

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final juliaRepl = Mode(
+final juliaRepl = Language(
+  id: "julia-repl",
   refs: {},
   name: "Julia REPL",
   contains: [

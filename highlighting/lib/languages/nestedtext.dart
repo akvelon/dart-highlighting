@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final nestedtext = Mode(
+final nestedtext = Language(
+  id: "nestedtext",
   refs: {},
   name: "Nested Text",
   aliases: ["nt"],

@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final tp = Mode(
+final tp = Language(
+  id: "tp",
   refs: {
     '~contains~0~contains~2': Mode(
       className: "symbol",
@@ -106,9 +107,9 @@ final tp = Mode(
           "(AR|P|PAYLOAD|PR|R|SR|RSR|LBL|VR|UALM|MESSAGE|UTOOL|UFRAME|TIMER|TIMER_OVERFLOW|JOINT_MAX_SPEED|RESUME_PROG|DIAG_REC)\\[",
       end: "\\]",
       contains: [
-        Mode(self: true),
-        Mode(ref: '~contains~0~contains~1'),
-        Mode(ref: '~contains~0~contains~2'),
+        ModeSelfReference(),
+        ModeReference('~contains~0~contains~1'),
+        ModeReference('~contains~0~contains~2'),
       ],
     ),
     Mode(
@@ -116,10 +117,10 @@ final tp = Mode(
       begin: "(AI|AO|DI|DO|F|RI|RO|UI|UO|GI|GO|SI|SO)\\[",
       end: "\\]",
       contains: [
-        Mode(self: true),
-        Mode(ref: '~contains~0~contains~1'),
+        ModeSelfReference(),
+        ModeReference('~contains~0~contains~1'),
         QUOTE_STRING_MODE,
-        Mode(ref: '~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~2'),
       ],
     ),
     Mode(

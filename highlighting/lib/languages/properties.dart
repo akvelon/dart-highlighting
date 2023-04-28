@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final properties = Mode(
+final properties = Language(
+  id: "properties",
   refs: {},
   name: ".properties",
   disableAutodetect: true,

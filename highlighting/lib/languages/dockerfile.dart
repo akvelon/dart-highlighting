@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final dockerfile = Mode(
+final dockerfile = Language(
+  id: "dockerfile",
   refs: {},
   name: "Dockerfile",
   aliases: ["docker"],

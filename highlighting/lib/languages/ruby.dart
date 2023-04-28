@@ -2,14 +2,15 @@
 
 import '../src/language_definition_parts.dart';
 
-final ruby = Mode(
+final ruby = Language(
+  id: "ruby",
   refs: {
     '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9':
         Mode(
       className: "symbol",
       begin: ":(?!\\s)",
       contains: [
-        Mode(ref: '~contains~1~starts~contains~0'),
+        ModeReference('~contains~1~starts~contains~0'),
         Mode(
           begin:
               "([a-zA-Z_]\\w*[!?=]?|[-+\\x7e]@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?)",
@@ -52,9 +53,8 @@ final ruby = Mode(
       begin: "^=begin",
       end: "^=end",
       contains: [
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2~contains~0'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2~contains~0'),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
@@ -80,9 +80,8 @@ final ruby = Mode(
       begin: "#",
       end: "\$",
       contains: [
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2~contains~0'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2~contains~0'),
         Mode(
           scope: "doctag",
           begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
@@ -111,7 +110,7 @@ final ruby = Mode(
           className: "regexp",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~1~starts~contains~0~contains~1'),
+            ModeReference('~contains~1~starts~contains~0~contains~1'),
           ],
           illegal: "\\n",
           variants: [
@@ -137,18 +136,14 @@ final ruby = Mode(
             ),
           ],
         ),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
       ],
       relevance: 0,
     ),
@@ -330,46 +325,41 @@ final ruby = Mode(
             ),
           ],
           contains: [
-            Mode(ref: '~contains~1~starts~contains~0'),
-            Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~1'),
-            Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~2'),
-            Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~3'),
-            Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~4'),
-            Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~5'),
-            Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~6'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
-            Mode(
-                ref:
-                    '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
+            ModeReference('~contains~1~starts~contains~0'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~1'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~2'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~3'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~4'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~5'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
+            ModeReference(
+                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
           ],
         ),
       ],
@@ -597,53 +587,42 @@ final ruby = Mode(
         "literal": ["true", "false", "nil"]
       },
       contains: [
-        Mode(ref: '~contains~1~starts~contains~0'),
-        Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~1'),
-        Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~2'),
-        Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~3'),
-        Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~4'),
-        Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~5'),
-        Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~6'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
-        Mode(
-            ref:
-                '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
+        ModeReference('~contains~1~starts~contains~0'),
+        ModeReference('~contains~1~starts~contains~0~contains~1~contains~1'),
+        ModeReference('~contains~1~starts~contains~0~contains~1~contains~2'),
+        ModeReference('~contains~1~starts~contains~0~contains~1~contains~3'),
+        ModeReference('~contains~1~starts~contains~0~contains~1~contains~4'),
+        ModeReference('~contains~1~starts~contains~0~contains~1~contains~5'),
+        ModeReference('~contains~1~starts~contains~0~contains~1~contains~6'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
+        ModeReference(
+            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
       ],
     ),
     '~contains~1~starts~contains~0': Mode(
       className: "string",
       contains: [
         BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~1~starts~contains~0~contains~1'),
+        ModeReference('~contains~1~starts~contains~0~contains~1'),
       ],
       variants: [
         Mode(
@@ -718,7 +697,7 @@ final ruby = Mode(
               end: "(\\w+)",
               contains: [
                 BACKSLASH_ESCAPE,
-                Mode(ref: '~contains~1~starts~contains~0~contains~1'),
+                ModeReference('~contains~1~starts~contains~0~contains~1'),
               ],
               onBegin: endSameAsBeginOnBegin,
               onEnd: endSameAsBeginOnEnd,
@@ -802,46 +781,35 @@ final ruby = Mode(
       starts: Mode(
         end: "\$",
         contains: [
-          Mode(ref: '~contains~1~starts~contains~0'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~1'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~2'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~3'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~4'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~5'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~6'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
+          ModeReference('~contains~1~starts~contains~0'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~1'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~2'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~3'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~4'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~5'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~6'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
         ],
       ),
     ),
@@ -910,100 +878,74 @@ final ruby = Mode(
           "literal": ["true", "false", "nil"]
         },
         contains: [
-          Mode(ref: '~contains~1~starts~contains~0'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~1'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~2'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~3'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~4'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~5'),
-          Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~6'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
-          Mode(
-              ref:
-                  '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
+          ModeReference('~contains~1~starts~contains~0'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~1'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~2'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~3'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~4'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~5'),
+          ModeReference('~contains~1~starts~contains~0~contains~1~contains~6'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
+          ModeReference(
+              '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
         ],
       ),
     ),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
-    Mode(ref: '~contains~1~starts~contains~0'),
-    Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~1'),
-    Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~2'),
-    Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~3'),
-    Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~4'),
-    Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~5'),
-    Mode(ref: '~contains~1~starts~contains~0~contains~1~contains~6'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
-    Mode(
-        ref:
-            '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
+    ModeReference('~contains~1~starts~contains~0'),
+    ModeReference('~contains~1~starts~contains~0~contains~1~contains~1'),
+    ModeReference('~contains~1~starts~contains~0~contains~1~contains~2'),
+    ModeReference('~contains~1~starts~contains~0~contains~1~contains~3'),
+    ModeReference('~contains~1~starts~contains~0~contains~1~contains~4'),
+    ModeReference('~contains~1~starts~contains~0~contains~1~contains~5'),
+    ModeReference('~contains~1~starts~contains~0~contains~1~contains~6'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~7'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~8'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~9'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~10'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~11'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~12'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~1'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~2'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~3'),
+    ModeReference(
+        '~contains~1~starts~contains~0~contains~1~contains~6~contains~0~contains~13~contains~4'),
   ],
 );

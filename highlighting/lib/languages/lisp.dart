@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final lisp = Mode(
+final lisp = Language(
+  id: "lisp",
   refs: {
     '~contains~7': Mode(
       begin: "\\(\\s*",
@@ -24,19 +25,19 @@ final lisp = Mode(
           endsWithParent: true,
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~5'),
-            Mode(ref: '~contains~6'),
-            Mode(ref: '~contains~7'),
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~0'),
-            Mode(ref: '~contains~3'),
-            Mode(ref: '~contains~4'),
-            Mode(ref: '~contains~5~contains~2'),
-            Mode(ref: '~contains~5~contains~3'),
+            ModeReference('~contains~5'),
+            ModeReference('~contains~6'),
+            ModeReference('~contains~7'),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~0'),
+            ModeReference('~contains~3'),
+            ModeReference('~contains~4'),
+            ModeReference('~contains~5~contains~2'),
+            ModeReference('~contains~5~contains~3'),
             Mode(
               begin: "\\|[^]*?\\|",
             ),
-            Mode(ref: '~contains~5~contains~4~contains~4'),
+            ModeReference('~contains~5~contains~4~contains~4'),
           ],
         ),
       ],
@@ -66,22 +67,22 @@ final lisp = Mode(
     ),
     '~contains~5': Mode(
       contains: [
-        Mode(ref: '~contains~0'),
-        Mode(ref: '~contains~3'),
-        Mode(ref: '~contains~5~contains~2'),
-        Mode(ref: '~contains~5~contains~3'),
+        ModeReference('~contains~0'),
+        ModeReference('~contains~3'),
+        ModeReference('~contains~5~contains~2'),
+        ModeReference('~contains~5~contains~3'),
         Mode(
           begin: "\\(",
           end: "\\)",
           contains: [
-            Mode(self: true),
-            Mode(ref: '~contains~2'),
-            Mode(ref: '~contains~3'),
-            Mode(ref: '~contains~0'),
-            Mode(ref: '~contains~5~contains~4~contains~4'),
+            ModeSelfReference(),
+            ModeReference('~contains~2'),
+            ModeReference('~contains~3'),
+            ModeReference('~contains~0'),
+            ModeReference('~contains~5~contains~4~contains~4'),
           ],
         ),
-        Mode(ref: '~contains~5~contains~4~contains~4'),
+        ModeReference('~contains~5~contains~4~contains~4'),
       ],
       variants: [
         Mode(
@@ -158,7 +159,7 @@ final lisp = Mode(
   name: "Lisp",
   illegal: "\\S",
   contains: [
-    Mode(ref: '~contains~0'),
+    ModeReference('~contains~0'),
     Mode(
       scope: "meta",
       begin: "^#![ ]*\\/",
@@ -166,12 +167,12 @@ final lisp = Mode(
       relevance: 0,
       onBegin: shebangOnBegin,
     ),
-    Mode(ref: '~contains~2'),
-    Mode(ref: '~contains~3'),
-    Mode(ref: '~contains~4'),
-    Mode(ref: '~contains~5'),
-    Mode(ref: '~contains~6'),
-    Mode(ref: '~contains~7'),
-    Mode(ref: '~contains~5~contains~4~contains~4'),
+    ModeReference('~contains~2'),
+    ModeReference('~contains~3'),
+    ModeReference('~contains~4'),
+    ModeReference('~contains~5'),
+    ModeReference('~contains~6'),
+    ModeReference('~contains~7'),
+    ModeReference('~contains~5~contains~4~contains~4'),
   ],
 );

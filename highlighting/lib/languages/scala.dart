@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final scala = Mode(
+final scala = Language(
+  id: "scala",
   refs: {
     '~contains~4~contains~0': Mode(
       className: "title",
@@ -58,7 +59,7 @@ final scala = Mode(
           illegal: "\\n",
           contains: [
             BACKSLASH_ESCAPE,
-            Mode(ref: '~contains~2~variants~2~contains~1'),
+            ModeReference('~contains~2~variants~2~contains~1'),
           ],
         ),
         Mode(
@@ -66,19 +67,19 @@ final scala = Mode(
           begin: "[a-z]+\"\"\"",
           end: "\"\"\"",
           contains: [
-            Mode(ref: '~contains~2~variants~2~contains~1'),
+            ModeReference('~contains~2~variants~2~contains~1'),
           ],
           relevance: 10,
         ),
       ],
     ),
-    Mode(ref: '~contains~3'),
+    ModeReference('~contains~3'),
     Mode(
       className: "function",
       beginKeywords: "def",
       end: "(?=[:={\\[(\\n;])",
       contains: [
-        Mode(ref: '~contains~4~contains~0'),
+        ModeReference('~contains~4~contains~0'),
       ],
     ),
     Mode(
@@ -100,7 +101,7 @@ final scala = Mode(
           excludeEnd: true,
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~3'),
+            ModeReference('~contains~3'),
           ],
         ),
         Mode(
@@ -111,10 +112,10 @@ final scala = Mode(
           excludeEnd: true,
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~3'),
+            ModeReference('~contains~3'),
           ],
         ),
-        Mode(ref: '~contains~4~contains~0'),
+        ModeReference('~contains~4~contains~0'),
       ],
     ),
     C_NUMBER_MODE,

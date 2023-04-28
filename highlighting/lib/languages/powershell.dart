@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final powershell = Mode(
+final powershell = Language(
+  id: "powershell",
   refs: {
     '~contains~0~contains~0~contains~9': Mode(
       className: "literal",
@@ -58,8 +59,8 @@ final powershell = Mode(
         ),
       ],
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~3'),
-        Mode(ref: '~contains~0~contains~0~contains~5~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~3'),
+        ModeReference('~contains~0~contains~0~contains~5~contains~1'),
         Mode(
           className: "variable",
           begin: "\\\$[A-z]",
@@ -113,17 +114,17 @@ final powershell = Mode(
       excludeEnd: true,
       relevance: 0,
       contains: [
-        Mode(self: true),
-        Mode(ref: '~contains~0'),
-        Mode(ref: '~contains~0~contains~0~contains~2'),
-        Mode(ref: '~contains~0~contains~0~contains~3'),
+        ModeSelfReference(),
+        ModeReference('~contains~0'),
+        ModeReference('~contains~0~contains~0~contains~2'),
+        ModeReference('~contains~0~contains~0~contains~3'),
         NUMBER_MODE,
-        Mode(ref: '~contains~0~contains~0~contains~5'),
-        Mode(ref: '~contains~0~contains~0~contains~6'),
-        Mode(ref: '~contains~0~contains~0~contains~7'),
-        Mode(ref: '~contains~0~contains~0~contains~5~contains~1'),
-        Mode(ref: '~contains~0~contains~0~contains~9'),
-        Mode(ref: '~contains~0~contains~0~contains~10'),
+        ModeReference('~contains~0~contains~0~contains~5'),
+        ModeReference('~contains~0~contains~0~contains~6'),
+        ModeReference('~contains~0~contains~0~contains~7'),
+        ModeReference('~contains~0~contains~0~contains~5~contains~1'),
+        ModeReference('~contains~0~contains~0~contains~9'),
+        ModeReference('~contains~0~contains~0~contains~10'),
         Mode(
           begin:
               "(string|char|byte|int|long|bool|decimal|single|double|DateTime|xml|array|hashtable|void)",
@@ -144,7 +145,7 @@ final powershell = Mode(
       returnBegin: true,
       relevance: 0,
       contains: [
-        Mode(ref: '~contains~0~contains~0'),
+        ModeReference('~contains~0~contains~0'),
         Mode(
           className: "keyword",
           begin:
@@ -172,16 +173,16 @@ final powershell = Mode(
         "ac asnp cat cd CFS chdir clc clear clhy cli clp cls clv cnsn compare copy cp cpi cpp curl cvpa dbp del diff dir dnsn ebp echo|0 epal epcsv epsn erase etsn exsn fc fhx fl ft fw gal gbp gc gcb gci gcm gcs gdr gerr ghy gi gin gjb gl gm gmo gp gps gpv group gsn gsnp gsv gtz gu gv gwmi h history icm iex ihy ii ipal ipcsv ipmo ipsn irm ise iwmi iwr kill lp ls man md measure mi mount move mp mv nal ndr ni nmo npssc nsn nv ogv oh popd ps pushd pwd r rbp rcjb rcsn rd rdr ren ri rjb rm rmdir rmo rni rnp rp rsn rsnp rujb rv rvpa rwmi sajb sal saps sasv sbp sc scb select set shcm si sl sleep sls sort sp spjb spps spsv start stz sujb sv swmi tee trcm type wget where wjb write"
   },
   contains: [
-    Mode(ref: '~contains~0'),
-    Mode(ref: '~contains~0~contains~0~contains~2'),
-    Mode(ref: '~contains~0~contains~0~contains~3'),
+    ModeReference('~contains~0'),
+    ModeReference('~contains~0~contains~0~contains~2'),
+    ModeReference('~contains~0~contains~0~contains~3'),
     NUMBER_MODE,
-    Mode(ref: '~contains~0~contains~0~contains~5'),
-    Mode(ref: '~contains~0~contains~0~contains~6'),
-    Mode(ref: '~contains~0~contains~0~contains~7'),
-    Mode(ref: '~contains~0~contains~0~contains~5~contains~1'),
-    Mode(ref: '~contains~0~contains~0~contains~9'),
-    Mode(ref: '~contains~0~contains~0~contains~10'),
+    ModeReference('~contains~0~contains~0~contains~5'),
+    ModeReference('~contains~0~contains~0~contains~6'),
+    ModeReference('~contains~0~contains~0~contains~7'),
+    ModeReference('~contains~0~contains~0~contains~5~contains~1'),
+    ModeReference('~contains~0~contains~0~contains~9'),
+    ModeReference('~contains~0~contains~0~contains~10'),
     Mode(
       className: "class",
       beginKeywords: "class enum",
@@ -216,7 +217,7 @@ final powershell = Mode(
           className: "params",
           relevance: 0,
           contains: [
-            Mode(ref: '~contains~0~contains~0~contains~5~contains~1'),
+            ModeReference('~contains~0~contains~0~contains~5~contains~1'),
           ],
         ),
       ],
@@ -226,8 +227,8 @@ final powershell = Mode(
       end: "\$",
       returnBegin: true,
       contains: [
-        Mode(ref: '~contains~0~contains~0~contains~5'),
-        Mode(ref: '~contains~0~contains~0~contains~6'),
+        ModeReference('~contains~0~contains~0~contains~5'),
+        ModeReference('~contains~0~contains~0~contains~6'),
         Mode(
           className: "keyword",
           begin: "(using|assembly|command|module|namespace|type)",
@@ -248,6 +249,6 @@ final powershell = Mode(
         ),
       ],
     ),
-    Mode(ref: '~contains~0~contains~0'),
+    ModeReference('~contains~0~contains~0'),
   ],
 );

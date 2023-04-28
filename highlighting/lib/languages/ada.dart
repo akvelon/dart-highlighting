@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final ada = Mode(
+final ada = Language(
+  id: "ada",
   refs: {
     '~contains~6~contains~2': Mode(
       begin: "\\s+:\\s+",
@@ -124,7 +125,7 @@ final ada = Mode(
     "literal": ["True", "False"]
   },
   contains: [
-    Mode(ref: '~contains~0'),
+    ModeReference('~contains~0'),
     Mode(
       className: "string",
       begin: "\"",
@@ -165,7 +166,7 @@ final ada = Mode(
       keywords: "overriding function procedure with is renames return",
       returnBegin: true,
       contains: [
-        Mode(ref: '~contains~0'),
+        ModeReference('~contains~0'),
         Mode(
           className: "title",
           begin: "(\\bwith\\s+)?\\b(function|procedure)\\s+",
@@ -174,7 +175,7 @@ final ada = Mode(
           excludeEnd: true,
           illegal: "[]\\{\\}%#'\"",
         ),
-        Mode(ref: '~contains~6~contains~2'),
+        ModeReference('~contains~6~contains~2'),
         Mode(
           className: "type",
           begin: "\\breturn\\s+",
@@ -195,6 +196,6 @@ final ada = Mode(
       excludeBegin: true,
       illegal: "[]\\{\\}%#'\"",
     ),
-    Mode(ref: '~contains~6~contains~2'),
+    ModeReference('~contains~6~contains~2'),
   ],
 );

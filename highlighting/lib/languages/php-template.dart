@@ -2,7 +2,8 @@
 
 import '../src/language_definition_parts.dart';
 
-final phpTemplate = Mode(
+final phpTemplate = Language(
+  id: "php-template",
   refs: {},
   name: "PHP template",
   subLanguage: ["xml"],
