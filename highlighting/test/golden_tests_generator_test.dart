@@ -52,7 +52,11 @@ void main() async {
           final input = file.readAsStringSync();
 
           test(testName, () {
-            final highlighted = HighlightV2().parse(input, language: language);
+            final highlighted = highlight.parse(
+              input,
+              languageId: language,
+            );
+
             final actual = highlighted.toHtml();
 
             if (actual == expected) {

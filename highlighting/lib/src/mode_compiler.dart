@@ -10,8 +10,6 @@ import 'mode.dart';
 import 'multi_regex.dart';
 
 Mode compileLanguage(Language language) {
-  language.compilerExtensions ??= [];
-
   if (language.contains != null &&
       language.contains!.any((element) => element is ModeSelfReference)) {
     throw Exception('Self is not supported at top level');
@@ -28,14 +26,11 @@ Mode compileLanguage(Language language) {
 
 ResumableMultiRegex buildModeRegex(
   Mode mode, {
-  Mode? language,
+  required Language language,
 }) {
   final mm = ResumableMultiRegex(language: language);
 
   mode.contains?.forEach((term) {
-    if (term.beginRe == null) {
-      int a = 0;
-    }
     mm.addRule(term.beginRe!, RuleOptions(rule: term, type: $begin));
   });
 
@@ -52,7 +47,7 @@ ResumableMultiRegex buildModeRegex(
 
 Mode compileMode(
   Mode mode, {
-  required Mode language,
+  required Language language,
   required Map<String, Mode> refs,
   Mode? parent,
 }) {
@@ -74,7 +69,7 @@ Mode compileMode(
   multiClass(mode, parent);
   beforeMatchExt(mode, parent);
 
-  language.compilerExtensions?.forEach((ext) => ext?.call(mode, parent));
+  language.compilerExtensions.forEach((ext) => ext?.call(mode, parent));
 
   mode.beforeBegin = null;
 
@@ -149,9 +144,6 @@ Mode compileMode(
 
   if (mode.starts != null) {
     compileMode(mode.starts!, parent: parent, language: language, refs: refs);
-  }
-  if (mode.begin is String && mode.begin.contains(r'\(\s')) {
-    int a;
   }
 
   mode.matcher = buildModeRegex(mode, language: language);

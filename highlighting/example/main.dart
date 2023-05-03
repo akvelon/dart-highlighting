@@ -9,7 +9,7 @@ void main() {
 
   highlight.registerLanguage(dart);
 
-  final highlighted = highlight.parse(source, language: 'dart');
+  final highlighted = highlight.parse(source, languageId: dart.id);
   final html = highlighted.toHtml();
   print(html); // HTML string
 }

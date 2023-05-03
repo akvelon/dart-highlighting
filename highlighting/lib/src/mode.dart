@@ -6,24 +6,17 @@ import 'nulls.dart';
 import 'multi_regex.dart';
 
 /// A superset of a language and its detectable rules.
-///
-/// In HighlightJS, the `Language` interface represents a language
-/// while the `Mode` interface represents rules within it.
-/// For historical reasons, in this Dart port this class stands for both.
-/// TODO(alexeyinkin): Separate them.
 class Mode {
   /// `String | Map<String, [String, int]>`
   dynamic keywords;
 
   /// `String? | List<String>?`
   dynamic illegal;
-  bool? case_insensitive;
   List<Mode>? contains;
   List<Mode?>? variants;
   Mode? starts;
 
   List<Mode>? cachedVariants;
-  List<dynamic>? compilerExtensions;
 
   /// `String | Map<String, String>`
   dynamic get className =>
@@ -89,18 +82,12 @@ class Mode {
 
   /// `String | Map<String, String>` (Map<string, dynamic>?)
   dynamic beginScope;
-  bool? unicodeRegex;
   String? label;
 
   /// String | Map
   dynamic endScope;
 
-  /// `String | Map<String, String>`
-  dynamic classNameAliases;
   String? binary;
-  String? supersetOf;
-
-  bool? disableAutodetect;
 
   bool isCompiled = false;
 
@@ -115,17 +102,13 @@ class Mode {
     this.subLanguage = const [],
     this.match,
     this.beginScope,
-    this.unicodeRegex,
     this.label,
     this.endScope,
-    this.classNameAliases,
     this.binary,
-    this.supersetOf,
     this.beforeMatch,
     //
     this.keywords,
     this.illegal,
-    this.case_insensitive,
     this.contains,
     this.variants,
     this.starts,
@@ -145,7 +128,6 @@ class Mode {
     this.returnBegin,
     this.returnEnd,
     //
-    this.disableAutodetect,
     this.parent,
     dynamic className,
     dynamic scope,
@@ -162,12 +144,9 @@ class Mode {
       ..beginScope = b.beginScope ?? a.beginScope
       ..binary = b.binary ?? a.binary
       ..cached_variants = b.cached_variants ?? a.cached_variants
-      ..case_insensitive = b.case_insensitive ?? a.case_insensitive
       ..className = b.className ?? a.className
-      ..classNameAliases = b.classNameAliases ?? a.classNameAliases
       ..compiled = b.compiled ?? a.compiled
       ..contains = b.contains ?? a.contains
-      ..disableAutodetect = b.disableAutodetect ?? a.disableAutodetect
       ..data = b.data ?? a.data
       ..end = b.end ?? a.end
       ..endRe = b.endRe ?? a.endRe
@@ -196,10 +175,8 @@ class Mode {
       ..skip = b.skip ?? a.skip
       ..starts = b.starts ?? a.starts
       ..subLanguage = b.subLanguage.isNotEmpty ? b.subLanguage : a.subLanguage
-      ..supersetOf = b.supersetOf ?? a.supersetOf
       ..terminator_end = b.terminator_end ?? a.terminator_end
       ..terminators = b.terminators ?? a.terminators
-      ..unicodeRegex = b.unicodeRegex ?? a.unicodeRegex
       ..variants = b.variants ?? a.variants;
 
     if (b.getRawScope() == overwritingNullString) {

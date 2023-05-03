@@ -4,6 +4,7 @@ import 'const/literals.dart';
 import 'domain_regex.dart';
 import 'domain_regexp_match.dart';
 import 'extension/reg_exp.dart';
+import 'language.dart';
 import 'mode.dart';
 
 class RuleOptions {
@@ -18,17 +19,17 @@ class RuleOptions {
 }
 
 class MultiRegex {
-  Map<int, RuleOptions> matchIndexes = {};
-  List<Tuple2<RuleOptions, RegExp>> regexes = [];
+  final Map<int, RuleOptions> matchIndexes = {};
+  final List<Tuple2<RuleOptions, RegExp>> regexes = [];
 
   int matchAt = 1;
   int position = 0;
   int lastIndex = 0;
   DomainRegex matcherRe = DomainRegex(RegExp(''));
-  Mode? language;
+  final Language language;
 
   MultiRegex({
-    this.language,
+    required this.language,
   });
 
   void addRule(RegExp re, RuleOptions opts) {
@@ -81,15 +82,15 @@ class MultiRegex {
 }
 
 class ResumableMultiRegex {
-  List<Tuple2<RuleOptions, RegExp>> rules = [];
-  Map<int, MultiRegex> multiRegexes = {};
+  final List<Tuple2<RuleOptions, RegExp>> rules = [];
+  final Map<int, MultiRegex> multiRegexes = {};
   int count = 0;
   int lastIndex = 0;
   int regexIndex = 0;
-  Mode? language;
+  final Language language;
 
   ResumableMultiRegex({
-    this.language,
+    required this.language,
   });
 
   MultiRegex getMatcher(int index) {
@@ -182,7 +183,7 @@ class ResumableMultiRegex {
   }
 }
 
-RegExp langRe(dynamic value, bool global, Mode? language) {
+RegExp langRe(dynamic value, bool global, Language? language) {
   assert(value is String || value is RegExp);
 
   String source;

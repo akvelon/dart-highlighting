@@ -14,31 +14,33 @@ import 'response.dart';
 import 'result.dart';
 import 'utils.dart';
 
+@internal
 class HighlightV2 {
   final _languages = <String, Language>{};
   final _aliases = {}.cast<String, String>();
   Mode? _languageMode;
 
-  void registerLanguage(Language language, {String? name}) {
-    _languages[name ?? language.id] = language;
+  void registerLanguage(Language language, {String? id}) {
+    _languages[id ?? language.id] = language;
   }
 
   Result parse(
     String text, {
-    required String language,
+    required String languageId,
   }) {
-    return highlight(language, text, true);
+    return highlight(languageId, text, true);
   }
 
+  @internal
   Result highlight(
-    String languageName,
+    String languageId,
     String codeToHighlight,
     bool ignoreIllegals, {
     Mode? continuation,
     bool safeMode = true,
   }) {
     final emitter = Result();
-    final language = _languages[languageName] ?? builtinLanguages[languageName];
+    final language = _languages[languageId] ?? builtinLanguages[languageId];
 
     final md = compileLanguage(language!);
 
@@ -342,7 +344,7 @@ class HighlightV2 {
         modeBuffer += codeToHighlight.substring(match.index, match.index + 1);
         if (!safeMode) {
           throw Exception(
-              '0 width match regex $languageName, rule: ${lastMatch?.rule}');
+              '0 width match regex $languageId, rule: ${lastMatch?.rule}');
         }
 
         return 1;
@@ -401,7 +403,7 @@ class HighlightV2 {
       emitter.closeAllNodes();
       emitter.finalize();
       emitter.relevance = relevance;
-      emitter.language = languageName;
+      emitter.language = languageId;
       emitter.top = top;
       return emitter;
     } on Exception catch (e) {
@@ -469,7 +471,7 @@ class HighlightV2 {
     return 0;
   }
 
-  Mode? _getLanguage(String name) {
+  Language? _getLanguage(String name) {
     return _languages[name] ?? builtinLanguages[name];
   }
 }
