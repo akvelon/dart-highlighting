@@ -1,6 +1,4 @@
-import hljs from "highlight.js";
-
-import { Mode } from "./types.js";
+import hljs, { Mode } from "highlight.js";
 
 // Map of all modes exported from HighlightJS.
 export const commonModes = importCommonModes();

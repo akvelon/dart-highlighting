@@ -5,149 +5,7 @@ import '../src/language_definition_parts.dart';
 final javascript = Language(
   id: "javascript",
   refs: {
-    '~exports~PARAMS_CONTAINS~9': Mode(
-      begin: "\\(",
-      end: "\\)",
-      keywords: {
-        "\$pattern": "[A-Za-z\$_][0-9A-Za-z\$_]*",
-        "keyword": [
-          "as",
-          "in",
-          "of",
-          "if",
-          "for",
-          "while",
-          "finally",
-          "var",
-          "new",
-          "function",
-          "do",
-          "return",
-          "void",
-          "else",
-          "break",
-          "catch",
-          "instanceof",
-          "with",
-          "throw",
-          "case",
-          "default",
-          "try",
-          "switch",
-          "continue",
-          "typeof",
-          "delete",
-          "let",
-          "yield",
-          "const",
-          "class",
-          "debugger",
-          "async",
-          "await",
-          "static",
-          "import",
-          "from",
-          "export",
-          "extends"
-        ],
-        "literal": ["true", "false", "null", "undefined", "NaN", "Infinity"],
-        "built_in": [
-          "setInterval",
-          "setTimeout",
-          "clearInterval",
-          "clearTimeout",
-          "require",
-          "exports",
-          "eval",
-          "isFinite",
-          "isNaN",
-          "parseFloat",
-          "parseInt",
-          "decodeURI",
-          "decodeURIComponent",
-          "encodeURI",
-          "encodeURIComponent",
-          "escape",
-          "unescape",
-          "Object",
-          "Function",
-          "Boolean",
-          "Symbol",
-          "Math",
-          "Date",
-          "Number",
-          "BigInt",
-          "String",
-          "RegExp",
-          "Array",
-          "Float32Array",
-          "Float64Array",
-          "Int8Array",
-          "Uint8Array",
-          "Uint8ClampedArray",
-          "Int16Array",
-          "Int32Array",
-          "Uint16Array",
-          "Uint32Array",
-          "BigInt64Array",
-          "BigUint64Array",
-          "Set",
-          "Map",
-          "WeakSet",
-          "WeakMap",
-          "ArrayBuffer",
-          "SharedArrayBuffer",
-          "Atomics",
-          "DataView",
-          "JSON",
-          "Promise",
-          "Generator",
-          "GeneratorFunction",
-          "AsyncFunction",
-          "Reflect",
-          "Proxy",
-          "Intl",
-          "WebAssembly",
-          "Error",
-          "EvalError",
-          "InternalError",
-          "RangeError",
-          "ReferenceError",
-          "SyntaxError",
-          "TypeError",
-          "URIError"
-        ],
-        "variable.language": [
-          "arguments",
-          "this",
-          "super",
-          "console",
-          "window",
-          "document",
-          "localStorage",
-          "module",
-          "global"
-        ]
-      },
-      contains: [
-        ModeSelfReference(),
-        ModeReference('~exports~PARAMS_CONTAINS~0'),
-        APOS_STRING_MODE,
-        QUOTE_STRING_MODE,
-        ModeReference('~exports~PARAMS_CONTAINS~3'),
-        ModeReference(
-            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
-        ModeReference(
-            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
-        ModeReference(
-            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
-        ModeReference(
-            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
-        ModeReference(
-            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
-      ],
-    ),
-    '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7': Mode(
+    '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~8': Mode(
       begin: "\\{",
       end: "\\}",
       keywords: {
@@ -267,6 +125,7 @@ final javascript = Language(
           "window",
           "document",
           "localStorage",
+          "sessionStorage",
           "module",
           "global"
         ]
@@ -284,9 +143,11 @@ final javascript = Language(
             '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
         ModeReference(
             '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
       ],
     ),
-    '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6': Mode(
+    '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7': Mode(
       className: "number",
       variants: [
         Mode(
@@ -315,10 +176,10 @@ final javascript = Language(
       ],
       relevance: 0,
     ),
-    '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5': Mode(
+    '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6': Mode(
       match: "\\\$\\d+",
     ),
-    '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4': Mode(
+    '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5': Mode(
       className: "string",
       begin: "`",
       end: "`",
@@ -326,6 +187,19 @@ final javascript = Language(
         BACKSLASH_ESCAPE,
         ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1'),
       ],
+    ),
+    '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4': Mode(
+      begin: "gql`",
+      end: "",
+      starts: Mode(
+        end: "`",
+        returnEnd: false,
+        contains: [
+          BACKSLASH_ESCAPE,
+          ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1'),
+        ],
+        subLanguage: ["graphql"],
+      ),
     ),
     '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3': Mode(
       begin: "css`",
@@ -461,6 +335,7 @@ final javascript = Language(
           "window",
           "document",
           "localStorage",
+          "sessionStorage",
           "module",
           "global"
         ]
@@ -479,6 +354,8 @@ final javascript = Language(
             '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
         ModeReference(
             '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~8'),
       ],
     ),
     '~exports~PARAMS_CONTAINS~3': Mode(
@@ -493,6 +370,151 @@ final javascript = Language(
         ],
         subLanguage: ["xml"],
       ),
+    ),
+    '~exports~PARAMS_CONTAINS~10': Mode(
+      begin: "\\(",
+      end: "\\)",
+      keywords: {
+        "\$pattern": "[A-Za-z\$_][0-9A-Za-z\$_]*",
+        "keyword": [
+          "as",
+          "in",
+          "of",
+          "if",
+          "for",
+          "while",
+          "finally",
+          "var",
+          "new",
+          "function",
+          "do",
+          "return",
+          "void",
+          "else",
+          "break",
+          "catch",
+          "instanceof",
+          "with",
+          "throw",
+          "case",
+          "default",
+          "try",
+          "switch",
+          "continue",
+          "typeof",
+          "delete",
+          "let",
+          "yield",
+          "const",
+          "class",
+          "debugger",
+          "async",
+          "await",
+          "static",
+          "import",
+          "from",
+          "export",
+          "extends"
+        ],
+        "literal": ["true", "false", "null", "undefined", "NaN", "Infinity"],
+        "built_in": [
+          "setInterval",
+          "setTimeout",
+          "clearInterval",
+          "clearTimeout",
+          "require",
+          "exports",
+          "eval",
+          "isFinite",
+          "isNaN",
+          "parseFloat",
+          "parseInt",
+          "decodeURI",
+          "decodeURIComponent",
+          "encodeURI",
+          "encodeURIComponent",
+          "escape",
+          "unescape",
+          "Object",
+          "Function",
+          "Boolean",
+          "Symbol",
+          "Math",
+          "Date",
+          "Number",
+          "BigInt",
+          "String",
+          "RegExp",
+          "Array",
+          "Float32Array",
+          "Float64Array",
+          "Int8Array",
+          "Uint8Array",
+          "Uint8ClampedArray",
+          "Int16Array",
+          "Int32Array",
+          "Uint16Array",
+          "Uint32Array",
+          "BigInt64Array",
+          "BigUint64Array",
+          "Set",
+          "Map",
+          "WeakSet",
+          "WeakMap",
+          "ArrayBuffer",
+          "SharedArrayBuffer",
+          "Atomics",
+          "DataView",
+          "JSON",
+          "Promise",
+          "Generator",
+          "GeneratorFunction",
+          "AsyncFunction",
+          "Reflect",
+          "Proxy",
+          "Intl",
+          "WebAssembly",
+          "Error",
+          "EvalError",
+          "InternalError",
+          "RangeError",
+          "ReferenceError",
+          "SyntaxError",
+          "TypeError",
+          "URIError"
+        ],
+        "variable.language": [
+          "arguments",
+          "this",
+          "super",
+          "console",
+          "window",
+          "document",
+          "localStorage",
+          "sessionStorage",
+          "module",
+          "global"
+        ]
+      },
+      contains: [
+        ModeSelfReference(),
+        ModeReference('~exports~PARAMS_CONTAINS~0'),
+        APOS_STRING_MODE,
+        QUOTE_STRING_MODE,
+        ModeReference('~exports~PARAMS_CONTAINS~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~8'),
+      ],
     ),
     '~exports~PARAMS_CONTAINS~0': Mode(
       className: "comment",
@@ -605,7 +627,7 @@ final javascript = Language(
         ]
       },
     ),
-    '~contains~12~contains~0': Mode(
+    '~contains~13~contains~0': Mode(
       className: "params",
       begin: "\\(",
       end: "\\)",
@@ -728,6 +750,7 @@ final javascript = Language(
           "window",
           "document",
           "localStorage",
+          "sessionStorage",
           "module",
           "global"
         ]
@@ -747,11 +770,13 @@ final javascript = Language(
             '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
         ModeReference(
             '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
-        ModeReference('~exports~PARAMS_CONTAINS~9'),
+        ModeReference(
+            '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~8'),
+        ModeReference('~exports~PARAMS_CONTAINS~10'),
       ],
     ),
   },
-  name: "Javascript",
+  name: "JavaScript",
   aliases: ["js", "jsx", "mjs", "cjs"],
   keywords: {
     "\$pattern": "[A-Za-z\$_][0-9A-Za-z\$_]*",
@@ -870,6 +895,7 @@ final javascript = Language(
       "window",
       "document",
       "localStorage",
+      "sessionStorage",
       "module",
       "global"
     ]
@@ -895,11 +921,12 @@ final javascript = Language(
     ModeReference('~exports~PARAMS_CONTAINS~3'),
     ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~3'),
     ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~4'),
+    ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~5'),
     ModeReference('~exports~PARAMS_CONTAINS~0'),
     Mode(
       match: "\\\$\\d+",
     ),
-    ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
+    ModeReference('~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
     ModeReference('~exports~CLASS_REFERENCE'),
     Mode(
       className: "attr",
@@ -919,7 +946,7 @@ final javascript = Language(
       keywords: "async",
       className: {"1": "keyword", "3": "title.function"},
       contains: [
-        ModeReference('~contains~12~contains~0'),
+        ModeReference('~contains~13~contains~0'),
       ],
     ),
     Mode(
@@ -1078,6 +1105,7 @@ final javascript = Language(
                       "window",
                       "document",
                       "localStorage",
+                      "sessionStorage",
                       "module",
                       "global"
                     ]
@@ -1097,7 +1125,9 @@ final javascript = Language(
                         '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~6'),
                     ModeReference(
                         '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~7'),
-                    ModeReference('~exports~PARAMS_CONTAINS~9'),
+                    ModeReference(
+                        '~exports~PARAMS_CONTAINS~3~starts~contains~1~contains~8'),
+                    ModeReference('~exports~PARAMS_CONTAINS~10'),
                   ],
                 ),
               ],
@@ -1159,7 +1189,7 @@ final javascript = Language(
       className: {"1": "keyword", "3": "title.function"},
       label: "func.def",
       contains: [
-        ModeReference('~contains~12~contains~0'),
+        ModeReference('~contains~13~contains~0'),
       ],
       illegal: "%",
     ),
@@ -1172,7 +1202,7 @@ final javascript = Language(
       returnBegin: true,
       label: "func.def",
       contains: [
-        ModeReference('~contains~12~contains~0'),
+        ModeReference('~contains~13~contains~0'),
         Mode(
           scope: "title",
           begin: "[A-Za-z\$_][0-9A-Za-z\$_]*",
@@ -1201,7 +1231,7 @@ final javascript = Language(
       match: ["\\bconstructor(?=\\s*\\()"],
       className: {"1": "title.function"},
       contains: [
-        ModeReference('~contains~12~contains~0'),
+        ModeReference('~contains~13~contains~0'),
       ],
     ),
     Mode(
@@ -1247,7 +1277,7 @@ final javascript = Language(
         Mode(
           begin: "\\(\\)",
         ),
-        ModeReference('~contains~12~contains~0'),
+        ModeReference('~contains~13~contains~0'),
       ],
     ),
     Mode(

@@ -57,12 +57,14 @@ final bash = Language(
       "fi",
       "for",
       "while",
+      "until",
       "in",
       "do",
       "done",
       "case",
       "esac",
-      "function"
+      "function",
+      "select"
     ],
     "literal": ["true", "false"],
     "built_in": [

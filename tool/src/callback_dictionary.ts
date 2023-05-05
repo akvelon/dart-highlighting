@@ -1,9 +1,8 @@
-import hljs from "highlight.js";
+import hljs, { Language, Mode, ModeCallback } from "highlight.js";
 import mathematica from "highlight.js/lib/languages/mathematica";
 import javascript from "highlight.js/lib/languages/javascript";
+import php from "highlight.js/lib/languages/php";
 import _ from "lodash";
-
-import { Mode, ModeCallback } from "./types.js";
 
 const commonCallbacks = new Map<string, string>([
   [hljs.END_SAME_AS_BEGIN({})["on:begin"]!.toString(), "endSameAsBeginOnBegin"],
@@ -12,10 +11,10 @@ const commonCallbacks = new Map<string, string>([
 ]);
 
 class LanguagesCallbackParser {
-  languages: Mode[];
+  languages: Language[];
   entries: Map<string, string>;
 
-  constructor(languages: Mode[]) {
+  constructor(languages: Language[]) {
     this.languages = languages;
     this.entries = new Map<string, string>();
 
@@ -42,13 +41,17 @@ class LanguageCallbackParser {
   visitedModes: Set<Mode>;
   entries: Map<string, string>;
 
-  constructor(language: Mode) {
+  constructor(language: Language) {
     this.language = language;
     this.visitedModes = new Set<Mode>();
     this.entries = new Map<string, string>();
 
-    // TODO: Sort out types in Highlight.js, https://github.com/akvelon/dart-highlighting/issues/50
-    this.iterate(language, `language_${(language as any).name.toLowerCase()}`);
+    // Some languages do not have names: https://github.com/highlightjs/highlight.js/issues/3769
+    // TODO: Use just name when that is fixed.
+    this.iterate(
+      language,
+      `language_${(language.name || "undefined").toLowerCase()}`,
+    );
   }
 
   private iterate(language: Mode, currentName: string): void {
@@ -115,7 +118,11 @@ class LanguageCallbackParser {
 }
 
 export const callbackDictionary = new Map<string, string>([
-  ...new LanguagesCallbackParser([mathematica(hljs), javascript(hljs)]).entries,
+  ...new LanguagesCallbackParser([
+    mathematica(hljs),
+    javascript(hljs),
+    php(hljs),
+  ]).entries,
 
   ...commonCallbacks,
 ]);

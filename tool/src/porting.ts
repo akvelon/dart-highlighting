@@ -1,8 +1,8 @@
+import { Language, Mode } from "highlight.js";
 import _, { PropertyPath } from "lodash";
 
 import { callbackDictionary } from "./callback_dictionary.js";
 import { commonModes } from "./common_modes.js";
-import { Language, Mode } from "./types.js";
 
 export function generateLanguage(
   language: Language,
@@ -182,7 +182,7 @@ function modeEntryCallback(key: string, value: any): MapEntry<string, string> {
     key: key,
     value:
       dartFunctionName === undefined
-        ? `throw Exception(r'''Callback not ported: ${code}''')`
+        ? `throw Exception(r'''Callback not ported: ${code}, add its language to callbackDictionary.''')`
         : dartFunctionName,
   };
 }

@@ -568,7 +568,7 @@ final python = Language(
       "Union"
     ]
   },
-  illegal: "(<\\/|->|\\?)|=>",
+  illegal: "(<\\/|\\?)|=>",
   contains: [
     ModeReference('~contains~0'),
     ModeReference('~contains~1'),

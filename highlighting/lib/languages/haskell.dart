@@ -177,6 +177,17 @@ final haskell = Language(
     ),
     ModeReference('~contains~0~contains~0~contains~0'),
     ModeReference('~contains~0~contains~0~contains~1'),
+    Mode(
+      scope: "string",
+      begin: "'(?=\\\\?.')",
+      end: "'",
+      contains: [
+        Mode(
+          scope: "char.escape",
+          match: "\\\\.",
+        ),
+      ],
+    ),
     QUOTE_STRING_MODE,
     Mode(
       className: "number",

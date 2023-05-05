@@ -795,7 +795,7 @@ final sql = Language(
     ),
     Mode(
       className: "variable",
-      begin: "@[a-z0-9]+",
+      begin: "@[a-z0-9][a-z0-9_]*",
     ),
     Mode(
       className: "string",

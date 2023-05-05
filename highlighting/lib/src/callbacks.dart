@@ -90,3 +90,13 @@ bool hasClosingTag(
   final pos = match.input.indexOf(tag, after);
   return pos != -1;
 }
+
+// php
+// This will change from 'undefined' to 'php' when this is fixed:
+// https://github.com/highlightjs/highlight.js/issues/3769
+void language_undefined_contains_0_contains_0_contains_0_variants_0_onBegin(
+  DomainRegexMatch match,
+  Response response,
+) {
+  response.data[$beginMatch] = match[1] ?? match[2];
+}

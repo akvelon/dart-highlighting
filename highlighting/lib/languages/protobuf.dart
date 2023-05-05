@@ -6,6 +6,7 @@ final protobuf = Language(
   id: "protobuf",
   refs: {},
   name: "Protocol Buffers",
+  aliases: ["proto"],
   keywords: {
     "keyword": [
       "package",

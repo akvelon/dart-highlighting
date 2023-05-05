@@ -291,13 +291,20 @@ final php = Language(
           ],
         ),
         Mode(
-          begin: "<<<[ \\t]*(\\w+)\\n",
+          begin: "<<<[ \\t]*(?:(\\w+)|\"(\\w+)\")\\n",
           end: "[ \\t]*(\\w+)\\b",
           contains: [
             BACKSLASH_ESCAPE,
             ModeReference(
                 '~contains~0~contains~0~contains~4~variants~0~contains~1'),
           ],
+          onBegin:
+              language_undefined_contains_0_contains_0_contains_0_variants_0_onBegin,
+          onEnd: endSameAsBeginOnEnd,
+        ),
+        Mode(
+          begin: "<<<[ \\t]*'(\\w+)'\\n",
+          end: "[ \\t]*(\\w+)\\b",
           onBegin: endSameAsBeginOnBegin,
           onEnd: endSameAsBeginOnEnd,
         ),

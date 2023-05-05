@@ -36,12 +36,12 @@ final http = Language(
   illegal: "\\S",
   contains: [
     Mode(
-      begin: "^(?=HTTP/(2|1\\.[01]) \\d{3})",
+      begin: "^(?=HTTP/([32]|1\\.[01]) \\d{3})",
       end: "\$",
       contains: [
         Mode(
           className: "meta",
-          begin: "HTTP/(2|1\\.[01])",
+          begin: "HTTP/([32]|1\\.[01])",
         ),
         Mode(
           className: "number",
@@ -58,7 +58,7 @@ final http = Language(
       ),
     ),
     Mode(
-      begin: "(?=^[A-Z]+ (.*?) HTTP/(2|1\\.[01])\$)",
+      begin: "(?=^[A-Z]+ (.*?) HTTP/([32]|1\\.[01])\$)",
       end: "\$",
       contains: [
         Mode(
@@ -70,7 +70,7 @@ final http = Language(
         ),
         Mode(
           className: "meta",
-          begin: "HTTP/(2|1\\.[01])",
+          begin: "HTTP/([32]|1\\.[01])",
         ),
         Mode(
           className: "keyword",
