@@ -1,12 +1,14 @@
-# 0.9.0+11.7.0
+# 0.9.0+11.8.0
 
 * **BREAKING:** Requires Dart 2.17+.
 * **BREAKING:** `Language` class introduced for languages,
   `Mode` is now only used for in-language rules.
+  Many properties are moved from `Mode` to `Language`.
 * **BREAKING:** `registerLanguage()` now accepts a single positional parameter of `Language`.
   `name` is now optional and named, `Language.id` is used by default.
 * **BREAKING:** `Mode.ref` is deleted, `ModeReference` class is introduced instead.
 * **BREAKING:** `Mode.self` is deleted, `ModeSelfReference` class is introduced instead.
+* Upgraded to HighlightJS 11.8.0.
 * `Language.id` is added.
 
 # 0.8.1+11.7.0

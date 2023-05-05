@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_highlighting/flutter_highlighting.dart';
 import 'package:flutter_highlighting/theme_map.dart';
 import 'package:highlighting/languages/all.dart';
+import 'package:highlighting/languages/dart.dart';
 
 import 'example_map.dart';
 
@@ -26,7 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String language = 'dart';
+  String languageId = dart.id;
   String theme = 'a11y-dark';
   TextEditingController controller = TextEditingController();
 
@@ -52,19 +53,19 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               icon: Icon(Icons.format_color_text)),
           PopupMenuButton<String>(
-            child: _buildMenuContent(language),
+            child: _buildMenuContent(languageId),
             itemBuilder: (context) {
               return builtinLanguages.keys.map((key) {
                 return CheckedPopupMenuItem(
                   value: key,
                   child: Text(key),
-                  checked: language == key,
+                  checked: languageId == key,
                 );
               }).toList();
             },
             onSelected: (selected) {
               setState(() {
-                language = selected;
+                languageId = selected;
                 controller.value = TextEditingValue.empty;
               });
             },
@@ -100,9 +101,9 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             HighlightView(
               controller.text.isEmpty
-                  ? exampleMap[language] ?? ''
+                  ? exampleMap[languageId] ?? ''
                   : controller.text,
-              language: language,
+              languageId: languageId,
               theme: themeMap[theme]!,
               padding: EdgeInsets.all(12),
               textStyle: TextStyle(

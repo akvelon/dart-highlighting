@@ -11,12 +11,12 @@ class HighlightView extends StatelessWidget {
   ///
   /// It is recommended to give it a value for performance
   ///
-  /// [All available languages](https://github.com/pd4d10/highlight/tree/master/highlight/lib/languages)
-  final String? language;
+  /// [All available languages](https://github.com/akvelon/dart-highlighting/tree/main/highlighting/lib/languages)
+  final String? languageId;
 
   /// Highlight theme
   ///
-  /// [All available themes](https://github.com/pd4d10/highlight/blob/master/flutter_highlight/lib/themes)
+  /// [All available themes](https://github.com/akvelon/dart-highlighting/tree/main/flutter_highlighting/lib/themes)
   final Map<String, TextStyle> theme;
 
   /// Padding
@@ -29,7 +29,7 @@ class HighlightView extends StatelessWidget {
 
   HighlightView(
     String input, {
-    this.language,
+    this.languageId,
     this.theme = const {},
     this.padding,
     this.textStyle,
@@ -94,7 +94,8 @@ class HighlightView extends StatelessWidget {
         text: TextSpan(
           style: _textStyle,
           children: _convert(
-              highlight.highlight(language ?? '', source, true).nodes ?? []),
+            highlight.highlight(languageId ?? '', source, true).nodes ?? [],
+          ),
         ),
       ),
     );

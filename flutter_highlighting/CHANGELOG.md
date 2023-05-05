@@ -1,6 +1,11 @@
+# 0.9.0+11.8.0
+
+* **BREAKING:** Support and require `highlighting` v0.9.0+11.8.0.
+* **BREAKING:** Renamed `language` to `languageId` in `HighlightView` widget.
+
 # 0.8.1+11.7.0
 
-* Support and require `highlighting` v0.8.1+11.7.0.
+* **BREAKING:** Support and require `highlighting` v0.8.1+11.7.0.
 
 # 0.8.0
 
