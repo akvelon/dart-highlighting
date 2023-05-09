@@ -2,15 +2,15 @@ import 'package:tuple/tuple.dart';
 
 import 'compiled_scope.dart';
 import 'const/literals.dart';
-import 'domain_regex.dart';
+import 'js_style_reg_exp.dart';
 import 'mode.dart';
 import 'multi_regex.dart';
 
 class CompiledMode {
-  /// DomainRegExp | String
+  /// JsStyleRegExp | String
   dynamic begin;
 
-  /// DomainRegExp | String
+  /// JsStyleRegExp | String
   dynamic end;
 
   String? scope;
@@ -20,10 +20,10 @@ class CompiledMode {
 
   Map<String, dynamic>? data = {};
   String? terminatorEnd;
-  DomainRegex? keywordPatternRe;
-  DomainRegex? beginRe;
-  DomainRegex? endRe;
-  DomainRegex? illegalRe;
+  JsStyleRegExp? keywordPatternRe;
+  JsStyleRegExp? beginRe;
+  JsStyleRegExp? endRe;
+  JsStyleRegExp? illegalRe;
   ResumableMultiRegex? matcher;
   bool isCompiled = true;
   CompiledMode? starts;
@@ -35,10 +35,10 @@ class CompiledMode {
 
   factory CompiledMode.fromMode(Mode mode) {
     final compiled = CompiledMode();
-    if (mode.begin is String || mode.begin is DomainRegex) {
+    if (mode.begin is String || mode.begin is JsStyleRegExp) {
       compiled.begin = mode.begin;
     }
-    if (mode.end is String || mode.end is DomainRegex) {
+    if (mode.end is String || mode.end is JsStyleRegExp) {
       compiled.end = mode.end;
     }
 
@@ -54,22 +54,22 @@ class CompiledMode {
     compiled.keywords = mode.keywords;
     compiled.data = mode.data;
     if (mode.terminator_end != null) {
-      compiled.terminatorEnd = mode.terminator_end!;
+      compiled.terminatorEnd = mode.terminator_end;
     }
     if (mode.keywordPatternRe != null) {
-      compiled.keywordPatternRe = mode.keywordPatternRe!;
+      compiled.keywordPatternRe = mode.keywordPatternRe;
     }
     if (mode.beginRe != null) {
-      compiled.beginRe = DomainRegex(mode.beginRe!);
+      compiled.beginRe = JsStyleRegExp(mode.beginRe!);
     }
     if (mode.endRe != null) {
-      compiled.endRe = DomainRegex(mode.endRe!);
+      compiled.endRe = JsStyleRegExp(mode.endRe!);
     }
     if (mode.illegalRe != null) {
-      compiled.illegalRe = DomainRegex(mode.illegalRe!);
+      compiled.illegalRe = JsStyleRegExp(mode.illegalRe!);
     }
     if (mode.matcher != null) {
-      compiled.matcher = mode.matcher!;
+      compiled.matcher = mode.matcher;
     }
     if (mode.starts != null) {
       compiled.starts = CompiledMode.fromMode(mode.starts!);

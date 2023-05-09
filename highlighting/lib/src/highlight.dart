@@ -1,12 +1,12 @@
 import 'package:collection/collection.dart';
-import 'package:highlighting/languages/all.dart';
-import 'package:highlighting/languages/plaintext.dart';
 import 'package:meta/meta.dart';
 import 'package:tuple/tuple.dart';
 
+import '../languages/all.dart';
+import '../languages/plaintext.dart';
 import 'const/literals.dart';
 import 'const/magic_numbers.dart';
-import 'domain_regexp_match.dart';
+import 'js_style_reg_exp_match.dart';
 import 'language.dart';
 import 'mode.dart';
 import 'mode_compiler.dart';
@@ -14,11 +14,8 @@ import 'response.dart';
 import 'result.dart';
 import 'utils.dart';
 
-@internal
-class HighlightV2 {
+class Highlight {
   final _languages = <String, Language>{};
-  final _aliases = {}.cast<String, String>();
-  Mode? _languageMode;
 
   void registerLanguage(Language language, {String? id}) {
     _languages[id ?? language.id] = language;
@@ -72,7 +69,7 @@ class HighlightV2 {
     /// `$type: MatchType ('begin', 'end', 'illegal')`,
     /// `$index: int`,
     /// `$rule`: Mode
-    DomainRegexMatch? lastMatch;
+    JsStyleRegExpMatch? lastMatch;
 
     var keywordHits = Map<String, dynamic>();
 
@@ -162,7 +159,7 @@ class HighlightV2 {
       modeBuffer = '';
     }
 
-    void emitMultiClass(Map scope, DomainRegexMatch match) {
+    void emitMultiClass(Map scope, JsStyleRegExpMatch match) {
       var i = 1;
       final max = match.length - 1;
       while (i <= max) {
@@ -185,7 +182,7 @@ class HighlightV2 {
       }
     }
 
-    Mode startNewMode(Mode mode, DomainRegexMatch match) {
+    Mode startNewMode(Mode mode, JsStyleRegExpMatch match) {
       if (mode.scope != null && mode.scope is String) {
         emitter.openNode(language.classNameAliases[mode.scope] ?? mode.scope);
       }
@@ -211,7 +208,10 @@ class HighlightV2 {
     }
 
     Mode? endOfMode(
-        Mode mode, DomainRegexMatch match, String matchPlusRemainder) {
+      Mode mode,
+      JsStyleRegExpMatch match,
+      String matchPlusRemainder,
+    ) {
       var matched = false;
 
       if (mode.endRe != null) {
@@ -253,7 +253,7 @@ class HighlightV2 {
       }
     }
 
-    int doBeginMatch(DomainRegexMatch match) {
+    int doBeginMatch(JsStyleRegExpMatch match) {
       final lexeme = match[0];
       final newMode = match.rule!;
 
@@ -283,7 +283,7 @@ class HighlightV2 {
       return newMode.returnBegin == true ? 0 : lexeme!.length;
     }
 
-    int doEndMatch(DomainRegexMatch match) {
+    int doEndMatch(JsStyleRegExpMatch match) {
       final lexeme = match[0];
       final matchPlusRemainder = substring(codeToHighlight, match.index);
 
@@ -327,7 +327,7 @@ class HighlightV2 {
       return origin.returnEnd == true ? 0 : lexeme!.length;
     }
 
-    int processLexeme(String textBeforeMatch, DomainRegexMatch? match) {
+    int processLexeme(String textBeforeMatch, JsStyleRegExpMatch? match) {
       dynamic lexeme = match != null ? match[0] : null;
 
       modeBuffer += textBeforeMatch;

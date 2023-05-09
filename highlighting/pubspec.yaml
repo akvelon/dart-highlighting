@@ -1,6 +1,6 @@
 name: highlighting
 description: Syntax highlighting for Dart with lots of languages and themes support.
-version: 0.9.0+11.8.0
+version: 0.9.1+11.8.0
 homepage: https://github.com/akvelon/dart-highlighting
 
 environment:
@@ -13,6 +13,6 @@ dependencies:
   tuple: ^2.0.1
 
 dev_dependencies:
-  pedantic: ^1.11.0
-  test: ^1.16.5
   path: ^1.8.0
+  test: ^1.16.5
+  total_lints: ^2.19.0

@@ -1,25 +1,25 @@
-import 'package:highlighting/src/domain_regexp_match.dart';
-import 'package:highlighting/src/response.dart';
-
 import 'const/literals.dart';
-import 'languages/mathematica_symbols.dart';
+import 'js_style_reg_exp_match.dart';
+import 'languages/mathematica_symbols.g.dart';
+import 'response.dart';
 
-void endSameAsBeginOnBegin(DomainRegexMatch match, Response response) {
+void endSameAsBeginOnBegin(JsStyleRegExpMatch match, Response response) {
   response.data[$beginMatch] = match[1];
 }
 
-void endSameAsBeginOnEnd(DomainRegexMatch match, Response response) {
+void endSameAsBeginOnEnd(JsStyleRegExpMatch match, Response response) {
   if (response.data[$beginMatch] != match[1]) {
     response.ignoreMatch();
   }
 }
 
-void shebangOnBegin(DomainRegexMatch m, Response resp) {
+void shebangOnBegin(JsStyleRegExpMatch m, Response resp) {
   if (m.index != 0) resp.ignoreMatch();
 }
 
+// ignore: non_constant_identifier_names
 void language_mathematica_contains_0_variants_0_onBegin(
-  DomainRegexMatch m,
+  JsStyleRegExpMatch m,
   Response resp,
 ) {
   if (!SYSTEM_SYMBOLS.contains(m[0])) {
@@ -27,8 +27,9 @@ void language_mathematica_contains_0_variants_0_onBegin(
   }
 }
 
+// ignore: non_constant_identifier_names
 void language_javascript_contains_0_contains_0_variants_0_onBegin(
-  DomainRegexMatch match,
+  JsStyleRegExpMatch match,
   Response response,
 ) {
   final afterMatchIndex = match[0]!.length + match.index;
@@ -83,7 +84,7 @@ void language_javascript_contains_0_contains_0_variants_0_onBegin(
 }
 
 bool hasClosingTag(
-  DomainRegexMatch match, {
+  JsStyleRegExpMatch match, {
   required int after,
 }) {
   final tag = "</" + match[0]!.substring(1);
@@ -94,8 +95,9 @@ bool hasClosingTag(
 // php
 // This will change from 'undefined' to 'php' when this is fixed:
 // https://github.com/highlightjs/highlight.js/issues/3769
+// ignore: non_constant_identifier_names
 void language_undefined_contains_0_contains_0_contains_0_variants_0_onBegin(
-  DomainRegexMatch match,
+  JsStyleRegExpMatch match,
   Response response,
 ) {
   response.data[$beginMatch] = match[1] ?? match[2];

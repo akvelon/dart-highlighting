@@ -1,10 +1,10 @@
 import 'compile_keywords.dart';
 import 'const/literals.dart';
-import 'domain_regex.dart';
 import 'extension/before_match.dart';
 import 'extension/compiler_extensions.dart';
 import 'extension/multi_class.dart';
 import 'extension/reg_exp.dart';
+import 'js_style_reg_exp.dart';
 import 'language.dart';
 import 'mode.dart';
 import 'multi_regex.dart';
@@ -96,7 +96,7 @@ Mode compileMode(
     );
   }
 
-  mode.keywordPatternRe = DomainRegex(
+  mode.keywordPatternRe = JsStyleRegExp(
     langRe(keywordPattern, true, language),
     global: true,
   );

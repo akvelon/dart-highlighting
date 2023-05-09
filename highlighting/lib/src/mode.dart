@@ -1,9 +1,8 @@
-import 'package:highlighting/src/response.dart';
-
-import 'domain_regex.dart';
-import 'domain_regexp_match.dart';
-import 'nulls.dart';
+import 'js_style_reg_exp.dart';
+import 'js_style_reg_exp_match.dart';
 import 'multi_regex.dart';
+import 'nulls.dart';
+import 'response.dart';
 
 /// A superset of a language and its detectable rules.
 class Mode {
@@ -91,12 +90,12 @@ class Mode {
 
   bool isCompiled = false;
 
-  DomainRegex? keywordPatternRe;
+  JsStyleRegExp? keywordPatternRe;
 
   ResumableMultiRegex? matcher;
 
-  void Function(DomainRegexMatch mode, Response response)? onBegin;
-  void Function(DomainRegexMatch mode, Response response)? onEnd;
+  void Function(JsStyleRegExpMatch mode, Response response)? onBegin;
+  void Function(JsStyleRegExpMatch mode, Response response)? onEnd;
 
   Mode({
     this.subLanguage = const [],

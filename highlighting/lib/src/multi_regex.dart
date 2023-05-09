@@ -1,9 +1,9 @@
 import 'package:tuple/tuple.dart';
 
 import 'const/literals.dart';
-import 'domain_regex.dart';
-import 'domain_regexp_match.dart';
 import 'extension/reg_exp.dart';
+import 'js_style_reg_exp.dart';
+import 'js_style_reg_exp_match.dart';
 import 'language.dart';
 import 'mode.dart';
 
@@ -25,7 +25,7 @@ class MultiRegex {
   int matchAt = 1;
   int position = 0;
   int lastIndex = 0;
-  DomainRegex matcherRe = DomainRegex(RegExp(''));
+  JsStyleRegExp matcherRe = JsStyleRegExp(RegExp(''));
   final Language language;
 
   MultiRegex({
@@ -41,7 +41,7 @@ class MultiRegex {
 
   void compile() {
     final terminators = regexes.map((el) => el.item2).toList();
-    matcherRe = DomainRegex(
+    matcherRe = JsStyleRegExp(
       langRe(
         rewriteBackReferences(terminators, joinWith: '|'),
         true,
@@ -52,7 +52,7 @@ class MultiRegex {
     lastIndex = 0;
   }
 
-  DomainRegexMatch? exec(String string) {
+  JsStyleRegExpMatch? exec(String string) {
     if (regexes.isEmpty) return null;
 
     // final input = string.substring(lastIndex);
@@ -122,7 +122,7 @@ class ResumableMultiRegex {
     }
   }
 
-  DomainRegexMatch? exec(String s) {
+  JsStyleRegExpMatch? exec(String s) {
     final m = getMatcher(regexIndex);
     m.lastIndex = lastIndex;
     var result = m.exec(s);

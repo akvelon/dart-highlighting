@@ -1,10 +1,11 @@
 import 'package:collection/collection.dart';
 
-import 'domain_regexp_match.dart';
 import 'extension/reg_exp.dart';
+import 'js_style_reg_exp_match.dart';
 import 'utils.dart';
 
-class DomainRegex {
+/// A regular expression that is optionally stateful if [global] is true.
+class JsStyleRegExp {
   int lastIndex = 0;
   final RegExp regex;
 
@@ -13,14 +14,12 @@ class DomainRegex {
   /// and the next calls of the exec will be performed on input starting from the lastIndex.
   final bool global;
 
-  DomainRegex(
+  JsStyleRegExp(
     RegExp regex, {
     this.global = false,
   }) : regex = surroundGroupIfNeeded(regex);
 
-  DomainRegexMatch? exec(String input) {
-    var cutInput = substring(input, lastIndex);
-
+  JsStyleRegExpMatch? exec(String input) {
     final match = regex.allMatches(input, lastIndex).firstOrNull;
     if (match == null) {
       lastIndex = 0;
@@ -31,7 +30,7 @@ class DomainRegex {
 
     lastIndex = match.end;
 
-    return DomainRegexMatch(
+    return JsStyleRegExpMatch(
       match: match,
       input: input,
       executedRegex: regex,

@@ -82,11 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
               }).toList();
             },
             onSelected: (selected) {
-              if (selected != null) {
-                setState(() {
-                  theme = selected;
-                });
-              }
+              setState(() {
+                theme = selected;
+              });
             },
           ),
         ],

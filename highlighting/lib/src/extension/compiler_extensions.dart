@@ -1,15 +1,14 @@
-import '../domain_regexp_match.dart';
+import '../js_style_reg_exp_match.dart';
 import '../mode.dart';
-import '../nulls.dart';
 import '../response.dart';
 import 'reg_exp.dart';
 
-void skipIfHasPrecedingDot(DomainRegexMatch match, Response response) {
+void skipIfHasPrecedingDot(JsStyleRegExpMatch match, Response response) {
   if (match.index == 0) {
     return;
   }
   final before = match.input[match.index - 1];
-  if (before == ".") {
+  if (before == '.') {
     response.ignoreMatch();
   }
 }
@@ -50,7 +49,7 @@ void compileIllegal(Mode mode, [Mode? parent]) {
   mode.illegal = either(illegal);
 }
 
-void compileMatch(Mode mode, [Mode? _parent]) {
+void compileMatch(Mode mode, [Mode? parent]) {
   if (mode.match == null) return;
   if (mode.begin != null || mode.end != null) {
     throw Exception('begin & end are not supported with match');

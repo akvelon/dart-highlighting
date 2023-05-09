@@ -1,6 +1,6 @@
 import 'mode.dart';
 
-class DomainRegexMatch {
+class JsStyleRegExpMatch {
   final RegExp executedRegex;
   final RegExpMatch match;
   final String input;
@@ -12,7 +12,7 @@ class DomainRegexMatch {
   /// 'begin' | 'end' | 'illegal' -> see constants
   String? matchType;
 
-  DomainRegexMatch({
+  JsStyleRegExpMatch({
     required this.match,
     required this.input,
     required this.executedRegex,

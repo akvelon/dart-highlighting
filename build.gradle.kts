@@ -17,7 +17,8 @@ tasks.register("portLanguages") {
             args(
                 "format",
                 "highlighting/lib/languages",
-                "highlighting/lib/src/common_modes.dart",
+                "highlighting/lib/src/common_modes.g.dart",
+                "highlighting/lib/src/languages/mathematica_symbols.g.dart",
             )
         }
     }

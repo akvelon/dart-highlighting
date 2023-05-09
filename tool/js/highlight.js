@@ -4,7 +4,7 @@ import hljs from "highlight.js"; // TODO: Do not register languages
 import _ from "lodash";
 import path from "path";
 
-import { NOTICE_COMMENT } from "./common.js";
+import { IGNORE_FOR_FILE_COMMENT, NOTICE_COMMENT } from "./common.js";
 import { commonModes } from "./common_modes.js";
 import { generateLanguage, generateMode, getCircularJsonTokens, getLodashGetKey } from './porting.js';
 
@@ -19,7 +19,13 @@ const dir = "../node_modules/highlight.js/lib/languages";
  * highlighting/src/common_modes.dart
  */
 export function portCommonModes() {
-  let common = `${NOTICE_COMMENT}import 'mode.dart';`;
+  let common = `
+    ${NOTICE_COMMENT}
+    ${IGNORE_FOR_FILE_COMMENT}
+    // ignore_for_file: non_constant_identifier_names
+
+    import 'mode.dart';`;
+
   commonModes.forEach((value, key) => {
     const nonCircularObj = getNonCircularObject(value, key);
 
@@ -28,7 +34,7 @@ export function portCommonModes() {
   });
 
   fs.writeFileSync(
-    `../../highlighting/lib/src/common_modes.dart`,
+    `../../highlighting/lib/src/common_modes.g.dart`,
     common.replace(/\$/g, "\\$")
   );
 }
@@ -86,7 +92,8 @@ export function portAllModes() {
       fs.writeFileSync(
         `../../highlighting/lib/languages/${originalLang}.dart`,
         `${NOTICE_COMMENT}
-        import '../src/language_definition_parts.dart';
+        ${IGNORE_FOR_FILE_COMMENT}
+        import '../src/language_definition_common.dart';
 
         final ${lang}=${data};`
           .replace(/"hljs\.(.*?)"/g, "$1")

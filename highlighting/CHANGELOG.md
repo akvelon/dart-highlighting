@@ -1,3 +1,11 @@
+# 0.9.1+11.8.0
+
+* Using [total_lints](https://pub.dev/packages/total_lints).
+* Fixed some linter issues.
+* Renamed `DomainRegex` to `JsStyleRegExp`.
+* Renamed `DomainRegexMatch` to `JsStyleRegExpMatch`.
+* Renamed `HighlightV2` to `Highlight`.
+
 # 0.9.0+11.8.0
 
 * **BREAKING:** Requires Dart 2.17+.

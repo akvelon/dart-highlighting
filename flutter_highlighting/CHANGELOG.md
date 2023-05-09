@@ -1,3 +1,8 @@
+# 0.9.1+11.8.0
+
+* Using [total_lints](https://pub.dev/packages/total_lints).
+* Fixed some linter issues.
+
 # 0.9.0+11.8.0
 
 * **BREAKING:** Support and require `highlighting` v0.9.0+11.8.0.
