@@ -15,7 +15,7 @@ const kimbieLightTheme = {
   'tag': TextStyle(color: Color(0xffdc3958)),
   'template-variable': TextStyle(color: Color(0xffdc3958)),
   'variable': TextStyle(color: Color(0xffdc3958)),
-  'builtin': TextStyle(color: Color(0xfff79a32)),
+  'built_in': TextStyle(color: Color(0xfff79a32)),
   'deletion': TextStyle(color: Color(0xfff79a32)),
   'link': TextStyle(color: Color(0xfff79a32)),
   'literal': TextStyle(color: Color(0xfff79a32)),

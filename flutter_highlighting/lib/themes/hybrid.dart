@@ -33,7 +33,7 @@ const hybridTheme = {
   'template-tag': TextStyle(color: Color(0xff8abeb7)),
   'template-variable': TextStyle(color: Color(0xff8abeb7)),
   'variable': TextStyle(color: Color(0xff8abeb7)),
-  'builtin': TextStyle(color: Color(0xffde935f)),
+  'built_in': TextStyle(color: Color(0xffde935f)),
   'quote': TextStyle(color: Color(0xffde935f)),
   'section': TextStyle(color: Color(0xffde935f)),
   'selector-class': TextStyle(color: Color(0xffde935f)),

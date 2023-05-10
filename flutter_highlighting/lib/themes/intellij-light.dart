@@ -13,7 +13,7 @@ const intellijLightTheme = {
   'quote': TextStyle(color: Color(0xff8c8c8c), fontStyle: FontStyle.italic),
   'meta': TextStyle(color: Color(0xff9e880d)),
   'section': TextStyle(color: Color(0xff871094)),
-  'builtin': TextStyle(color: Color(0xff0033b3)),
+  'built_in': TextStyle(color: Color(0xff0033b3)),
   'keyword': TextStyle(color: Color(0xff0033b3)),
   'literal': TextStyle(color: Color(0xff0033b3)),
   'name': TextStyle(color: Color(0xff0033b3)),

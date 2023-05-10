@@ -13,7 +13,7 @@ const tomorrowNightBrightTheme = {
   'tag': TextStyle(color: Color(0xffd54e53)),
   'template-variable': TextStyle(color: Color(0xffd54e53)),
   'variable': TextStyle(color: Color(0xffd54e53)),
-  'builtin': TextStyle(color: Color(0xffe78c45)),
+  'built_in': TextStyle(color: Color(0xffe78c45)),
   'link': TextStyle(color: Color(0xffe78c45)),
   'literal': TextStyle(color: Color(0xffe78c45)),
   'meta': TextStyle(color: Color(0xffe78c45)),

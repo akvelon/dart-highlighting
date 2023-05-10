@@ -37,7 +37,7 @@ const pandaSyntaxDarkTheme = {
   'title.class': TextStyle(color: Color(0xff19f9d8)),
   'title.class.inherited': TextStyle(color: Color(0xff19f9d8)),
   'attribute': TextStyle(color: Color(0xffffb86c)),
-  'builtin': TextStyle(color: Color(0xffffb86c)),
+  'built_in': TextStyle(color: Color(0xffffb86c)),
   'doctag': TextStyle(color: Color(0xffffb86c)),
   'link': TextStyle(color: Color(0xffffb86c)),
   'literal': TextStyle(color: Color(0xffffb86c)),

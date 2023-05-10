@@ -18,7 +18,7 @@ const rainbowTheme = {
   'doctag': TextStyle(color: Color(0xff8abeb7)),
   'regexp': TextStyle(color: Color(0xff8abeb7)),
   'string': TextStyle(color: Color(0xff8abeb7)),
-  'builtin': TextStyle(color: Color(0xffb5bd68)),
+  'built_in': TextStyle(color: Color(0xffb5bd68)),
   'name': TextStyle(color: Color(0xffb5bd68), fontWeight: FontWeight.w700),
   'section': TextStyle(color: Color(0xffb5bd68), fontWeight: FontWeight.w700),
   'title': TextStyle(color: Color(0xffb5bd68)),

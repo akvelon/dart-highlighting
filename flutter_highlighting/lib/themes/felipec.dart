@@ -32,7 +32,7 @@ const felipecTheme = {
   'property': TextStyle(color: Color(0xff8fefbf)),
   'name': TextStyle(color: Color(0xff8fefef)),
   'selector-tag': TextStyle(color: Color(0xff8fefef)),
-  'builtin': TextStyle(color: Color(0xff8fbfef)),
+  'built_in': TextStyle(color: Color(0xff8fbfef)),
   'keyword': TextStyle(color: Color(0xff8fbfef)),
   'bullet': TextStyle(color: Color(0xff8f8fef)),
   'section': TextStyle(color: Color(0xff8f8fef)),

@@ -25,7 +25,7 @@ const googlecodeTheme = {
   'number': TextStyle(color: Color(0xff006666)),
   'symbol': TextStyle(color: Color(0xff006666)),
   'attr': TextStyle(color: Color(0xff660066)),
-  'builtin': TextStyle(color: Color(0xff660066)),
+  'built_in': TextStyle(color: Color(0xff660066)),
   'doctag': TextStyle(color: Color(0xff660066), fontWeight: FontWeight.w700),
   'params': TextStyle(color: Color(0xff660066)),
   'type': TextStyle(color: Color(0xff660066)),

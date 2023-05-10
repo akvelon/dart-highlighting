@@ -27,7 +27,7 @@ const githubTheme = {
   'variable': TextStyle(color: Color(0xff005cc5)),
   'regexp': TextStyle(color: Color(0xff032f62)),
   'string': TextStyle(color: Color(0xff032f62)),
-  'builtin': TextStyle(color: Color(0xffe36209)),
+  'built_in': TextStyle(color: Color(0xffe36209)),
   'symbol': TextStyle(color: Color(0xffe36209)),
   'code': TextStyle(color: Color(0xff6a737d)),
   'comment': TextStyle(color: Color(0xff6a737d)),

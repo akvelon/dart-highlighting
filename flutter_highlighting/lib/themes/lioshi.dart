@@ -15,7 +15,7 @@ const lioshiTheme = {
   'tag': TextStyle(color: Color(0xffcc6666)),
   'template-variable': TextStyle(color: Color(0xffcc6666)),
   'variable': TextStyle(color: Color(0xffcc6666)),
-  'builtin': TextStyle(color: Color(0xffde935f)),
+  'built_in': TextStyle(color: Color(0xffde935f)),
   'literal': TextStyle(color: Color(0xffde935f)),
   'number': TextStyle(color: Color(0xffde935f)),
   'type': TextStyle(color: Color(0xffde935f)),

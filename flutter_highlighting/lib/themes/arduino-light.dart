@@ -12,7 +12,7 @@ const arduinoLightTheme = {
   'name': TextStyle(color: Color(0xff00979d)),
   'selector-tag': TextStyle(color: Color(0xff00979d)),
   'addition': TextStyle(color: Color(0xffd35400)),
-  'builtin': TextStyle(color: Color(0xffd35400)),
+  'built_in': TextStyle(color: Color(0xffd35400)),
   'bullet': TextStyle(color: Color(0xffd35400)),
   'code': TextStyle(color: Color(0xffd35400)),
   'literal': TextStyle(color: Color(0xffd35400)),

@@ -23,7 +23,7 @@ const tokyoNightDarkTheme = {
   'type': TextStyle(color: Color(0xffff9e64)),
   'variable': TextStyle(color: Color(0xffff9e64)),
   'attribute': TextStyle(color: Color(0xffe0af68)),
-  'builtin': TextStyle(color: Color(0xffe0af68)),
+  'built_in': TextStyle(color: Color(0xffe0af68)),
   'keyword': TextStyle(color: Color(0xffbb9af7)),
   'property': TextStyle(color: Color(0xff7dcfff)),
   'subst': TextStyle(color: Color(0xff7dcfff)),

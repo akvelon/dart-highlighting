@@ -27,7 +27,7 @@ const githubDarkDimmedTheme = {
   'variable': TextStyle(color: Color(0xff6cb6ff)),
   'regexp': TextStyle(color: Color(0xff96d0ff)),
   'string': TextStyle(color: Color(0xff96d0ff)),
-  'builtin': TextStyle(color: Color(0xfff69d50)),
+  'built_in': TextStyle(color: Color(0xfff69d50)),
   'symbol': TextStyle(color: Color(0xfff69d50)),
   'code': TextStyle(color: Color(0xff768390)),
   'comment': TextStyle(color: Color(0xff768390)),

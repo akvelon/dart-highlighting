@@ -7,7 +7,7 @@ const nnfxDarkTheme = {
       TextStyle(backgroundColor: Color(0xff333333), color: Color(0xffffffff)),
   'comment': TextStyle(fontStyle: FontStyle.italic, color: Color(0xff99cc66)),
   'quote': TextStyle(fontStyle: FontStyle.italic, color: Color(0xff99cc66)),
-  'builtin': TextStyle(color: Color(0xffaa77aa)),
+  'built_in': TextStyle(color: Color(0xffaa77aa)),
   'keyword': TextStyle(color: Color(0xffaa77aa)),
   'name': TextStyle(color: Color(0xffaa77aa), fontWeight: FontWeight.w700),
   'attr': TextStyle(fontWeight: FontWeight.w700, color: Color(0xffffffff)),

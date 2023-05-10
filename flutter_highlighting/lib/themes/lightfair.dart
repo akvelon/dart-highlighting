@@ -32,7 +32,7 @@ const lightfairTheme = {
   'variable': TextStyle(color: Color(0xffbc6060)),
   'literal': TextStyle(color: Color(0xff62bcbc)),
   'addition': TextStyle(color: Color(0xff25c6c6)),
-  'builtin': TextStyle(color: Color(0xff25c6c6)),
+  'built_in': TextStyle(color: Color(0xff25c6c6)),
   'bullet': TextStyle(color: Color(0xff25c6c6)),
   'code': TextStyle(color: Color(0xff25c6c6)),
   'emphasis': TextStyle(fontStyle: FontStyle.italic),

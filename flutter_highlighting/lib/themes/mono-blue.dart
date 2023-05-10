@@ -14,7 +14,7 @@ const monoBlueTheme = {
   'title': TextStyle(fontWeight: FontWeight.w700, color: Color(0xff0048ab)),
   'comment': TextStyle(color: Color(0xff738191)),
   'addition': TextStyle(color: Color(0xff0048ab)),
-  'builtin': TextStyle(color: Color(0xff0048ab)),
+  'built_in': TextStyle(color: Color(0xff0048ab)),
   'literal': TextStyle(color: Color(0xff0048ab)),
   'quote': TextStyle(color: Color(0xff0048ab)),
   'selector-class': TextStyle(color: Color(0xff0048ab)),

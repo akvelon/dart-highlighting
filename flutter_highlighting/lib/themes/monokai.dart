@@ -18,7 +18,7 @@ const monokaiTheme = {
   'regexp': TextStyle(color: Color(0xffbf79db)),
   'symbol': TextStyle(color: Color(0xffbf79db)),
   'addition': TextStyle(color: Color(0xffa6e22e)),
-  'builtin': TextStyle(color: Color(0xffa6e22e)),
+  'built_in': TextStyle(color: Color(0xffa6e22e)),
   'bullet': TextStyle(color: Color(0xffa6e22e)),
   'emphasis': TextStyle(color: Color(0xffa6e22e)),
   'section': TextStyle(color: Color(0xffa6e22e), fontWeight: FontWeight.w700),

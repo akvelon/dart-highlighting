@@ -27,7 +27,7 @@ const githubDarkTheme = {
   'variable': TextStyle(color: Color(0xff79c0ff)),
   'regexp': TextStyle(color: Color(0xffa5d6ff)),
   'string': TextStyle(color: Color(0xffa5d6ff)),
-  'builtin': TextStyle(color: Color(0xffffa657)),
+  'built_in': TextStyle(color: Color(0xffffa657)),
   'symbol': TextStyle(color: Color(0xffffa657)),
   'code': TextStyle(color: Color(0xff8b949e)),
   'comment': TextStyle(color: Color(0xff8b949e)),

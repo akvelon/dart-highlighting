@@ -15,7 +15,7 @@ const nordTheme = {
   'selector-pseudo': TextStyle(color: Color(0xff88c0d0)),
   'addition': TextStyle(backgroundColor: Color.fromRGBO(163, 190, 140, .5)),
   'deletion': TextStyle(backgroundColor: Color.fromRGBO(191, 97, 106, .5)),
-  'builtin': TextStyle(color: Color(0xff8fbcbb)),
+  'built_in': TextStyle(color: Color(0xff8fbcbb)),
   'class': TextStyle(color: Color(0xff8fbcbb)),
   'type': TextStyle(color: Color(0xff8fbcbb)),
   'function': TextStyle(color: Color(0xff88c0d0)),

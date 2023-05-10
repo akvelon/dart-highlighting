@@ -28,7 +28,7 @@ const monokaiSublimeTheme = {
   'params': TextStyle(color: Color(0xfff8f8f2)),
   'title.class': TextStyle(color: Color(0xfff8f8f2)),
   'addition': TextStyle(color: Color(0xffe6db74)),
-  'builtin': TextStyle(color: Color(0xffe6db74)),
+  'built_in': TextStyle(color: Color(0xffe6db74)),
   'selector-attr': TextStyle(color: Color(0xffe6db74)),
   'selector-id': TextStyle(color: Color(0xffe6db74)),
   'selector-pseudo': TextStyle(color: Color(0xffe6db74)),

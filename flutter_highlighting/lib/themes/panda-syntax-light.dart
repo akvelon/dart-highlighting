@@ -37,7 +37,7 @@ const pandaSyntaxLightTheme = {
   'title.class': TextStyle(color: Color(0xff0d7d6c)),
   'title.class.inherited': TextStyle(color: Color(0xff0d7d6c)),
   'attribute': TextStyle(color: Color(0xff7641bb)),
-  'builtin': TextStyle(color: Color(0xff7641bb)),
+  'built_in': TextStyle(color: Color(0xff7641bb)),
   'doctag': TextStyle(color: Color(0xff7641bb)),
   'link': TextStyle(color: Color(0xff7641bb)),
   'literal': TextStyle(color: Color(0xff7641bb)),

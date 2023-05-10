@@ -17,7 +17,7 @@ const artaTheme = {
   'addition': TextStyle(color: Color(0xff00cc66)),
   'number': TextStyle(color: Color(0xff00cc66)),
   'attribute': TextStyle(color: Color(0xff32aaee)),
-  'builtin': TextStyle(color: Color(0xff32aaee)),
+  'built_in': TextStyle(color: Color(0xff32aaee)),
   'link': TextStyle(color: Color(0xff32aaee)),
   'literal': TextStyle(color: Color(0xff32aaee)),
   'template-variable': TextStyle(color: Color(0xff32aaee)),

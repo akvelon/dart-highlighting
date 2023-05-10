@@ -16,7 +16,7 @@ const a11yLightTheme = {
   'template-variable': TextStyle(color: Color(0xffd91e18)),
   'variable': TextStyle(color: Color(0xffd91e18)),
   'attribute': TextStyle(color: Color(0xffaa5d00)),
-  'builtin': TextStyle(color: Color(0xffaa5d00)),
+  'built_in': TextStyle(color: Color(0xffaa5d00)),
   'link': TextStyle(color: Color(0xffaa5d00)),
   'literal': TextStyle(color: Color(0xffaa5d00)),
   'meta': TextStyle(color: Color(0xffaa5d00)),

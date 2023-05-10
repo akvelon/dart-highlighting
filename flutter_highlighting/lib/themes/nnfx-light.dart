@@ -7,7 +7,7 @@ const nnfxLightTheme = {
       TextStyle(backgroundColor: Color(0xffffffff), color: Color(0xff000000)),
   'comment': TextStyle(fontStyle: FontStyle.italic, color: Color(0xff007700)),
   'quote': TextStyle(fontStyle: FontStyle.italic, color: Color(0xff007700)),
-  'builtin': TextStyle(color: Color(0xff880088)),
+  'built_in': TextStyle(color: Color(0xff880088)),
   'keyword': TextStyle(color: Color(0xff880088)),
   'name': TextStyle(color: Color(0xff880088), fontWeight: FontWeight.w700),
   'attr': TextStyle(fontWeight: FontWeight.w700, color: Color(0xff000000)),
