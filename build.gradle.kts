@@ -1,5 +1,6 @@
 tasks.register("port") {
     dependsOn("portLanguages")
+    dependsOn("portThemes");
 }
 
 tasks.register("portLanguages") {
