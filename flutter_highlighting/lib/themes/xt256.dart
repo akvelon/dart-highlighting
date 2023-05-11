@@ -30,7 +30,7 @@ const xt256Theme = {
   'selector-tag':
       TextStyle(color: Color(0xff000fff), fontWeight: FontWeight.w700),
   'attribute': TextStyle(color: Color(0xffff00ff)),
-  'builtin': TextStyle(color: Color(0xffff00ff)),
+  'built_in': TextStyle(color: Color(0xffff00ff)),
   'link': TextStyle(color: Color(0xffff00ff)),
   'regexp': TextStyle(color: Color(0xffff00ff)),
   'meta': TextStyle(color: Color(0xffffffff), fontWeight: FontWeight.bold),

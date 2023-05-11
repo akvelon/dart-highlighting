@@ -32,7 +32,7 @@ const routerosTheme = {
   'variable': TextStyle(color: Color(0xffbc6060)),
   'literal': TextStyle(color: Color(0xff78a960)),
   'addition': TextStyle(color: Color(0xff0c9a9a)),
-  'builtin': TextStyle(color: Color(0xff0c9a9a)),
+  'built_in': TextStyle(color: Color(0xff0c9a9a)),
   'bullet': TextStyle(color: Color(0xff0c9a9a)),
   'code': TextStyle(color: Color(0xff0c9a9a)),
   'meta': TextStyle(color: Color(0xff1f7199)),

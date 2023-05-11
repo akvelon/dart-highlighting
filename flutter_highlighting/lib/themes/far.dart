@@ -7,7 +7,7 @@ const farTheme = {
       TextStyle(color: Color(0xff00ffff), backgroundColor: Color(0xff000080)),
   'addition': TextStyle(color: Color(0xffffff00)),
   'attribute': TextStyle(color: Color(0xffffff00)),
-  'builtin': TextStyle(color: Color(0xffffff00)),
+  'built_in': TextStyle(color: Color(0xffffff00)),
   'bullet': TextStyle(color: Color(0xffffff00)),
   'string': TextStyle(color: Color(0xffffff00)),
   'symbol': TextStyle(color: Color(0xffffff00)),

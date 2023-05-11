@@ -15,7 +15,7 @@ const a11yDarkTheme = {
   'tag': TextStyle(color: Color(0xffffa07a)),
   'template-variable': TextStyle(color: Color(0xffffa07a)),
   'variable': TextStyle(color: Color(0xffffa07a)),
-  'builtin': TextStyle(color: Color(0xfff5ab35)),
+  'built_in': TextStyle(color: Color(0xfff5ab35)),
   'link': TextStyle(color: Color(0xfff5ab35)),
   'literal': TextStyle(color: Color(0xfff5ab35)),
   'meta': TextStyle(color: Color(0xfff5ab35)),

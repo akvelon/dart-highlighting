@@ -16,7 +16,7 @@ const paraisoDarkTheme = {
   'tag': TextStyle(color: Color(0xffef6155)),
   'template-variable': TextStyle(color: Color(0xffef6155)),
   'variable': TextStyle(color: Color(0xffef6155)),
-  'builtin': TextStyle(color: Color(0xfff99b15)),
+  'built_in': TextStyle(color: Color(0xfff99b15)),
   'deletion': TextStyle(color: Color(0xfff99b15)),
   'literal': TextStyle(color: Color(0xfff99b15)),
   'number': TextStyle(color: Color(0xfff99b15)),

@@ -30,7 +30,7 @@ const srceryTheme = {
   'bullet': TextStyle(color: Color(0xff98bc37)),
   'regexp': TextStyle(color: Color(0xff98bc37)),
   'string': TextStyle(color: Color(0xff98bc37)),
-  'builtin': TextStyle(color: Color(0xffff5c8f)),
+  'built_in': TextStyle(color: Color(0xffff5c8f)),
   'params': TextStyle(color: Color(0xffff5c8f)),
   'selector-tag': TextStyle(color: Color(0xff2c78bf)),
   'template-tag': TextStyle(color: Color(0xff2c78bf)),

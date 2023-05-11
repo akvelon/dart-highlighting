@@ -2,10 +2,13 @@ import fs from "fs";
 import path from "path";
 import _ from "lodash";
 import postcss from "postcss";
-import { NOTICE_COMMENT } from "./utils.js";
+import { NOTICE_COMMENT } from "./common.js";
 
-const rootDir = "node_modules/highlight.js/styles";
-const destDir = "../highlight/lib/themes";
+const pathToNodeModules = "../node_modules";
+const pathToFlutterHighlighting = "../../flutter_highlighting";
+
+const rootDir = `${pathToNodeModules}/highlight.js/styles`;
+const destDir = `${pathToFlutterHighlighting}/lib/themes`;
 
 /**
  * white, #fff, #ffffff, rgba(0,0,0,0) -> Flutter color
@@ -55,7 +58,6 @@ const convertColor = color => {
  */
 export function style() {
   let all = [NOTICE_COMMENT, "const themeMap = {"];
-  let exports = ['library highlight_themes;\n\n', `export 'theme_map.dart';`];
 
   // ["agate.css"]
   fs.readdirSync(rootDir).forEach(file => {
@@ -66,7 +68,6 @@ export function style() {
     let varName = _.camelCase(fileName + "Theme").replace(/a11y/i, "a11y");
 
     all[0] += `import 'themes/${fileName}.dart';`;
-    exports.push(`export 'themes/${fileName}.dart';`);
     all[1] += `'${fileName}': ${varName},`;
 
     const ast = postcss.parse(fs.readFileSync(path.resolve(rootDir, file)));
@@ -130,7 +131,7 @@ export function style() {
         });
 
         const styleEntries = Object.entries(style);
-        // selector = selector.replace(/\_/g, '');
+
         if (styleEntries.length) {
           if (!obj[selector]) {
             obj[selector] = style;
@@ -153,9 +154,7 @@ export function style() {
   });
 
   all[1] += "};";
-  exports.push('');
-  fs.writeFileSync("../highlight/lib/theme_map.dart", all.join("\n"));
-  fs.writeFileSync("../highlight/lib/highlight_themes.dart", exports.join('\n'));
+  fs.writeFileSync(`${pathToFlutterHighlighting}/lib/theme_map.dart`, all.join("\n"));
 }
 
 style()

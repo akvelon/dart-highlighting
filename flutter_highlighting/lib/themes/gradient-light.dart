@@ -34,7 +34,7 @@ const gradientLightTheme = {
   'attribute': TextStyle(color: Color(0xff296562)),
   'template-variable': TextStyle(color: Color(0xff025c8f)),
   'variable': TextStyle(color: Color(0xff025c8f)),
-  'builtin': TextStyle(color: Color(0xff529117)),
+  'built_in': TextStyle(color: Color(0xff529117)),
   'class': TextStyle(color: Color(0xff529117)),
   'formula': TextStyle(color: Color(0xff529117)),
   'function': TextStyle(color: Color(0xff529117)),

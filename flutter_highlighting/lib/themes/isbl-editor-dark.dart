@@ -28,7 +28,7 @@ const isblEditorDarkTheme = {
   'symbol': TextStyle(color: Color(0xffe2c696)),
   'template-variable': TextStyle(color: Color(0xffe2c696)),
   'variable': TextStyle(color: Color(0xffe2c696)),
-  'builtin': TextStyle(color: Color(0xff97bf0d), fontWeight: FontWeight.w700),
+  'built_in': TextStyle(color: Color(0xff97bf0d), fontWeight: FontWeight.w700),
   'literal': TextStyle(color: Color(0xff97bf0d), fontWeight: FontWeight.w700),
   'addition': TextStyle(color: Color(0xff397300)),
   'bullet': TextStyle(color: Color(0xff397300)),
@@ -36,7 +36,7 @@ const isblEditorDarkTheme = {
   'class': TextStyle(color: Color(0xffce9d4d), fontWeight: FontWeight.w700),
   'section': TextStyle(color: Color(0xffdf471e)),
   'title': TextStyle(color: Color(0xffdf471e)),
-  'title>.hljs-builtin':
+  'title>.hljs-built_in':
       TextStyle(color: Color(0xff81bce9), fontWeight: FontWeight.w400),
   'meta': TextStyle(color: Color(0xff1f7199)),
   'emphasis': TextStyle(fontStyle: FontStyle.italic),

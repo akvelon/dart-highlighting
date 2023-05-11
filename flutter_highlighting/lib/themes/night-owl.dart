@@ -6,7 +6,7 @@ const nightOwlTheme = {
   'root':
       TextStyle(backgroundColor: Color(0xff011627), color: Color(0xffd6deeb)),
   'keyword': TextStyle(color: Color(0xffc792ea), fontStyle: FontStyle.italic),
-  'builtin': TextStyle(color: Color(0xffaddb67), fontStyle: FontStyle.italic),
+  'built_in': TextStyle(color: Color(0xffaddb67), fontStyle: FontStyle.italic),
   'type': TextStyle(color: Color(0xff82aaff)),
   'literal': TextStyle(color: Color(0xffff5874)),
   'number': TextStyle(color: Color(0xfff78c6c)),

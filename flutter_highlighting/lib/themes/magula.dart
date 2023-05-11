@@ -24,7 +24,7 @@ const magulaTheme = {
   'type': TextStyle(color: Color(0xff880000)),
   'deletion': TextStyle(color: Color(0xff0000ee)),
   'meta': TextStyle(color: Color(0xff0000ee)),
-  'builtin': TextStyle(fontWeight: FontWeight.w700, color: Color(0xff000080)),
+  'built_in': TextStyle(fontWeight: FontWeight.w700, color: Color(0xff000080)),
   'doctag': TextStyle(fontWeight: FontWeight.w700, color: Color(0xff000080)),
   'keyword': TextStyle(fontWeight: FontWeight.w700, color: Color(0xff000080)),
   'name': TextStyle(fontWeight: FontWeight.w700, color: Color(0xff000080)),

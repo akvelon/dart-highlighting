@@ -17,7 +17,7 @@ const purebasicTheme = {
   'regexp': TextStyle(color: Color(0xff00aaaa)),
   'section': TextStyle(color: Color(0xff00aaaa)),
   'selector-pseudo': TextStyle(color: Color(0xff00aaaa)),
-  'builtin': TextStyle(color: Color(0xff006666), fontWeight: FontWeight.w700),
+  'built_in': TextStyle(color: Color(0xff006666), fontWeight: FontWeight.w700),
   'class': TextStyle(color: Color(0xff006666), fontWeight: FontWeight.w700),
   'keyword': TextStyle(color: Color(0xff006666), fontWeight: FontWeight.w700),
   'selector-class':

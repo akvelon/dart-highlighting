@@ -33,7 +33,7 @@ const defaultTheme = {
   'variable': TextStyle(color: Color(0xffab5656)),
   'literal': TextStyle(color: Color(0xff669955)),
   'addition': TextStyle(color: Color(0xff397300)),
-  'builtin': TextStyle(color: Color(0xff397300)),
+  'built_in': TextStyle(color: Color(0xff397300)),
   'bullet': TextStyle(color: Color(0xff397300)),
   'code': TextStyle(color: Color(0xff397300)),
   'meta': TextStyle(color: Color(0xff1f7199)),

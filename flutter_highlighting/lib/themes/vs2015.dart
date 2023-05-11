@@ -10,7 +10,7 @@ const vs2015Theme = {
   'name': TextStyle(color: Color(0xff569cd6)),
   'symbol': TextStyle(color: Color(0xff569cd6)),
   'link': TextStyle(color: Color(0xff569cd6)),
-  'builtin': TextStyle(color: Color(0xff4ec9b0)),
+  'built_in': TextStyle(color: Color(0xff4ec9b0)),
   'type': TextStyle(color: Color(0xff4ec9b0)),
   'class': TextStyle(color: Color(0xffb8d7a3)),
   'number': TextStyle(color: Color(0xffb8d7a3)),

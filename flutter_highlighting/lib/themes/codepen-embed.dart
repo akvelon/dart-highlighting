@@ -7,7 +7,7 @@ const codepenEmbedTheme = {
       TextStyle(backgroundColor: Color(0xff222222), color: Color(0xffffffff)),
   'comment': TextStyle(color: Color(0xff777777)),
   'quote': TextStyle(color: Color(0xff777777)),
-  'builtin': TextStyle(color: Color(0xffab875d)),
+  'built_in': TextStyle(color: Color(0xffab875d)),
   'bullet': TextStyle(color: Color(0xffab875d)),
   'deletion': TextStyle(color: Color(0xffab875d)),
   'link': TextStyle(color: Color(0xffab875d)),

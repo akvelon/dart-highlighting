@@ -29,7 +29,7 @@ const agateTheme = {
   'symbol': TextStyle(color: Color(0xffd36363)),
   'bullet': TextStyle(color: Color(0xffb8d8a2)),
   'template-tag': TextStyle(color: Color(0xffb8d8a2)),
-  'builtin': TextStyle(color: Color(0xfffcc28c)),
+  'built_in': TextStyle(color: Color(0xfffcc28c)),
   'keyword': TextStyle(color: Color(0xfffcc28c)),
   'literal': TextStyle(color: Color(0xfffcc28c)),
   'selector-tag': TextStyle(color: Color(0xfffcc28c)),

@@ -21,7 +21,7 @@ const grayscaleTheme = {
       TextStyle(color: Color(0xff000000), fontWeight: FontWeight.w700),
   'title': TextStyle(color: Color(0xff000000), fontWeight: FontWeight.w700),
   'name': TextStyle(color: Color(0xff333333), fontWeight: FontWeight.w700),
-  'title.class':
+  'title.class_':
       TextStyle(color: Color(0xff333333), fontWeight: FontWeight.w700),
   'type': TextStyle(color: Color(0xff333333), fontWeight: FontWeight.w700),
   'tag': TextStyle(color: Color(0xff333333)),
@@ -29,7 +29,7 @@ const grayscaleTheme = {
   'bullet': TextStyle(color: Color(0xff000000)),
   'link': TextStyle(color: Color(0xff000000)),
   'symbol': TextStyle(color: Color(0xff000000)),
-  'builtin': TextStyle(color: Color(0xff000000)),
+  'built_in': TextStyle(color: Color(0xff000000)),
   'meta': TextStyle(color: Color(0xff999999), fontWeight: FontWeight.w700),
   'deletion': TextStyle(color: Color(0xffffffff)),
   'addition': TextStyle(color: Color(0xff000000)),
