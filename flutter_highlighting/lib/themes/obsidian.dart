@@ -39,5 +39,5 @@ const obsidianTheme = {
   'strong': TextStyle(fontWeight: FontWeight.w700),
   'title': TextStyle(fontWeight: FontWeight.w700),
   'code': TextStyle(color: Color(0xffffffff)),
-  'title.class': TextStyle(color: Color(0xffffffff)),
+  'title.class_': TextStyle(color: Color(0xffffffff)),
 };

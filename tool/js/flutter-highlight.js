@@ -58,7 +58,6 @@ const convertColor = color => {
  */
 export function style() {
   let all = [NOTICE_COMMENT, "const themeMap = {"];
-  let exports = ["export 'theme_map.dart';"];
 
   // ["agate.css"]
   fs.readdirSync(rootDir).forEach(file => {
@@ -69,7 +68,6 @@ export function style() {
     let varName = _.camelCase(fileName + "Theme").replace(/a11y/i, "a11y");
 
     all[0] += `import 'themes/${fileName}.dart';`;
-    exports.push(`export 'themes/${fileName}.dart';`);
     all[1] += `'${fileName}': ${varName},`;
 
     const ast = postcss.parse(fs.readFileSync(path.resolve(rootDir, file)));
@@ -133,11 +131,6 @@ export function style() {
         });
 
         const styleEntries = Object.entries(style);
-        selector = selector
-          .replace(/\_+\./g, '.')
-          .replace(/\_/g, ' ')
-          .trimEnd()
-          .replace(/ /g, '_');
 
         if (styleEntries.length) {
           if (!obj[selector]) {
@@ -161,9 +154,7 @@ export function style() {
   });
 
   all[1] += "};";
-  exports.push('');
   fs.writeFileSync(`${pathToFlutterHighlighting}/lib/theme_map.dart`, all.join("\n"));
-  fs.writeFileSync(`${pathToFlutterHighlighting}/lib/highlight_themes.dart`, exports.join('\n'));
 }
 
 style()

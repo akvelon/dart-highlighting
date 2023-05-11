@@ -21,12 +21,12 @@ const nnfxLightTheme = {
   'template-variable': TextStyle(color: Color(0xffff4400)),
   'title': TextStyle(color: Color(0xffff4400)),
   'variable': TextStyle(color: Color(0xffff4400)),
-  'title.class':
+  'title.class_':
       TextStyle(fontWeight: FontWeight.w700, color: Color(0xff663399)),
   'type': TextStyle(fontWeight: FontWeight.w700, color: Color(0xff663399)),
   'subst': TextStyle(color: Color(0xff000000)),
   'tag': TextStyle(color: Color(0xff000000)),
-  'title.function': TextStyle(color: Color(0xff000000)),
+  'title.function_': TextStyle(color: Color(0xff000000)),
   'formula': TextStyle(
       backgroundColor: Color(0xffeeeeee), fontStyle: FontStyle.italic),
   'addition': TextStyle(backgroundColor: Color(0xffbbeebb)),

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:highlighting/src/html_renderer.dart';
 
 import 'node.dart';
@@ -29,7 +30,7 @@ class Result {
   }
 
   void openNode(String kind) {
-    final node = Node(className: kind);
+    final node = Node(className: _processScope(kind));
     add(node);
     stack.add(node);
   }
@@ -94,4 +95,15 @@ class Result {
 
     return builder;
   }
+}
+
+String _processScope(String scope) {
+  if (!scope.contains('.')) {
+    return scope;
+  }
+
+  return scope
+      .split('.')
+      .mapIndexed((index, str) => str + ('_' * index))
+      .join('.');
 }

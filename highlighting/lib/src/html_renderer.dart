@@ -56,13 +56,10 @@ bool emitsWrappingTag(Node node) {
 }
 
 String scopeToCSSClass(String name, String prefix) {
-  if (name.contains(".")) {
-    final pieces = name.split(".");
-    return [
-      '$prefix${pieces.removeAt(0)}',
-      ...(pieces.mapIndexed((i, x) => '$x${"_" * (i + 1)}'))
-    ].join(" ");
+  if (name.contains('.')) {
+    return prefix + name.split('.').join(' ');
   }
+
   return '$prefix$name';
 }
 

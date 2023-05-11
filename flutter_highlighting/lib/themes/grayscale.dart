@@ -21,7 +21,7 @@ const grayscaleTheme = {
       TextStyle(color: Color(0xff000000), fontWeight: FontWeight.w700),
   'title': TextStyle(color: Color(0xff000000), fontWeight: FontWeight.w700),
   'name': TextStyle(color: Color(0xff333333), fontWeight: FontWeight.w700),
-  'title.class':
+  'title.class_':
       TextStyle(color: Color(0xff333333), fontWeight: FontWeight.w700),
   'type': TextStyle(color: Color(0xff333333), fontWeight: FontWeight.w700),
   'tag': TextStyle(color: Color(0xff333333)),

@@ -25,7 +25,7 @@ const qtcreatorDarkTheme = {
   'title': TextStyle(color: Color(0xffaaaaaa)),
   'attribute': TextStyle(color: Color(0xffff5555)),
   'params': TextStyle(color: Color(0xff8888ff)),
-  'title.class': TextStyle(color: Color(0xff8888ff)),
+  'title.class_': TextStyle(color: Color(0xff8888ff)),
   'variable': TextStyle(color: Color(0xff8888ff)),
   'addition': TextStyle(color: Color(0xffff55ff)),
   'built_in': TextStyle(color: Color(0xffff55ff)),

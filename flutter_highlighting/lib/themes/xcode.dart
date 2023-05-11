@@ -27,7 +27,7 @@ const xcodeTheme = {
   'section': TextStyle(color: Color(0xff643820)),
   'built_in': TextStyle(color: Color(0xff5c2699)),
   'params': TextStyle(color: Color(0xff5c2699)),
-  'title.class': TextStyle(color: Color(0xff5c2699)),
+  'title.class_': TextStyle(color: Color(0xff5c2699)),
   'type': TextStyle(color: Color(0xff5c2699)),
   'attr': TextStyle(color: Color(0xff836c28)),
   'subst': TextStyle(color: Color(0xff000000)),

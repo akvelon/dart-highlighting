@@ -21,7 +21,7 @@ const pojoaqueTheme = {
   'title': TextStyle(color: Color(0xffffb03b)),
   'tag': TextStyle(color: Color(0xffb58900)),
   'template-variable': TextStyle(color: Color(0xffb58900)),
-  'title.class': TextStyle(color: Color(0xffb58900)),
+  'title.class_': TextStyle(color: Color(0xffb58900)),
   'type': TextStyle(color: Color(0xffb58900)),
   'variable': TextStyle(color: Color(0xffb58900)),
   'attribute': TextStyle(color: Color(0xffb89859)),

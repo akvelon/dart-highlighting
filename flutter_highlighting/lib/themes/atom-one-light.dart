@@ -35,7 +35,7 @@ const atomOneLightTheme = {
   'symbol': TextStyle(color: Color(0xff4078f2)),
   'title': TextStyle(color: Color(0xff4078f2)),
   'built_in': TextStyle(color: Color(0xffc18401)),
-  'title.class': TextStyle(color: Color(0xffc18401)),
+  'title.class_': TextStyle(color: Color(0xffc18401)),
   'emphasis': TextStyle(fontStyle: FontStyle.italic),
   'strong': TextStyle(fontWeight: FontWeight.w700),
 };

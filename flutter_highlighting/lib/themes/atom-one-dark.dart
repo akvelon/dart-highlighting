@@ -35,7 +35,7 @@ const atomOneDarkTheme = {
   'symbol': TextStyle(color: Color(0xff61aeee)),
   'title': TextStyle(color: Color(0xff61aeee)),
   'built_in': TextStyle(color: Color(0xffe6c07b)),
-  'title.class': TextStyle(color: Color(0xffe6c07b)),
+  'title.class_': TextStyle(color: Color(0xffe6c07b)),
   'emphasis': TextStyle(fontStyle: FontStyle.italic),
   'strong': TextStyle(fontWeight: FontWeight.w700),
 };

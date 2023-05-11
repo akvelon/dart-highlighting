@@ -24,7 +24,7 @@ const atomOneDarkReasonableTheme = {
   'regexp': TextStyle(color: Color(0xff98c379)),
   'string': TextStyle(color: Color(0xff98c379)),
   'built_in': TextStyle(color: Color(0xffe6c07b)),
-  'title.class': TextStyle(color: Color(0xffe6c07b)),
+  'title.class_': TextStyle(color: Color(0xffe6c07b)),
   'attr': TextStyle(color: Color(0xffd19a66)),
   'number': TextStyle(color: Color(0xffd19a66)),
   'selector-attr': TextStyle(color: Color(0xffd19a66)),

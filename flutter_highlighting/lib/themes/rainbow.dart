@@ -24,7 +24,7 @@ const rainbowTheme = {
   'title': TextStyle(color: Color(0xffb5bd68)),
   'selector-id': TextStyle(color: Color(0xffffcc66)),
   'template-variable': TextStyle(color: Color(0xffffcc66)),
-  'title.class': TextStyle(color: Color(0xffffcc66)),
+  'title.class_': TextStyle(color: Color(0xffffcc66)),
   'variable': TextStyle(color: Color(0xffffcc66)),
   'strong': TextStyle(fontWeight: FontWeight.w700),
   'bullet': TextStyle(color: Color(0xfff99157)),

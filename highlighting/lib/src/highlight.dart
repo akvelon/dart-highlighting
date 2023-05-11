@@ -172,7 +172,7 @@ class Highlight {
         final text = match[i];
 
         if (klass != null) {
-          emitter.addKeyword(text!, klass);
+           emitter.addKeyword(text!, klass);
         } else {
           modeBuffer = text!;
           processKeywords();

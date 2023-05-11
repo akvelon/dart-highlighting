@@ -31,7 +31,7 @@ const monokaiTheme = {
   'title': TextStyle(color: Color(0xffa6e22e), fontWeight: FontWeight.w700),
   'type': TextStyle(color: Color(0xffa6e22e), fontWeight: FontWeight.w700),
   'variable': TextStyle(color: Color(0xffa6e22e)),
-  'title.class': TextStyle(color: Color(0xffffffff)),
+  'title.class_': TextStyle(color: Color(0xffffffff)),
   'comment': TextStyle(color: Color(0xff75715e)),
   'deletion': TextStyle(color: Color(0xff75715e)),
   'meta': TextStyle(color: Color(0xff75715e)),
