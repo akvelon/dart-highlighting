@@ -40,5 +40,8 @@ class Language extends Mode {
     super.keywords,
     super.subLanguage,
     super.relevance,
+    super.className,
+    super.beginKeywords,
+    super.lexemes,
   });
 }

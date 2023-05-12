@@ -10,6 +10,8 @@ import { generateLanguage, generateMode, getCircularJsonTokens, getLodashGetKey 
 
 import { portMathematicaSpecific } from './languages/mathematica.js';
 
+import { communityLanguages } from './languages/community_languages.js';
+
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
@@ -47,7 +49,10 @@ function normalizeLanguageName(name) {
 }
 
 export function portAllModes() {
-  let all = "import '../src/language.dart';";
+  let all = `
+    // ignore_for_file: directives_ordering\n
+    import '../src/language.dart';`;
+
   let builtin = "final builtinLanguages = <String, Language>{";
   let community = "final communityLanguages = <String, Language>{";
 
@@ -58,6 +63,7 @@ export function portAllModes() {
       factory: require(path.resolve(dir, file)),
       community: false
     })),
+    ...communityLanguages,
   ];
 
   // ["json"]
