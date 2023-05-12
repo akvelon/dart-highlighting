@@ -1,15 +1,21 @@
-[submodule "vendor/highlight.js"]
-	path = vendor/highlight.js
-	url = https://github.com/highlightjs/highlight.js.git
-[submodule "vendor/highlightjs-vue"]
-	path = vendor/highlightjs-vue
-	url = https://github.com/highlightjs/highlightjs-vue.git
-[submodule "vendor/highlightjs-graphql"]
-	path = vendor/highlightjs-graphql
-	url = https://github.com/dpeek/highlightjs-graphql.git
-[submodule "vendor/highlightjs-GN"]
-	path = vendor/highlightjs-GN
-	url = https://github.com/highlightjs/highlightjs-GN.git
-[submodule "vendor/highlightjs-solidity"]
-	path = vendor/highlightjs-solidity
-	url = https://github.com/highlightjs/highlightjs-solidity.git
+[submodule "vendor/highlightjs-hlsl"]
+	path = vendor/highlightjs-hlsl
+	url = https://github.com/highlightjs/highlightjs-hlsl.git
+[submodule "vendor/highlightjs-mde-languages"]
+	path = vendor/highlightjs-mde-languages
+	url = https://github.com/highlightjs/highlightjs-mde-languages
+[submodule "vendor/highlightjs-apex"]
+	path = vendor/highlightjs-apex
+	url = https://github.com/highlightjs/highlightjs-apex
+[submodule "vendor/highlightjs-iptables"]
+	path = vendor/highlightjs-iptables
+	url = https://github.com/highlightjs/highlightjs-iptables
+[submodule "vendor/highlightjs-c3"]
+	path = vendor/highlightjs-c3
+	url = https://github.com/highlightjs/highlightjs-c3
+[submodule "vendor/highlightjs-rpm-specfile"]
+	path = vendor/highlightjs-rpm-specfile
+	url = https://github.com/highlightjs/highlightjs-rpm-specfile
+[submodule "vendor/highlightjs-supercollider"]
+	path = vendor/highlightjs-supercollider
+	url = https://github.com/highlightjs/highlightjs-supercollider
