@@ -19,3 +19,114 @@
 [submodule "vendor/highlightjs-supercollider"]
 	path = vendor/highlightjs-supercollider
 	url = https://github.com/highlightjs/highlightjs-supercollider
+[submodule "vendor/highlightjs-solidity"]
+	path = vendor/highlightjs-solidity
+	url = https://github.com/highlightjs/highlightjs-solidity
+[submodule "vendor/highlightjs-lang"]
+	path = vendor/highlightjs-lang
+	url = https://github.com/highlightjs/highlightjs-lang
+[submodule "vendor/highlightjs-func"]
+	path = vendor/highlightjs-func
+	url = https://github.com/highlightjs/highlightjs-func
+[submodule "vendor/highlightjs-tsql"]
+	path = vendor/highlightjs-tsql
+	url = https://github.com/highlightjs/highlightjs-tsql
+[submodule "vendor/highlightjs-turtle"]
+	path = vendor/highlightjs-turtle
+	url = https://github.com/highlightjs/highlightjs-turtle
+[submodule "vendor/highlightjs-terraform"]
+	path = vendor/highlightjs-terraform
+	url = https://github.com/highlightjs/highlightjs-terraform
+[submodule "vendor/highlightjs-cypher"]
+	path = vendor/highlightjs-cypher
+	url = https://github.com/highlightjs/highlightjs-cypher
+[submodule "vendor/highlightjs-closure-templates"]
+	path = vendor/highlightjs-closure-templates
+	url = https://github.com/highlightjs/highlightjs-closure-templates
+[submodule "vendor/highlightjs-octave"]
+	path = vendor/highlightjs-octave
+	url = https://github.com/highlightjs/highlightjs-octave
+[submodule "vendor/highlightjs-pythonlogging"]
+	path = vendor/highlightjs-pythonlogging
+	url = https://github.com/highlightjs/highlightjs-pythonlogging
+[submodule "vendor/highlightjs-mirc"]
+	path = vendor/highlightjs-mirc
+	url = https://github.com/highlightjs/highlightjs-mirc
+[submodule "vendor/highlightjs-zeroc-slice"]
+	path = vendor/highlightjs-zeroc-slice
+	url = https://github.com/highlightjs/highlightjs-zeroc-slice
+[submodule "vendor/highlightjs-robot"]
+	path = vendor/highlightjs-robot
+	url = https://github.com/highlightjs/highlightjs-robot
+[submodule "vendor/highlightjs-web-idl"]
+	path = vendor/highlightjs-web-idl
+	url = https://github.com/highlightjs/highlightjs-web-idl
+[submodule "vendor/highlightjs-sentinel"]
+	path = vendor/highlightjs-sentinel
+	url = https://github.com/highlightjs/highlightjs-sentinel
+[submodule "vendor/highlightjs-4d"]
+	path = vendor/highlightjs-4d
+	url = https://github.com/highlightjs/highlightjs-4d
+[submodule "vendor/highlightjs-raku"]
+	path = vendor/highlightjs-raku
+	url = https://github.com/highlightjs/highlightjs-raku
+[submodule "vendor/highlightjs-shexc"]
+	path = vendor/highlightjs-shexc
+	url = https://github.com/highlightjs/highlightjs-shexc
+[submodule "vendor/highlightjs-riscript"]
+	path = vendor/highlightjs-riscript
+	url = https://github.com/highlightjs/highlightjs-riscript
+[submodule "vendor/highlightjs-oz"]
+	path = vendor/highlightjs-oz
+	url = https://github.com/highlightjs/highlightjs-oz
+[submodule "vendor/highlightjs-mlir"]
+	path = vendor/highlightjs-mlir
+	url = https://github.com/highlightjs/highlightjs-mlir
+[submodule "vendor/highlightjs-lustre"]
+	path = vendor/highlightjs-lustre
+	url = https://github.com/highlightjs/highlightjs-lustre
+[submodule "vendor/highlightjs-cshtml-razor"]
+	path = vendor/highlightjs-cshtml-razor
+	url = https://github.com/highlightjs/highlightjs-cshtml-razor
+[submodule "vendor/highlightjs-bbcode"]
+	path = vendor/highlightjs-bbcode
+	url = https://github.com/highlightjs/highlightjs-bbcode
+[submodule "vendor/highlightjs-structured-text"]
+	path = vendor/highlightjs-structured-text
+	url = https://github.com/highlightjs/highlightjs-structured-text
+[submodule "vendor/highlightjs-isbl"]
+	path = vendor/highlightjs-isbl
+	url = https://github.com/highlightjs/highlightjs-isbl
+[submodule "vendor/highlightjs-gdscript"]
+	path = vendor/highlightjs-gdscript
+	url = https://github.com/highlightjs/highlightjs-gdscript
+[submodule "vendor/highlightjs-sap-abap"]
+	path = vendor/highlightjs-sap-abap
+	url = https://github.com/highlightjs/highlightjs-sap-abap
+[submodule "vendor/highlightjs-curl"]
+	path = vendor/highlightjs-curl
+	url = https://github.com/highlightjs/highlightjs-curl
+[submodule "vendor/highlightjs-vue"]
+	path = vendor/highlightjs-vue
+	url = https://github.com/highlightjs/highlightjs-vue
+[submodule "vendor/highlightjs-robots-txt"]
+	path = vendor/highlightjs-robots-txt
+	url = https://github.com/highlightjs/highlightjs-robots-txt
+[submodule "vendor/highlightjs-alan-if"]
+	path = vendor/highlightjs-alan-if
+	url = https://github.com/highlightjs/highlightjs-alan-if
+[submodule "vendor/highlightjs-dylan"]
+	path = vendor/highlightjs-dylan
+	url = https://github.com/highlightjs/highlightjs-dylan
+[submodule "vendor/highlightjs-zenscript"]
+	path = vendor/highlightjs-zenscript
+	url = https://github.com/highlightjs/highlightjs-zenscript
+[submodule "vendor/highlightjs-extempore"]
+	path = vendor/highlightjs-extempore
+	url = https://github.com/highlightjs/highlightjs-extempore
+[submodule "vendor/highlightjs-hakaru"]
+	path = vendor/highlightjs-hakaru
+	url = https://github.com/highlightjs/highlightjs-hakaru
+[submodule "vendor/highlightjs-GN"]
+	path = vendor/highlightjs-GN
+	url = https://github.com/highlightjs/highlightjs-GN
