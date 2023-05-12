@@ -1,3 +1,5 @@
+// ignore_for_file: directives_ordering
+
 import '../src/language.dart';
 import '1c.dart';
 import 'abnf.dart';
@@ -191,8 +193,57 @@ import 'xml.dart';
 import 'xquery.dart';
 import 'yaml.dart';
 import 'zephir.dart';
+import '4d.dart';
+import 'cshtml-razor.dart';
+import 'curl.dart';
+import 'cypher.dart';
+import 'dylan.dart';
+import 'gdscript.dart';
+import 'gn.dart';
+import 'hakaru.dart';
+import 'minecraft-lang.dart';
+import 'mde-atl.dart';
+import 'mde-ocl.dart';
+import 'mde-xcore.dart';
+import 'oz.dart';
+import 'robot.dart';
+import 'robot-txt.dart';
+import 'rpm-specfile.dart';
+import 'abap.dart';
+import 'shexc.dart';
+import 'solidity.dart';
+import 'yul.dart';
+import 'iecst.dart';
+import 'terraform.dart';
+import 'vue.dart';
+import 'zenscript.dart';
 
-final communityLanguages = <String, Language>{};
+final communityLanguages = <String, Language>{
+  '4d': lang4D,
+  'cshtml-razor': cshtmlRazor,
+  'curl': curl,
+  'cypher': cypher,
+  'dylan': dylan,
+  'gdscript': gdscript,
+  'gn': gn,
+  'hakaru': hakaru,
+  'minecraft-lang': minecraftLang,
+  'mde-atl': mdeAtl,
+  'mde-ocl': mdeOcl,
+  'mde-xcore': mdeXcore,
+  'oz': oz,
+  'robot': robot,
+  'robot-txt': robotTxt,
+  'rpm-specfile': rpmSpecfile,
+  'abap': abap,
+  'shexc': shexc,
+  'solidity': solidity,
+  'yul': yul,
+  'iecst': iecst,
+  'terraform': terraform,
+  'vue': vue,
+  'zenscript': zenscript,
+};
 final builtinLanguages = <String, Language>{
   '1c': lang1C,
   'abnf': abnf,
