@@ -27,6 +27,16 @@ class HighlightView extends StatelessWidget {
   /// Specify text styles such as font family and font size
   final TextStyle? textStyle;
 
+  /// Text selectable
+  ///
+  /// Specify if the text is selectable
+  final bool selectable;
+
+  /// Text selection color
+  ///
+  /// Specify the text selection highlight color
+  final Color selectionColor;
+
   HighlightView(
     String input, {
     this.languageId,
@@ -34,6 +44,8 @@ class HighlightView extends StatelessWidget {
     this.padding,
     this.textStyle,
     int tabSize = 8, // TODO: https://github.com/flutter/flutter/issues/50087
+    this.selectable = false,
+    this.selectionColor = _defaultTextSelectionColor,
   }) : source = input.replaceAll('\t', ' ' * tabSize);
 
   List<TextSpan> _convert(List<Node> nodes) {
@@ -71,6 +83,7 @@ class HighlightView extends StatelessWidget {
   static const _rootKey = 'root';
   static const _defaultFontColor = Color(0xff000000);
   static const _defaultBackgroundColor = Color(0xffffffff);
+  static const _defaultTextSelectionColor = Color(0xAF6694e8);
 
   // TODO: dart:io is not available at web platform currently
   // See: https://github.com/flutter/flutter/issues/39998
@@ -79,20 +92,23 @@ class HighlightView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _textStyle = TextStyle(
+    var textStyle = TextStyle(
       fontFamily: _defaultFontFamily,
       color: theme[_rootKey]?.color ?? _defaultFontColor,
     );
     if (textStyle != null) {
-      _textStyle = _textStyle.merge(textStyle);
+      textStyle = textStyle.merge(textStyle);
     }
 
     return Container(
       color: theme[_rootKey]?.backgroundColor ?? _defaultBackgroundColor,
       padding: padding,
       child: RichText(
+        selectionRegistrar:
+            selectable ? SelectionContainer.maybeOf(context) : null,
+        selectionColor: selectionColor,
         text: TextSpan(
-          style: _textStyle,
+          style: textStyle,
           children: _convert(
             highlight.highlight(languageId ?? '', source, true).nodes ?? [],
           ),
