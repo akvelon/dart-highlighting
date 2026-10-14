@@ -5,6 +5,11 @@
 * Renamed `DomainRegex` to `JsStyleRegExp`.
 * Renamed `DomainRegexMatch` to `JsStyleRegExpMatch`.
 * Renamed `HighlightV2` to `Highlight`.
+* Added `HighlightCore` in `package:highlighting/highlighting_core.dart`.
+  It only knows the languages registered on it, so builds that use it no
+  longer compile every built-in language. `Highlight` now extends it.
+* A sub-language that cannot be resolved is emitted as plain text
+  instead of failing the whole parse.
 
 # 0.9.0+11.8.0
 

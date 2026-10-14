@@ -28,6 +28,26 @@ void main() {
 }
 ```
 
+### Smaller builds
+
+`highlighting.dart` falls back to every built-in language, which compiles all
+of them into your app. To ship only the languages you use, import the core
+library and register them on a `HighlightCore`:
+
+```dart
+import 'package:highlighting/highlighting_core.dart';
+import 'package:highlighting/languages/dart.dart';
+import 'package:highlighting/languages/markdown.dart';
+
+final highlight = HighlightCore()
+  ..registerLanguage(dart)
+  ..registerLanguage(markdown); // Dart doc comments embed Markdown.
+```
+
+A language may embed others (for example `dart` embeds `markdown`, `xml`
+embeds `css` and `javascript`). Register those as well to highlight the
+embedded parts; otherwise they are shown as plain text.
+
 ## Versions and Migration
 
 The package uses its own version numbering in addition to that of HighlightJS.

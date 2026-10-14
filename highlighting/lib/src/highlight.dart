@@ -2,7 +2,6 @@ import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 import 'package:tuple/tuple.dart';
 
-import '../languages/all.dart';
 import '../languages/plaintext.dart';
 import 'const/literals.dart';
 import 'const/magic_numbers.dart';
@@ -14,8 +13,19 @@ import 'response.dart';
 import 'result.dart';
 import 'utils.dart';
 
-class Highlight {
+/// Highlights only the languages registered on it.
+///
+/// Unlike `Highlight`, it does not depend on `languages/all.dart`, so a build
+/// that uses it compiles just the languages the app imports and registers.
+/// A sub-language that is not registered is emitted as plain text.
+class HighlightCore {
+  HighlightCore({Map<String, Language> fallbackLanguages = const {}})
+      : _fallbackLanguages = fallbackLanguages;
+
   final _languages = <String, Language>{};
+
+  /// Consulted for ids that are not registered.
+  final Map<String, Language> _fallbackLanguages;
 
   void registerLanguage(Language language, {String? id}) {
     _languages[id ?? language.id] = language;
@@ -37,7 +47,7 @@ class Highlight {
     bool safeMode = true,
   }) {
     final emitter = Result();
-    final language = _languages[languageId] ?? builtinLanguages[languageId];
+    final language = _languages[languageId] ?? _fallbackLanguages[languageId];
 
     final md = compileLanguage(language!);
 
@@ -135,6 +145,10 @@ class Highlight {
       if (top.subLanguage.length > 1) {
         result = highlightAuto(modeBuffer, top.subLanguage);
       } else {
+        if (_getLanguage(top.subLanguage.first) == null) {
+          emitter.addText(modeBuffer);
+          return;
+        }
         result = highlight(
           top.subLanguage.first,
           modeBuffer,
@@ -421,10 +435,10 @@ class Highlight {
     final plainText = justTextHighlightResult(code);
     try {
       final results = languageSubset
-          .where((e) => _languages[e] != null || builtinLanguages[e] != null)
+          .where((e) => _languages[e] != null || _fallbackLanguages[e] != null)
           .where((e) =>
               _languages[e]?.disableAutodetect != true ||
-              builtinLanguages[e]?.disableAutodetect != true)
+              _fallbackLanguages[e]?.disableAutodetect != true)
           .map((name) => highlight(name, code, false))
           .toList();
 
@@ -472,6 +486,6 @@ class Highlight {
   }
 
   Language? _getLanguage(String name) {
-    return _languages[name] ?? builtinLanguages[name];
+    return _languages[name] ?? _fallbackLanguages[name];
   }
 }

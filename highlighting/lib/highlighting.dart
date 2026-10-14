@@ -1,5 +1,6 @@
-import 'src/highlight.dart';
+import 'src/builtin_highlight.dart';
 
+export 'package:highlighting/src/builtin_highlight.dart';
 export 'package:highlighting/src/highlight.dart';
 export 'package:highlighting/src/mode.dart';
 export 'package:highlighting/src/node.dart';
